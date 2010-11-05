@@ -1,0 +1,249 @@
+# Hungarian translation of ClipIt.
+# Copyright (C) 2008 Xyhthyx <xyhthyx@gmail.com>
+# This file is distributed under the same license as the clipit package.
+# Németh Tamás <ntomasz@vipmail.hu>, 2008, 2009.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ClipIt 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-03-18 12:00-0400\n"
+"PO-Revision-Date: 2009-03-15 20:26+0100\n"
+"Last-Translator: Németh Tamás <ntomasz@vipmail.hu>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/main.c:166
+msgid "Executing action..."
+msgstr "Művelet végrehajtása..."
+
+#: ../src/main.c:172 ../src/main.c:704 ../data/clipit.desktop.in.h:1
+#: ../data/clipit-startup.desktop.in.h:1
+msgid "Clipboard Manager"
+msgstr "Vágólapkezelő"
+
+#: ../src/main.c:195
+msgid "Could not create thread for executed action\n"
+msgstr "A végrehajtott művelethez nem hozható létre szál\n"
+
+#. Create the dialog
+#: ../src/main.c:225
+msgid "Editing Clipboard"
+msgstr "Vágólap szerkesztése"
+
+#: ../src/main.c:284
+msgid "Clear the history?"
+msgstr "Törli az előzményeket?"
+
+#: ../src/main.c:336
+msgid "Lightweight GTK+ clipboard manager."
+msgstr "GTK+ alapú, könnyen kezelhető vágólapkezelő."
+
+#: ../src/main.c:423
+msgid "<b>None</b>"
+msgstr "<b>Nincs</b>"
+
+#. File contained no actions so adding empty
+#. File did not open so adding empty
+#. Nothing in history so adding empty
+#: ../src/main.c:444 ../src/main.c:473 ../src/main.c:588
+msgid "Empty"
+msgstr "Üres"
+
+#. Edit actions
+#: ../src/main.c:480
+msgid "_Edit actions"
+msgstr "_Műveletek szerkesztése"
+
+#. Edit clipboard
+#: ../src/main.c:504
+msgid "_Edit Clipboard"
+msgstr "_Vágólap szerkesztése"
+
+#: ../src/utils.c:38 ../src/utils.c:45
+#, c-format
+msgid "Couldn't create directory: %s\n"
+msgstr "A könyvtár nem hozható létre: %s\n"
+
+#: ../src/utils.c:84
+msgid "Run as daemon"
+msgstr "Futtatás démonként"
+
+#: ../src/utils.c:91
+msgid "Do not use status icon (Ctrl-Alt-P for menu)"
+msgstr "Ne használjon állapot ikont (Ctrl+Alt+P)"
+
+#: ../src/utils.c:98
+msgid "Print clipboard contents"
+msgstr "Vágólap tartalmak nyomtatása"
+
+#: ../src/utils.c:105
+msgid "Print primary contents"
+msgstr "Elsődleges tartalmak nyomtatása"
+
+#: ../src/utils.c:117
+msgid ""
+"Clipboard CLI usage examples:\n"
+"\n"
+"  echo \"copied to clipboard\" | clipit\n"
+"  clipit \"copied to clipboard\"\n"
+"  echo \"copied to clipboard\" | clipit -c"
+msgstr ""
+"A vágólapkezelő CLI (konzolos) használatára példák:\n"
+"\n"
+"  echo \"másolás a vágólapra\" | clipit\n"
+"  clipit \"másolás a vágólapra\"\n"
+"  echo \"másolás a vágólapra\" | clipit -c"
+
+#: ../src/utils.c:123
+msgid ""
+"Written by Gilberto \"Xyhthyx\" Miralla.\n"
+"Report bugs to <xyhthyx@gmail.com>."
+msgstr ""
+"Írta: Gilberto \"Xyhthyx\" Miralla\n"
+"Hibabejelentő emailcím: <xyhthyx@gmail.com>"
+
+#. Create the dialog
+#: ../src/preferences.c:375
+msgid "Preferences"
+msgstr "Beállítások"
+
+#: ../src/preferences.c:390
+msgid "Behavior"
+msgstr "Viselkedés"
+
+#: ../src/preferences.c:398
+msgid "<b>Clipboards</b>"
+msgstr "<b>Vágólapok</b>"
+
+#: ../src/preferences.c:405
+msgid "Use _Copy (Ctrl-C)"
+msgstr "_Másol használata (Ctrl+C)"
+
+#: ../src/preferences.c:407
+msgid "Use _Primary (Selection)"
+msgstr "_Elsődleges használata (Kiválasztás)"
+
+#: ../src/preferences.c:409
+msgid "S_ynchronize clipboards"
+msgstr "Vágólapok s_zinkronizálása"
+
+#: ../src/preferences.c:417
+msgid "<b>History</b>"
+msgstr "<b>Előzmény</b>"
+
+#: ../src/preferences.c:424
+msgid "_Save history"
+msgstr "Előzmény _mentése"
+
+#: ../src/preferences.c:425
+msgid "Save and restore history between sessions"
+msgstr "Előzmények mentése és visszaállítása a munkamenetek között"
+
+#: ../src/preferences.c:429
+msgid "Items in history:"
+msgstr "Előzmény elemei:"
+
+#: ../src/preferences.c:442
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Egyebek</b>"
+
+#: ../src/preferences.c:449
+msgid "Capture _hyperlinks only"
+msgstr "Csak a _hivatkozások elkapása"
+
+#: ../src/preferences.c:451
+msgid "C_onfirm before clearing history"
+msgstr "Előzmény törlésének megerősítése"
+
+#: ../src/preferences.c:458
+msgid "Display"
+msgstr "Megjelenítés"
+
+#: ../src/preferences.c:466
+msgid "<b>Items</b>"
+msgstr "<b>Elemek</b>"
+
+#: ../src/preferences.c:473
+msgid "Show in a _single line"
+msgstr "_Egysoros mód"
+
+#: ../src/preferences.c:475
+msgid "Show in _reverse order"
+msgstr "_Fordított sorrend"
+
+#: ../src/preferences.c:479
+msgid "Character length of items:"
+msgstr "Elemek karaktereinek száma:"
+
+#: ../src/preferences.c:492
+msgid "<b>Omitting</b>"
+msgstr "<b>Kihagyás</b>"
+
+#: ../src/preferences.c:501
+msgid "Omit items in the:"
+msgstr "Elemek kihagyása itt:"
+
+#: ../src/preferences.c:505
+msgid "Beginning"
+msgstr "Elején"
+
+#: ../src/preferences.c:506
+msgid "Middle"
+msgstr "Középen"
+
+#: ../src/preferences.c:507
+msgid "End"
+msgstr "Végén"
+
+#: ../src/preferences.c:514
+msgid "Actions"
+msgstr "Műveletek"
+
+#. Build the actions label
+#: ../src/preferences.c:519
+msgid "Control-click ClipIt's tray icon to use actions"
+msgstr "Műveletek használatához Ctrl+kattintás a ClipIt állapotikonjára"
+
+#: ../src/preferences.c:539
+msgid "Action"
+msgstr "Művelet"
+
+#: ../src/preferences.c:546
+msgid "Command"
+msgstr "Parancs"
+
+#: ../src/preferences.c:561
+msgid "Add..."
+msgstr "Új..."
+
+#: ../src/preferences.c:565
+msgid "Remove"
+msgstr "Eltávolít"
+
+#: ../src/preferences.c:582
+msgid "Hotkeys"
+msgstr "Gyorsbillentyűk"
+
+#: ../src/preferences.c:590
+msgid "<b>Hotkeys</b>"
+msgstr "<b>Gyorsbillentyűk</b>"
+
+#: ../src/preferences.c:599
+msgid "History key combination:"
+msgstr "Előzmény gyorsbillentyű:"
+
+#: ../src/preferences.c:607
+msgid "Actions key combination:"
+msgstr "Műveletek gyorsbillentyű:"
+
+#: ../src/preferences.c:615
+msgid "Menu key combination:"
+msgstr "Menü gyorsbillentyű:"
+
+#: ../data/clipit.desktop.in.h:2 ../data/clipit-startup.desktop.in.h:2
+msgid "ClipIt"
+msgstr "ClipIt"

@@ -1,0 +1,9 @@
++ Add primary support for CLI.
++ Dialog with listed history contents for searching and removing.
++ Static entries.
++ Added variable to hold return values of fread and system, we should
+	actually use that return value to display an error if there was one.
++ Redo Preferences dialog.
++ Clean up the code and indent it properly.
++ Fix conflict with copying of multimedia content.
++ Make Search dialog receive focus as soon as it is opened.

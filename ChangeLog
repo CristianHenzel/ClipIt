@@ -1,0 +1,15 @@
+ClipIt-v1.0.0-05112010001 - 05 Nov. 2010
+	Changes from Parcellite 0.9.2:
+		+ Created "Small history" for quick access to last used items.
+		+ Renamed the old history to "Full history".
+		+ "Full history" can now hold up to 1000 items.
+		+ Ability to put the button for the "Full history" in the systray menu.
+		+ Created a Search function, which allows searching through history.
+		+ Added Search hotkey.
+		+ Created Exceptions:
+			you can enter C or Perl regex into the window and
+			the items that match the regex won't be saved in
+			the history. This allows you to except passwords
+			or specific links from being included in the
+			history.
+		+ Removed some of the warning messages that make threw at us.

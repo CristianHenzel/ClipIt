@@ -1,0 +1,260 @@
+# Polish translation of clipit
+# Copyright (C) 2008 Xyhthyx <xyhthyx@gmail.com>
+# This file is distributed under the same license as the clipit package.
+# pankamyk <pankamyk@o2.pl>, 2008.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ClipIt 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-03-18 12:08-0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: pankamyk <pankamyk@o2.pl>\n"
+"Language-Team: none <pankamyk@o2.pl>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Polish\n"
+"X-Poedit-Country: POLAND\n"
+
+#: ../src/main.c:166
+msgid "Executing action..."
+msgstr "Wykonywanie zadania..."
+
+#: ../src/main.c:172 ../src/main.c:704 ../data/clipit.desktop.in.h:1
+#: ../data/clipit-startup.desktop.in.h:1
+msgid "Clipboard Manager"
+msgstr "Menadżer schowka"
+
+#: ../src/main.c:195
+msgid "Could not create thread for executed action\n"
+msgstr "Nie można wykonać tego zadania!\n"
+
+#. Create the dialog
+#: ../src/main.c:225
+msgid "Editing Clipboard"
+msgstr "Edytor schowka"
+
+#: ../src/main.c:284
+msgid "Clear the history?"
+msgstr "Usunąć historie wpisów?"
+
+#: ../src/main.c:336
+msgid "Lightweight GTK+ clipboard manager."
+msgstr "Prosty i szybki menadżer schowka."
+
+#: ../src/main.c:423
+msgid "<b>None</b>"
+msgstr "<b>żaden</b>"
+
+#. File contained no actions so adding empty
+#. File did not open so adding empty
+#. Nothing in history so adding empty
+#: ../src/main.c:444 ../src/main.c:473 ../src/main.c:588
+msgid "Empty"
+msgstr "pusty"
+
+#. Edit actions
+#: ../src/main.c:480
+msgid "_Edit actions"
+msgstr "_Edycja zadania"
+
+#. Edit clipboard
+#: ../src/main.c:504
+msgid "_Edit Clipboard"
+msgstr "_Edycja zawartości schowka"
+
+#: ../src/utils.c:38 ../src/utils.c:45
+#, c-format
+msgid "Couldn't create directory: %s\n"
+msgstr "Nie można utworzyć katalogu \"%s\"\n"
+
+#: ../src/utils.c:84
+msgid "Run as daemon"
+msgstr "Uruchom jako deamon"
+
+#: ../src/utils.c:91
+msgid "Do not use status icon (Ctrl-Alt-P for menu)"
+msgstr "Ukrywanie ikony programu. <i>Domyślnie Ctrl+Alt+P pokazuje menu</i>"
+
+#: ../src/utils.c:98
+msgid "Print clipboard contents"
+msgstr "Drukowanie zawartości schowka"
+
+#: ../src/utils.c:105
+#, fuzzy
+msgid "Print primary contents"
+msgstr "Drukowanie zawartości schowka"
+
+#: ../src/utils.c:117
+msgid ""
+"Clipboard CLI usage examples:\n"
+"\n"
+"  echo \"copied to clipboard\" | clipit\n"
+"  clipit \"copied to clipboard\"\n"
+"  echo \"copied to clipboard\" | clipit -c"
+msgstr ""
+
+#: ../src/utils.c:123
+msgid ""
+"Written by Gilberto \"Xyhthyx\" Miralla.\n"
+"Report bugs to <xyhthyx@gmail.com>."
+msgstr ""
+"Autor: Gilberto \"Xyhthyx\" Miralla.\n"
+"Zauważone błędy proszę zgłaszać na adres xyhthyx@gmail.com"
+
+#. Create the dialog
+#: ../src/preferences.c:375
+msgid "Preferences"
+msgstr "Ustawienia"
+
+#: ../src/preferences.c:390
+msgid "Behavior"
+msgstr "Zachowanie"
+
+#: ../src/preferences.c:398
+msgid "<b>Clipboards</b>"
+msgstr "<b>Dodawane do schowka</b>"
+
+#: ../src/preferences.c:405
+msgid "Use _Copy (Ctrl-C)"
+msgstr "Tekst kopiowany przy użyciu <i>_Ctrl+C</i>"
+
+#: ../src/preferences.c:407
+msgid "Use _Primary (Selection)"
+msgstr "Tekst zaznaczony kursorem"
+
+#: ../src/preferences.c:409
+msgid "S_ynchronize clipboards"
+msgstr ""
+
+#: ../src/preferences.c:417
+msgid "<b>History</b>"
+msgstr "<b>Historia</b>"
+
+#: ../src/preferences.c:424
+msgid "_Save history"
+msgstr "Zapi_sywanie historii wpisów"
+
+#: ../src/preferences.c:425
+msgid "Save and restore history between sessions"
+msgstr "Zapisywanie historii dla każdej sesji"
+
+#: ../src/preferences.c:429
+msgid "Items in history:"
+msgstr "Liczba zapamiętanych wpisów:"
+
+#: ../src/preferences.c:442
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Różne</b>"
+
+#: ../src/preferences.c:449
+msgid "Capture _hyperlinks only"
+msgstr "Przec_hwytywanie tylko linków"
+
+#: ../src/preferences.c:451
+msgid "C_onfirm before clearing history"
+msgstr "P_otwierdzanie usuwania historii wpisów"
+
+#: ../src/preferences.c:458
+msgid "Display"
+msgstr "Wygląd"
+
+#: ../src/preferences.c:466
+msgid "<b>Items</b>"
+msgstr "<b>Wygląd wpisów</b>"
+
+#: ../src/preferences.c:473
+msgid "Show in a _single line"
+msgstr "Pojedyncza linia"
+
+#: ../src/preferences.c:475
+msgid "Show in _reverse order"
+msgstr "Odw_rócenie kolejności"
+
+#: ../src/preferences.c:479
+msgid "Character length of items:"
+msgstr "Liczba znaków dla wpisu:"
+
+#: ../src/preferences.c:492
+msgid "<b>Omitting</b>"
+msgstr "<b>Streszczanie wpisu</b>"
+
+#: ../src/preferences.c:501
+msgid "Omit items in the:"
+msgstr "Wyświetlanie wpisu w menu:"
+
+#: ../src/preferences.c:505
+msgid "Beginning"
+msgstr "Początek"
+
+#: ../src/preferences.c:506
+msgid "Middle"
+msgstr "Początek i koniec"
+
+#: ../src/preferences.c:507
+msgid "End"
+msgstr "Koniec"
+
+#: ../src/preferences.c:514
+msgid "Actions"
+msgstr "Zadania"
+
+#. Build the actions label
+#: ../src/preferences.c:519
+msgid "Control-click ClipIt's tray icon to use actions"
+msgstr ""
+
+#: ../src/preferences.c:539
+msgid "Action"
+msgstr "Zadanie"
+
+#: ../src/preferences.c:546
+msgid "Command"
+msgstr "Polecenie"
+
+#: ../src/preferences.c:561
+msgid "Add..."
+msgstr "Dodaj..."
+
+#: ../src/preferences.c:565
+msgid "Remove"
+msgstr "Usuń"
+
+#: ../src/preferences.c:582
+#, fuzzy
+msgid "Hotkeys"
+msgstr "<b>Skróty klawiatury<b>"
+
+#: ../src/preferences.c:590
+msgid "<b>Hotkeys</b>"
+msgstr "<b>Skróty klawiatury<b>"
+
+#: ../src/preferences.c:599
+msgid "History key combination:"
+msgstr "Pokaż historie:"
+
+#: ../src/preferences.c:607
+msgid "Actions key combination:"
+msgstr "Pokaż zadania:"
+
+#: ../src/preferences.c:615
+msgid "Menu key combination:"
+msgstr "Pokaż menu:"
+
+#: ../data/clipit.desktop.in.h:2 ../data/clipit-startup.desktop.in.h:2
+msgid "ClipIt"
+msgstr "ClipIt"
+
+#~ msgid "<b>Clipboard</b>"
+#~ msgstr "<b>Schowek<b>"
+
+#~ msgid "Save changes"
+#~ msgstr "Zapisz"
+
+#~ msgid "Discard changes"
+#~ msgstr "Anuluj"
+
+#~ msgid "Extras"
+#~ msgstr "Dodatki"

@@ -1,0 +1,252 @@
+# translation of pt_BR.po to Português do Brasil
+# Português do Brasil translation of clipit.
+# Copyright (C) 2008 Gilberto "Xyhthyx" Miralla <xyhthyx@gmail.com>
+# This file is distributed under the same license as the clipit package.
+#
+#
+# Phantom X <megaphantomx at bol.com.br>, 2008, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: ClipIt 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-03-18 12:08-0400\n"
+"PO-Revision-Date: 2009-03-13 22:30-0300\n"
+"Last-Translator: Phantom X <megaphantomx at bol.com.br>\n"
+"Language-Team: Português do Brasil <pt@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n > 1);\n"
+
+#: ../src/main.c:166
+msgid "Executing action..."
+msgstr "Executando ação..."
+
+#: ../src/main.c:172 ../src/main.c:704 ../data/clipit.desktop.in.h:1
+#: ../data/clipit-startup.desktop.in.h:1
+msgid "Clipboard Manager"
+msgstr "Gerenciador de Área de Transferência"
+
+#: ../src/main.c:195
+msgid "Could not create thread for executed action\n"
+msgstr "Impossível criar processo para a ação executada\n"
+
+#. Create the dialog
+#: ../src/main.c:225
+msgid "Editing Clipboard"
+msgstr "Editando a Área de Transferência"
+
+#: ../src/main.c:284
+msgid "Clear the history?"
+msgstr "Limpar o histórico?"
+
+#: ../src/main.c:336
+msgid "Lightweight GTK+ clipboard manager."
+msgstr "Gerenciador de Área de Transferência em GTK+ leve."
+
+#: ../src/main.c:423
+msgid "<b>None</b>"
+msgstr "<b>Nenhum</b>"
+
+#. File contained no actions so adding empty
+#. File did not open so adding empty
+#. Nothing in history so adding empty
+#: ../src/main.c:444 ../src/main.c:473 ../src/main.c:588
+msgid "Empty"
+msgstr "Vazio"
+
+#. Edit actions
+#: ../src/main.c:480
+msgid "_Edit actions"
+msgstr "_Editar ações"
+
+#. Edit clipboard
+#: ../src/main.c:504
+msgid "_Edit Clipboard"
+msgstr "_Editar Área de Transferência"
+
+#: ../src/utils.c:38 ../src/utils.c:45
+#, c-format
+msgid "Couldn't create directory: %s\n"
+msgstr "Impossível criar diretório: %s\n"
+
+#: ../src/utils.c:84
+msgid "Run as daemon"
+msgstr "Executar como daemon"
+
+#: ../src/utils.c:91
+msgid "Do not use status icon (Ctrl-Alt-P for menu)"
+msgstr "Não usar ícone de status (Ctrl-Alt-P para o menu)"
+
+#: ../src/utils.c:98
+msgid "Print clipboard contents"
+msgstr "Imprimir conteúdo da área de transferência"
+
+#: ../src/utils.c:105
+msgid "Print primary contents"
+msgstr "Imprimir conteúdo primário"
+
+#: ../src/utils.c:117
+msgid ""
+"Clipboard CLI usage examples:\n"
+"\n"
+"  echo \"copied to clipboard\" | clipit\n"
+"  clipit \"copied to clipboard\"\n"
+"  echo \"copied to clipboard\" | clipit -c"
+msgstr ""
+"Exemplo de uso da Área de Transferência no terminal:\n"
+"\n"
+"  echo \"copiado para a área de transferência\" | clipit\n"
+"  clipit \"copiado para a área de transferência\"\n"
+"  echo \"copiado para a área de transferência\" | clipit -c"
+
+#: ../src/utils.c:123
+msgid ""
+"Written by Gilberto \"Xyhthyx\" Miralla.\n"
+"Report bugs to <xyhthyx@gmail.com>."
+msgstr ""
+"Escrito por Gilberto \"Xyhthyx\" Miralla.\n"
+"Reportar bugs para <xyhthyx@gmail.com>."
+
+#. Create the dialog
+#: ../src/preferences.c:375
+msgid "Preferences"
+msgstr "Preferências"
+
+#: ../src/preferences.c:390
+msgid "Behavior"
+msgstr "Comportamento"
+
+#: ../src/preferences.c:398
+msgid "<b>Clipboards</b>"
+msgstr "<b>Áreas de Transferência</b>"
+
+#: ../src/preferences.c:405
+msgid "Use _Copy (Ctrl-C)"
+msgstr "Usar _Cópia (Ctrl-C)"
+
+#: ../src/preferences.c:407
+msgid "Use _Primary (Selection)"
+msgstr "Usar Seleção _Primária"
+
+#: ../src/preferences.c:409
+msgid "S_ynchronize clipboards"
+msgstr "S_incronizar áreas de transferência"
+
+#: ../src/preferences.c:417
+msgid "<b>History</b>"
+msgstr "<b>Histórico</b>"
+
+#: ../src/preferences.c:424
+msgid "_Save history"
+msgstr "_Salvar histórico"
+
+#: ../src/preferences.c:425
+msgid "Save and restore history between sessions"
+msgstr "Salvar e restaurar histórico entre as sessões"
+
+#: ../src/preferences.c:429
+msgid "Items in history:"
+msgstr "Itens no histórico:"
+
+#: ../src/preferences.c:442
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Vários</b>"
+
+#: ../src/preferences.c:449
+msgid "Capture _hyperlinks only"
+msgstr "Capturar somente _hyperlinks"
+
+#: ../src/preferences.c:451
+msgid "C_onfirm before clearing history"
+msgstr "C_onfirmar antes de limpar o histórico"
+
+#: ../src/preferences.c:458
+msgid "Display"
+msgstr "Exibir"
+
+#: ../src/preferences.c:466
+msgid "<b>Items</b>"
+msgstr "<b>Itens</b>"
+
+#: ../src/preferences.c:473
+msgid "Show in a _single line"
+msgstr "Exibir em uma _única linha"
+
+#: ../src/preferences.c:475
+msgid "Show in _reverse order"
+msgstr "Exibir em ordem _reversa"
+
+#: ../src/preferences.c:479
+msgid "Character length of items:"
+msgstr "Quantidade de caracteres dos itens:"
+
+#: ../src/preferences.c:492
+msgid "<b>Omitting</b>"
+msgstr "<b>Omitindo</b>"
+
+#: ../src/preferences.c:501
+msgid "Omit items in the:"
+msgstr "Omitir itens no:"
+
+#: ../src/preferences.c:505
+msgid "Beginning"
+msgstr "Início"
+
+#: ../src/preferences.c:506
+msgid "Middle"
+msgstr "Centro"
+
+#: ../src/preferences.c:507
+msgid "End"
+msgstr "Fim"
+
+#: ../src/preferences.c:514
+msgid "Actions"
+msgstr "Ações"
+
+#. Build the actions label
+#: ../src/preferences.c:519
+msgid "Control-click ClipIt's tray icon to use actions"
+msgstr "Control-clique no ícone da bandeja do ClipIt para usar ações"
+
+#: ../src/preferences.c:539
+msgid "Action"
+msgstr "Ação"
+
+#: ../src/preferences.c:546
+msgid "Command"
+msgstr "Comando"
+
+#: ../src/preferences.c:561
+msgid "Add..."
+msgstr "Adicionar..."
+
+#: ../src/preferences.c:565
+msgid "Remove"
+msgstr "Remover"
+
+#: ../src/preferences.c:582
+msgid "Hotkeys"
+msgstr "Atalhos"
+
+#: ../src/preferences.c:590
+msgid "<b>Hotkeys</b>"
+msgstr "<b>Atalhos</b>"
+
+#: ../src/preferences.c:599
+msgid "History key combination:"
+msgstr "Combinação de teclas do Histórico:"
+
+#: ../src/preferences.c:607
+msgid "Actions key combination:"
+msgstr "Combinação de teclas de Ações:"
+
+#: ../src/preferences.c:615
+msgid "Menu key combination:"
+msgstr "Combinação de teclas do Menu:"
+
+#: ../data/clipit.desktop.in.h:2 ../data/clipit-startup.desktop.in.h:2
+msgid "ClipIt"
+msgstr "ClipIt"

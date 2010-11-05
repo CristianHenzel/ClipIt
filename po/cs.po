@@ -1,0 +1,329 @@
+# Czech translation of clipit.
+# Copyright (C) 2008 Xyhthyx <xyhthyx@gmail.com>
+# This file is distributed under the same license as the clipit package.
+# Miloš Koutný <milos.koutny@gmail.com>, 2009.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ClipIt 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-12-26 10:35-0500\n"
+"PO-Revision-Date: 2009-03-16 00:53+0100\n"
+"Last-Translator: Miloš Koutný <milos.koutny@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/main.c:186
+msgid "Executing action..."
+msgstr "Spustit akci..."
+
+#: ../src/main.c:192 ../src/main.c:750 ../data/clipit.desktop.in.h:1
+#: ../data/clipit-startup.desktop.in.h:1
+msgid "Clipboard Manager"
+msgstr "Správce schránky"
+
+#: ../src/main.c:215
+msgid "Could not create thread for executed action\n"
+msgstr "Nepodařilo se vytvořit vlákno pro spuštěnou akci\n"
+
+#. Create the dialog
+#: ../src/main.c:245
+msgid "Editing Clipboard"
+msgstr "Upravuji schránku"
+
+#: ../src/main.c:304
+msgid "Clear the history?"
+msgstr "Vymazat historii?"
+
+#: ../src/main.c:372
+msgid "Lightweight GTK+ clipboard manager."
+msgstr "Odlehčený GTK+ správce schránky."
+
+#: ../src/main.c:459
+msgid "<b>None</b>"
+msgstr "<b>Žádný</b>"
+
+#. File contained no actions so adding empty
+#. File did not open so adding empty
+#. Nothing in history so adding empty
+#: ../src/main.c:480 ../src/main.c:509 ../src/main.c:634
+msgid "Empty"
+msgstr "Prázdný"
+
+#. Edit actions
+#: ../src/main.c:516
+msgid "_Edit actions"
+msgstr "Akce _Editace"
+
+#. Edit clipboard
+#: ../src/main.c:540
+msgid "_Edit Clipboard"
+msgstr "_Editovat schránku"
+
+#: ../src/utils.c:38 ../src/utils.c:45
+#, c-format
+msgid "Couldn't create directory: %s\n"
+msgstr "Nelze vytvořit adresář: %s\n"
+
+#: ../src/utils.c:84
+msgid "Run as daemon"
+msgstr "Start jako démon"
+
+#: ../src/utils.c:91
+msgid "Do not use status icon (Ctrl-Alt-P for menu)"
+msgstr "Nepoužívat stavovou ikonu (Ctrl+Alt+P pro menu)"
+
+#: ../src/utils.c:98
+msgid "Print clipboard contents"
+msgstr "Tisknout obsah schránky"
+
+#: ../src/utils.c:105
+msgid "Print primary contents"
+msgstr "Tisknout primární obsah"
+
+#: ../src/utils.c:117
+msgid ""
+"Clipboard CLI usage examples:\n"
+"\n"
+"  echo \"copied to clipboard\" | clipit\n"
+"  clipit \"copied to clipboard\"\n"
+"  echo \"copied to clipboard\" | clipit -c"
+msgstr ""
+"Schránka CLI (příkazová řádka) - příklad užití:\n"
+"\n"
+"  echo \"Kopie od schránky\" | clipit\n"
+"  clipit \"Kopie do schránky\"\n"
+"  echo \"Kopie do schránky\" | clipit -o"
+
+#: ../src/utils.c:123
+msgid ""
+"Written by Gilberto \"Xyhthyx\" Miralla.\n"
+"Report bugs to <xyhthyx@gmail.com>."
+msgstr ""
+"Napsáno Gilberto \"Xyhthyx\" Miralla.\n"
+"Reportování chyb na  <xyhthyx@gmail.com>."
+
+#. Create the dialog
+#: ../src/preferences.c:395
+msgid "Preferences"
+msgstr "Nastavení"
+
+#: ../src/preferences.c:414
+msgid "Behavior"
+msgstr "Chování"
+
+#: ../src/preferences.c:422
+msgid "<b>Clipboards</b>"
+msgstr "<b>Schránka</b>"
+
+#: ../src/preferences.c:429
+msgid "Use _Copy (Ctrl-C)"
+msgstr "Kopírování (Ctrl-C)"
+
+#: ../src/preferences.c:432
+msgid "Use _Primary (Selection)"
+msgstr "Užít primární (výběr)"
+
+#: ../src/preferences.c:435
+msgid "S_ynchronize clipboards"
+msgstr "S_ynchronisieren schránky"
+
+#: ../src/preferences.c:443
+msgid "<b>History</b>"
+msgstr "<b>Historie</b>"
+
+#: ../src/preferences.c:450
+msgid "_Save history"
+msgstr "Uložit Hi_storii"
+
+#: ../src/preferences.c:451
+msgid "Save and restore history between sessions"
+msgstr "Uložit a obnovit historii mezi sezeními"
+
+#: ../src/preferences.c:455
+msgid "Items in history:"
+msgstr "Položky v historii:"
+
+#: ../src/preferences.c:468
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Příslušenství</b>"
+
+#: ../src/preferences.c:475
+msgid "Capture _hyperlinks only"
+msgstr "Zachycovat pouze hyper-linkové odkazy"
+
+#: ../src/preferences.c:477
+msgid "C_onfirm before clearing history"
+msgstr "P_otvrzení před smazáním historie"
+
+#: ../src/preferences.c:484
+msgid "Display"
+msgstr "Zobrazení"
+
+#: ../src/preferences.c:492
+msgid "<b>Items</b>"
+msgstr "<b>Položky</b>"
+
+#: ../src/preferences.c:499
+msgid "Show in a _single line"
+msgstr "Zobrazit v jednom (_single) řádku"
+
+#: ../src/preferences.c:501
+msgid "Show in _reverse order"
+msgstr "Zob_razit v opačném pořadí"
+
+#: ../src/preferences.c:505
+msgid "Character length of items:"
+msgstr "Znaková délka položek"
+
+#: ../src/preferences.c:518
+msgid "<b>Omitting</b>"
+msgstr "<b>Opomenout</b>"
+
+#: ../src/preferences.c:527
+msgid "Omit items in the:"
+msgstr "Opomenout položku v:"
+
+#: ../src/preferences.c:531
+msgid "Beginning"
+msgstr "Začátek"
+
+#: ../src/preferences.c:532
+msgid "Middle"
+msgstr "Střed"
+
+#: ../src/preferences.c:533
+msgid "End"
+msgstr "Konec"
+
+#: ../src/preferences.c:540
+msgid "Actions"
+msgstr "Akce"
+
+#. Build the actions label
+#: ../src/preferences.c:545
+msgid "Control-click ClipIt's tray icon to use actions"
+msgstr "Ctrl+klik na ikoně ClipIt v liště k akcím"
+
+#: ../src/preferences.c:565
+msgid "Action"
+msgstr "Akce"
+
+#: ../src/preferences.c:572
+msgid "Command"
+msgstr "Příkaz"
+
+#: ../src/preferences.c:587
+msgid "Add..."
+msgstr "Přidat..."
+
+#: ../src/preferences.c:591
+msgid "Remove"
+msgstr "Odstranit"
+
+#: ../src/preferences.c:608
+msgid "Hotkeys"
+msgstr "Klávesové zkratky"
+
+#: ../src/preferences.c:616
+msgid "<b>Hotkeys</b>"
+msgstr "<b>Klávesové zkratky</b>"
+
+#: ../src/preferences.c:625
+msgid "History key combination:"
+msgstr "Historie klávesových kombinací:"
+
+#: ../src/preferences.c:633
+msgid "Actions key combination:"
+msgstr "Akční klávesy kombinace:"
+
+#: ../src/preferences.c:641
+msgid "Menu key combination:"
+msgstr "Menu klávesové kombinace:"
+
+#: ../data/clipit.desktop.in.h:2 ../data/clipit-startup.desktop.in.h:2
+msgid "ClipIt"
+msgstr "ClipIt"
+
+#~ msgid "<b>Clipboard</b>"
+#~ msgstr "<b>Schránka</b>"
+
+#~ msgid "Save changes"
+#~ msgstr "Uložit změny"
+
+#~ msgid "Discard changes"
+#~ msgstr "Zahodit změny"
+
+#~ msgid "Extras"
+#~ msgstr "Extras"
+
+#, fuzzy
+#~ msgid ""
+#~ "Add a new action\n"
+#~ "\"%s\" in a command is replaced with the clipboard contents"
+#~ msgstr "\"%s\" v příkazu je na nahrazen obsahem ze schránky"
+
+#, fuzzy
+#~ msgid "Move selected action up"
+#~ msgstr "Posunout vybranou akci nahoru"
+
+#, fuzzy
+#~ msgid "Move selected action down"
+#~ msgstr "Posunout vybranou akci dolu"
+
+#~ msgid "Close"
+#~ msgstr "Zavřít"
+
+#~ msgid "New Action"
+#~ msgstr "Nová Akce"
+
+#~ msgid "<b>Name:</b>"
+#~ msgstr "<b>Název:</b>"
+
+#~ msgid "Name your action"
+#~ msgstr "Název Vaší akce"
+
+#~ msgid "<b>Command:</b>"
+#~ msgstr "<b>Příkaz:</b>"
+
+#~ msgid "Edit Action"
+#~ msgstr "Editovat Akci"
+
+#~ msgid "General"
+#~ msgstr "Obecně"
+
+#~ msgid "Length in characters of history items:"
+#~ msgstr "Délka historie (ve znacích):"
+
+#~ msgid "History menu global hotkey:"
+#~ msgstr "Historie menu - globalní zkratka:"
+
+#~ msgid "Actions menu global hotkey:"
+#~ msgstr "Akční menu - globalní zkratka:"
+
+#~ msgid "Single _line mode"
+#~ msgstr "Jednořádkový mód"
+
+#~ msgid "Ignore all non-hyperlink text"
+#~ msgstr "Ignorovat všechny ne-hypelinkové texty"
+
+#~ msgid "New"
+#~ msgstr "Nový"
+
+#~ msgid "New action"
+#~ msgstr "Nová akce"
+
+#~ msgid "Edit"
+#~ msgstr "Edit"
+
+#~ msgid "Edit selected"
+#~ msgstr "Editovat výběr"
+
+#~ msgid "Delete"
+#~ msgstr "Smaž"
+
+#~ msgid "Delete selected"
+#~ msgstr "Smaž výběr"

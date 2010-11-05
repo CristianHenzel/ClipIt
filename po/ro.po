@@ -1,0 +1,330 @@
+# Romanian translation of ClipIt.
+# Copyright (C) 2008 Xyhthyx <xyhthyx@gmail.com>
+# This file is distributed under the same license as the clipit package.
+# Ovidiu D. Niţan <ov1d1u@sblug.ro>
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ClipIt 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-12-31 16:53-0500\n"
+"PO-Revision-Date: 2009-07-17 18:58+0200\n"
+"Last-Translator: Ovidiu D. Niţan <ov1d1u@sblug.ro>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/main.c:186 ../src/main.c:222
+msgid "Executing action..."
+msgstr "Executare acţiune..."
+
+#: ../src/main.c:192 ../src/main.c:208 ../src/main.c:776
+#: ../data/clipit.desktop.in.h:1 ../data/clipit-startup.desktop.in.h:1
+msgid "Clipboard Manager"
+msgstr "Administrator clipboard"
+
+#. Create the dialog
+#: ../src/main.c:271
+msgid "Editing Clipboard"
+msgstr "Editare clipboard"
+
+#: ../src/main.c:330
+msgid "Clear the history?"
+msgstr "Doriţi să goliţi istoricul?"
+
+#: ../src/main.c:398
+msgid "Lightweight GTK+ clipboard manager."
+msgstr "Mic manager de clipboard."
+
+#: ../src/main.c:485
+msgid "<b>None</b>"
+msgstr "<b>Niciunul</b>"
+
+#. File contained no actions so adding empty
+#. File did not open so adding empty
+#. Nothing in history so adding empty
+#: ../src/main.c:506 ../src/main.c:535 ../src/main.c:660
+msgid "Empty"
+msgstr "Gol"
+
+#. Edit actions
+#: ../src/main.c:542
+msgid "_Edit actions"
+msgstr "_Editare acţiuni"
+
+#. Edit clipboard
+#: ../src/main.c:566
+msgid "_Edit Clipboard"
+msgstr "_Editare clipboard"
+
+#: ../src/utils.c:38 ../src/utils.c:45
+#, c-format
+msgid "Couldn't create directory: %s\n"
+msgstr "Nu s-a putut creea directorul: %s\n"
+
+#: ../src/utils.c:84
+msgid "Run as daemon"
+msgstr "Executare ca daemon"
+
+#: ../src/utils.c:91
+msgid "Do not use status icon (Ctrl-Alt-P for menu)"
+msgstr "Nu afişa iconul de status (apăsaţi Ctrl-Alt-P pentru meniu)"
+
+#: ../src/utils.c:98
+msgid "Print clipboard contents"
+msgstr "Imprimare conţinut clipboard"
+
+#: ../src/utils.c:105
+msgid "Print primary contents"
+msgstr "Imprimare conţinut primar"
+
+#: ../src/utils.c:117
+msgid ""
+"Clipboard CLI usage examples:\n"
+"\n"
+"  echo \"copied to clipboard\" | clipit\n"
+"  clipit \"copied to clipboard\"\n"
+"  echo \"copied to clipboard\" | clipit -c"
+msgstr ""
+"Exemple de utilizare în linie de comandă:\n"
+"\n"
+"  echo \"copiat în clipboard\" | clipit\n"
+"  clipit \"copiat în clipboard\"\n"
+"  echo \"copiat în clipboard\" | clipit -c"
+
+#: ../src/utils.c:123
+msgid ""
+"Written by Gilberto \"Xyhthyx\" Miralla.\n"
+"Report bugs to <xyhthyx@gmail.com>."
+msgstr ""
+"Scris de Gilberto \"Xyhthyx\" Miralla.\n"
+"Raportaţi erorile la <xyhthyx@gmail.com>."
+
+#. Create the dialog
+#: ../src/preferences.c:395
+msgid "Preferences"
+msgstr "Preferinţe"
+
+#: ../src/preferences.c:414
+msgid "Behavior"
+msgstr "Comportament"
+
+#: ../src/preferences.c:422
+msgid "<b>Clipboards</b>"
+msgstr "<b>Clipboard-uri</b>"
+
+#: ../src/preferences.c:429
+msgid "Use _Copy (Ctrl-C)"
+msgstr "Foloseşte _Copiază (Ctrl-C)"
+
+#: ../src/preferences.c:432
+msgid "Use _Primary (Selection)"
+msgstr "Foloseşte selecţia _primară (Selecţie)"
+
+#: ../src/preferences.c:435
+msgid "S_ynchronize clipboards"
+msgstr "Sincronizare clipboard-uri"
+
+#: ../src/preferences.c:443
+msgid "<b>History</b>"
+msgstr "<b>Istoric</b>"
+
+#: ../src/preferences.c:450
+msgid "_Save history"
+msgstr "_Salvează istoricul"
+
+#: ../src/preferences.c:451
+msgid "Save and restore history between sessions"
+msgstr "Salvează şi restaurează istoricul între sesiuni"
+
+#: ../src/preferences.c:455
+msgid "Items in history:"
+msgstr "Elemente în istoric:"
+
+#: ../src/preferences.c:468
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Diverse</b>"
+
+#: ../src/preferences.c:475
+msgid "Capture _hyperlinks only"
+msgstr "Capturează doar _hiperlegăturile"
+
+#: ../src/preferences.c:477
+msgid "C_onfirm before clearing history"
+msgstr "Cere c_onfirmare înainte de golirea istoricului"
+
+#: ../src/preferences.c:484
+msgid "Display"
+msgstr "Afişare"
+
+#: ../src/preferences.c:492
+msgid "<b>Items</b>"
+msgstr "<b>Elemente</b>"
+
+#: ../src/preferences.c:499
+msgid "Show in a _single line"
+msgstr "Afişează întro _singură linie"
+
+#: ../src/preferences.c:501
+msgid "Show in _reverse order"
+msgstr "Afişează în o_rdine inversă"
+
+#: ../src/preferences.c:505
+msgid "Character length of items:"
+msgstr "Lungimea în caractere a elementelor:"
+
+#: ../src/preferences.c:518
+msgid "<b>Omitting</b>"
+msgstr "<b>Omitere</b>"
+
+#: ../src/preferences.c:527
+msgid "Omit items in the:"
+msgstr "Omitere elemente în:"
+
+#: ../src/preferences.c:531
+msgid "Beginning"
+msgstr "Început"
+
+#: ../src/preferences.c:532
+msgid "Middle"
+msgstr "Mijloc"
+
+#: ../src/preferences.c:533
+msgid "End"
+msgstr "Sfârşit"
+
+#: ../src/preferences.c:540
+msgid "Actions"
+msgstr "Acţiuni"
+
+#. Build the actions label
+#: ../src/preferences.c:545
+msgid "Control-click ClipIt's tray icon to use actions"
+msgstr ""
+"Apăsaţi pe Control şi faceţi click pe iconul ClipIt pentru a utiliza "
+"acţiunile"
+
+#: ../src/preferences.c:565
+msgid "Action"
+msgstr "Acţiuni"
+
+#: ../src/preferences.c:572
+msgid "Command"
+msgstr "Comandă"
+
+#: ../src/preferences.c:587
+msgid "Add..."
+msgstr "Adăugare..."
+
+#: ../src/preferences.c:591
+msgid "Remove"
+msgstr "Ştergere"
+
+#: ../src/preferences.c:608
+msgid "Hotkeys"
+msgstr "Scurtături"
+
+#: ../src/preferences.c:616
+msgid "<b>Hotkeys</b>"
+msgstr "<b>Scurtături</b>"
+
+#: ../src/preferences.c:625
+msgid "History key combination:"
+msgstr "Combinaţie de taste pentru istoric:"
+
+#: ../src/preferences.c:633
+msgid "Actions key combination:"
+msgstr "Combinaţie de taste pentru acţiuni:"
+
+#: ../src/preferences.c:641
+msgid "Menu key combination:"
+msgstr "Combinaţie de taste pentru meniu:"
+
+#: ../data/clipit.desktop.in.h:2 ../data/clipit-startup.desktop.in.h:2
+msgid "ClipIt"
+msgstr "ClipIt"
+
+#~ msgid "Could not create thread for executed action\n"
+#~ msgstr "Nu se poate creea un thread pentru acţiunea executată\n"
+
+#~ msgid "<b>Clipboard</b>"
+#~ msgstr "<b>Zwischenablage</b>"
+
+#~ msgid "Save changes"
+#~ msgstr "Änderungen speichern"
+
+#~ msgid "Discard changes"
+#~ msgstr "Änderungen verwerfen"
+
+#~ msgid "Extras"
+#~ msgstr "Extras"
+
+#, fuzzy
+#~ msgid ""
+#~ "Add a new action\n"
+#~ "\"%s\" in a command is replaced with the clipboard contents"
+#~ msgstr "\"%s\" wird mit dem Inhalt der Zwischenablage ersetzt"
+
+#, fuzzy
+#~ msgid "Move selected action up"
+#~ msgstr "Auswahl nach oben verschieben"
+
+#, fuzzy
+#~ msgid "Move selected action down"
+#~ msgstr "Auswahl nach unten verschieben"
+
+#~ msgid "Close"
+#~ msgstr "Schließen"
+
+#~ msgid "New Action"
+#~ msgstr "Neue Aktion"
+
+#~ msgid "<b>Name:</b>"
+#~ msgstr "<b>Name:</b>"
+
+#~ msgid "Name your action"
+#~ msgstr "Benennen Sie Ihre Aktion"
+
+#~ msgid "<b>Command:</b>"
+#~ msgstr "<b>Befehl:</b>"
+
+#~ msgid "Edit Action"
+#~ msgstr "Aktion bearbeiten"
+
+#~ msgid "General"
+#~ msgstr "Allgemein"
+
+#~ msgid "Length in characters of history items:"
+#~ msgstr "Maximale Länge der Zeichen pro Eintrag:"
+
+#~ msgid "History menu global hotkey:"
+#~ msgstr "Globale Tastenkombination für Verlaufsmenü:"
+
+#~ msgid "Actions menu global hotkey:"
+#~ msgstr "Globale Tastenkombination für Aktionsmenü:"
+
+#~ msgid "Single _line mode"
+#~ msgstr "Zei_lenmodus"
+
+#~ msgid "Ignore all non-hyperlink text"
+#~ msgstr "Ignoriere nicht verlinkten Text"
+
+#~ msgid "New"
+#~ msgstr "Neu"
+
+#~ msgid "New action"
+#~ msgstr "Neue Aktion"
+
+#~ msgid "Edit"
+#~ msgstr "Bearbeiten"
+
+#~ msgid "Edit selected"
+#~ msgstr "Auswahl bearbeiten"
+
+#~ msgid "Delete"
+#~ msgstr "Löschen"
+
+#~ msgid "Delete selected"
+#~ msgstr "Auswahl löschen"

@@ -1,0 +1,276 @@
+# Japanese translation of clipit
+# Copyright (C) 2008 Xyhthyx <xyhthyx@gmail.com>
+# This file is distributed under the same license as the clipit package.
+# Jiro Kawada <jiro.kawada@gmail.com>, 2008.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ClipIt 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-03-18 12:08-0400\n"
+"PO-Revision-Date: 2009-03-14 11:08+0900\n"
+"Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
+"Language-Team: JAPANESE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+
+#: ../src/main.c:166
+msgid "Executing action..."
+msgstr "アクション実行中..."
+
+#: ../src/main.c:172 ../src/main.c:704 ../data/clipit.desktop.in.h:1
+#: ../data/clipit-startup.desktop.in.h:1
+msgid "Clipboard Manager"
+msgstr "クリップボード・マネージャ"
+
+#: ../src/main.c:195
+msgid "Could not create thread for executed action\n"
+msgstr "実行されたアクションのためのスレッドが作成できませんでした。\n"
+
+#. Create the dialog
+#: ../src/main.c:225
+msgid "Editing Clipboard"
+msgstr "クリップボード編集中"
+
+#: ../src/main.c:284
+msgid "Clear the history?"
+msgstr "履歴を消去しますか？"
+
+#: ../src/main.c:336
+msgid "Lightweight GTK+ clipboard manager."
+msgstr "軽量な GTK+ クリップボード・マネージャ"
+
+#: ../src/main.c:423
+msgid "<b>None</b>"
+msgstr "<b>なし</b>"
+
+#. File contained no actions so adding empty
+#. File did not open so adding empty
+#. Nothing in history so adding empty
+#: ../src/main.c:444 ../src/main.c:473 ../src/main.c:588
+msgid "Empty"
+msgstr "空"
+
+#. Edit actions
+#: ../src/main.c:480
+msgid "_Edit actions"
+msgstr "アクション編集(_E)"
+
+#. Edit clipboard
+#: ../src/main.c:504
+msgid "_Edit Clipboard"
+msgstr "クリップボード編集(_E)"
+
+#: ../src/utils.c:38 ../src/utils.c:45
+#, c-format
+msgid "Couldn't create directory: %s\n"
+msgstr "ディレクトリの作成ができませんでした。: %s\n"
+
+#: ../src/utils.c:84
+msgid "Run as daemon"
+msgstr "デーモンとして実行"
+
+#: ../src/utils.c:91
+msgid "Do not use status icon (Ctrl-Alt-P for menu)"
+msgstr "ステータスアイコンを使用しない（Ctrl-Alt-P でメニュー）"
+
+#: ../src/utils.c:98
+msgid "Print clipboard contents"
+msgstr "クリップボード内容を出力"
+
+#: ../src/utils.c:105
+msgid "Print primary contents"
+msgstr "プライマリ内容を出力"
+
+#: ../src/utils.c:117
+msgid ""
+"Clipboard CLI usage examples:\n"
+"\n"
+"  echo \"copied to clipboard\" | clipit\n"
+"  clipit \"copied to clipboard\"\n"
+"  echo \"copied to clipboard\" | clipit -c"
+msgstr ""
+"クリップボードの CLI の使用例:\n"
+"\n"
+"  echo \"クリップボードにコピー\" | clipit\n"
+"  clipit \"クリップボードにコピー\"\n"
+"  echo \"クリップボードにコピー\" | clipit -c"
+
+#: ../src/utils.c:123
+msgid ""
+"Written by Gilberto \"Xyhthyx\" Miralla.\n"
+"Report bugs to <xyhthyx@gmail.com>."
+msgstr ""
+"Gilberto \"Xyhthyx\" Miralla による制作\n"
+"バグ報告はこちらに <xyhthyx@gmail.com>"
+
+#. Create the dialog
+#: ../src/preferences.c:375
+msgid "Preferences"
+msgstr "設定"
+
+#: ../src/preferences.c:390
+msgid "Behavior"
+msgstr "動作"
+
+#: ../src/preferences.c:398
+msgid "<b>Clipboards</b>"
+msgstr "<b>クリップボード</b>"
+
+#: ../src/preferences.c:405
+msgid "Use _Copy (Ctrl-C)"
+msgstr "コピー(Ctrl-C)を使用(_C)"
+
+#: ../src/preferences.c:407
+msgid "Use _Primary (Selection)"
+msgstr "プライマリ・セレクション（選択）を使用(_P)"
+
+#: ../src/preferences.c:409
+msgid "S_ynchronize clipboards"
+msgstr "クリップボード同士を同期(_Y)"
+
+#: ../src/preferences.c:417
+msgid "<b>History</b>"
+msgstr "<b>履歴</b>"
+
+#: ../src/preferences.c:424
+msgid "_Save history"
+msgstr "履歴を保存(_S)"
+
+#: ../src/preferences.c:425
+msgid "Save and restore history between sessions"
+msgstr "セッション間の履歴を保存して復元"
+
+#: ../src/preferences.c:429
+msgid "Items in history:"
+msgstr "履歴アイテム数:"
+
+#: ../src/preferences.c:442
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>その他</b>"
+
+#: ../src/preferences.c:449
+msgid "Capture _hyperlinks only"
+msgstr "ハイパーリンクのみを取り込み(_H)"
+
+#: ../src/preferences.c:451
+msgid "C_onfirm before clearing history"
+msgstr "履歴を消去する前に確認を取る(_O)"
+
+#: ../src/preferences.c:458
+msgid "Display"
+msgstr "表示"
+
+#: ../src/preferences.c:466
+msgid "<b>Items</b>"
+msgstr "<b>アイテム</b>"
+
+#: ../src/preferences.c:473
+msgid "Show in a _single line"
+msgstr "1行で表示(_S)"
+
+#: ../src/preferences.c:475
+msgid "Show in _reverse order"
+msgstr "逆順に表示(_R)"
+
+#: ../src/preferences.c:479
+msgid "Character length of items:"
+msgstr "アイテムの表示文字数:"
+
+#: ../src/preferences.c:492
+msgid "<b>Omitting</b>"
+msgstr "<b>省略</b>"
+
+#: ../src/preferences.c:501
+msgid "Omit items in the:"
+msgstr "アイテムの省略表示:"
+
+#: ../src/preferences.c:505
+msgid "Beginning"
+msgstr "文頭"
+
+#: ../src/preferences.c:506
+msgid "Middle"
+msgstr "文中"
+
+#: ../src/preferences.c:507
+msgid "End"
+msgstr "文末"
+
+#: ../src/preferences.c:514
+msgid "Actions"
+msgstr "アクション"
+
+#. Build the actions label
+#: ../src/preferences.c:519
+msgid "Control-click ClipIt's tray icon to use actions"
+msgstr "アクションの使用は Ctrl + ClipIt トレイアイコンのクリック"
+
+#: ../src/preferences.c:539
+msgid "Action"
+msgstr "アクション"
+
+#: ../src/preferences.c:546
+msgid "Command"
+msgstr "コマンド"
+
+#: ../src/preferences.c:561
+msgid "Add..."
+msgstr "追加..."
+
+#: ../src/preferences.c:565
+msgid "Remove"
+msgstr "削除"
+
+#: ../src/preferences.c:582
+msgid "Hotkeys"
+msgstr "ホットキー"
+
+#: ../src/preferences.c:590
+msgid "<b>Hotkeys</b>"
+msgstr "<b>ホットキー</b>"
+
+#: ../src/preferences.c:599
+msgid "History key combination:"
+msgstr "履歴キーの組み合せ:"
+
+#: ../src/preferences.c:607
+msgid "Actions key combination:"
+msgstr "アクションキーの組み合せ:"
+
+#: ../src/preferences.c:615
+msgid "Menu key combination:"
+msgstr "メニューキーの組み合せ:"
+
+#: ../data/clipit.desktop.in.h:2 ../data/clipit-startup.desktop.in.h:2
+msgid "ClipIt"
+msgstr "ClipIt"
+
+#~ msgid "<b>Clipboard</b>"
+#~ msgstr "<b>クリップボード</b>"
+
+#~ msgid "Save changes"
+#~ msgstr "変更保存"
+
+#~ msgid "Discard changes"
+#~ msgstr "変更破棄"
+
+#~ msgid "Extras"
+#~ msgstr "その他"
+
+#~ msgid ""
+#~ "Add a new action\n"
+#~ "\"%s\" in a command is replaced with the clipboard contents"
+#~ msgstr ""
+#~ "新しいアクションを追加\n"
+#~ "コマンドの \"%s\" は、クリップボードの内容と置き換えられます。"
+
+#~ msgid "Move selected action up"
+#~ msgstr "選択アクションを上に移動"
+
+#~ msgid "Move selected action down"
+#~ msgstr "選択アクションを下に移動"

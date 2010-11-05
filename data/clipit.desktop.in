@@ -1,0 +1,8 @@
+[Desktop Entry]
+_Name=ClipIt
+_Comment=Clipboard Manager
+Icon=gtk-paste
+Exec=clipit
+Terminal=false
+Type=Application
+Categories=GTK;GNOME;Application;Utility;

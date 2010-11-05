@@ -1,0 +1,264 @@
+# Norwegian translation of clipit.
+# Copyright (C) 2008 Xyhthyx <xyhthyx@gmail.com>
+# This file is distributed under the same license as the clipit package.
+# Øyvind Sæther <oyvinds@everdot.org>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: ClipIt 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-03-08 10:32-0400\n"
+"PO-Revision-Date: 2009-01-17 11:33+0100\n"
+"Last-Translator: yvind Sther <oyvinds@everdot.org>\n"
+"Language-Team: Norwegian Bokml <kde-i18n-doc@lists.kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 0.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../src/main.c:166
+msgid "Executing action..."
+msgstr "Utfrer handling..."
+
+#: ../src/main.c:172 ../src/main.c:704 ../data/clipit.desktop.in.h:1
+#: ../data/clipit-startup.desktop.in.h:1
+msgid "Clipboard Manager"
+msgstr "Utklippstavleverkty"
+
+#: ../src/main.c:195
+msgid "Could not create thread for executed action\n"
+msgstr "Kunne ikke lage trd fr utfrt handling\n"
+
+#. Create the dialog
+#: ../src/main.c:225
+msgid "Editing Clipboard"
+msgstr "Redigerer Utklippstavlen"
+
+#: ../src/main.c:284
+msgid "Clear the history?"
+msgstr "Tm historikken?"
+
+#: ../src/main.c:336
+msgid "Lightweight GTK+ clipboard manager."
+msgstr "Lettvekts GTK+ utklippstavlebehandler"
+
+#: ../src/main.c:423
+msgid "<b>None</b>"
+msgstr "<b>Ingen</b>"
+
+#. File contained no actions so adding empty
+#. File did not open so adding empty
+#. Nothing in history so adding empty
+#: ../src/main.c:444 ../src/main.c:473 ../src/main.c:588
+msgid "Empty"
+msgstr "Tom "
+
+#. Edit actions
+#: ../src/main.c:480
+msgid "_Edit actions"
+msgstr "_Rediger handlinger"
+
+#. Edit clipboard
+#: ../src/main.c:504
+msgid "_Edit Clipboard"
+msgstr "_Rediger utklippstavlen"
+
+#: ../src/utils.c:38 ../src/utils.c:45
+#, c-format
+msgid "Couldn't create directory: %s\n"
+msgstr "Kunne ikke opprette mappe: %s\n"
+
+#: ../src/utils.c:84
+msgid "Run as daemon"
+msgstr "Kjr i bakgrunnen"
+
+#: ../src/utils.c:91
+msgid "Do not use status icon (Ctrl-Alt-P for menu)"
+msgstr "Ikke vis statusikon (Ctrl-Alt-P for menyen)"
+
+#: ../src/utils.c:98
+msgid "Print clipboard contents"
+msgstr "Skriv ut utklippstavlens innhold"
+
+#: ../src/utils.c:105
+#, fuzzy
+msgid "Print primary contents"
+msgstr "Skriv ut utklippstavlens innhold"
+
+#: ../src/utils.c:117
+#, fuzzy
+msgid ""
+"Clipboard CLI usage examples:\n"
+"\n"
+"  echo \"copied to clipboard\" | clipit\n"
+"  clipit \"copied to clipboard\"\n"
+"  echo \"copied to clipboard\" | clipit -c"
+msgstr ""
+"Eksempler ved bruk av utklippstavlen i CLI:\n"
+"\n"
+"  echo \"kopiert til utklippstavlen\" | clipit\n"
+"  clipit \"kopiert til utklippstavlen\"\n"
+"  echo \"kopiert til utklippstavlen\" | clipit -o"
+
+#: ../src/utils.c:123
+msgid ""
+"Written by Gilberto \"Xyhthyx\" Miralla.\n"
+"Report bugs to <xyhthyx@gmail.com>."
+msgstr ""
+"Skrevet av Gilberto \"Xyhthyx\" Miralla.\n"
+"Rapporter feil til <xyhthyx@gmail.com>."
+
+#. Create the dialog
+#: ../src/preferences.c:375
+msgid "Preferences"
+msgstr "Tilpass ClipIt "
+
+#: ../src/preferences.c:390
+msgid "Behavior"
+msgstr "Oppfrsel"
+
+#: ../src/preferences.c:398
+msgid "<b>Clipboards</b>"
+msgstr "<b>Utklippstavler</b>"
+
+#: ../src/preferences.c:405
+msgid "Use _Copy (Ctrl-C)"
+msgstr "Bruk _Kopier (Ctrl-C)"
+
+#: ../src/preferences.c:407
+msgid "Use _Primary (Selection)"
+msgstr "Bruk _Primr (Utvalg)"
+
+#: ../src/preferences.c:409
+msgid "S_ynchronize clipboards"
+msgstr ""
+
+#: ../src/preferences.c:417
+msgid "<b>History</b>"
+msgstr "<b>Historikk</b>"
+
+#: ../src/preferences.c:424
+msgid "_Save history"
+msgstr "_Lagre historikk"
+
+#: ../src/preferences.c:425
+msgid "Save and restore history between sessions"
+msgstr "Lagre og gjenopprett mellom sesjoner"
+
+#: ../src/preferences.c:429
+msgid "Items in history:"
+msgstr "Elementer i historikken:"
+
+#: ../src/preferences.c:442
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Diverse</b>"
+
+#: ../src/preferences.c:449
+msgid "Capture _hyperlinks only"
+msgstr "Bare fang _hyperlenker"
+
+#: ../src/preferences.c:451
+msgid "C_onfirm before clearing history"
+msgstr "Bekreft fr tmming av hist_orikk"
+
+#: ../src/preferences.c:458
+msgid "Display"
+msgstr "Vis"
+
+#: ../src/preferences.c:466
+msgid "<b>Items</b>"
+msgstr "<b>Elementer</b>"
+
+#: ../src/preferences.c:473
+msgid "Show in a _single line"
+msgstr "Vi_s i en enkelt linje"
+
+#: ../src/preferences.c:475
+msgid "Show in _reverse order"
+msgstr "Vis i _omvendt rekkeflge"
+
+#: ../src/preferences.c:479
+msgid "Character length of items:"
+msgstr "Tegnlengde p elementer:"
+
+#: ../src/preferences.c:492
+msgid "<b>Omitting</b>"
+msgstr "<b>Unngelser</b>"
+
+#: ../src/preferences.c:501
+msgid "Omit items in the:"
+msgstr "Unng elementer i:"
+
+#: ../src/preferences.c:505
+msgid "Beginning"
+msgstr "Begynnelse"
+
+#: ../src/preferences.c:506
+msgid "Middle"
+msgstr "Midtpunkt"
+
+#: ../src/preferences.c:507
+msgid "End"
+msgstr "Slutt"
+
+#: ../src/preferences.c:514
+msgid "Actions"
+msgstr "Handlinger"
+
+#. Build the actions label
+#: ../src/preferences.c:519
+msgid "Control-click ClipIt's tray icon to use actions"
+msgstr "Hold Ctrl og klikk ClipIts ikon for  bruke handlinger"
+
+#: ../src/preferences.c:539
+msgid "Action"
+msgstr "Handling"
+
+#: ../src/preferences.c:546
+msgid "Command"
+msgstr "Kommando"
+
+#: ../src/preferences.c:561
+msgid "Add..."
+msgstr "Legg til..."
+
+#: ../src/preferences.c:565
+msgid "Remove"
+msgstr "Fjern"
+
+#: ../src/preferences.c:582
+#, fuzzy
+msgid "Hotkeys"
+msgstr "<b>Hurtigtaster</b>"
+
+#: ../src/preferences.c:590
+msgid "<b>Hotkeys</b>"
+msgstr "<b>Hurtigtaster</b>"
+
+#: ../src/preferences.c:599
+msgid "History key combination:"
+msgstr "Snarevei for historikk:"
+
+#: ../src/preferences.c:607
+msgid "Actions key combination:"
+msgstr "Snarevei for handlinger:"
+
+#: ../src/preferences.c:615
+msgid "Menu key combination:"
+msgstr "Snarevei for meny:"
+
+#: ../data/clipit.desktop.in.h:2 ../data/clipit-startup.desktop.in.h:2
+msgid "ClipIt"
+msgstr "ClipIt"
+
+#~ msgid "<b>Clipboard</b>"
+#~ msgstr "<b>Utklippstavle</b>"
+
+#~ msgid "Save changes"
+#~ msgstr "Lagre endringer"
+
+#~ msgid "Discard changes"
+#~ msgstr "Forkast endringer"
+
+#~ msgid "Extras"
+#~ msgstr "Ekstra"
