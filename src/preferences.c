@@ -32,6 +32,7 @@
 GtkWidget *copy_check,
           *primary_check,
           *synchronize_check,
+          *show_indexes_check,
           *full_hist_check,
           *history_spin,
           *history_small,
@@ -75,6 +76,7 @@ apply_preferences()
   prefs.use_copy = gtk_toggle_button_get_active((GtkToggleButton*)copy_check);
   prefs.use_primary = gtk_toggle_button_get_active((GtkToggleButton*)primary_check);
   prefs.synchronize = gtk_toggle_button_get_active((GtkToggleButton*)synchronize_check);
+  prefs.show_indexes = gtk_toggle_button_get_active((GtkToggleButton*)show_indexes_check);
   prefs.save_history = gtk_toggle_button_get_active((GtkToggleButton*)save_check);
   prefs.history_limit = gtk_spin_button_get_value_as_int((GtkSpinButton*)history_spin);
   prefs.small_history = gtk_toggle_button_get_active((GtkToggleButton*)small_check);
@@ -110,6 +112,7 @@ save_preferences()
   g_key_file_set_boolean(rc_key, "rc", "use_copy", prefs.use_copy);
   g_key_file_set_boolean(rc_key, "rc", "use_primary", prefs.use_primary);
   g_key_file_set_boolean(rc_key, "rc", "synchronize", prefs.synchronize);
+  g_key_file_set_boolean(rc_key, "rc", "show_indexes", prefs.show_indexes);
   g_key_file_set_boolean(rc_key, "rc", "save_history", prefs.save_history);
   g_key_file_set_integer(rc_key, "rc", "history_limit", prefs.history_limit);
   g_key_file_set_boolean(rc_key, "rc", "small_history", prefs.small_history);
@@ -148,6 +151,7 @@ read_preferences()
     prefs.use_copy = g_key_file_get_boolean(rc_key, "rc", "use_copy", NULL);
     prefs.use_primary = g_key_file_get_boolean(rc_key, "rc", "use_primary", NULL);
     prefs.synchronize = g_key_file_get_boolean(rc_key, "rc", "synchronize", NULL);
+    prefs.show_indexes = g_key_file_get_boolean(rc_key, "rc", "show_indexes", NULL);
     prefs.save_history = g_key_file_get_boolean(rc_key, "rc", "save_history", NULL);
     prefs.history_limit = g_key_file_get_integer(rc_key, "rc", "history_limit", NULL);
     prefs.small_history = g_key_file_get_boolean(rc_key, "rc", "small_history", NULL);
@@ -603,6 +607,8 @@ show_preferences(gint tab)
   gtk_box_pack_start((GtkBox*)vbox, primary_check, FALSE, FALSE, 0);
   synchronize_check = gtk_check_button_new_with_mnemonic(_("S_ynchronize clipboards"));
   gtk_box_pack_start((GtkBox*)vbox, synchronize_check, FALSE, FALSE, 0);
+  show_indexes_check = gtk_check_button_new_with_mnemonic(_("S_how indexes in history menu"));
+  gtk_box_pack_start((GtkBox*)vbox, show_indexes_check, FALSE, FALSE, 0);
   gtk_box_pack_start((GtkBox*)vbox_behavior, frame, FALSE, FALSE, 0);
   
   /* Build the history frame */
@@ -910,6 +916,7 @@ show_preferences(gint tab)
   gtk_toggle_button_set_active((GtkToggleButton*)copy_check, prefs.use_copy);
   gtk_toggle_button_set_active((GtkToggleButton*)primary_check, prefs.use_primary);
   gtk_toggle_button_set_active((GtkToggleButton*)synchronize_check, prefs.synchronize);
+  gtk_toggle_button_set_active((GtkToggleButton*)show_indexes_check, prefs.show_indexes);
   gtk_toggle_button_set_active((GtkToggleButton*)save_check, prefs.save_history);
   gtk_spin_button_set_value((GtkSpinButton*)history_spin, (gdouble)prefs.history_limit);
   gtk_toggle_button_set_active((GtkToggleButton*)small_check, prefs.small_history);

@@ -6,4 +6,6 @@
 + Redo Preferences dialog.
 + Clean up the code and indent it properly.
 + Fix conflict with copying of multimedia content.
-+ Make Search dialog receive focus as soon as it is opened.
++ Add "Edit" and "Remove" buttons to the search window and rename
+	it to "Manage Clipboard".
++ Move all pop-up and menu functions from main.c to menus.c.

@@ -13,4 +13,5 @@ clipit_SOURCES = main.c main.h \
                      history.c history.h \
                      keybinder.c keybinder.h \
                      preferences.c preferences.h \
+                     manage.c manage.h \
                      eggaccelerators.c eggaccelerators.h
