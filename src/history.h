@@ -35,6 +35,9 @@ void
 save_history();
 
 void
+check_and_append(gchar* item);
+
+void
 append_item(gchar* item);
 
 void

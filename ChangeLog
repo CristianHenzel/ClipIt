@@ -1,3 +1,9 @@
+ClipIt-v1.2.0-10112010001 - 10 Nov. 2010
+	+ Added: Option to save URIs (they were actually saved by default before, but
+				now you have the option to disable this behaviour).
+	+ Fixed: Copying files and folders now works again.
+	+ Fixed: Changed some of the default configuration values.
+
 ClipIt-v1.1.0-09112010001 - 09 Nov. 2010
 	+ Added: Option to show index numbers in history.
 	+ Fixed: Search window now gets properly focused when launched with the hotkey.

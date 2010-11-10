@@ -101,33 +101,45 @@ save_history()
   }
 }
 
+/* Checks if item should be included in history and calls append */
+void
+check_and_append(gchar* item)
+{
+  if (item)
+  {
+    GtkClipboard* clip = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
+    /* Prepend new item */
+    /* Check if we have URIs */
+    gchar **arr = gtk_clipboard_wait_for_uris(clip);
+    if(arr != NULL) {
+      /* We have URIs */
+      if(!prefs.save_uris)
+        return;
+    }
+    g_strfreev(arr);
+    if(!is_excluded(item))
+    {
+      append_item(item);
+    }
+  }
+}
+
 /* Adds item to the end of history */
 void
 append_item(gchar* item)
 {
-  if (item)
+  history = g_slist_prepend(history, g_strdup(item));
+  /* Shorten history if necessary */
+  GSList* last_possible_element = g_slist_nth(history, prefs.history_limit - 1);
+  if (last_possible_element)
   {
-    /* Prepend new item */
-    if(!is_excluded(item))
-    {
-      history = g_slist_prepend(history, g_strdup(item));
-      /* Shorten history if necessary */
-      GSList* last_possible_element = g_slist_nth(history, prefs.history_limit - 1);
-      if (last_possible_element)
-      {
-        /* Free last posible element and subsequent elements */
-        g_slist_free(last_possible_element->next);
-        last_possible_element->next = NULL;
-      }
-      /* Save changes */
-      if (prefs.save_history)
-        save_history();
-      /* This is to fix the wrong behaviour when cuting text instead of copying */
-      GSList* element = g_slist_nth(history, 0);
-      GtkClipboard* clip = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
-      gtk_clipboard_set_text(clip, (gchar*)element->data, -1);
-    }
+    /* Free last posible element and subsequent elements */
+    g_slist_free(last_possible_element->next);
+    last_possible_element->next = NULL;
   }
+  /* Save changes */
+  if (prefs.save_history)
+    save_history();
 }
 
 /* Truncates history to history_limit items */
