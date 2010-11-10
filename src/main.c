@@ -77,13 +77,17 @@ item_check(gpointer data)
     /* Only recover lost contents if there isn't any other type of content in the clipboard */
     if (!contents)
     {
-      gtk_clipboard_set_text(primary, primary_text, -1);
-	/*
-	 * in a future version...
-	 * GSList* element = g_slist_nth(history, 0);
-	 * gtk_clipboard_set_text(clipboard, (gchar*)element->data, -1);
-	 * gtk_clipboard_set_text(primary, (gchar*)element->data, -1);
-	 */
+      if(prefs.use_primary)
+      {
+        /* if use_primary is enabled, we restore from primary */
+        gtk_clipboard_set_text(primary, primary_text, -1);
+      }
+      else
+      {
+        /* else, we restore from history */
+        GSList* element = g_slist_nth(history, 0);
+        gtk_clipboard_set_text(primary, (gchar*)element->data, -1);
+      }
     }
   }
   else
@@ -106,12 +110,12 @@ item_check(gpointer data)
           if (prefs.hyperlinks_only && is_hyperlink(primary_text))
           {
             delete_duplicate(primary_text);
-            append_item(primary_text);
+            check_and_append(primary_text);
           }
           else
           {
             delete_duplicate(primary_text);
-            append_item(primary_text);
+            check_and_append(primary_text);
           }
         }
       }
@@ -148,12 +152,12 @@ item_check(gpointer data)
         if (prefs.hyperlinks_only && is_hyperlink(clipboard_text))
         {
           delete_duplicate(clipboard_text);
-          append_item(clipboard_text);
+          check_and_append(clipboard_text);
         }
         else
         {
           delete_duplicate(clipboard_text);
-          append_item(clipboard_text);
+          check_and_append(clipboard_text);
         }
       }
     }
