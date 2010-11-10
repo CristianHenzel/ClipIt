@@ -1,3 +1,8 @@
+ClipIt-v1.2.1-10112010002 - 10 Nov. 2010
+	+ Fixed: Fixed OOM bug when copying large chunks of text by limiting
+			the history entry to 512KB.
+			(http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=602205)
+
 ClipIt-v1.2.0-10112010001 - 10 Nov. 2010
 	+ Added: Option to save URIs (they were actually saved by default before, but
 				now you have the option to disable this behaviour).
