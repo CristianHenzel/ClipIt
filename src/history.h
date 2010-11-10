@@ -25,6 +25,9 @@
 G_BEGIN_DECLS
 
 #define HISTORY_FILE ".local/share/clipit/history"
+/* Set maximum size of one clipboard entry to 512KB 
+ * 250 pages × 2000 characters per page - should be more than enough */
+#define ENTRY_MAX_SIZE 524288
 
 extern GSList* history;
 
