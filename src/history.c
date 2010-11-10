@@ -107,6 +107,9 @@ check_and_append(gchar* item)
 {
   if (item)
   {
+    /* if item is too big, we don't include it in the history */
+    if(strlen(item) > ENTRY_MAX_SIZE)
+      return;
     GtkClipboard* clip = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
     /* Prepend new item */
     /* Check if we have URIs */
