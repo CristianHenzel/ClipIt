@@ -36,6 +36,7 @@ typedef struct
   gboolean  use_primary;      /* Use primary */
   gboolean  synchronize;      /* Synchronize copy and primary */
   gboolean  show_indexes;     /* Show index numbers in history menu */
+  gboolean  save_uris;        /* Save URIs in history */
   
   gboolean  save_history;     /* Save history */
   gint      history_limit;    /* Items in history */
