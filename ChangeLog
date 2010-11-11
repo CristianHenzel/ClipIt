@@ -1,3 +1,6 @@
+ClipIt-v1.2.2-11112010001 - 11 Nov. 2010
+	+ Fixed: Some small compatibility changes for debian packaging.
+
 ClipIt-v1.2.1-10112010002 - 10 Nov. 2010
 	+ Fixed: Fixed OOM bug when copying large chunks of text by limiting
 			the history entry to 512KB.

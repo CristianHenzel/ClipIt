@@ -1,5 +1,6 @@
 src/main.c
 src/utils.c
+src/manage.c
 src/preferences.c
 data/clipit.desktop.in
 data/clipit-startup.desktop.in
