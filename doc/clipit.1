@@ -1,4 +1,4 @@
-.TH CLIPIT 1 "01.11.2010"
+.TH CLIPIT 1 "2010-11-11"
 .SH NAME
 ClipIt \- Lightweight GTK+ Clipboard Manager
 .SH SYNOPSIS
@@ -13,27 +13,33 @@ of your standard input get copied to your clipboard. See \fBCLI EXAMPLES\fR.
 .B OPTIONS
 .TP
 .B \-?\fR, \fB\-\-help
-Show help options
+Show help options.
 .TP
 .B \-d\fR, \fB\-\-daemon
 Run as daemon. Use this mode if you just want \fBClipIt\fR to keep your clipboard
-and primary contents safe
+and primary contents safe.
 .TP
 .B \-n\fR, \fB\-\-no-icon
-Do not use status icon
+Do not use status icon.
 .TP
 .B \-c\fR, \fB\-\-clipboard
-Print clipboard contents
+Print clipboard contents.
+.TP
 .B \-p\fR, \fB\-\-primary
-Print primary contents
-.SH ACTIONS
+Print primary contents.
+.SH NOTES
+.SS ACTIONS
 \fBClipIt's\fR actions perform commands using the contents of your clipboard. "\fB%s\fR" in the command
 is replaced with the clipboard contents.
-.SH CLI EXAMPLES
+.SS CLI EXAMPLES
+.TP
+Put text in the clipboard
  echo "copied to clipboard" | clipit
  clipit "copied to clipboard"
+.TP
+Put text in the clipboard and print the clipboard contents
  echo "copied to clipboard" | clipit \-c
-.SH Hotkeys
+.SS Hotkeys
  The available hotkey modifiers are <Ctrl>, <Alt> <Shift>, <Release>, <Meta>, <Super>, <Hyper>, <Mod[1\-5]>
 .SH SEE ALSO
 .PP
