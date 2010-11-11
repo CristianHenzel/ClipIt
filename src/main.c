@@ -413,7 +413,7 @@ show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
                                 _("Lightweight GTK+ clipboard manager."));
     
     gtk_about_dialog_set_website((GtkAboutDialog*)about_dialog,
-                                 "COMING_SOON");
+                                 "http://sourceforge.net/projects/gtkclipit/");
     
     gtk_about_dialog_set_copyright((GtkAboutDialog*)about_dialog, "Copyright (C) 2010 Cristian Henzel");
     gtk_about_dialog_set_authors((GtkAboutDialog*)about_dialog, authors);
