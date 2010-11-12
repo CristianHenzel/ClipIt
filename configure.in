@@ -2,7 +2,7 @@
 # Autoconf/automake.
 # -------------------------------------------------------------------------------
 AC_PREREQ([2.5])
-AC_INIT([clipit], [1.2.5], [oss@web-tm.com])
+AC_INIT([clipit], [1.2.6], [oss@web-tm.com])
 AM_INIT_AUTOMAKE([AC_PACKAGE_TARNAME()], [AC_PACKAGE_VERSION()])
 
 AC_CONFIG_MACRO_DIR([m4])
@@ -28,7 +28,7 @@ AC_SUBST(clipitlocaledir)
 AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_VERSION(0.18.1)
 
-AM_MAINTAINER_MODE([enable])
+AM_MAINTAINER_MODE([disable])
 
 # -------------------------------------------------------------------------------
 # Main settings.
@@ -45,14 +45,13 @@ AC_PROG_MAKE_SET()
 # -------------------------------------------------------------------------------
 # Checks for libraries.
 # -------------------------------------------------------------------------------
-# AC_CHECK_LIB(pthread, pthread_create)
 AM_PATH_GTK_2_0(2.10.0, [], AC_MSG_ERROR(Requirement not met: gtk >= 2.10.0))
 AM_PATH_GLIB_2_0(2.14.0, [], AC_MSG_ERROR(Requirement not met: glib >= 2.14.0))
 
 # -------------------------------------------------------------------------------
 # Checks for header files.
 # -------------------------------------------------------------------------------
-AC_CHECK_HEADERS([stdlib.h string.h pthread.h])
+AC_CHECK_HEADERS([stdlib.h string.h])
 
 # -------------------------------------------------------------------------------
 # Checks for typedefs, structures, and compiler characteristics.
