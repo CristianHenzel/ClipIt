@@ -27,7 +27,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <gtk/gtk.h>
-#include <pthread.h>
 #include "main.h"
 #include "utils.h"
 #include "history.h"
@@ -48,7 +47,7 @@ static gboolean actions_lock = FALSE;
 
 /* Init preferences structure */
 prefs_t prefs = {DEF_USE_COPY,        DEF_USE_PRIMARY,      DEF_SYNCHRONIZE,
-                 DEF_SHOW_INDEXES,    DEF_SAVE_URIS         DEF_SAVE_HISTORY,
+                 DEF_SHOW_INDEXES,    DEF_SAVE_URIS,        DEF_SAVE_HISTORY,
                  DEF_HISTORY_LIMIT,   DEF_SMALL_HISTORY,    DEF_HISTORY_SMALL,
                  DEF_HYPERLINKS_ONLY, DEF_CONFIRM_CLEAR,    DEF_FULL_HIST_BUTTON,
                  DEF_SINGLE_LINE,     DEF_REVERSE_HISTORY,  DEF_ITEM_LENGTH,
