@@ -1,3 +1,7 @@
+ClipIt-v1.2.6-12112010003 - 12 Nov. 2010
+	+ Fixed: Removed reference to pthread.h from configure.in.
+	+ Fixed: Set AM_MAINTAINER_MODE to disabled by default.
+
 ClipIt-v1.2.5-12112010002 - 12 Nov. 2010
 	+ Fixed: Now using autopoint instead of gettextize to avoid waiting for
 			user input.
