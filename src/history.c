@@ -21,6 +21,7 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
+#include <string.h>
 #include "main.h"
 #include "utils.h"
 #include "history.h"
