@@ -1,3 +1,12 @@
+ClipIt-v1.2.5-12112010002 - 12 Nov. 2010
+	+ Fixed: Now using autopoint instead of gettextize to avoid waiting for
+			user input.
+	+ Fixed: Added AM_MAINTAINER_MODE, to get rid of the disable-maintainer-mode
+			warning.
+	+ Fixed: Fixed a small typo in main.c.
+	+ Fixed: removed dependency of pthread.h (the pthread_exit function that we
+			use is also included in glib.h).
+
 ClipIt-v1.2.4-12112010001 - 12 Nov. 2010
 	+ Fixed: Fixed 2 small omitions from previous changes.
 
