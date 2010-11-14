@@ -1,10 +1,7 @@
 + Add primary support for CLI.
-+ Dialog with listed history contents for searching and removing.
 + Static entries.
 + Added variable to hold return values of fread and system, we should
 	actually use that return value to display an error if there was one.
 + Redo Preferences dialog.
 + Clean up the code and indent it properly.
-+ Add "Edit" and "Remove" buttons to the search window and rename
-	it to "Manage Clipboard".
 + Move all pop-up and menu functions from main.c to menus.c.
