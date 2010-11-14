@@ -264,60 +264,6 @@ edit_actions_selected(GtkButton *button, gpointer user_data)
     show_preferences(ACTIONS_TAB);
 }
 
-/* Called when Edit is selected from history menu */
-static void
-edit_selected(GtkMenuItem *menu_item, gpointer user_data)
-{
-  /* This helps prevent multiple instances */
-  if (!gtk_grab_get_current())
-  {
-    /* Create clipboard buffer and set its text */
-    GtkTextBuffer* clipboard_buffer = gtk_text_buffer_new(NULL);
-    gchar* current_clipboard_text = gtk_clipboard_wait_for_text(clipboard);
-    if (current_clipboard_text != NULL)
-    {
-      gtk_text_buffer_set_text(clipboard_buffer, current_clipboard_text, -1);
-    }
-    
-    /* Create the dialog */
-    GtkWidget* dialog = gtk_dialog_new_with_buttons(_("Editing Clipboard"), NULL,
-                                                   (GTK_DIALOG_MODAL   +    GTK_DIALOG_NO_SEPARATOR),
-                                                    GTK_STOCK_CANCEL,       GTK_RESPONSE_REJECT,
-                                                    GTK_STOCK_OK,           GTK_RESPONSE_ACCEPT, NULL);
-    
-    gtk_window_set_default_size((GtkWindow*)dialog, 450, 300);
-    gtk_window_set_icon((GtkWindow*)dialog, gtk_widget_render_icon(dialog, GTK_STOCK_EDIT, GTK_ICON_SIZE_MENU, NULL));
-    
-    /* Build the scrolled window with the text view */
-    GtkWidget* scrolled_window = gtk_scrolled_window_new((GtkAdjustment*) gtk_adjustment_new(0, 0, 0, 0, 0, 0),
-                                                         (GtkAdjustment*) gtk_adjustment_new(0, 0, 0, 0, 0, 0));
-    
-    gtk_scrolled_window_set_policy((GtkScrolledWindow*)scrolled_window,
-                                   GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-    
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), scrolled_window, TRUE, TRUE, 2);
-    GtkWidget* text_view = gtk_text_view_new_with_buffer(clipboard_buffer);
-    gtk_text_view_set_left_margin((GtkTextView*)text_view, 2);
-    gtk_text_view_set_right_margin((GtkTextView*)text_view, 2);
-    gtk_container_add((GtkContainer*)scrolled_window, text_view);
-    
-    /* Run the dialog */
-    gtk_widget_show_all(dialog);
-    if (gtk_dialog_run((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT)
-    {
-      /* Save changes done to the clipboard */
-      GtkTextIter start, end;
-      gtk_text_buffer_get_start_iter(clipboard_buffer, &start);
-      gtk_text_buffer_get_end_iter(clipboard_buffer, &end);
-      gchar* new_clipboard_text = gtk_text_buffer_get_text(clipboard_buffer, &start, &end, TRUE);
-      gtk_clipboard_set_text(clipboard, new_clipboard_text, -1);
-      g_free(new_clipboard_text);
-    }
-    gtk_widget_destroy(dialog);
-    g_free(current_clipboard_text);
-  }
-}
-
 /* Called when an item is selected from history menu */
 static void
 item_selected(GtkMenuItem *menu_item, gpointer user_data)
@@ -584,14 +530,6 @@ show_history_menu_full(gpointer data)
   /* Create the menu */
   menu = gtk_menu_new();
   g_signal_connect((GObject*)menu, "selection-done", (GCallback)gtk_widget_destroy, NULL);
-  /* Edit clipboard */
-  menu_item = gtk_image_menu_item_new_with_mnemonic(_("_Edit Clipboard"));
-  menu_image = gtk_image_new_from_stock(GTK_STOCK_EDIT, GTK_ICON_SIZE_MENU);
-  gtk_image_menu_item_set_image((GtkImageMenuItem*)menu_item, menu_image);
-  g_signal_connect((GObject*)menu_item, "activate", (GCallback)edit_selected, NULL);
-  gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
-  /* -------------------- */
-  gtk_menu_shell_append((GtkMenuShell*)menu, gtk_separator_menu_item_new());
   /* Items */
   if ((history != NULL) && (history->data != NULL))
   {
@@ -610,15 +548,6 @@ show_history_menu_full(gpointer data)
     for (element = history; element != NULL; element = element->next)
     {
       GString* string = g_string_new((gchar*)element->data);
-      /* Remove control characters */
-      int i = 0;
-      while (i < string->len)
-      {
-        if (string->str[i] == '\n')
-          g_string_erase(string, i, 1);
-        else
-          i++;
-      }
       /* Ellipsize text */
       if (string->len > prefs.item_length)
       {
@@ -637,6 +566,14 @@ show_history_menu_full(gpointer data)
             string = g_string_append(string, "...");
             break;
         }
+      }
+      /* Remove control characters */
+      int i = 0;
+      while (i < string->len)
+      {
+        if (string->str[i] == '\n')
+          g_string_overwrite(string, i, " ");
+        i++;
       }
       /* Make new item with ellipsized text */
       gchar* list_item;
@@ -733,15 +670,6 @@ show_history_menu_small(gpointer data)
     for (element = history; (element != NULL) && (element_number_small < prefs.history_small); element = element->next)
     {
       GString* string = g_string_new((gchar*)element->data);
-      /* Remove control characters */
-      int i = 0;
-      while (i < string->len)
-      {
-        if (string->str[i] == '\n')
-          g_string_erase(string, i, 1);
-        else
-          i++;
-      }
       /* Ellipsize text */
       if (string->len > prefs.item_length)
       {
@@ -760,6 +688,14 @@ show_history_menu_small(gpointer data)
             string = g_string_append(string, "...");
             break;
         }
+      }
+      /* Remove control characters */
+      int i = 0;
+      while (i < string->len)
+      {
+        if (string->str[i] == '\n')
+          g_string_overwrite(string, i, " ");
+        i++;
       }
       /* Make new item with ellipsized text */
       gchar* list_item;
@@ -835,20 +771,19 @@ show_history_menu_small(gpointer data)
 
 /* Called when status icon is left-clicked */
 static gboolean
-show_history_menu(gpointer data)
+show_history_menu()
 {
-	if (prefs.small_history)
-		g_timeout_add(POPUP_DELAY, show_history_menu_small, NULL);
-	else
-		g_timeout_add(POPUP_DELAY, show_history_menu_full, NULL);
+  if (prefs.small_history)
+    g_timeout_add(POPUP_DELAY, show_history_menu_small, NULL);
+  else
+    g_timeout_add(POPUP_DELAY, show_history_menu_full, NULL);
   /* Return FALSE so the g_timeout_add() function is called only once */
   return FALSE;
 }
 
 /* Called when status icon is right-clicked */
 static void
-show_clipit_menu(GtkStatusIcon *status_icon, guint button,
-                     guint activate_time,        gpointer user_data)
+show_clipit_menu(GtkStatusIcon *status_icon, guint button, guint activate_time)
 {
   /* Declare some variables */
   GtkWidget *menu,       *menu_item,
@@ -886,13 +821,13 @@ show_clipit_menu(GtkStatusIcon *status_icon, guint button,
   gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
   /* Popup the menu... */
   gtk_widget_show_all(menu);
-  gtk_menu_popup((GtkMenu*)menu, NULL, NULL, NULL, user_data, button, activate_time);
+  gtk_menu_popup((GtkMenu*)menu, NULL, NULL, NULL, NULL, button, activate_time);
 }
 
 /* Called when status icon is clicked */
 /* (checks type of click and calls correct function */
 static void
-status_icon_clicked(GtkStatusIcon *status_icon, gpointer user_data)
+status_icon_clicked(GtkStatusIcon *status_icon, GdkEventButton *event )
 {
   /* Check what type of click was recieved */
   GdkModifierType state;
@@ -906,9 +841,13 @@ status_icon_clicked(GtkStatusIcon *status_icon, gpointer user_data)
     }
   }
   /* Normal click */
+  else if (event->button == 1)
+  {
+    show_history_menu();
+  }
   else
   {
-    g_timeout_add(POPUP_DELAY, show_history_menu, NULL);
+    show_clipit_menu(status_icon, event->button, gtk_get_current_event_time());
   }
 }
 
@@ -930,16 +869,14 @@ actions_hotkey(char *keystring, gpointer user_data)
 void
 menu_hotkey(char *keystring, gpointer user_data)
 {
-  show_clipit_menu(status_icon, 0, 0, NULL);
+  show_clipit_menu(status_icon, 0, 0);
 }
 
 /* Called when search global hotkey is pressed */
 void
 search_hotkey(char *keystring, gpointer user_data)
 {
-  if (!gtk_grab_get_current())
-    /* Show the search dialog */
-    g_timeout_add(POPUP_DELAY, show_search, NULL);
+  g_timeout_add(POPUP_DELAY, show_search, NULL);
 }
 
 /* Startup calls and initializations */
@@ -970,8 +907,7 @@ clipit_init()
   {
     status_icon = gtk_status_icon_new_from_stock(GTK_STOCK_PASTE);
     gtk_status_icon_set_tooltip((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
-    g_signal_connect((GObject*)status_icon, "activate", (GCallback)status_icon_clicked, NULL);
-    g_signal_connect((GObject*)status_icon, "popup-menu", (GCallback)show_clipit_menu, NULL);
+    g_signal_connect((GObject*)status_icon, "button_release_event", (GCallback)status_icon_clicked, NULL);
   }
 }
 
@@ -1029,7 +965,7 @@ main(int argc, char *argv[])
   
   /* Init ClipIt */
   clipit_init();
-  
+
   /* Run GTK+ loop */
   gtk_main();
   
