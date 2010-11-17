@@ -1,3 +1,7 @@
+ClipIt-v1.3.1-17112010001 - 17 Nov. 2010
+	+ Added: Added autostart support for LXDE.
+	+ Fixed: Fixed problem with "Edit" window not appearing.
+
 ClipIt-v1.3.0-14112010001 - 14 Nov. 2010
 	+ Added: Added "Edit" and "Remove" buttons to the "Manage History" dialog.
 	+ Fixed: Major speed improvements for big history entries while:

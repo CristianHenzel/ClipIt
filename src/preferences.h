@@ -54,6 +54,7 @@ G_BEGIN_DECLS
 #define ACTIONS_FILE          ".local/share/clipit/actions"
 #define EXCLUDES_FILE         ".local/share/clipit/excludes"
 #define PREFERENCES_FILE      ".config/clipit/clipitrc"
+#define THEMES_FOLDER         ".config/clipit/themes"
 
 void
 read_preferences();
