@@ -286,6 +286,7 @@ clear_selected(GtkMenuItem *menu_item, gpointer user_data)
                                                        GTK_MESSAGE_OTHER,
                                                        GTK_BUTTONS_OK_CANCEL,
                                                        _("Clear the history?"));
+    gtk_window_set_title((GtkWindow*)confirm_dialog, "Clear history");
     
     if (gtk_dialog_run((GtkDialog*)confirm_dialog) == GTK_RESPONSE_OK)
     {

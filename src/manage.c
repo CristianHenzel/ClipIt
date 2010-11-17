@@ -156,8 +156,7 @@ edit_selected()
   GtkTreeIter sel_iter;
   GtkTreeSelection* search_selection = gtk_tree_view_get_selection((GtkTreeView*)treeview_search);
   /* This helps prevent multiple instances and checks if there's anything selected */
-  if (!gtk_grab_get_current() && 
-        gtk_tree_selection_get_selected(search_selection, NULL, &sel_iter))
+  if (gtk_tree_selection_get_selected(search_selection, NULL, &sel_iter))
   {
     /* Create clipboard buffer and set its text */
     gint selected_item_nr;

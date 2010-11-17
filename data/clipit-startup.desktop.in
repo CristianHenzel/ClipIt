@@ -5,5 +5,5 @@ Icon=gtk-paste
 Exec=clipit
 Terminal=false
 Type=Application
-OnlyShowIn=GNOME;XFCE;
+OnlyShowIn=GNOME;XFCE;LXDE;
 X-GNOME-Autostart-enabled=true
