@@ -1,3 +1,9 @@
+ClipIt-v1.3.2-22112010001 - 22 Nov. 2010
+	+ Fixed: Fixed most of the markup and indentation (replaced double spaces
+			with tabs).
+	+ Fixed: Removed clipboard restoring from history, as this seems to cause
+			more problems than it solves.
+
 ClipIt-v1.3.1-17112010001 - 17 Nov. 2010
 	+ Added: Added autostart support for LXDE.
 	+ Fixed: Fixed problem with "Edit" window not appearing.

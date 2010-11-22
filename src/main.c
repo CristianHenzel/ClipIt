@@ -12,11 +12,11 @@
  *
  * ClipIt is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -55,8 +55,7 @@ prefs_t prefs = {DEF_USE_COPY,        DEF_USE_PRIMARY,      DEF_SYNCHRONIZE,
                  INIT_MENU_KEY,       INIT_SEARCH_KEY,      DEF_NO_ICON};
 
 /* Called every CHECK_INTERVAL seconds to check for new items */
-static gboolean
-item_check(gpointer data)
+static gboolean item_check(gpointer data)
 {
   /* Grab the current primary and clipboard text */
   gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
@@ -80,12 +79,13 @@ item_check(gpointer data)
         /* if use_primary is enabled, we restore from primary */
         gtk_clipboard_set_text(primary, primary_text, -1);
       }
-      else
-      {
-        /* else, we restore from history */
-        GSList* element = g_slist_nth(history, 0);
-        gtk_clipboard_set_text(primary, (gchar*)element->data, -1);
-      }
+      /* else
+       * {
+       *  /* else, we restore from history 
+       *  GSList* element = g_slist_nth(history, 0);
+       *  gtk_clipboard_set_text(primary, (gchar*)element->data, -1);
+       * }
+       */
     }
   }
   else
@@ -186,8 +186,7 @@ item_check(gpointer data)
 }
 
 /* Thread function called for each action performed */
-static void *
-execute_action(void *command)
+static void *execute_action(void *command)
 {
   /* Execute action */
   int sys_return;
@@ -210,8 +209,7 @@ execute_action(void *command)
 }
 
 /* Called when execution action exits */
-static void
-action_exit(GPid pid, gint status, gpointer data)
+static void action_exit(GPid pid, gint status, gpointer data)
 {
   g_spawn_close_pid(pid);
   if (!prefs.no_icon)
@@ -223,8 +221,7 @@ action_exit(GPid pid, gint status, gpointer data)
 }
 
 /* Called when an action is selected from actions menu */
-static void
-action_selected(GtkButton *button, gpointer user_data)
+static void action_selected(GtkButton *button, gpointer user_data)
 {
   /* Change icon and enable lock */
   actions_lock = TRUE;
@@ -255,8 +252,7 @@ action_selected(GtkButton *button, gpointer user_data)
 }
 
 /* Called when Edit Actions is selected from actions menu */
-static void
-edit_actions_selected(GtkButton *button, gpointer user_data)
+static void edit_actions_selected(GtkButton *button, gpointer user_data)
 {
   /* This helps prevent multiple instances */
   if (!gtk_grab_get_current())
@@ -275,8 +271,7 @@ item_selected(GtkMenuItem *menu_item, gpointer user_data)
 }
 
 /* Called when Clear is selected from history menu */
-static void
-clear_selected(GtkMenuItem *menu_item, gpointer user_data)
+static void clear_selected(GtkMenuItem *menu_item, gpointer user_data)
 {
   /* Check for confirm clear option */
   if (prefs.confirm_clear)
@@ -323,8 +318,7 @@ clear_selected(GtkMenuItem *menu_item, gpointer user_data)
 }
 
 /* Called when About is selected from right-click menu */
-static void
-show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
+static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
 {
   /* This helps prevent multiple instances */
   if (!gtk_grab_get_current())
@@ -391,8 +385,7 @@ show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
 }
 
 /* Called when Preferences is selected from right-click menu */
-static void
-preferences_selected(GtkMenuItem *menu_item, gpointer user_data)
+static void preferences_selected(GtkMenuItem *menu_item, gpointer user_data)
 {
   /* This helps prevent multiple instances */
   if (!gtk_grab_get_current())
@@ -401,8 +394,7 @@ preferences_selected(GtkMenuItem *menu_item, gpointer user_data)
 }
 
 /* Called when Quit is selected from right-click menu */
-static void
-quit_selected(GtkMenuItem *menu_item, gpointer user_data)
+static void quit_selected(GtkMenuItem *menu_item, gpointer user_data)
 {
   /* Prevent quit with dialogs open */
   if (!gtk_grab_get_current())
@@ -411,8 +403,7 @@ quit_selected(GtkMenuItem *menu_item, gpointer user_data)
 }
 
 /* Called when status icon is control-clicked */
-static gboolean
-show_actions_menu(gpointer data)
+static gboolean show_actions_menu(gpointer data)
 {
   /* Declare some variables */
   GtkWidget *menu,       *menu_item,
@@ -521,8 +512,7 @@ show_actions_menu(gpointer data)
   return FALSE;
 }
 
-static gboolean
-show_history_menu_full(gpointer data)
+static gboolean show_history_menu_full(gpointer data)
 {
   /* Declare some variables */
   GtkWidget *menu,       *menu_item,
@@ -550,32 +540,9 @@ show_history_menu_full(gpointer data)
     {
       GString* string = g_string_new((gchar*)element->data);
       /* Ellipsize text */
-      if (string->len > prefs.item_length)
-      {
-        switch (prefs.ellipsize)
-        {
-          case PANGO_ELLIPSIZE_START:
-            string = g_string_erase(string, 0, string->len-(prefs.item_length));
-            string = g_string_prepend(string, "...");
-            break;
-          case PANGO_ELLIPSIZE_MIDDLE:
-            string = g_string_erase(string, (prefs.item_length/2), string->len-(prefs.item_length));
-            string = g_string_insert(string, (string->len/2), "...");
-            break;
-          case PANGO_ELLIPSIZE_END:
-            string = g_string_truncate(string, prefs.item_length);
-            string = g_string_append(string, "...");
-            break;
-        }
-      }
+      string = ellipsize_string(string);
       /* Remove control characters */
-      int i = 0;
-      while (i < string->len)
-      {
-        if (string->str[i] == '\n')
-          g_string_overwrite(string, i, " ");
-        i++;
-      }
+      string = remove_newlines_string(string);
       /* Make new item with ellipsized text */
       gchar* list_item;
       if (prefs.show_indexes)
@@ -642,8 +609,7 @@ show_history_menu_full(gpointer data)
 }
 
 /* Generates the small history menu */
-static gboolean
-show_history_menu_small(gpointer data)
+static gboolean show_history_menu_small(gpointer data)
 {
   /* Declare some variables */
   GtkWidget *menu,       *menu_item,
@@ -672,32 +638,9 @@ show_history_menu_small(gpointer data)
     {
       GString* string = g_string_new((gchar*)element->data);
       /* Ellipsize text */
-      if (string->len > prefs.item_length)
-      {
-        switch (prefs.ellipsize)
-        {
-          case PANGO_ELLIPSIZE_START:
-            string = g_string_erase(string, 0, string->len-(prefs.item_length));
-            string = g_string_prepend(string, "...");
-            break;
-          case PANGO_ELLIPSIZE_MIDDLE:
-            string = g_string_erase(string, (prefs.item_length/2), string->len-(prefs.item_length));
-            string = g_string_insert(string, (string->len/2), "...");
-            break;
-          case PANGO_ELLIPSIZE_END:
-            string = g_string_truncate(string, prefs.item_length);
-            string = g_string_append(string, "...");
-            break;
-        }
-      }
+      string = ellipsize_string(string);
       /* Remove control characters */
-      int i = 0;
-      while (i < string->len)
-      {
-        if (string->str[i] == '\n')
-          g_string_overwrite(string, i, " ");
-        i++;
-      }
+      string = remove_newlines_string(string);
       /* Make new item with ellipsized text */
       gchar* list_item;
       if (prefs.show_indexes)
@@ -771,8 +714,7 @@ show_history_menu_small(gpointer data)
 }
 
 /* Called when status icon is left-clicked */
-static gboolean
-show_history_menu()
+static gboolean show_history_menu()
 {
   if (prefs.small_history)
     g_timeout_add(POPUP_DELAY, show_history_menu_small, NULL);
@@ -783,8 +725,7 @@ show_history_menu()
 }
 
 /* Called when status icon is right-clicked */
-static void
-show_clipit_menu(GtkStatusIcon *status_icon, guint button, guint activate_time)
+static void show_clipit_menu(GtkStatusIcon *status_icon, guint button, guint activate_time)
 {
   /* Declare some variables */
   GtkWidget *menu,       *menu_item,
@@ -827,8 +768,7 @@ show_clipit_menu(GtkStatusIcon *status_icon, guint button, guint activate_time)
 
 /* Called when status icon is clicked */
 /* (checks type of click and calls correct function */
-static void
-status_icon_clicked(GtkStatusIcon *status_icon, GdkEventButton *event )
+static void status_icon_clicked(GtkStatusIcon *status_icon, GdkEventButton *event )
 {
   /* Check what type of click was recieved */
   GdkModifierType state;
@@ -841,11 +781,12 @@ status_icon_clicked(GtkStatusIcon *status_icon, GdkEventButton *event )
       g_timeout_add(POPUP_DELAY, show_actions_menu, NULL);
     }
   }
-  /* Normal click */
+  /* Left click */
   else if (event->button == 1)
   {
     show_history_menu();
   }
+  /* Right click */
   else
   {
     show_clipit_menu(status_icon, event->button, gtk_get_current_event_time());
@@ -853,36 +794,31 @@ status_icon_clicked(GtkStatusIcon *status_icon, GdkEventButton *event )
 }
 
 /* Called when history global hotkey is pressed */
-void
-history_hotkey(char *keystring, gpointer user_data)
+void history_hotkey(char *keystring, gpointer user_data)
 {
   g_timeout_add(POPUP_DELAY, show_history_menu, NULL);
 }
 
 /* Called when actions global hotkey is pressed */
-void
-actions_hotkey(char *keystring, gpointer user_data)
+void actions_hotkey(char *keystring, gpointer user_data)
 {
   g_timeout_add(POPUP_DELAY, show_actions_menu, NULL);
 }
 
 /* Called when actions global hotkey is pressed */
-void
-menu_hotkey(char *keystring, gpointer user_data)
+void menu_hotkey(char *keystring, gpointer user_data)
 {
   show_clipit_menu(status_icon, 0, 0);
 }
 
 /* Called when search global hotkey is pressed */
-void
-search_hotkey(char *keystring, gpointer user_data)
+void search_hotkey(char *keystring, gpointer user_data)
 {
   g_timeout_add(POPUP_DELAY, show_search, NULL);
 }
 
 /* Startup calls and initializations */
-static void
-clipit_init()
+static void clipit_init()
 {
   /* Create clipboard */
   primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
@@ -913,8 +849,7 @@ clipit_init()
 }
 
 /* This is Sparta! */
-int
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   bindtextdomain(GETTEXT_PACKAGE, CLIPITLOCALEDIR);
   bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
