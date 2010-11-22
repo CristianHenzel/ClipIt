@@ -12,11 +12,11 @@
  *
  * ClipIt is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <glib.h>
@@ -31,223 +31,256 @@
 void
 check_dirs()
 {
-  gchar* data_dir = g_build_path("/", g_get_home_dir(), DATA_DIR,  NULL);
-  gchar* config_dir = g_build_path("/", g_get_home_dir(), CONFIG_DIR,  NULL);
-  /* Check if data directory exists */
-  if (!g_file_test(data_dir, G_FILE_TEST_EXISTS))
-  {
-    /* Try to make data directory */
-    if (g_mkdir_with_parents(data_dir, 0755) != 0)
-      g_warning(_("Couldn't create directory: %s\n"), data_dir);
-  }
-  /* Check if config directory exists */
-  if (!g_file_test(config_dir, G_FILE_TEST_EXISTS))
-  {
-    /* Try to make config directory */
-    if (g_mkdir_with_parents(config_dir, 0755) != 0)
-      g_warning(_("Couldn't create directory: %s\n"), config_dir);
-  }
-  /* Cleanup */
-  g_free(data_dir);
-  g_free(config_dir);
+	gchar *data_dir = g_build_path("/", g_get_home_dir(), DATA_DIR, NULL);
+	gchar *config_dir = g_build_path("/", g_get_home_dir(), CONFIG_DIR, NULL);
+	/* Check if data directory exists */
+	if (!g_file_test(data_dir, G_FILE_TEST_EXISTS))
+	{
+		/* Try to make data directory */
+		if (g_mkdir_with_parents(data_dir, 0755) != 0)
+			g_warning(_("Couldn't create directory: %s\n"), data_dir);
+	}
+	/* Check if config directory exists */
+	if (!g_file_test(config_dir, G_FILE_TEST_EXISTS))
+	{
+		/* Try to make config directory */
+		if (g_mkdir_with_parents(config_dir, 0755) != 0)
+			g_warning(_("Couldn't create directory: %s\n"), config_dir);
+	}
+	/* Cleanup */
+	g_free(data_dir);
+	g_free(config_dir);
 }
 
 /* Returns TRUE if text is a hyperlink */
 gboolean
-is_hyperlink(gchar* text)
+is_hyperlink(gchar *text)
 {
-  /* TODO: I need a better regex, this one is poor */
-  GRegex* regex = g_regex_new("([A-Za-z][A-Za-z0-9+.-]{1,120}:[A-Za-z0-9/]" \
-                              "(([A-Za-z0-9$_.+!*,;/?:@&~=-])|%[A-Fa-f0-9]{2}){1,333}" \
-                              "(#([a-zA-Z0-9][a-zA-Z0-9$_.+!*,;/?:@&~=%-]{0,1000}))?)",
-                              G_REGEX_CASELESS, 0, NULL);
-  
-  gboolean result = g_regex_match(regex, text, 0, NULL);
-  g_regex_unref(regex);
-  return result;
+	/* TODO: I need a better regex, this one is poor */
+	GRegex *regex = g_regex_new("([A-Za-z][A-Za-z0-9+.-]{1,120}:[A-Za-z0-9/]" \
+			"(([A-Za-z0-9$_.+!*,;/?:@&~=-])|%[A-Fa-f0-9]{2}){1,333}" \
+			"(#([a-zA-Z0-9][a-zA-Z0-9$_.+!*,;/?:@&~=%-]{0,1000}))?)",
+			G_REGEX_CASELESS, 0, NULL);
+
+	gboolean result = g_regex_match(regex, text, 0, NULL);
+	g_regex_unref(regex);
+	return result;
 }
 
 /* Returns TRUE if text should be excluded from history */
-gboolean
-is_excluded(gchar* text)
+gboolean is_excluded(gchar *text)
 {
-  /* Open the file for reading */
-  gchar* path = g_build_filename(g_get_home_dir(), EXCLUDES_FILE, NULL);
-  FILE* excludes_file = fopen(path, "rb");
-  g_free(path);
-  /* Check that it opened and begin read */
-  if (excludes_file)
-  {
-    /* Keep a row reference */
-    GtkTreeIter row_iter;
-    /* Read the size of the first item */
-    gint size;
-    size_t fread_return;
-    fread_return = fread(&size, 4, 1, excludes_file);
-    /* Continue reading until size is 0 */
-    while (size != 0)
-    {
-      /* Read Regex */
-      gchar* regex = (gchar*)g_malloc(size + 1);
-      fread_return = fread(regex, size, 1, excludes_file);
-      regex[size] = '\0';
-      fread_return = fread(&size, 4, 1, excludes_file);
-      /* Append the read action */
-      GRegex* regexp = g_regex_new(regex, G_REGEX_CASELESS, 0, NULL);
-      gboolean result = g_regex_match(regexp, text, 0, NULL);
-      g_regex_unref(regexp);
-      g_free(regex);
-      if(result)
-        return result;
-    }
-    fclose(excludes_file);
-  }
-  else
-    return FALSE;
+	/* Open the file for reading */
+	gchar *path = g_build_filename(g_get_home_dir(), EXCLUDES_FILE, NULL);
+	FILE *excludes_file = fopen(path, "rb");
+	g_free(path);
+	/* Check that it opened and begin read */
+	if (excludes_file)
+	{
+		/* Keep a row reference */
+		GtkTreeIter row_iter;
+		/* Read the size of the first item */
+		gint size;
+		size_t fread_return;
+		fread_return = fread(&size, 4, 1, excludes_file);
+		/* Continue reading until size is 0 */
+		while (size != 0)
+		{
+			/* Read Regex */
+			gchar *regex = (gchar*)g_malloc(size + 1);
+			fread_return = fread(regex, size, 1, excludes_file);
+			regex[size] = '\0';
+			fread_return = fread(&size, 4, 1, excludes_file);
+			/* Append the read action */
+			GRegex *regexp = g_regex_new(regex, G_REGEX_CASELESS, 0, NULL);
+			gboolean result = g_regex_match(regexp, text, 0, NULL);
+			g_regex_unref(regexp);
+			g_free(regex);
+			if(result)
+				return result;
+		}
+		fclose(excludes_file);
+	}
+	else
+		return FALSE;
+}
+
+/* Ellipsize a string according to the settings */
+GString *ellipsize_string(GString *string)
+{
+	if (string->len > prefs.item_length)
+	{
+		switch (prefs.ellipsize)
+		{
+			case PANGO_ELLIPSIZE_START:
+				string = g_string_erase(string, 0, string->len-(prefs.item_length));
+				string = g_string_prepend(string, "...");
+				break;
+			case PANGO_ELLIPSIZE_MIDDLE:
+				string = g_string_erase(string, (prefs.item_length/2), string->len-(prefs.item_length));
+				string = g_string_insert(string, (string->len/2), "...");
+				break;
+			case PANGO_ELLIPSIZE_END:
+				string = g_string_truncate(string, prefs.item_length);
+				string = g_string_append(string, "...");
+				break;
+		}
+	}
+	return string;
+}
+
+/* Remove newlines from string */
+GString *remove_newlines_string(GString *string)
+{
+	int i = 0;
+	while (i < string->len)
+	{
+		if (string->str[i] == '\n')
+		g_string_overwrite(string, i, " ");
+		i++;
+	}
+	return string;
 }
 
 /* Parses the program arguments. Returns TRUE if program needs
  * to exit after parsing is complete
  */
-gboolean
-parse_options(int argc, char* argv[])
+gboolean parse_options(int argc, char* argv[])
 {
-  /* Declare argument options and argument variables */
-  gboolean icon   = FALSE,    daemon = FALSE,
-           clipboard = FALSE, primary = FALSE,
-           exit = FALSE;
-  
-  GOptionEntry main_entries[] = 
-  {
-    {
-      "daemon", 'd',
-      G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_NONE,
-      &daemon, _("Run as daemon"),
-      NULL
-    },
-    {
-      "no-icon", 'n',
-      G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_NONE,
-      &icon, _("Do not use status icon (Ctrl-Alt-P for menu)"),
-      NULL
-    },
-    {
-      "clipboard", 'c',
-      G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_NONE,
-      &clipboard, _("Print clipboard contents"),
-      NULL
-    },
-    {
-      "primary", 'p',
-      G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_NONE,
-      &primary, _("Print primary contents"),
-      NULL
-    },
-    {
-      NULL
-    }
-  };
-  
-  /* Option parsing */
-  GOptionContext* context = g_option_context_new(NULL);
-  /* Set summary */
-  g_option_context_set_summary(context,
-                             _("Clipboard CLI usage examples:\n\n"
-                               "  echo \"copied to clipboard\" | clipit\n"
-                               "  clipit \"copied to clipboard\"\n"
-                               "  echo \"copied to clipboard\" | clipit -c"));
-  /* Set description */
-  g_option_context_set_description(context,
-                                 _("Written by Cristian Henzel.\n"
-                                   "Report bugs to <oss@web-tm.com>."));
-  /* Add entries and parse options */
-  g_option_context_add_main_entries(context, main_entries, NULL);
-  g_option_context_parse(context, &argc, &argv, NULL);
-  g_option_context_free(context);
-  
-  /* Check which options were parseed */
-  
-  /* Do not display icon option */
-  if (icon)
-  {
-    prefs.no_icon = TRUE;
-  }
-  /* Run as daemon option */
-  else if (daemon)
-  {
-    init_daemon_mode();
-    exit = TRUE;
-  }
-  /* Print clipboard option */
-  else if (clipboard)
-  {
-    /* Grab clipboard */
-    GtkClipboard* clip = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
-    
-    /* Check if stdin has text to copy */
-    if (!isatty(fileno(stdin)))
-    {
-      GString* piped_string = g_string_new(NULL);
-      /* Append stdin to string */
-      while (1)
-      {
-        gchar* buffer = (gchar*)g_malloc(256);
-        if (fgets(buffer, 256, stdin) == NULL)
-        {
-          g_free(buffer);
-          break;
-        }
-        g_string_append(piped_string, buffer);
-        g_free(buffer);
-      }
-      /* Check if anything was piped in */
-      if (piped_string->len > 0)
-      {
-        /* Truncate new line character */
-        /* g_string_truncate(piped_string, (piped_string->len - 1)); */
-        /* Copy to clipboard */
-        gtk_clipboard_set_text(clip, piped_string->str, -1);
-        gtk_clipboard_store(clip);
-      }
-      g_string_free(piped_string, TRUE);
-    }
-    /* Print clipboard text (if any) */
-    gchar* clip_text = gtk_clipboard_wait_for_text(clip);
-    if (clip_text)
-      g_print("%s", clip_text);
-    g_free(clip_text);
-    
-    /* Return true so program exits when finished parsing */
-    exit = TRUE;
-  }
-  else if (primary)
-  {
-    /* Grab primary */
-    GtkClipboard* prim = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
-    /* Print primary text (if any) */
-    gchar* prim_text = gtk_clipboard_wait_for_text(prim);
-    if (prim_text)
-      g_print("%s", prim_text);
-    g_free(prim_text);
+	/* Declare argument options and argument variables */
+	gboolean icon = FALSE, daemon = FALSE,
+		clipboard = FALSE, primary = FALSE,
+		exit = FALSE;
 
-    /* Return true so program exits when finished parsing */
-    exit = TRUE;
-  }
-  else
-  {
-    /* Copy from unrecognized options */
-    gchar* argv_string = g_strjoinv(" ", argv + 1);
-    GtkClipboard* clip = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
-    gtk_clipboard_set_text(clip, argv_string, -1);
-    gtk_clipboard_store(clip);
-    g_free(argv_string);
-    /* Return true so program exits when finished parsing */
-    exit = TRUE;
-  }
-  return exit;
+	GOptionEntry main_entries[] = 
+	{
+		{
+			"daemon", 'd',
+			G_OPTION_FLAG_NO_ARG,
+			G_OPTION_ARG_NONE,
+			&daemon, _("Run as daemon"),
+			NULL
+		},
+		{
+			"no-icon", 'n',
+			G_OPTION_FLAG_NO_ARG,
+			G_OPTION_ARG_NONE,
+			&icon, _("Do not use status icon (Ctrl-Alt-P for menu)"),
+			NULL
+		},
+		{
+			"clipboard", 'c',
+			G_OPTION_FLAG_NO_ARG,
+			G_OPTION_ARG_NONE,
+			&clipboard, _("Print clipboard contents"),
+			NULL
+		},
+		{
+			"primary", 'p',
+			G_OPTION_FLAG_NO_ARG,
+			G_OPTION_ARG_NONE,
+			&primary, _("Print primary contents"),
+			NULL
+		},
+		{
+			NULL
+		}
+	};
+
+	/* Option parsing */
+	GOptionContext *context = g_option_context_new(NULL);
+	/* Set summary */
+	g_option_context_set_summary(context,
+			_("Clipboard CLI usage examples:\n\n"
+			"  echo \"copied to clipboard\" | clipit\n"
+			"  clipit \"copied to clipboard\"\n"
+			"  echo \"copied to clipboard\" | clipit -c"));
+	/* Set description */
+	g_option_context_set_description(context,
+			_("Written by Cristian Henzel.\n"
+			"Report bugs to <oss@web-tm.com>."));
+	/* Add entries and parse options */
+	g_option_context_add_main_entries(context, main_entries, NULL);
+	g_option_context_parse(context, &argc, &argv, NULL);
+	g_option_context_free(context);
+
+	/* Check which options were parseed */
+
+	/* Do not display icon option */
+	if (icon)
+	{
+		prefs.no_icon = TRUE;
+	}
+	/* Run as daemon option */
+	else if (daemon)
+	{
+		init_daemon_mode();
+		exit = TRUE;
+	}
+	/* Print clipboard option */
+	else if (clipboard)
+	{
+		/* Grab clipboard */
+		GtkClipboard *clip = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
+
+		/* Check if stdin has text to copy */
+		if (!isatty(fileno(stdin)))
+		{
+			GString *piped_string = g_string_new(NULL);
+			/* Append stdin to string */
+			while (1)
+			{
+				gchar *buffer = (gchar*)g_malloc(256);
+				if (fgets(buffer, 256, stdin) == NULL)
+				{
+					g_free(buffer);
+					break;
+				}
+				g_string_append(piped_string, buffer);
+				g_free(buffer);
+			}
+			/* Check if anything was piped in */
+			if (piped_string->len > 0)
+			{
+				/* Copy to clipboard */
+				gtk_clipboard_set_text(clip, piped_string->str, -1);
+				gtk_clipboard_store(clip);
+			}
+			g_string_free(piped_string, TRUE);
+		}
+		/* Print clipboard text (if any) */
+		gchar *clip_text = gtk_clipboard_wait_for_text(clip);
+		if (clip_text)
+			g_print("%s", clip_text);
+		g_free(clip_text);
+		
+		/* Return true so program exits when finished parsing */
+		exit = TRUE;
+	}
+	else if (primary)
+	{
+		/* Grab primary */
+		GtkClipboard *prim = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
+		/* Print primary text (if any) */
+		gchar *prim_text = gtk_clipboard_wait_for_text(prim);
+		if (prim_text)
+			g_print("%s", prim_text);
+		g_free(prim_text);
+
+		/* Return true so program exits when finished parsing */
+		exit = TRUE;
+	}
+	else
+	{
+		/* Copy from unrecognized options */
+		gchar *argv_string = g_strjoinv(" ", argv + 1);
+		GtkClipboard *clip = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
+		gtk_clipboard_set_text(clip, argv_string, -1);
+		gtk_clipboard_store(clip);
+		g_free(argv_string);
+		/* Return true so program exits when finished parsing */
+		exit = TRUE;
+	}
+	return exit;
 }
 

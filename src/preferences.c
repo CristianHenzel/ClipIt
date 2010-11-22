@@ -56,8 +56,7 @@ GtkListStore* exclude_list;
 GtkTreeSelection* exclude_selection;
 
 /* Apply the new preferences */
-static void
-apply_preferences()
+static void apply_preferences()
 {
   /* Unbind the keys before binding new ones */
   keybinder_unbind(prefs.history_key, history_hotkey);
@@ -104,8 +103,7 @@ apply_preferences()
 }
 
 /* Save preferences to ~/.config/clipit/clipitrc */
-static void
-save_preferences()
+static void save_preferences()
 {
   /* Create key */
   GKeyFile* rc_key = g_key_file_new();
@@ -142,8 +140,7 @@ save_preferences()
 }
 
 /* Read ~/.config/clipit/clipitrc */
-void
-read_preferences()
+void read_preferences()
 {
   gchar* rc_file = g_build_filename(g_get_home_dir(), PREFERENCES_FILE, NULL);
   /* Create key */
@@ -203,8 +200,7 @@ read_preferences()
 }
 
 /* Read ~/.clipit/actions into the treeview */
-static void
-read_actions()
+static void read_actions()
 {
   /* Open the file for reading */
   gchar* path = g_build_filename(g_get_home_dir(), ACTIONS_FILE, NULL);
@@ -243,8 +239,7 @@ read_actions()
 }
 
 /* Save the actions treeview to ~/.local/share/clipit/actions */
-static void
-save_actions()
+static void save_actions()
 {
   /* Check config and data directories */
   check_dirs();
@@ -298,8 +293,7 @@ save_actions()
 }
 
 /* Called when clipboard checks are pressed */
-static void
-check_toggled(GtkToggleButton *togglebutton, gpointer user_data)
+static void check_toggled(GtkToggleButton *togglebutton, gpointer user_data)
 {
   if (gtk_toggle_button_get_active((GtkToggleButton*)copy_check) &&
       gtk_toggle_button_get_active((GtkToggleButton*)primary_check))
@@ -317,8 +311,7 @@ check_toggled(GtkToggleButton *togglebutton, gpointer user_data)
 }
 
 /* Called when Add... button is clicked */
-static void
-add_action(GtkButton *button, gpointer user_data)
+static void add_action(GtkButton *button, gpointer user_data)
 {
   /* Append new item */
   GtkTreeIter row_iter;
@@ -334,8 +327,7 @@ add_action(GtkButton *button, gpointer user_data)
 }
 
 /* Called when Remove button is clicked */
-static void
-remove_action(GtkButton *button, gpointer user_data)
+static void remove_action(GtkButton *button, gpointer user_data)
 {
   GtkTreeIter sel_iter;
   /* Check if selected */
@@ -356,8 +348,7 @@ remove_action(GtkButton *button, gpointer user_data)
 }
 
 /* Called when Up button is clicked */
-static void
-move_action_up(GtkButton *button, gpointer user_data)
+static void move_action_up(GtkButton *button, gpointer user_data)
 {
   GtkTreeIter sel_iter;
   /* Check if selected */
@@ -378,8 +369,7 @@ move_action_up(GtkButton *button, gpointer user_data)
 }
 
 /* Called when Down button is clicked */
-static void
-move_action_down(GtkButton *button, gpointer user_data)
+static void move_action_down(GtkButton *button, gpointer user_data)
 {
   GtkTreeIter sel_iter;
   /* Check if selected */
@@ -395,8 +385,7 @@ move_action_down(GtkButton *button, gpointer user_data)
 }
 
 /* Called when delete key is pressed */
-static void
-delete_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
+static void delete_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
 {
   /* Check if DEL key was pressed (keyval: 65535) */
   if (event->keyval == 65535)
@@ -404,8 +393,7 @@ delete_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
 }
 
 /* Called when a cell is edited */
-static void
-edit_action(GtkCellRendererText *renderer, gchar *path,
+static void edit_action(GtkCellRendererText *renderer, gchar *path,
             gchar *new_text,               gpointer cell)
 {
   GtkTreeIter sel_iter;
@@ -420,8 +408,7 @@ edit_action(GtkCellRendererText *renderer, gchar *path,
 /* exclude Functions */
 
 /* Read ~/.clipit/excludes into the treeview */
-static void
-read_excludes()
+static void read_excludes()
 {
   /* Open the file for reading */
   gchar* path = g_build_filename(g_get_home_dir(), EXCLUDES_FILE, NULL);
@@ -454,8 +441,7 @@ read_excludes()
 }
 
 /* Save the actions treeview to ~/.local/share/clipit/excludes */
-static void
-save_excludes()
+static void save_excludes()
 {
   /* Check config and data directories */
   check_dirs();
@@ -503,8 +489,7 @@ save_excludes()
 }
 
 /* Called when Add... button is clicked */
-static void
-add_exclude(GtkButton *button, gpointer user_data)
+static void add_exclude(GtkButton *button, gpointer user_data)
 {
   /* Append new item */
   GtkTreeIter row_iter;
@@ -520,8 +505,7 @@ add_exclude(GtkButton *button, gpointer user_data)
 }
 
 /* Called when Remove button is clicked */
-static void
-remove_exclude(GtkButton *button, gpointer user_data)
+static void remove_exclude(GtkButton *button, gpointer user_data)
 {
   GtkTreeIter sel_iter;
   /* Check if selected */
@@ -542,8 +526,7 @@ remove_exclude(GtkButton *button, gpointer user_data)
 }
 
 /* Called when a cell is edited */
-static void
-edit_exclude(GtkCellRendererText *renderer, gchar *path,
+static void edit_exclude(GtkCellRendererText *renderer, gchar *path,
             gchar *new_text,               gpointer cell)
 {
   GtkTreeIter sel_iter;
@@ -556,8 +539,7 @@ edit_exclude(GtkCellRendererText *renderer, gchar *path,
 }
 
 /* Shows the preferences dialog on the given tab */
-void
-show_preferences(gint tab)
+void show_preferences(gint tab)
 {
   /* Declare some variables */
   GtkWidget *frame,     *label,
