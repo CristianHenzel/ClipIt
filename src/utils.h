@@ -27,14 +27,15 @@ G_BEGIN_DECLS
 #define CONFIG_DIR  ".local/share/clipit"
 #define DATA_DIR    ".config/clipit"
 
-void
-check_dirs();
+void check_dirs();
 
-gboolean
-is_hyperlink(gchar* link);
+gboolean is_hyperlink(gchar* link);
 
-gboolean
-parse_options(int argc, char* argv[]);
+GString *ellipsize_string(GString *string);
+
+GString *remove_newlines_string(GString *string);
+
+gboolean parse_options(int argc, char* argv[]);
 
 G_END_DECLS
 

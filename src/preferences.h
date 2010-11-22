@@ -56,11 +56,9 @@ G_BEGIN_DECLS
 #define PREFERENCES_FILE      ".config/clipit/clipitrc"
 #define THEMES_FOLDER         ".config/clipit/themes"
 
-void
-read_preferences();
+void read_preferences();
 
-void
-show_preferences(gint tab);
+void show_preferences(gint tab);
 
 G_END_DECLS
 

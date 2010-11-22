@@ -12,11 +12,11 @@
  *
  * ClipIt is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <glib.h>
@@ -34,8 +34,7 @@ GtkWidget *search_entry;
 GtkWidget* treeview_search;
 
 /* Search through the history */
-static void
-search_history()
+static void search_history()
 {
   guint16 search_len = gtk_entry_get_text_length((GtkEntry*)search_entry);
   /* Test if there is text in the search box */
@@ -62,31 +61,8 @@ search_history()
         {
           GtkTreeIter row_iter;
           gtk_list_store_append(search_list, &row_iter);
-          if (string->len > prefs.item_length)
-          {
-            switch (prefs.ellipsize)
-            {
-              case PANGO_ELLIPSIZE_START:
-                string = g_string_erase(string, 0, string->len-(prefs.item_length));
-                string = g_string_prepend(string, "...");
-                break;
-              case PANGO_ELLIPSIZE_MIDDLE:
-                string = g_string_erase(string, (prefs.item_length/2), string->len-(prefs.item_length));
-                string = g_string_insert(string, (string->len/2), "...");
-                break;
-              case PANGO_ELLIPSIZE_END:
-                string = g_string_truncate(string, prefs.item_length);
-                string = g_string_append(string, "...");
-                break;
-            }
-          }
-          int i = 0;
-          while (i < string->len)
-          {
-            if (string->str[i] == '\n')
-              g_string_overwrite(string, i, " ");
-            i++;
-          }
+          string = ellipsize_string(string);
+          string = remove_newlines_string(string);
           int row_num = g_slist_position(history, element);
           gtk_list_store_set(search_list, &row_iter, 0, row_num, 1, string->str, -1);
         }
@@ -107,38 +83,15 @@ search_history()
         gtk_list_store_remove(search_list, &search_iter);
 
       /* Declare some variables */
-      GSList* element;
+      GSList *element;
       /* Go through each element and adding each */
       for (element = history; element != NULL; element = element->next)
       {
-        GString* string = g_string_new((gchar*)element->data);
+        GString *string = g_string_new((gchar*)element->data);
         GtkTreeIter row_iter;
         gtk_list_store_append(search_list, &row_iter);
-        if (string->len > prefs.item_length)
-        {
-          switch (prefs.ellipsize)
-          {
-            case PANGO_ELLIPSIZE_START:
-              string = g_string_erase(string, 0, string->len-(prefs.item_length));
-              string = g_string_prepend(string, "...");
-              break;
-            case PANGO_ELLIPSIZE_MIDDLE:
-              string = g_string_erase(string, (prefs.item_length/2), string->len-(prefs.item_length));
-              string = g_string_insert(string, (string->len/2), "...");
-              break;
-            case PANGO_ELLIPSIZE_END:
-              string = g_string_truncate(string, prefs.item_length);
-              string = g_string_append(string, "...");
-              break;
-          }
-        }
-        int i = 0;
-        while (i < string->len)
-        {
-          if (string->str[i] == '\n')
-            g_string_overwrite(string, i, " ");
-          i++;
-        }
+        string = ellipsize_string(string);
+        string = remove_newlines_string(string);
         int row_num = g_slist_position(history, element);
         gtk_list_store_set(search_list, &row_iter, 0, row_num, 1, string->str, -1);
         
@@ -150,8 +103,7 @@ search_history()
 }
 
 /* Called when Edit is selected from Manage dialog */
-static void
-edit_selected()
+static void edit_selected()
 {
   GtkTreeIter sel_iter;
   GtkTreeSelection* search_selection = gtk_tree_view_get_selection((GtkTreeView*)treeview_search);
@@ -201,8 +153,7 @@ edit_selected()
 
       /* Insert new element before the old one */
       history = g_slist_insert_before(history, element->next,
-                    g_strdup(gtk_text_buffer_get_text(clipboard_buffer, &start, &end, TRUE))
-                );
+                    g_strdup(gtk_text_buffer_get_text(clipboard_buffer, &start, &end, TRUE)));
 
       /* Remove old entry */
       history = g_slist_remove(history, element->data);
@@ -213,8 +164,7 @@ edit_selected()
         clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
         gtk_clipboard_set_text(clipboard, 
                                gtk_text_buffer_get_text(clipboard_buffer, &start, &end, TRUE),
-                               -1
-        );
+                               -1);
       }
     }
     gtk_widget_destroy(dialog);
@@ -224,8 +174,7 @@ edit_selected()
 }
 
 /* Called when Remove is selected from Manage dialog */
-static void
-remove_selected()
+static void remove_selected()
 {
   GtkTreeIter sel_iter;
   GtkTreeSelection* search_selection = gtk_tree_view_get_selection((GtkTreeView*)treeview_search);
@@ -242,8 +191,7 @@ remove_selected()
   }
 }
 
-static void
-search_doubleclick()
+static void search_doubleclick()
 {
   GtkTreeIter sel_iter;
   GtkTreeSelection* search_selection = gtk_tree_view_get_selection((GtkTreeView*)treeview_search);
@@ -260,8 +208,7 @@ search_doubleclick()
   }
 }
 
-gint
-search_click(GtkWidget *widget, GdkEventButton *event, GtkWidget *search_window)
+gint search_click(GtkWidget *widget, GdkEventButton *event, GtkWidget *search_window)
 {
   if(event->type==GDK_2BUTTON_PRESS || event->type==GDK_3BUTTON_PRESS)
   {
@@ -271,8 +218,7 @@ search_click(GtkWidget *widget, GdkEventButton *event, GtkWidget *search_window)
   return FALSE;
 }
 
-static gint
-search_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
+static gint search_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
 {
   /* Check if [Return] key was pressed */
   if ((event->keyval == 0xff0d) || (event->keyval == 0xff8d))
@@ -280,8 +226,7 @@ search_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
   return FALSE;
 }
 
-void
-search_window_response(GtkDialog *dialog, gint response_id, gpointer user_data)
+void search_window_response(GtkDialog *dialog, gint response_id, gpointer user_data)
 {
   if(response_id < 0)
   {
@@ -291,8 +236,7 @@ search_window_response(GtkDialog *dialog, gint response_id, gpointer user_data)
 }
 
 /* Shows the search dialog */
-gboolean
-show_search()
+gboolean show_search()
 {
   /* Prevent multiple instances */
   if(gtk_grab_get_current())

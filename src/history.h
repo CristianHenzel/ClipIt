@@ -12,11 +12,11 @@
  *
  * ClipIt is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef HISTORY_H
@@ -25,6 +25,7 @@
 G_BEGIN_DECLS
 
 #define HISTORY_FILE ".local/share/clipit/history"
+
 /* Set maximum size of one clipboard entry to 1024KB (1MB) 
  * 1024 pages × 2000 characters per page - should be more than enough.
  * WARNING: if you use all 1000 history items, clipit could use up to
@@ -33,26 +34,19 @@ G_BEGIN_DECLS
 
 extern GSList* history;
 
-void
-read_history();
+void read_history();
 
-void
-save_history();
+void save_history();
 
-void
-check_and_append(gchar* item);
+void check_and_append(gchar* item);
 
-void
-append_item(gchar* item);
+void append_item(gchar* item);
 
-void
-truncate_history();
+void truncate_history();
 
-gpointer
-get_last_item();
+gpointer get_last_item();
 
-void
-delete_duplicate(gchar* item);
+void delete_duplicate(gchar* item);
 
 G_END_DECLS
 
