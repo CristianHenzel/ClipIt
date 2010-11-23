@@ -198,13 +198,13 @@ static void search_doubleclick()
   /* Check if selected */
   if (gtk_tree_selection_get_selected(search_selection, NULL, &sel_iter))
   {
-    gchar *selected_item;
-    gtk_tree_model_get((GtkTreeModel*)search_list, &sel_iter, 1, &selected_item, -1);
+    gint selected_item_nr;
+    gtk_tree_model_get((GtkTreeModel*)search_list, &sel_iter, 0, &selected_item_nr, -1);
+    GSList *element = g_slist_nth(history, selected_item_nr);
     GtkClipboard* prim = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
     GtkClipboard* clip = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
-    gtk_clipboard_set_text(prim, (gchar*)selected_item, -1);
-    gtk_clipboard_set_text(clip, (gchar*)selected_item, -1);
-    g_free(selected_item);
+    gtk_clipboard_set_text(prim, (gchar*)element->data, -1);
+    gtk_clipboard_set_text(clip, (gchar*)element->data, -1);
   }
 }
 
