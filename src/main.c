@@ -261,8 +261,7 @@ static void edit_actions_selected(GtkButton *button, gpointer user_data)
 }
 
 /* Called when an item is selected from history menu */
-static void
-item_selected(GtkMenuItem *menu_item, gpointer user_data)
+static void item_selected(GtkMenuItem *menu_item, gpointer user_data)
 {
   /* Get the text from the right element and set as clipboard */
   GSList* element = g_slist_nth(history, (gint64)user_data);
@@ -352,7 +351,7 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
                                 _("Lightweight GTK+ clipboard manager."));
     
     gtk_about_dialog_set_website((GtkAboutDialog*)about_dialog,
-                                 "http://sourceforge.net/projects/gtkclipit/");
+                                 "http://gtkclipit.sourceforge.net/");
     
     gtk_about_dialog_set_copyright((GtkAboutDialog*)about_dialog, "Copyright (C) 2010 Cristian Henzel");
     gtk_about_dialog_set_authors((GtkAboutDialog*)about_dialog, authors);
