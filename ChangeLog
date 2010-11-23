@@ -1,3 +1,9 @@
+ClipIt-v1.3.3-23112010001 - 23 Nov. 2010
+	+ Fixed: Fixed some more markup.
+	+ Fixed: Rearranged parts of the Preferences dialog to be cleaner.
+	+ Fixed: Fixed bug in "Manage History" window not selecting the history
+			item properly.
+
 ClipIt-v1.3.2-22112010001 - 22 Nov. 2010
 	+ Fixed: Fixed most of the markup and indentation (replaced double spaces
 			with tabs).

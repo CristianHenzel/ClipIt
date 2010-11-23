@@ -567,12 +567,12 @@ void show_preferences(gint tab)
   gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), notebook, TRUE, TRUE, 2);
 #endif
   
-  /* Build the behavior page */  
-  GtkWidget* page_behavior = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
-  gtk_alignment_set_padding((GtkAlignment*)page_behavior, 12, 6, 12, 6);
-  gtk_notebook_append_page((GtkNotebook*)notebook, page_behavior, gtk_label_new(_("Behavior")));
-  GtkWidget* vbox_behavior = gtk_vbox_new(FALSE, 12);
-  gtk_container_add((GtkContainer*)page_behavior, vbox_behavior);
+  /* Build the settings page */  
+  GtkWidget* page_settings = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
+  gtk_alignment_set_padding((GtkAlignment*)page_settings, 12, 6, 12, 6);
+  gtk_notebook_append_page((GtkNotebook*)notebook, page_settings, gtk_label_new(_("Settings")));
+  GtkWidget* vbox_settings = gtk_vbox_new(FALSE, 12);
+  gtk_container_add((GtkContainer*)page_settings, vbox_settings);
   
   /* Build the clipboards frame */
   frame = gtk_frame_new(NULL);
@@ -593,12 +593,38 @@ void show_preferences(gint tab)
   gtk_box_pack_start((GtkBox*)vbox, primary_check, FALSE, FALSE, 0);
   synchronize_check = gtk_check_button_new_with_mnemonic(_("S_ynchronize clipboards"));
   gtk_box_pack_start((GtkBox*)vbox, synchronize_check, FALSE, FALSE, 0);
+  gtk_box_pack_start((GtkBox*)vbox_settings, frame, FALSE, FALSE, 0);
+
+  /* Build the miscellaneous frame */
+  frame = gtk_frame_new(NULL);
+  gtk_frame_set_shadow_type((GtkFrame*)frame, GTK_SHADOW_NONE);
+  label = gtk_label_new(NULL);
+  gtk_label_set_markup((GtkLabel*)label, _("<b>Miscellaneous</b>"));
+  gtk_frame_set_label_widget((GtkFrame*)frame, label);
+  alignment = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
+  gtk_alignment_set_padding((GtkAlignment*)alignment, 12, 0, 12, 0);
+  gtk_container_add((GtkContainer*)frame, alignment);
+  vbox = gtk_vbox_new(FALSE, 2);
+  gtk_container_add((GtkContainer*)alignment, vbox);
   show_indexes_check = gtk_check_button_new_with_mnemonic(_("S_how indexes in history menu"));
   gtk_box_pack_start((GtkBox*)vbox, show_indexes_check, FALSE, FALSE, 0);
   save_uris_check = gtk_check_button_new_with_mnemonic(_("S_ave URIs"));
   gtk_box_pack_start((GtkBox*)vbox, save_uris_check, FALSE, FALSE, 0);
-  gtk_box_pack_start((GtkBox*)vbox_behavior, frame, FALSE, FALSE, 0);
-  
+  hyperlinks_check = gtk_check_button_new_with_mnemonic(_("Capture _hyperlinks only"));
+  gtk_box_pack_start((GtkBox*)vbox, hyperlinks_check, FALSE, FALSE, 0);
+  confirm_check = gtk_check_button_new_with_mnemonic(_("C_onfirm before clearing history"));
+  gtk_box_pack_start((GtkBox*)vbox, confirm_check, FALSE, FALSE, 0);
+  hbox = gtk_hbox_new(FALSE, 4);
+  gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
+  gtk_box_pack_start((GtkBox*)vbox_settings, frame, FALSE, FALSE, 0);
+
+  /* Build the history page */
+  GtkWidget* page_history = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
+  gtk_alignment_set_padding((GtkAlignment*)page_history, 12, 6, 12, 6);
+  gtk_notebook_append_page((GtkNotebook*)notebook, page_history, gtk_label_new(_("History")));
+  GtkWidget* vbox_history = gtk_vbox_new(FALSE, 12);
+  gtk_container_add((GtkContainer*)page_history, vbox_history);
+
   /* Build the history frame */
   frame = gtk_frame_new(NULL);
   gtk_frame_set_shadow_type((GtkFrame*)frame, GTK_SHADOW_NONE);
@@ -622,8 +648,6 @@ void show_preferences(gint tab)
   history_spin = gtk_spin_button_new((GtkAdjustment*)adjustment, 0.0, 0);
   gtk_spin_button_set_update_policy((GtkSpinButton*)history_spin, GTK_UPDATE_IF_VALID);
   gtk_box_pack_start((GtkBox*)hbox, history_spin, FALSE, FALSE, 0);
-  //gtk_box_pack_start((GtkBox*)vbox_behavior, frame, FALSE, FALSE, 0);
-
   small_check = gtk_check_button_new_with_mnemonic(_("_Use small history"));
   gtk_widget_set_tooltip_text(small_check, _("Use a small history window to prevent scrolling"));
   gtk_box_pack_start((GtkBox*)vbox, small_check, FALSE, FALSE, 0);
@@ -639,34 +663,8 @@ void show_preferences(gint tab)
   full_hist_check = gtk_check_button_new_with_mnemonic(_("_Full history button in panel menu"));
   gtk_widget_set_tooltip_text(full_hist_check, _("Shows the \"full history\" button only in the panel menu, to keep the pop-up menu clean"));
   gtk_box_pack_start((GtkBox*)vbox, full_hist_check, FALSE, FALSE, 0);
-  gtk_box_pack_start((GtkBox*)vbox_behavior, frame, FALSE, FALSE, 0);
-  
-  /* Build the miscellaneous frame */
-  frame = gtk_frame_new(NULL);
-  gtk_frame_set_shadow_type((GtkFrame*)frame, GTK_SHADOW_NONE);
-  label = gtk_label_new(NULL);
-  gtk_label_set_markup((GtkLabel*)label, _("<b>Miscellaneous</b>"));
-  gtk_frame_set_label_widget((GtkFrame*)frame, label);
-  alignment = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
-  gtk_alignment_set_padding((GtkAlignment*)alignment, 12, 0, 12, 0);
-  gtk_container_add((GtkContainer*)frame, alignment);
-  vbox = gtk_vbox_new(FALSE, 2);
-  gtk_container_add((GtkContainer*)alignment, vbox);
-  hyperlinks_check = gtk_check_button_new_with_mnemonic(_("Capture _hyperlinks only"));
-  gtk_box_pack_start((GtkBox*)vbox, hyperlinks_check, FALSE, FALSE, 0);
-  confirm_check = gtk_check_button_new_with_mnemonic(_("C_onfirm before clearing history"));
-  gtk_box_pack_start((GtkBox*)vbox, confirm_check, FALSE, FALSE, 0);
-  hbox = gtk_hbox_new(FALSE, 4);
-  gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
-  gtk_box_pack_start((GtkBox*)vbox_behavior, frame, FALSE, FALSE, 0);
-  
-  /* Build the display page */
-  GtkWidget* page_display = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
-  gtk_alignment_set_padding((GtkAlignment*)page_display, 12, 6, 12, 6);
-  gtk_notebook_append_page((GtkNotebook*)notebook, page_display, gtk_label_new(_("Display")));
-  GtkWidget* vbox_display = gtk_vbox_new(FALSE, 12);
-  gtk_container_add((GtkContainer*)page_display, vbox_display);
-  
+  gtk_box_pack_start((GtkBox*)vbox_history, frame, FALSE, FALSE, 0);
+
   /* Build the items frame */
   frame = gtk_frame_new(NULL);
   gtk_frame_set_shadow_type((GtkFrame*)frame, GTK_SHADOW_NONE);
@@ -691,9 +689,19 @@ void show_preferences(gint tab)
   charlength_spin = gtk_spin_button_new((GtkAdjustment*)adjustment, 0.0, 0);
   gtk_spin_button_set_update_policy((GtkSpinButton*)charlength_spin, GTK_UPDATE_IF_VALID);
   gtk_box_pack_start((GtkBox*)hbox, charlength_spin, FALSE, FALSE, 0);
-  gtk_box_pack_start((GtkBox*)vbox_display, frame, FALSE, FALSE, 0);
+  hbox = gtk_hbox_new(FALSE, 4);
+  gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
+  label = gtk_label_new(_("Omit items in the:"));
+  gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
+  gtk_box_pack_start((GtkBox*)hbox, label, FALSE, FALSE, 0);
+  ellipsize_combo = gtk_combo_box_new_text();
+  gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("Beginning"));
+  gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("Middle"));
+  gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("End"));
+  gtk_box_pack_start((GtkBox*)hbox, ellipsize_combo, FALSE, FALSE, 0);
+  gtk_box_pack_start((GtkBox*)vbox_history, frame, FALSE, FALSE, 0);
   
-  /* Build the omitting frame */
+  /* Build the omitting frame 
   frame = gtk_frame_new(NULL);
   gtk_frame_set_shadow_type((GtkFrame*)frame, GTK_SHADOW_NONE);
   label = gtk_label_new(NULL);
@@ -714,7 +722,7 @@ void show_preferences(gint tab)
   gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("Middle"));
   gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("End"));
   gtk_box_pack_start((GtkBox*)hbox, ellipsize_combo, FALSE, FALSE, 0);
-  gtk_box_pack_start((GtkBox*)vbox_display, frame, FALSE, FALSE, 0);
+  gtk_box_pack_start((GtkBox*)vbox_history, frame, FALSE, FALSE, 0); */
   
   /* Build the actions page */
   GtkWidget* page_actions = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
