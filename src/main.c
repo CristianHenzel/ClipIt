@@ -450,7 +450,7 @@ static gboolean show_actions_menu(gpointer data)
   /* -------------------- */
   gtk_menu_shell_append((GtkMenuShell*)menu, gtk_separator_menu_item_new());
   /* Actions */
-  gchar* path = g_build_filename(g_get_home_dir(), ACTIONS_FILE, NULL);
+  gchar* path = g_build_filename(g_get_user_data_dir(), ACTIONS_FILE, NULL);
   FILE* actions_file = fopen(path, "rb");
   g_free(path);
   /* Check that it opened and begin read */
@@ -746,8 +746,10 @@ static void show_clipit_menu(GtkStatusIcon *status_icon, guint button, guint act
     g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_history_menu_full, NULL);
     gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
   }
-  /* Search */
-  menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_FIND, NULL);
+  /* Manage history */
+  menu_item = gtk_image_menu_item_new_with_mnemonic(_("_Manage history"));
+  menu_image = gtk_image_new_from_stock(GTK_STOCK_FIND, GTK_ICON_SIZE_MENU);
+  gtk_image_menu_item_set_image((GtkImageMenuItem*)menu_item, menu_image);
   g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_search, NULL);
   gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
   /* Preferences */
