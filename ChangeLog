@@ -1,3 +1,12 @@
+ClipIt-v1.3.4-26112010001 - 26 Nov. 2010
+	+ Fixed: Now we are warning the user that his history is saved in a
+			plain text file and ask for his explicit permission
+			to save the history.
+	+ Fixed: When the user disables history saving we also ask if he wants
+			to empty the current history file.
+	+ Fixed: Renamed "Find" menu entry to "Manage history".
+	+ Fixed: ClipIt now complies to the "XDG Base Directory Specification".
+
 ClipIt-v1.3.3-23112010001 - 23 Nov. 2010
 	+ Fixed: Fixed some more markup.
 	+ Fixed: Rearranged parts of the Preferences dialog to be cleaner.

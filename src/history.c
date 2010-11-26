@@ -28,11 +28,11 @@
 
 GSList *history;
 
-/* Reads history from ~/.local/share/clipit/history */
+/* Reads history from DATADIR/clipit/history */
 void read_history ()
 {
 	/* Build file path */
-	gchar *history_path = g_build_filename(g_get_home_dir(),
+	gchar *history_path = g_build_filename(g_get_user_data_dir(),
 						HISTORY_FILE,
 						NULL);
 
@@ -66,13 +66,13 @@ void read_history ()
 	}
 }
 
-/* Saves history to ~/.local/share/clipit/history */
+/* Saves history to DATADIR/clipit/history */
 void save_history()
 {
 	/* Check that the directory is available */
 	check_dirs();
 	/* Build file path */
-	gchar *history_path = g_build_filename(g_get_home_dir(),
+	gchar *history_path = g_build_filename(g_get_user_data_dir(),
 						HISTORY_FILE,
 						NULL);
 	/* Open the file for writing */

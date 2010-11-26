@@ -51,10 +51,17 @@ G_BEGIN_DECLS
 #define DEF_SEARCH_KEY        "<Ctrl><Alt>F"
 #define DEF_NO_ICON           FALSE
 
-#define ACTIONS_FILE          ".local/share/clipit/actions"
-#define EXCLUDES_FILE         ".local/share/clipit/excludes"
-#define PREFERENCES_FILE      ".config/clipit/clipitrc"
-#define THEMES_FOLDER         ".config/clipit/themes"
+#define ACTIONS_FILE          "clipit/actions"
+#define EXCLUDES_FILE         "clipit/excludes"
+#define PREFERENCES_FILE      "clipit/clipitrc"
+#define THEMES_FOLDER         "clipit/themes"
+
+#define SAVE_HIST_MESSAGE     "ClipIt can save your history in a plain text file. If you copy \
+passwords or other sensible data and other people have access to the computer, this might be a \
+security risk. Do you want to enable history saving?"
+
+#define CHECK_HIST_MESSAGE    "It appears that you have disabled history saving, the current history \
+file still exists though. Do you want to empty the current history file?"
 
 void read_preferences();
 

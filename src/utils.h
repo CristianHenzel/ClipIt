@@ -24,8 +24,8 @@
 
 G_BEGIN_DECLS
 
-#define CONFIG_DIR  ".local/share/clipit"
-#define DATA_DIR    ".config/clipit"
+#define CONFIG_DIR  "clipit"
+#define DATA_DIR    "clipit"
 
 void check_dirs();
 
