@@ -102,7 +102,7 @@ static void apply_preferences()
   truncate_history();
 }
 
-/* Save preferences to ~/.config/clipit/clipitrc */
+/* Save preferences to CONFIGDIR/clipit/clipitrc */
 static void save_preferences()
 {
   /* Create key */
@@ -133,16 +133,81 @@ static void save_preferences()
   /* Check config and data directories */
   check_dirs();
   /* Save key to file */
-  gchar* rc_file = g_build_filename(g_get_home_dir(), PREFERENCES_FILE, NULL);
+  gchar* rc_file = g_build_filename(g_get_user_config_dir(), PREFERENCES_FILE, NULL);
   g_file_set_contents(rc_file, g_key_file_to_data(rc_key, NULL, NULL), -1, NULL);
   g_key_file_free(rc_key);
   g_free(rc_file);
 }
 
-/* Read ~/.config/clipit/clipitrc */
+/* This will be run if there is no config file */
+static void first_run_check()
+{
+  /* If the configfile doesn't exist, we ask the user if he wants to save the history */
+  gchar *rc_file = g_build_filename(g_get_user_config_dir(), PREFERENCES_FILE, NULL);
+  /* Check if config file exists */
+  if (!g_file_test(rc_file, G_FILE_TEST_EXISTS))
+  {
+    GtkWidget* confirm_dialog = gtk_message_dialog_new(NULL,
+                                                       GTK_DIALOG_MODAL,
+                                                       GTK_MESSAGE_OTHER,
+                                                       GTK_BUTTONS_YES_NO,
+                                                       SAVE_HIST_MESSAGE);
+    gtk_window_set_title((GtkWindow*)confirm_dialog, "Save history");
+    
+    if (gtk_dialog_run((GtkDialog*)confirm_dialog) == GTK_RESPONSE_YES)
+    {
+      prefs.save_history = TRUE;
+    } else {
+      prefs.save_history = FALSE;
+    }
+    gtk_widget_destroy(confirm_dialog);
+    /* We make sure these aren't empty */
+    prefs.history_key = DEF_HISTORY_KEY;
+    prefs.actions_key = DEF_ACTIONS_KEY;
+    prefs.menu_key = DEF_MENU_KEY;
+    prefs.search_key = DEF_SEARCH_KEY;
+    save_preferences();
+  }
+}
+
+/* Ask the user if he wants to delete the history file and act accordingly */
+static void check_saved_hist_file()
+{
+  /* If the history file doesn't exist, there's nothing to do here */
+  gchar *history_path = g_build_filename(g_get_user_data_dir(), HISTORY_FILE, NULL);
+  /* Check if config file exists */
+  if (g_file_test(history_path, G_FILE_TEST_EXISTS))
+  {
+    GtkWidget* confirm_dialog = gtk_message_dialog_new(NULL,
+                                                       GTK_DIALOG_MODAL,
+                                                       GTK_MESSAGE_OTHER,
+                                                       GTK_BUTTONS_YES_NO,
+                                                       CHECK_HIST_MESSAGE);
+    gtk_window_set_title((GtkWindow*)confirm_dialog, "Remove history file");
+    
+    if (gtk_dialog_run((GtkDialog*)confirm_dialog) == GTK_RESPONSE_YES)
+    {
+      /* Open the file for writing */
+      FILE *history_file = fopen(history_path, "wb");
+      g_free(history_path);
+      /* Check that it opened and begin write */
+      if (history_file)
+      {
+        /* Write 0 to indicate end of file */
+        gint end = 0;
+        fwrite(&end, 4, 1, history_file);
+        fclose(history_file);
+      }
+    }
+    gtk_widget_destroy(confirm_dialog);
+  }
+}
+
+/* Read CONFIGDIR/clipit/clipitrc */
 void read_preferences()
 {
-  gchar* rc_file = g_build_filename(g_get_home_dir(), PREFERENCES_FILE, NULL);
+  first_run_check();
+  gchar* rc_file = g_build_filename(g_get_user_config_dir(), PREFERENCES_FILE, NULL);
   /* Create key */
   GKeyFile* rc_key = g_key_file_new();
   if (g_key_file_load_from_file(rc_key, rc_file, G_KEY_FILE_NONE, NULL))
@@ -199,11 +264,11 @@ void read_preferences()
   g_free(rc_file);
 }
 
-/* Read ~/.clipit/actions into the treeview */
+/* Read DATADIR/clipit/actions into the treeview */
 static void read_actions()
 {
   /* Open the file for reading */
-  gchar* path = g_build_filename(g_get_home_dir(), ACTIONS_FILE, NULL);
+  gchar* path = g_build_filename(g_get_user_data_dir(), ACTIONS_FILE, NULL);
   FILE* actions_file = fopen(path, "rb");
   g_free(path);
   /* Check that it opened and begin read */
@@ -238,13 +303,13 @@ static void read_actions()
   }
 }
 
-/* Save the actions treeview to ~/.local/share/clipit/actions */
+/* Save the actions treeview to DATADIR/clipit/actions */
 static void save_actions()
 {
   /* Check config and data directories */
   check_dirs();
   /* Open the file for writing */
-  gchar* path = g_build_filename(g_get_home_dir(), ACTIONS_FILE, NULL);
+  gchar* path = g_build_filename(g_get_user_data_dir(), ACTIONS_FILE, NULL);
   FILE* actions_file = fopen(path, "wb");
   g_free(path);
   /* Check that it opened and begin write */
@@ -407,11 +472,11 @@ static void edit_action(GtkCellRendererText *renderer, gchar *path,
 
 /* exclude Functions */
 
-/* Read ~/.clipit/excludes into the treeview */
+/* Read DATADIR/clipit/excludes into the treeview */
 static void read_excludes()
 {
   /* Open the file for reading */
-  gchar* path = g_build_filename(g_get_home_dir(), EXCLUDES_FILE, NULL);
+  gchar* path = g_build_filename(g_get_user_data_dir(), EXCLUDES_FILE, NULL);
   FILE* excludes_file = fopen(path, "rb");
   g_free(path);
   /* Check that it opened and begin read */
@@ -440,13 +505,13 @@ static void read_excludes()
   }
 }
 
-/* Save the actions treeview to ~/.local/share/clipit/excludes */
+/* Save the actions treeview to DATADIR/clipit/excludes */
 static void save_excludes()
 {
   /* Check config and data directories */
   check_dirs();
   /* Open the file for writing */
-  gchar* path = g_build_filename(g_get_home_dir(), EXCLUDES_FILE, NULL);
+  gchar* path = g_build_filename(g_get_user_data_dir(), EXCLUDES_FILE, NULL);
   FILE* excludes_file = fopen(path, "wb");
   g_free(path);
   /* Check that it opened and begin write */
@@ -823,13 +888,6 @@ void show_preferences(gint tab)
   tree_column = gtk_tree_view_column_new_with_attributes(_("Regex"), name_renderer_exclude, "text", 0, NULL);
   gtk_tree_view_column_set_resizable(tree_column, TRUE);
   gtk_tree_view_append_column((GtkTreeView*)treeview_exclude, tree_column);
-  /* GtkCellRenderer* command_renderer_exclude = gtk_cell_renderer_text_new();
-  g_object_set(command_renderer_exclude, "editable", TRUE, NULL);
-  g_object_set(command_renderer_exclude, "ellipsize-set", TRUE, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
-  g_signal_connect((GObject*)command_renderer_exclude, "edited", (GCallback)edit_action, (gpointer)1);
-  tree_column = gtk_tree_view_column_new_with_attributes(_("Command"), command_renderer_exclude, "text", 1, NULL);
-  gtk_tree_view_column_set_expand(tree_column, TRUE);
-  gtk_tree_view_append_column((GtkTreeView*)treeview_exclude, tree_column); */
   gtk_container_add((GtkContainer*)scrolled_window_exclude, treeview_exclude);
   gtk_box_pack_start((GtkBox*)vbox_exclude, scrolled_window_exclude, TRUE, TRUE, 0);
   
@@ -939,6 +997,9 @@ void show_preferences(gint tab)
   gtk_notebook_set_current_page((GtkNotebook*)notebook, tab);
   if (gtk_dialog_run((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT)
   {
+    /* If the user disabled history saving, we ask him if he wants to delete the history file */
+    if(prefs.save_history && !gtk_toggle_button_get_active((GtkToggleButton*)save_check))
+      check_saved_hist_file();
     /* Apply and save preferences */
     apply_preferences();
     save_preferences();

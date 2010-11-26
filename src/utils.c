@@ -31,8 +31,8 @@
 void
 check_dirs()
 {
-	gchar *data_dir = g_build_path("/", g_get_home_dir(), DATA_DIR, NULL);
-	gchar *config_dir = g_build_path("/", g_get_home_dir(), CONFIG_DIR, NULL);
+	gchar *data_dir = g_build_path(G_DIR_SEPARATOR_S, g_get_user_data_dir(), DATA_DIR, NULL);
+	gchar *config_dir = g_build_path(G_DIR_SEPARATOR_S, g_get_user_config_dir(), CONFIG_DIR, NULL);
 	/* Check if data directory exists */
 	if (!g_file_test(data_dir, G_FILE_TEST_EXISTS))
 	{
@@ -71,7 +71,7 @@ is_hyperlink(gchar *text)
 gboolean is_excluded(gchar *text)
 {
 	/* Open the file for reading */
-	gchar *path = g_build_filename(g_get_home_dir(), EXCLUDES_FILE, NULL);
+	gchar *path = g_build_filename(g_get_user_data_dir(), EXCLUDES_FILE, NULL);
 	FILE *excludes_file = fopen(path, "rb");
 	g_free(path);
 	/* Check that it opened and begin read */
