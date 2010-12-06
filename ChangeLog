@@ -1,3 +1,6 @@
+ClipIt-v1.3.6-06122010002 - 06 Dec. 2010
+	+Fixed: Fixed a small bug when building without indicator support.
+
 ClipIt-v1.3.5-06122010001 - 06 Dec. 2010
 	+ Added: Added support for "Application Indicator".
 	+ Fixed: Fixed a couple of typos and indentations.
