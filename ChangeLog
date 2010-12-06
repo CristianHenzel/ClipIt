@@ -1,3 +1,7 @@
+ClipIt-v1.3.5-06122010001 - 06 Dec. 2010
+	+ Added: Added support for "Application Indicator".
+	+ Fixed: Fixed a couple of typos and indentations.
+
 ClipIt-v1.3.4-26112010001 - 26 Nov. 2010
 	+ Fixed: Now we are warning the user that his history is saved in a
 			plain text file and ask for his explicit permission
