@@ -27,7 +27,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <gtk/gtk.h>
+#ifdef HAVE_APPINDICATOR
 #include <libappindicator/app-indicator.h>
+#endif
 #include "main.h"
 #include "utils.h"
 #include "history.h"
