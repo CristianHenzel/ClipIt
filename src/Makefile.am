@@ -1,6 +1,6 @@
 AM_CFLAGS = -I$(top_srcdir) -DCLIPITLOCALEDIR=\""$(clipitlocaledir)"\"
-INCLUDES = $(GTK_CFLAGS)
-LDADD = $(GTK_LIBS)
+INCLUDES = $(GTK_CFLAGS) $(APPINDICATOR_CFLAGS)
+LDADD = $(GTK_LIBS) $(APPINDICATOR_LIBS)
 AM_LDFLAGS = -Wl,--as-needed
 
 bin_PROGRAMS = clipit
