@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 by Cristian Henzel <oss@web-tm.com>
+/* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -198,7 +198,7 @@ gboolean parse_options(int argc, char* argv[])
 	/* Set description */
 	g_option_context_set_description(context,
 			_("Written by Cristian Henzel.\n"
-			"Report bugs to <oss@web-tm.com>."));
+			"Report bugs to <oss@rspwn.com>."));
 	/* Add entries and parse options */
 	g_option_context_add_main_entries(context, main_entries, NULL);
 	g_option_context_parse(context, &argc, &argv, NULL);

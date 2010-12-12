@@ -1,7 +1,7 @@
 ClipIt - Lightweight GTK+ Clipboard Manager
 -------------------------------------------------------------------------------
 
-Copyright (C) 2010 by Cristian Henzel <oss@web-tm.com>
+Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
 
 forked from parcellite, which is
 Copyright (C) 2007-2008 Gilberto "Xyhthyx" Miralla <xyhthyx@gmail.com>
@@ -13,7 +13,7 @@ Introduction
 
 ClipIt is a lightweight GTK+ clipboard manager.
 
-Project website: http://sourceforge.net/projects/gtkclipit/
+Project website: http://clipit.rspwn.com/
 
 
 
@@ -21,7 +21,7 @@ How to compile and install clipit
 -------------------------------------------------------------------------------
 
 Requirements:
-	* gtk+ >= 2.10.0 
+	* gtk+ >= 2.10.0
 
 Download the clipit source code, then:
 	$ tar zxvf clipit-x.y.z.tar.gz
