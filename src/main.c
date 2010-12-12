@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 by Cristian Henzel <oss@web-tm.com>
+/* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -325,7 +325,7 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
   /* This helps prevent multiple instances */
   if (!gtk_grab_get_current())
   {
-    const gchar* authors[] = {"Cristian Henzel <oss@web-tm.com>\n"
+    const gchar* authors[] = {"Cristian Henzel <oss@rspwn.com>\n"
 				"Gilberto \"Xyhthyx\" Miralla <xyhthyx@gmail.com>", NULL};
     const gchar* license =
       "This program is free software; you can redistribute it and/or modify\n"
@@ -354,7 +354,7 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
                                 _("Lightweight GTK+ clipboard manager."));
     
     gtk_about_dialog_set_website((GtkAboutDialog*)about_dialog,
-                                 "http://gtkclipit.sourceforge.net/");
+                                 "http://clipit.rspwn.com/");
     
     gtk_about_dialog_set_copyright((GtkAboutDialog*)about_dialog, "Copyright (C) 2010 Cristian Henzel");
     gtk_about_dialog_set_authors((GtkAboutDialog*)about_dialog, authors);

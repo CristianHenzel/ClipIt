@@ -4,91 +4,244 @@
 # Lyman Li <lymanrb@gmail.com>, 2008.
 #
 #
+#: src/main.c:297 src/main.c:298 src/main.c:299 src/main.c:300 src/main.c:301
+#: src/main.c:314 src/main.c:315 src/main.c:316 src/main.c:317 src/main.c:318
 msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-18 12:09-0400\n"
+"POT-Creation-Date: 2010-12-06 20:48+0800\n"
 "PO-Revision-Date: 2008-11-10 11:46+0900\n"
-"Last-Translator: Lyman Li <lymanrb@gmail.com>\n"
+"Last-Translator: jason <jason52lh@gmail.com>\n"
 "Language-Team: CHINESE\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Chinese\n"
 "X-Poedit-Country: CHINA\n"
 
-#: ../src/main.c:166
+#: src/main.c:137
+msgid "Clipboard is null, recovering ...\n"
+msgstr "剪切板为空，恢复中...\n"
+
+#: src/main.c:200 src/main.c:234
 msgid "Executing action..."
 msgstr "动作执行中…"
 
-#: ../src/main.c:172 ../src/main.c:704 ../data/clipit.desktop.in.h:1
-#: ../data/clipit-startup.desktop.in.h:1
+#: src/main.c:206 src/main.c:221 src/main.c:979
 msgid "Clipboard Manager"
 msgstr "剪切板管理器"
 
-#: ../src/main.c:195
-msgid "Could not create thread for executed action\n"
-msgstr "无法为动作执行创建线程\n"
+#: src/main.c:244
+msgid "/bin/sh -c "
+msgstr ""
 
-#. Create the dialog
-#: ../src/main.c:225
-msgid "Editing Clipboard"
-msgstr "编辑剪切板"
-
-#: ../src/main.c:284
+#: src/main.c:285
 msgid "Clear the history?"
 msgstr "清除历史记录？"
 
-#: ../src/main.c:336
-msgid "Lightweight GTK+ clipboard manager."
-msgstr "轻量级 GTK+ 剪切板管理器。"
+#: src/main.c:286
+msgid "Clear history"
+msgstr "清除历史记录"
 
-#: ../src/main.c:423
+#: src/main.c:328
+msgid ""
+"Cristian Henzel <oss@rspwn.com>\n"
+"Gilberto \"Xyhthyx\" Miralla <xyhthyx@gmail.com>"
+msgstr ""
+""
+
+#: src/main.c:331
+msgid ""
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+
+#: src/main.c:349
+msgid "ClipIt"
+msgstr "ClipIt"
+
+#: src/main.c:354
+msgid "Lightweight GTK+ clipboard manager."
+msgstr "小巧的 GTK+ 剪切板管理器。"
+
+#: src/main.c:357
+msgid "http://clipit.rspwn.com/"
+msgstr ""
+
+#: src/main.c:359
+msgid "Copyright (C) 2010 Cristian Henzel"
+msgstr "版权所有(C) 2010 Cristian Henzel"
+
+#: src/main.c:362
+msgid ""
+"Miloš Koutný <milos.koutny@gmail.com>\n"
+"Kim Jensen <reklamepost@energimail.dk>\n"
+"Eckhard M. Jäger <bart@neeneenee.de>\n"
+"Michael Stempin <mstempin@web.de>\n"
+"Benjamin 'sphax3d' Danon <sphax3d@gmail.com>\n"
+"Németh Tamás <ntomasz@vipmail.hu>\n"
+"Davide Truffa <davide@catoblepa.org>\n"
+"Jiro Kawada <jiro.kawada@gmail.com>\n"
+"Øyvind Sæther <oyvinds@everdot.org>\n"
+"pankamyk <pankamyk@o2.pl>\n"
+"Tomasz Rusek <tomek.rusek@gmail.com>\n"
+"Phantom X <megaphantomx@bol.com.br>\n"
+"Ovidiu D. Niţan <ov1d1u@sblug.ro>\n"
+"Alexander Kazancev <kazancas@mandriva.ru>\n"
+"Daniel Nylander <po@danielnylander.se>\n"
+"Hedef Türkçe <iletisim@hedefturkce.com>\n"
+"Lyman Li <lymanrb@gmail.com>\n"
+"Gilberto \"Xyhthyx\" Miralla <xyhthyx@gmail.com>"
+msgstr ""
+"Lyman Li <lymanrb@gmail.com>\n"
+"lh <jarryson@gmail.com>"
+
+#: src/main.c:416 src/main.c:525 src/main.c:622 src/main.c:738 src/main.c:782
+msgid "selection-done"
+msgstr ""
+
+#: src/main.c:418
+msgid "Actions using:"
+msgstr "使用动作:"
+
+#: src/main.c:421 src/main.c:438 src/main.c:449
+msgid "select"
+msgstr "选择"
+
+#: src/main.c:427 src/main.c:444
+msgid "None"
+msgstr "无"
+
+#: src/main.c:434 src/main.c:566 src/main.c:665 src/main.c:826
+#, c-format
+msgid "<b>%s</b>"
+msgstr ""
+
+#: src/main.c:447
 msgid "<b>None</b>"
 msgstr "<b>无</b>"
 
-#. File contained no actions so adding empty
-#. File did not open so adding empty
-#. Nothing in history so adding empty
-#: ../src/main.c:444 ../src/main.c:473 ../src/main.c:588
+#: src/main.c:457 src/utils.c:75 src/preferences.c:272 src/preferences.c:480
+msgid "rb"
+msgstr ""
+
+#: src/main.c:469 src/main.c:498 src/main.c:596 src/main.c:696 src/main.c:857
 msgid "Empty"
 msgstr "空"
 
-#. Edit actions
-#: ../src/main.c:480
+#: src/main.c:490 src/main.c:508 src/main.c:557 src/main.c:604 src/main.c:655
+#: src/main.c:708 src/main.c:741 src/main.c:749 src/main.c:756 src/main.c:760
+#: src/main.c:766 src/main.c:816 src/main.c:865 src/main.c:871 src/main.c:877
+#: src/main.c:881 src/main.c:885
+msgid "activate"
+msgstr "激活"
+
+#: src/main.c:505
 msgid "_Edit actions"
 msgstr "编辑动作(_E)"
 
-#. Edit clipboard
-#: ../src/main.c:504
-msgid "_Edit Clipboard"
-msgstr "编辑剪切板(_E)"
+#: src/main.c:552 src/main.c:650 src/main.c:810
+msgid "%"
+msgstr ""
 
-#: ../src/utils.c:38 ../src/utils.c:45
+#: src/main.c:552 src/main.c:650 src/main.c:810
+#, c-format
+msgid ". %s"
+msgstr ""
+
+#: src/main.c:572 src/main.c:671 src/main.c:832
+#, c-format
+msgid "<i>%s</i>"
+msgstr ""
+
+#: src/main.c:705 src/main.c:746 src/main.c:868
+msgid "_Show full history"
+msgstr "显示完整历史记录(_S)"
+
+#: src/main.c:753 src/main.c:874
+msgid "_Manage history"
+msgstr "管理历史记录(_M)"
+
+#: src/main.c:889
+msgid "clipit"
+msgstr ""
+
+#: src/main.c:890 src/main.c:894
+msgid "stock_paste"
+msgstr ""
+
+#: src/main.c:980
+msgid "button_release_event"
+msgstr ""
+
+#: src/main.c:989
+msgid "UTF-8"
+msgstr ""
+
+#: src/utils.c:41 src/utils.c:48
 #, c-format
 msgid "Couldn't create directory: %s\n"
 msgstr "无法创建目录: %s\n"
 
-#: ../src/utils.c:84
+#: src/utils.c:60
+msgid ""
+"([A-Za-z][A-Za-z0-9+.-]{1,120}:[A-Za-z0-9/](([A-Za-z0-9$_.+!*,;/?:@&~=-])|"
+"%[A-Fa-f0-9]{2}){1,333}(#([a-zA-Z0-9][a-zA-Z0-9$_.+!*,;/?:@&~=%-]{0,1000}))?)"
+msgstr ""
+
+#: src/utils.c:117 src/utils.c:121 src/utils.c:125
+msgid "..."
+msgstr ""
+
+#: src/utils.c:139 src/utils.c:276
+msgid " "
+msgstr ""
+
+#: src/utils.c:158
+msgid "daemon"
+msgstr "守护进程"
+
+#: src/utils.c:161
 msgid "Run as daemon"
 msgstr "作为守护进程运行"
 
-#: ../src/utils.c:91
+#: src/utils.c:165
+msgid "no-icon"
+msgstr ""
+
+#: src/utils.c:168
 msgid "Do not use status icon (Ctrl-Alt-P for menu)"
 msgstr "不使用状态图标（Ctrl-Alt-P 调出菜单）"
 
-#: ../src/utils.c:98
+#: src/utils.c:172
+msgid "clipboard"
+msgstr "剪切板"
+
+#: src/utils.c:175
 msgid "Print clipboard contents"
 msgstr "打印剪切板内容"
 
-#: ../src/utils.c:105
-#, fuzzy
+#: src/utils.c:179
+msgid "primary"
+msgstr "主要"
+
+#: src/utils.c:182
 msgid "Print primary contents"
 msgstr "打印剪切板内容"
 
-#: ../src/utils.c:117
-#, fuzzy
+#: src/utils.c:194
 msgid ""
 "Clipboard CLI usage examples:\n"
 "\n"
@@ -102,178 +255,374 @@ msgstr ""
 "  clipit \"复制到剪切板\"\n"
 "  echo \"复制到剪切板\" | clipit -o"
 
-#: ../src/utils.c:123
+#: src/utils.c:200
 msgid ""
-"Written by Gilberto \"Xyhthyx\" Miralla.\n"
-"Report bugs to <xyhthyx@gmail.com>."
+"Written by Cristian Henzel.\n"
+"Report bugs to <oss@rspwn.com>."
 msgstr ""
-"Gilberto \"Xyhthyx\" Miralla 开发\n"
-"问题反馈 <xyhthyx@gmail.com>"
+"由Cristian Henzel编写.\n"
+"问题反馈 <oss@rspwn.com>"
 
-#. Create the dialog
-#: ../src/preferences.c:375
-msgid "Preferences"
-msgstr "设定"
-
-#: ../src/preferences.c:390
-msgid "Behavior"
-msgstr "行为"
-
-#: ../src/preferences.c:398
-msgid "<b>Clipboards</b>"
-msgstr "<b>剪切板</b>"
-
-#: ../src/preferences.c:405
-msgid "Use _Copy (Ctrl-C)"
-msgstr "使用 _Copy (Ctrl-C)"
-
-#: ../src/preferences.c:407
-msgid "Use _Primary (Selection)"
-msgstr "使用 _Primary (Selection)"
-
-#: ../src/preferences.c:409
-msgid "S_ynchronize clipboards"
+#: src/utils.c:254 src/utils.c:267 src/preferences.c:385
+#, c-format
+msgid "%s"
 msgstr ""
 
-#: ../src/preferences.c:417
-msgid "<b>History</b>"
-msgstr "<b>历史记录</b>"
+#: src/manage.c:121
+msgid "Editing Clipboard"
+msgstr "编辑剪切板"
 
-#: ../src/preferences.c:424
-msgid "_Save history"
-msgstr "保存历史记录(_S)"
+#: src/manage.c:255
+msgid "Manage History"
+msgstr "管理历史记录"
 
-#: ../src/preferences.c:425
-msgid "Save and restore history between sessions"
-msgstr "保存历史记录并在会话间恢复"
+#: src/manage.c:267 src/preferences.c:836 src/preferences.c:897
+msgid "key-press-event"
+msgstr ""
 
-#: ../src/preferences.c:429
-msgid "Items in history:"
-msgstr "历史记录条目数:"
+#: src/manage.c:281
+msgid "ID"
+msgstr ""
 
-#: ../src/preferences.c:442
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>其他</b>"
+#: src/manage.c:285 src/preferences.c:127 src/preferences.c:231
+#: src/preferences.c:825
+msgid "ellipsize"
+msgstr ""
 
-#: ../src/preferences.c:449
-msgid "Capture _hyperlinks only"
-msgstr "仅捕获链接(_H)"
+#: src/manage.c:286
+msgid "single-paragraph-mode"
+msgstr ""
 
-#: ../src/preferences.c:451
-msgid "C_onfirm before clearing history"
-msgstr "清除历史纪录时确认(_C)"
+#: src/manage.c:287
+msgid "Results"
+msgstr "记录"
 
-#: ../src/preferences.c:458
-msgid "Display"
-msgstr "外观"
+#: src/manage.c:287 src/preferences.c:820 src/preferences.c:827
+#: src/preferences.c:888
+msgid "text"
+msgstr "文本"
 
-#: ../src/preferences.c:466
-msgid "<b>Items</b>"
-msgstr "<b>条目</b>"
+#: src/manage.c:292
+msgid "Edit"
+msgstr "编辑"
 
-#: ../src/preferences.c:473
-msgid "Show in a _single line"
-msgstr "显示为一行(_S)"
+#: src/manage.c:293 src/manage.c:295 src/manage.c:297 src/preferences.c:844
+#: src/preferences.c:848 src/preferences.c:852 src/preferences.c:856
+#: src/preferences.c:905 src/preferences.c:909
+msgid "clicked"
+msgstr ""
 
-#: ../src/preferences.c:475
-msgid "Show in _reverse order"
-msgstr "逆序显示(_R)"
-
-#: ../src/preferences.c:479
-msgid "Character length of items:"
-msgstr "条目显示的文字长度:"
-
-#: ../src/preferences.c:492
-msgid "<b>Omitting</b>"
-msgstr "<b>省略</b>"
-
-#: ../src/preferences.c:501
-msgid "Omit items in the:"
-msgstr "省略显示条目的:"
-
-#: ../src/preferences.c:505
-msgid "Beginning"
-msgstr "起始"
-
-#: ../src/preferences.c:506
-msgid "Middle"
-msgstr "中间"
-
-#: ../src/preferences.c:507
-msgid "End"
-msgstr "结尾"
-
-#: ../src/preferences.c:514
-msgid "Actions"
-msgstr "动作"
-
-#. Build the actions label
-#: ../src/preferences.c:519
-msgid "Control-click ClipIt's tray icon to use actions"
-msgstr "按住 Ctrl 并点击 ClipIt 的任务栏图标使用动作"
-
-#: ../src/preferences.c:539
-msgid "Action"
-msgstr "动作"
-
-#: ../src/preferences.c:546
-msgid "Command"
-msgstr "命令"
-
-#: ../src/preferences.c:561
-msgid "Add..."
-msgstr "追加…"
-
-#: ../src/preferences.c:565
+#: src/manage.c:294 src/preferences.c:846 src/preferences.c:907
 msgid "Remove"
 msgstr "删除"
 
-#: ../src/preferences.c:582
-#, fuzzy
+#: src/manage.c:296
+msgid "Close"
+msgstr "关闭"
+
+#: src/manage.c:301
+msgid "button_press_event"
+msgstr ""
+
+#: src/manage.c:303
+msgid "response"
+msgstr "响应"
+
+#: src/preferences.c:112 src/preferences.c:113 src/preferences.c:114
+#: src/preferences.c:115 src/preferences.c:116 src/preferences.c:117
+#: src/preferences.c:118 src/preferences.c:119 src/preferences.c:120
+#: src/preferences.c:121 src/preferences.c:122 src/preferences.c:123
+#: src/preferences.c:124 src/preferences.c:125 src/preferences.c:126
+#: src/preferences.c:127 src/preferences.c:128 src/preferences.c:129
+#: src/preferences.c:130 src/preferences.c:131 src/preferences.c:216
+#: src/preferences.c:217 src/preferences.c:218 src/preferences.c:219
+#: src/preferences.c:220 src/preferences.c:221 src/preferences.c:222
+#: src/preferences.c:223 src/preferences.c:224 src/preferences.c:225
+#: src/preferences.c:226 src/preferences.c:227 src/preferences.c:228
+#: src/preferences.c:229 src/preferences.c:230 src/preferences.c:231
+#: src/preferences.c:232 src/preferences.c:233 src/preferences.c:234
+#: src/preferences.c:235
+msgid "rc"
+msgstr ""
+
+#: src/preferences.c:112 src/preferences.c:216
+msgid "use_copy"
+msgstr ""
+
+#: src/preferences.c:113 src/preferences.c:217
+msgid "use_primary"
+msgstr ""
+
+#: src/preferences.c:114 src/preferences.c:218
+msgid "synchronize"
+msgstr ""
+
+#: src/preferences.c:115 src/preferences.c:219
+msgid "show_indexes"
+msgstr ""
+
+#: src/preferences.c:116 src/preferences.c:220
+msgid "save_uris"
+msgstr ""
+
+#: src/preferences.c:117 src/preferences.c:221
+msgid "save_history"
+msgstr ""
+
+#: src/preferences.c:118 src/preferences.c:222
+msgid "history_limit"
+msgstr ""
+
+#: src/preferences.c:119 src/preferences.c:223
+msgid "small_history"
+msgstr ""
+
+#: src/preferences.c:120 src/preferences.c:224
+msgid "history_small"
+msgstr ""
+
+#: src/preferences.c:121 src/preferences.c:225
+msgid "hyperlinks_only"
+msgstr ""
+
+#: src/preferences.c:122 src/preferences.c:226
+msgid "confirm_clear"
+msgstr ""
+
+#: src/preferences.c:123 src/preferences.c:227
+msgid "full_hist_button"
+msgstr ""
+
+#: src/preferences.c:124 src/preferences.c:228
+msgid "single_line"
+msgstr ""
+
+#: src/preferences.c:125 src/preferences.c:229
+msgid "reverse_history"
+msgstr ""
+
+#: src/preferences.c:126 src/preferences.c:230
+msgid "item_length"
+msgstr ""
+
+#: src/preferences.c:128 src/preferences.c:232
+msgid "history_key"
+msgstr ""
+
+#: src/preferences.c:129 src/preferences.c:233
+msgid "actions_key"
+msgstr ""
+
+#: src/preferences.c:130 src/preferences.c:234
+msgid "menu_key"
+msgstr ""
+
+#: src/preferences.c:131 src/preferences.c:235
+msgid "search_key"
+msgstr ""
+
+#: src/preferences.c:155
+msgid "Save history"
+msgstr "保存历史记录"
+
+#: src/preferences.c:186
+msgid "Remove history file"
+msgstr "删除历史记录文件"
+
+#: src/preferences.c:191 src/preferences.c:313 src/preferences.c:515
+msgid "wb"
+msgstr ""
+
+#: src/preferences.c:619
+msgid "Preferences"
+msgstr "首选项"
+
+#: src/preferences.c:638
+msgid "Settings"
+msgstr "设定"
+
+#: src/preferences.c:646
+msgid "<b>Clipboards</b>"
+msgstr "<b>剪切板</b>"
+
+#: src/preferences.c:653
+msgid "Use _Copy (Ctrl-C)"
+msgstr "记录 _Copy (复制部分)"
+
+#: src/preferences.c:654 src/preferences.c:657
+msgid "toggled"
+msgstr "已切换"
+
+#: src/preferences.c:656
+msgid "Use _Primary (Selection)"
+msgstr "记录 _Primary (选中部分)"
+
+#: src/preferences.c:659
+msgid "S_ynchronize clipboards"
+msgstr "同步剪切板(_Y)"
+
+#: src/preferences.c:667
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>其他</b>"
+
+#: src/preferences.c:674
+msgid "S_how indexes in history menu"
+msgstr "历史菜单中显示序号(_H)"
+
+#: src/preferences.c:676
+msgid "S_ave URIs"
+msgstr "保存URI(_A)"
+
+#: src/preferences.c:678
+msgid "Capture _hyperlinks only"
+msgstr "仅捕获超级链接(_H)"
+
+#: src/preferences.c:680
+msgid "C_onfirm before clearing history"
+msgstr "清除历史纪录时确认(_C)"
+
+#: src/preferences.c:689
+msgid "History"
+msgstr "历史记录"
+
+#: src/preferences.c:697
+msgid "<b>History</b>"
+msgstr "<b>历史记录</b>"
+
+#: src/preferences.c:704
+msgid "_Save history"
+msgstr "保存历史记录(_S)"
+
+#: src/preferences.c:705
+msgid "Save and restore history between sessions"
+msgstr "保存历史记录并在下次启动后恢复"
+
+#: src/preferences.c:709
+msgid "Items in history:"
+msgstr "历史记录条数:"
+
+#: src/preferences.c:716
+msgid "_Use small history"
+msgstr "使用精简历史记录(_S)"
+
+#: src/preferences.c:717
+msgid "Use a small history window to prevent scrolling"
+msgstr "使用精简历史记录防止历史记录过长"
+
+#: src/preferences.c:721
+msgid "Small history size:"
+msgstr "精简历史记录条数(_S)"
+
+#: src/preferences.c:728
+msgid "_Full history button in panel menu"
+msgstr "面板菜单中显示完整历史记录按钮(_F)"
+
+#: src/preferences.c:729
+msgid ""
+"Shows the \"full history\" button only in the panel menu, to keep the pop-up "
+"menu clean"
+msgstr ""
+"只在面板菜单中显示\"显示完整历史记录\"按钮, 简化弹出菜单"
+
+#: src/preferences.c:737
+msgid "<b>Items</b>"
+msgstr "<b>条目</b>"
+
+#: src/preferences.c:744
+msgid "Show in a _single line"
+msgstr "一行显示一条记录(_S)"
+
+#: src/preferences.c:746
+msgid "Show in _reverse order"
+msgstr "逆序显示(_R)"
+
+#: src/preferences.c:750
+msgid "Character length of items:"
+msgstr "条目显示的文字长度:"
+
+#: src/preferences.c:759
+msgid "Omit items in the:"
+msgstr "省略显示条目的:"
+
+#: src/preferences.c:763
+msgid "Beginning"
+msgstr "起始"
+
+#: src/preferences.c:764
+msgid "Middle"
+msgstr "中间"
+
+#: src/preferences.c:765
+msgid "End"
+msgstr "结尾"
+
+#: src/preferences.c:795
+msgid "Actions"
+msgstr "动作"
+
+#: src/preferences.c:800
+msgid "Control-click ClipIt's tray icon to use actions"
+msgstr "按住 Ctrl 并点击 ClipIt 的任务栏图标使用动作"
+
+#: src/preferences.c:818 src/preferences.c:824 src/preferences.c:886
+msgid "editable"
+msgstr "可编辑"
+
+#: src/preferences.c:819 src/preferences.c:826 src/preferences.c:887
+msgid "edited"
+msgstr "已编辑"
+
+#: src/preferences.c:820
+msgid "Action"
+msgstr "动作"
+
+#: src/preferences.c:825
+msgid "ellipsize-set"
+msgstr ""
+
+#: src/preferences.c:827
+msgid "Command"
+msgstr "命令"
+
+#: src/preferences.c:842 src/preferences.c:903
+msgid "Add..."
+msgstr "添加..."
+
+#: src/preferences.c:863
+msgid "Exclude"
+msgstr "排除"
+
+#: src/preferences.c:868
+msgid ""
+"Regex list of icons that should not be inserted into the history (passwords/"
+"sites that you don't need in history, etc)."
+msgstr ""
+"不记录的剪切板记录的正则表达式列表(你不想记录下来的东西, 如密码, 站点等等)"
+
+#: src/preferences.c:888
+msgid "Regex"
+msgstr "正则表达式"
+
+#: src/preferences.c:916
 msgid "Hotkeys"
-msgstr "<b>热键</b>"
+msgstr "快捷键"
 
-#: ../src/preferences.c:590
+#: src/preferences.c:924
 msgid "<b>Hotkeys</b>"
-msgstr "<b>热键</b>"
+msgstr "<b>快捷键</b>"
 
-#: ../src/preferences.c:599
+#: src/preferences.c:934
 msgid "History key combination:"
-msgstr "历史纪录按键组合:"
+msgstr "历史纪录快捷键:"
 
-#: ../src/preferences.c:607
+#: src/preferences.c:943
 msgid "Actions key combination:"
-msgstr "动作按键组合:"
+msgstr "动作快捷键:"
 
-#: ../src/preferences.c:615
+#: src/preferences.c:952
 msgid "Menu key combination:"
-msgstr "菜单按键组合:"
+msgstr "菜单快捷键:"
 
-#: ../data/clipit.desktop.in.h:2 ../data/clipit-startup.desktop.in.h:2
-msgid "ClipIt"
-msgstr "ClipIt"
-
-#~ msgid "<b>Clipboard</b>"
-#~ msgstr "<b>剪切板</b>"
-
-#~ msgid "Save changes"
-#~ msgstr "保存更改"
-
-#~ msgid "Discard changes"
-#~ msgstr "放弃更改"
-
-#~ msgid "Extras"
-#~ msgstr "其他"
-
-#~ msgid ""
-#~ "Add a new action\n"
-#~ "\"%s\" in a command is replaced with the clipboard contents"
-#~ msgstr ""
-#~ "添加新动作\n"
-#~ "命令中的 \"%s\" 将由剪切板内容代替"
-
-#~ msgid "Move selected action up"
-#~ msgstr "上移选中的动作"
-
-#~ msgid "Move selected action down"
-#~ msgstr "下移选中的动作"
+#: src/preferences.c:961
+msgid "Search key combination:"
+msgstr "搜索快捷键:"
