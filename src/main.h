@@ -73,6 +73,10 @@ void menu_hotkey(char *keystring, gpointer user_data);
 
 void search_hotkey(char *keystring, gpointer user_data);
 
+#ifdef HAVE_APPINDICATOR
+void create_app_indicator(gint create);
+#endif
+
 G_END_DECLS
 
 #endif
