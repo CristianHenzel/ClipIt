@@ -1,3 +1,7 @@
+ClipIt-v1.3.9-19122010001 - 19 Dec. 2010
+	+ Fixed: Fixed error while compiling without indicator support.
+	+ Fixed: Fixed a couple of memory leaks.
+
 ClipIt-v1.3.8-18122010002 - 18 Dec. 2010
 	+ Fixed: Updated configure script for 1.3.8.
 

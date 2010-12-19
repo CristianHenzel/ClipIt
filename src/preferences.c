@@ -168,6 +168,7 @@ static void first_run_check()
     prefs.search_key = DEF_SEARCH_KEY;
     save_preferences();
   }
+  g_free(rc_file);
 }
 
 /* Ask the user if he wants to delete the history file and act accordingly */

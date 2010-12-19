@@ -102,7 +102,9 @@ void save_history()
 	/* Refresh indicator menu. Temporary solution until
 	 * getting the visible status of the menu is supported by the API
 	 */
+#ifdef HAVE_APPINDICATOR
 	create_app_indicator(0);
+#endif
 }
 
 /* Checks if item should be included in history and calls append */

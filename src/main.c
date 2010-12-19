@@ -25,7 +25,6 @@
 
 #include <glib.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <gtk/gtk.h>
 #ifdef HAVE_APPINDICATOR
 #include <libappindicator/app-indicator.h>
@@ -46,7 +45,7 @@ static GtkClipboard* primary;
 static GtkClipboard* clipboard;
 #ifdef HAVE_APPINDICATOR
 static AppIndicator *indicator;
-GtkWidget *indicator_menu = NULL;
+static GtkWidget *indicator_menu = NULL;
 #else
 static GtkStatusIcon *status_icon; 
 static GtkWidget *statusicon_menu = NULL;
@@ -503,8 +502,7 @@ static gboolean show_actions_menu(gpointer data)
 static gboolean show_history_menu_full(gpointer data)
 {
   /* Declare some variables */
-  GtkWidget *menu,       *menu_item,
-            *menu_image, *item_label;
+  GtkWidget *menu, *menu_item, *menu_image, *item_label;
   
   /* Create the menu */
   menu = gtk_menu_new();
@@ -1050,7 +1048,7 @@ static void clipit_init()
 }
 
 /* This is Sparta! */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 	bindtextdomain(GETTEXT_PACKAGE, CLIPITLOCALEDIR);
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
@@ -1116,11 +1114,12 @@ int main(int argc, char *argv[])
 	g_free(prefs.actions_key);
 	g_free(prefs.menu_key);
 	g_free(prefs.search_key);
+	g_slist_foreach(history, (GFunc)g_free, NULL);
 	g_slist_free(history);
 	g_free(primary_text);
 	g_free(clipboard_text);
 	g_free(synchronized_text);
-	
+
 	/* Exit */
 	return 0;
 }
