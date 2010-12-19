@@ -242,9 +242,7 @@ gboolean show_search()
   if(gtk_grab_get_current())
     return FALSE;
   /* Declare some variables */
-  GtkWidget *frame,     *label,
-            *alignment, *hbox,
-            *vbox;
+  GtkWidget *hbox;
 
   GtkTreeViewColumn *tree_column;
   
