@@ -67,7 +67,7 @@ static void daemon_check()
 		/* Check contents */
 		gint count;
 		GdkAtom *targets;
-		gboolean contents = gtk_clipboard_wait_for_targets(primary, &targets, &count);
+		gboolean contents = gtk_clipboard_wait_for_targets(clipboard, &targets, &count);
 		g_free(targets);
 		/* Only recover lost contents if there isn't any other type of content in the clipboard */
 		if (!contents)

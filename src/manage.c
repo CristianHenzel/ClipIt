@@ -191,6 +191,45 @@ static void remove_selected()
   }
 }
 
+/* Called when Remove all is selected from Manage dialog */
+static void remove_all_selected(gpointer user_data)
+{
+  /* Check for confirm clear option */
+  if (prefs.confirm_clear)
+  {
+    GtkWidget* confirm_dialog = gtk_message_dialog_new(NULL,
+                                                       GTK_DIALOG_MODAL,
+                                                       GTK_MESSAGE_OTHER,
+                                                       GTK_BUTTONS_OK_CANCEL,
+                                                       _("Clear the history?"));
+    gtk_window_set_title((GtkWindow*)confirm_dialog, _("Clear history"));
+    
+    if (gtk_dialog_run((GtkDialog*)confirm_dialog) == GTK_RESPONSE_OK)
+    {
+      /* Clear history and free history-related variables */
+      g_slist_free(history);
+      history = NULL;
+      save_history();
+      clear_main_data();
+      GtkTreeIter search_iter;
+      while(gtk_tree_model_get_iter_first((GtkTreeModel*)search_list, &search_iter))
+        gtk_list_store_remove(search_list, &search_iter);
+    }
+    gtk_widget_destroy(confirm_dialog);
+  }
+  else
+  {
+    /* Clear history and free history-related variables */
+    g_slist_free(history);
+    history = NULL;
+    save_history();
+    clear_main_data();
+    GtkTreeIter search_iter;
+    while(gtk_tree_model_get_iter_first((GtkTreeModel*)search_list, &search_iter))
+      gtk_list_store_remove(search_list, &search_iter);
+  }
+}
+
 static void search_doubleclick()
 {
   GtkTreeIter sel_iter;
@@ -208,7 +247,7 @@ static void search_doubleclick()
   }
 }
 
-gint search_click(GtkWidget *widget, GdkEventButton *event, GtkWidget *search_window)
+static gint search_click(GtkWidget *widget, GdkEventButton *event, GtkWidget *search_window)
 {
   if(event->type==GDK_2BUTTON_PRESS || event->type==GDK_3BUTTON_PRESS)
   {
@@ -291,6 +330,8 @@ gboolean show_search()
   g_signal_connect((GObject*)edit_button, "clicked", (GCallback)edit_selected, NULL);
   GtkWidget* remove_button = gtk_dialog_add_button((GtkDialog*)search_dialog, "Remove", 1);
   g_signal_connect((GObject*)remove_button, "clicked", (GCallback)remove_selected, NULL);
+  GtkWidget* remove_all_button = gtk_dialog_add_button((GtkDialog*)search_dialog, "Remove all", 1);
+  g_signal_connect((GObject*)remove_all_button, "clicked", (GCallback)remove_all_selected, NULL);
   GtkWidget* close_button = gtk_dialog_add_button((GtkDialog*)search_dialog, "Close", GTK_RESPONSE_OK);
   g_signal_connect((GObject*)close_button, "clicked", (GCallback)search_history, NULL);
 

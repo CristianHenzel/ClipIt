@@ -58,7 +58,8 @@ am_clipit_OBJECTS = main.$(OBJEXT) utils.$(OBJEXT) daemon.$(OBJEXT) \
 clipit_OBJECTS = $(am_clipit_OBJECTS)
 clipit_LDADD = $(LDADD)
 am__DEPENDENCIES_1 =
-clipit_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+clipit_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -159,6 +160,7 @@ SHELL = @SHELL@
 STRIP = @STRIP@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
+X11_LIBS = @X11_LIBS@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -215,7 +217,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CFLAGS = -I$(top_srcdir) -DCLIPITLOCALEDIR=\""$(clipitlocaledir)"\"
 INCLUDES = $(GTK_CFLAGS) $(APPINDICATOR_CFLAGS)
-LDADD = $(GTK_LIBS) $(APPINDICATOR_LIBS)
+LDADD = $(GTK_LIBS) $(APPINDICATOR_LIBS) $(X11_LIBS)
 AM_LDFLAGS = -Wl,--as-needed
 DISTCLEANFILES = *.bak *.log *~ .deps/*.P
 clipit_SOURCES = main.c main.h \
