@@ -932,7 +932,7 @@ void show_preferences(gint tab)
   /* History key combination */
   hbox = gtk_hbox_new(TRUE, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
-  label = gtk_label_new(_("History key combination:"));
+  label = gtk_label_new(_("History hotkey:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
   gtk_box_pack_start((GtkBox*)hbox, label, TRUE, TRUE, 0);
   history_key_entry = gtk_entry_new();
@@ -941,7 +941,7 @@ void show_preferences(gint tab)
   /* Actions key combination */
   hbox = gtk_hbox_new(TRUE, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
-  label = gtk_label_new(_("Actions key combination:"));
+  label = gtk_label_new(_("Actions hotkey:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
   gtk_box_pack_start((GtkBox*)hbox, label, TRUE, TRUE, 0);
   actions_key_entry = gtk_entry_new();
@@ -950,7 +950,7 @@ void show_preferences(gint tab)
   /* Menu key combination */
   hbox = gtk_hbox_new(TRUE, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
-  label = gtk_label_new(_("Menu key combination:"));
+  label = gtk_label_new(_("Menu hotkey:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
   gtk_box_pack_start((GtkBox*)hbox, label, TRUE, TRUE, 0);
   menu_key_entry = gtk_entry_new();
@@ -959,7 +959,7 @@ void show_preferences(gint tab)
   /* Search key combination */
   hbox = gtk_hbox_new(TRUE, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
-  label = gtk_label_new(_("Search key combination:"));
+  label = gtk_label_new(_("Manage hotkey:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
   gtk_box_pack_start((GtkBox*)hbox, label, TRUE, TRUE, 0);
   search_key_entry = gtk_entry_new();

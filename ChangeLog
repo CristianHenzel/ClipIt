@@ -1,3 +1,11 @@
+ClipIt-v1.3.10-21122010001 - 21 Dec. 2010
+	+ Fixed: Imported fixes from Parcellite 0.9.3 (thanks to Doug Springer).
+	+ Fixed: Fixed cast warnings when building on x86 machines.
+	+ Fixed: Fixed build error on ubuntu 11.04.
+	+ Fixed: Fixed problem with statusicon menu showing double content.
+	+ Fixed: Fixed problem with clicking the statusicon menu multiple
+			times killing the program.
+
 ClipIt-v1.3.9-19122010001 - 19 Dec. 2010
 	+ Fixed: Fixed error while compiling without indicator support.
 	+ Fixed: Fixed a couple of memory leaks.

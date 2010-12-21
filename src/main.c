@@ -49,6 +49,7 @@ static GtkWidget *indicator_menu = NULL;
 #else
 static GtkStatusIcon *status_icon; 
 static GtkWidget *statusicon_menu = NULL;
+static gboolean status_menu_lock = FALSE;
 #endif
 
 static gboolean actions_lock = FALSE;
@@ -134,7 +135,7 @@ static gboolean item_check(gpointer data)
     /* Check contents */
     gint count;
     GdkAtom *targets;
-    gboolean contents = gtk_clipboard_wait_for_targets(primary, &targets, &count);
+    gboolean contents = gtk_clipboard_wait_for_targets(clipboard, &targets, &count);
     g_free(targets);
     /* Only recover lost contents if there isn't any other type of content in the clipboard */
     if (!contents)
@@ -252,56 +253,21 @@ static void edit_actions_selected(GtkButton *button, gpointer user_data)
 static void item_selected(GtkMenuItem *menu_item, gpointer user_data)
 {
   /* Get the text from the right element and set as clipboard */
-  GSList* element = g_slist_nth(history, (gint64)user_data);
+  GSList* element = g_slist_nth(history, GPOINTER_TO_INT(user_data));
   gtk_clipboard_set_text(clipboard, (gchar*)element->data, -1);
   gtk_clipboard_set_text(primary, (gchar*)element->data, -1);
 }
 
-/* Called when Clear is selected from history menu */
-static void clear_selected(GtkMenuItem *menu_item, gpointer user_data)
-{
-  /* Check for confirm clear option */
-  if (prefs.confirm_clear)
-  {
-    GtkWidget* confirm_dialog = gtk_message_dialog_new(NULL,
-                                                       GTK_DIALOG_MODAL,
-                                                       GTK_MESSAGE_OTHER,
-                                                       GTK_BUTTONS_OK_CANCEL,
-                                                       _("Clear the history?"));
-    gtk_window_set_title((GtkWindow*)confirm_dialog, _("Clear history"));
-    
-    if (gtk_dialog_run((GtkDialog*)confirm_dialog) == GTK_RESPONSE_OK)
-    {
-      /* Clear history and free history-related variables */
-      g_slist_free(history);
-      history = NULL;
-      save_history();
-      g_free(primary_text);
-      g_free(clipboard_text);
-      g_free(synchronized_text);
-      primary_text = g_strdup("");
-      clipboard_text = g_strdup("");
-      synchronized_text = g_strdup("");
-      gtk_clipboard_set_text(primary, "", -1);
-      gtk_clipboard_set_text(clipboard, "", -1);
-    }
-    gtk_widget_destroy(confirm_dialog);
-  }
-  else
-  {
-    /* Clear history and free history-related variables */
-    g_slist_free(history);
-    history = NULL;
-    save_history();
-    g_free(primary_text);
-    g_free(clipboard_text);
-    g_free(synchronized_text);
-    primary_text = g_strdup("");
-    clipboard_text = g_strdup("");
-    synchronized_text = g_strdup("");
-    gtk_clipboard_set_text(primary, "", -1);
-    gtk_clipboard_set_text(clipboard, "", -1);
-  }
+/* Clears all local data (specific to main.c) */
+void clear_main_data() {
+  g_free(primary_text);
+  g_free(clipboard_text);
+  g_free(synchronized_text);
+  primary_text = g_strdup("");
+  clipboard_text = g_strdup("");
+  synchronized_text = g_strdup("");
+  gtk_clipboard_set_text(primary, "", -1);
+  gtk_clipboard_set_text(clipboard, "", -1);
 }
 
 /* Called when About is selected from right-click menu */
@@ -502,7 +468,7 @@ static gboolean show_actions_menu(gpointer data)
 static gboolean show_history_menu_full(gpointer data)
 {
   /* Declare some variables */
-  GtkWidget *menu, *menu_item, *menu_image, *item_label;
+  GtkWidget *menu, *menu_item, *item_label;
   
   /* Create the menu */
   menu = gtk_menu_new();
@@ -512,7 +478,7 @@ static gboolean show_history_menu_full(gpointer data)
   {
     /* Declare some variables */
     GSList* element;
-    gint64 element_number = 0;
+    gint element_number = 0;
     gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
     gchar* clipboard_temp = gtk_clipboard_wait_for_text(clipboard);
     /* Reverse history if enabled */
@@ -533,13 +499,12 @@ static gboolean show_history_menu_full(gpointer data)
       gchar* list_item;
       if (prefs.show_indexes)
       {
-        list_item = g_strdup_printf("%" G_GINT64_FORMAT ". %s", (element_number+1), string->str);
+        list_item = g_strdup_printf("%d. %s", (element_number+1), string->str);
       } else {
         list_item = g_strdup(string->str);
       }
       menu_item = gtk_menu_item_new_with_label(list_item);
-      g_signal_connect((GObject*)menu_item,      "activate",
-                       (GCallback)item_selected, (gpointer)element_number);
+      g_signal_connect((GObject*)menu_item, "activate", (GCallback)item_selected, GINT_TO_POINTER(element_number));
       /* Modify menu item label properties */
       item_label = gtk_bin_get_child((GtkBin*)menu_item);
       gtk_label_set_single_line_mode((GtkLabel*)item_label, prefs.single_line);
@@ -581,12 +546,6 @@ static gboolean show_history_menu_full(gpointer data)
     gtk_widget_set_sensitive(menu_item, FALSE);
     gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
   }
-  /* -------------------- */
-  gtk_menu_shell_append((GtkMenuShell*)menu, gtk_separator_menu_item_new());
-  /* Clear */
-  menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
-  g_signal_connect((GObject*)menu_item, "activate", (GCallback)clear_selected, NULL);
-  gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
   /* Popup the menu... */
   gtk_widget_show_all(menu);
   gtk_menu_popup((GtkMenu*)menu, NULL, NULL, NULL, NULL, 1, gtk_get_current_event_time());
@@ -608,8 +567,8 @@ static gboolean show_history_menu_small(gpointer data)
   {
     /* Declare some variables */
     GSList* element;
-    gint64 element_number = 0;
-    gint64 element_number_small = 0;
+    gint element_number = 0;
+    gint element_number_small = 0;
     gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
     gchar* clipboard_temp = gtk_clipboard_wait_for_text(clipboard);
     /* Reverse history if enabled */
@@ -630,13 +589,12 @@ static gboolean show_history_menu_small(gpointer data)
       gchar* list_item;
       if (prefs.show_indexes)
       {
-        list_item = g_strdup_printf("%" G_GINT64_FORMAT ". %s", (element_number_small+1), string->str);
+        list_item = g_strdup_printf("%d. %s", (element_number_small+1), string->str);
       } else {
         list_item = g_strdup(string->str);
       }
       menu_item = gtk_menu_item_new_with_label(list_item);
-      g_signal_connect((GObject*)menu_item,      "activate",
-                       (GCallback)item_selected, (gpointer)element_number);
+      g_signal_connect((GObject*)menu_item, "activate", (GCallback)item_selected, GINT_TO_POINTER(element_number));
       
       /* Modify menu item label properties */
       item_label = gtk_bin_get_child((GtkBin*)menu_item);
@@ -723,8 +681,8 @@ void create_app_indicator(gint create)
 	{
 		/* Declare some variables */
 		GSList* element;
-		gint64 element_number = 0;
-		gint64 element_number_small = 0;
+		gint element_number = 0;
+		gint element_number_small = 0;
 		gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
 		gchar* clipboard_temp = gtk_clipboard_wait_for_text(clipboard);
 		/* Reverse history if enabled */
@@ -745,14 +703,14 @@ void create_app_indicator(gint create)
 			gchar* list_item;
 			if (prefs.show_indexes)
 			{
-				list_item = g_strdup_printf("%" G_GINT64_FORMAT ". %s",
+				list_item = g_strdup_printf("%d. %s",
 								(element_number_small+1), string->str);
 			} else {
 				list_item = g_strdup(string->str);
 			}
 			menu_item = gtk_menu_item_new_with_label(list_item);
 			g_signal_connect((GObject*)menu_item,		"activate",
-					(GCallback)item_selected,	(gpointer)element_number);
+					(GCallback)item_selected,	GINT_TO_POINTER(element_number));
 
 			/* Modify menu item label properties */
 			item_label = gtk_bin_get_child((GtkBin*)menu_item);
@@ -836,11 +794,14 @@ void create_app_indicator(gint create)
 #else
 
 /* Called when status icon is clicked */
-static void show_clipit_menu(GtkStatusIcon *status_icon, guint button, guint activate_time)
+static gboolean show_clipit_menu()
 {
 	/* If the menu is visible, we don't do anything, so that it gets hidden */
 	if((statusicon_menu != NULL) && gtk_widget_get_visible((GtkWidget *)statusicon_menu))
 		return;
+	if(status_menu_lock)
+		return;
+	status_menu_lock = TRUE;
 
 	/* Declare some variables */
 	GtkWidget *menu_item, *menu_image, *item_label;
@@ -854,8 +815,8 @@ static void show_clipit_menu(GtkStatusIcon *status_icon, guint button, guint act
 	{
 		/* Declare some variables */
 		GSList* element;
-		gint64 element_number = 0;
-		gint64 element_number_small = 0;
+		gint element_number = 0;
+		gint element_number_small = 0;
 		gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
 		gchar* clipboard_temp = gtk_clipboard_wait_for_text(clipboard);
 		/* Reverse history if enabled */
@@ -876,14 +837,14 @@ static void show_clipit_menu(GtkStatusIcon *status_icon, guint button, guint act
 			gchar* list_item;
 			if (prefs.show_indexes)
 			{
-				list_item = g_strdup_printf("%" G_GINT64_FORMAT ". %s",
+				list_item = g_strdup_printf("%d. %s",
 								(element_number_small+1), string->str);
 			} else {
 				list_item = g_strdup(string->str);
 			}
 			menu_item = gtk_menu_item_new_with_label(list_item);
 			g_signal_connect((GObject*)menu_item,		"activate",
-					(GCallback)item_selected,	(gpointer)element_number);
+					(GCallback)item_selected,	GINT_TO_POINTER(element_number));
 
 			/* Modify menu item label properties */
 			item_label = gtk_bin_get_child((GtkBin*)menu_item);
@@ -958,8 +919,10 @@ static void show_clipit_menu(GtkStatusIcon *status_icon, guint button, guint act
 	gtk_menu_shell_append((GtkMenuShell*)statusicon_menu, menu_item);
 	/* Popup the menu... */
 	gtk_widget_show_all(statusicon_menu);
-	gtk_menu_popup((GtkMenu*)statusicon_menu, NULL, NULL, gtk_status_icon_position_menu, status_icon, button, activate_time);
 	gtk_widget_set_visible(statusicon_menu, TRUE);
+	gtk_menu_popup((GtkMenu*)statusicon_menu, NULL, NULL, gtk_status_icon_position_menu, status_icon, 1, gtk_get_current_event_time());
+
+	status_menu_lock = FALSE;
 }
 
 /* Called when status icon is clicked */
@@ -980,7 +943,7 @@ static void status_icon_clicked(GtkStatusIcon *status_icon, GdkEventButton *even
 	/* Left click */
 	else if (event->button == 1)
 	{
-		show_clipit_menu(status_icon, event->button, gtk_get_current_event_time());
+		show_clipit_menu();
 	}
 }
 
