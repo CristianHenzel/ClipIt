@@ -57,11 +57,11 @@ static gboolean actions_lock = FALSE;
 /* Init preferences structure */
 prefs_t prefs = {DEF_USE_COPY,        DEF_USE_PRIMARY,      DEF_SYNCHRONIZE,
                  DEF_SHOW_INDEXES,    DEF_SAVE_URIS,        DEF_SAVE_HISTORY,
-                 DEF_HISTORY_LIMIT,   DEF_SMALL_HISTORY,    DEF_HISTORY_SMALL,
-                 DEF_HYPERLINKS_ONLY, DEF_CONFIRM_CLEAR,    DEF_FULL_HIST_BUTTON,
-                 DEF_SINGLE_LINE,     DEF_REVERSE_HISTORY,  DEF_ITEM_LENGTH,
-                 DEF_ELLIPSIZE,       INIT_HISTORY_KEY,     INIT_ACTIONS_KEY,
-                 INIT_MENU_KEY,       INIT_SEARCH_KEY,      DEF_NO_ICON};
+                 DEF_HISTORY_LIMIT,   DEF_ITEMS_MENU,       DEF_HYPERLINKS_ONLY,
+                 DEF_CONFIRM_CLEAR,   DEF_SINGLE_LINE,      DEF_REVERSE_HISTORY,
+                 DEF_ITEM_LENGTH,     DEF_ELLIPSIZE,        INIT_HISTORY_KEY,
+                 INIT_ACTIONS_KEY,    INIT_MENU_KEY,        INIT_SEARCH_KEY,
+                 DEF_NO_ICON};
 
 /* Called every CHECK_INTERVAL seconds to check for new items */
 static gboolean item_check(gpointer data)
@@ -465,96 +465,8 @@ static gboolean show_actions_menu(gpointer data)
   return FALSE;
 }
 
-static gboolean show_history_menu_full(gpointer data)
-{
-  /* Declare some variables */
-  GtkWidget *menu, *menu_item, *item_label;
-  
-  /* Create the menu */
-  menu = gtk_menu_new();
-  g_signal_connect((GObject*)menu, "selection-done", (GCallback)gtk_widget_destroy, NULL);
-  /* Items */
-  if ((history != NULL) && (history->data != NULL))
-  {
-    /* Declare some variables */
-    GSList* element;
-    gint element_number = 0;
-    gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
-    gchar* clipboard_temp = gtk_clipboard_wait_for_text(clipboard);
-    /* Reverse history if enabled */
-    if (prefs.reverse_history)
-    {
-      history = g_slist_reverse(history);
-      element_number = g_slist_length(history) - 1;
-    }
-    /* Go through each element and adding each */
-    for (element = history; element != NULL; element = element->next)
-    {
-      GString* string = g_string_new((gchar*)element->data);
-      /* Ellipsize text */
-      string = ellipsize_string(string);
-      /* Remove control characters */
-      string = remove_newlines_string(string);
-      /* Make new item with ellipsized text */
-      gchar* list_item;
-      if (prefs.show_indexes)
-      {
-        list_item = g_strdup_printf("%d. %s", (element_number+1), string->str);
-      } else {
-        list_item = g_strdup(string->str);
-      }
-      menu_item = gtk_menu_item_new_with_label(list_item);
-      g_signal_connect((GObject*)menu_item, "activate", (GCallback)item_selected, GINT_TO_POINTER(element_number));
-      /* Modify menu item label properties */
-      item_label = gtk_bin_get_child((GtkBin*)menu_item);
-      gtk_label_set_single_line_mode((GtkLabel*)item_label, prefs.single_line);
-      
-      /* Check if item is also clipboard text and make bold */
-      if ((clipboard_temp) && (g_strcmp0((gchar*)element->data, clipboard_temp) == 0))
-      {
-        gchar* bold_text = g_markup_printf_escaped("<b>%s</b>", list_item);
-        gtk_label_set_markup((GtkLabel*)item_label, bold_text);
-        g_free(bold_text);
-      }
-      else if ((primary_temp) && (g_strcmp0((gchar*)element->data, primary_temp) == 0))
-      {
-        gchar* italic_text = g_markup_printf_escaped("<i>%s</i>", list_item);
-        gtk_label_set_markup((GtkLabel*)item_label, italic_text);
-        g_free(italic_text);
-      }
-      g_free(list_item);
-      /* Append item */
-      gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
-      /* Prepare for next item */
-      g_string_free(string, TRUE);
-      if (prefs.reverse_history)
-        element_number--;
-      else
-        element_number++;
-    }
-    /* Cleanup */
-    g_free(primary_temp);
-    g_free(clipboard_temp);
-    /* Return history to normal if reversed */
-    if (prefs.reverse_history)
-      history = g_slist_reverse(history);
-  }
-  else
-  {
-    /* Nothing in history so adding empty */
-    menu_item = gtk_menu_item_new_with_label(_("Empty"));
-    gtk_widget_set_sensitive(menu_item, FALSE);
-    gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
-  }
-  /* Popup the menu... */
-  gtk_widget_show_all(menu);
-  gtk_menu_popup((GtkMenu*)menu, NULL, NULL, NULL, NULL, 1, gtk_get_current_event_time());
-  /* Return FALSE so the g_timeout_add() function is called only once */
-  return FALSE;
-}
-
 /* Generates the small history menu */
-static gboolean show_history_menu_small(gpointer data)
+static gboolean show_history_menu(gpointer data)
 {
   /* Declare some variables */
   GtkWidget *menu, *menu_item, *menu_image, *item_label;
@@ -578,7 +490,7 @@ static gboolean show_history_menu_small(gpointer data)
       element_number = g_slist_length(history) - 1;
     }
     /* Go through each element and adding each */
-    for (element = history; (element != NULL) && (element_number_small < prefs.history_small); element = element->next)
+    for (element = history; (element != NULL) && (element_number_small < prefs.items_menu); element = element->next)
     {
       GString* string = g_string_new((gchar*)element->data);
       /* Ellipsize text */
@@ -638,31 +550,10 @@ static gboolean show_history_menu_small(gpointer data)
     gtk_widget_set_sensitive(menu_item, FALSE);
     gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
   }
-  /* -------------------- */
-  /* Show full history button (if enabled) */
-  if (!prefs.full_hist_button)
-  {
-    gtk_menu_shell_append((GtkMenuShell*)menu, gtk_separator_menu_item_new());
-    menu_item = gtk_image_menu_item_new_with_mnemonic(_("_Show full history"));
-    menu_image = gtk_image_new_from_stock(GTK_STOCK_ZOOM_IN, GTK_ICON_SIZE_MENU);
-    gtk_image_menu_item_set_image((GtkImageMenuItem*)menu_item, menu_image);
-    g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_history_menu_full, NULL);
-    gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
-  }
   /* Popup the menu... */
   gtk_widget_show_all(menu);
   gtk_menu_popup((GtkMenu*)menu, NULL, NULL, NULL, NULL, 1, gtk_get_current_event_time());
-  /* Return FALSE so the g_timeout_add() function is called only once */
-  return FALSE;
-}
-
-/* Called when status icon is left-clicked or the history menu hotkey is pressed */
-static gboolean show_history_menu()
-{
-  if (prefs.small_history)
-    g_timeout_add(POPUP_DELAY, show_history_menu_small, NULL);
-  else
-    g_timeout_add(POPUP_DELAY, show_history_menu_full, NULL);
+  gtk_menu_shell_select_first((GtkMenuShell*)menu, TRUE);
   /* Return FALSE so the g_timeout_add() function is called only once */
   return FALSE;
 }
@@ -692,7 +583,7 @@ void create_app_indicator(gint create)
 			element_number = g_slist_length(history) - 1;
 		}
 		/* Go through each element and adding each */
-		for (element = history; (element != NULL) && (element_number_small < prefs.history_small); element = element->next)
+		for (element = history; (element != NULL) && (element_number_small < prefs.items_menu); element = element->next)
 		{
 			GString* string = g_string_new((gchar*)element->data);
 			/* Ellipsize text */
@@ -760,12 +651,6 @@ void create_app_indicator(gint create)
 	menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_ABOUT, NULL);
 	g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_about_dialog, NULL);
 	gtk_menu_shell_append((GtkMenuShell*)indicator_menu, menu_item);
-	/* Full history button (if enabled) */
-	menu_item = gtk_image_menu_item_new_with_mnemonic(_("_Show full history"));
-	menu_image = gtk_image_new_from_stock(GTK_STOCK_ZOOM_IN, GTK_ICON_SIZE_MENU);
-	gtk_image_menu_item_set_image((GtkImageMenuItem*)menu_item, menu_image);
-	g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_history_menu_full, NULL);
-	gtk_menu_shell_append((GtkMenuShell*)indicator_menu, menu_item);
 	/* Manage history */
 	menu_item = gtk_image_menu_item_new_with_mnemonic(_("_Manage history"));
 	menu_image = gtk_image_new_from_stock(GTK_STOCK_FIND, GTK_ICON_SIZE_MENU);
@@ -826,7 +711,7 @@ static gboolean show_clipit_menu()
 			element_number = g_slist_length(history) - 1;
 		}
 		/* Go through each element and adding each */
-		for (element = history; (element != NULL) && (element_number_small < prefs.history_small); element = element->next)
+		for (element = history; (element != NULL) && (element_number_small < prefs.items_menu); element = element->next)
 		{
 			GString* string = g_string_new((gchar*)element->data);
 			/* Ellipsize text */
@@ -894,15 +779,6 @@ static gboolean show_clipit_menu()
 	menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_ABOUT, NULL);
 	g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_about_dialog, NULL);
 	gtk_menu_shell_append((GtkMenuShell*)statusicon_menu, menu_item);
-	/* Full history button (if enabled) */
-	if (prefs.full_hist_button && prefs.small_history)
-	{
-		menu_item = gtk_image_menu_item_new_with_mnemonic(_("_Show full history"));
-		menu_image = gtk_image_new_from_stock(GTK_STOCK_ZOOM_IN, GTK_ICON_SIZE_MENU);
-		gtk_image_menu_item_set_image((GtkImageMenuItem*)menu_item, menu_image);
-		g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_history_menu_full, NULL);
-		gtk_menu_shell_append((GtkMenuShell*)statusicon_menu, menu_item);
-	}
 	/* Manage history */
 	menu_item = gtk_image_menu_item_new_with_mnemonic(_("_Manage history"));
 	menu_image = gtk_image_new_from_stock(GTK_STOCK_FIND, GTK_ICON_SIZE_MENU);
@@ -921,6 +797,7 @@ static gboolean show_clipit_menu()
 	gtk_widget_show_all(statusicon_menu);
 	gtk_widget_set_visible(statusicon_menu, TRUE);
 	gtk_menu_popup((GtkMenu*)statusicon_menu, NULL, NULL, gtk_status_icon_position_menu, status_icon, 1, gtk_get_current_event_time());
+	gtk_menu_shell_select_first((GtkMenuShell*)statusicon_menu, TRUE);
 
 	status_menu_lock = FALSE;
 }

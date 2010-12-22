@@ -41,9 +41,7 @@ typedef struct
   gboolean  save_history;     /* Save history */
   gint      history_limit;    /* Items in history */
 
-  gboolean  small_history;    /* Use small history */
-  gint      history_small;    /* Items in small history */
-  gboolean  full_hist_button; /* Fix clipboard */
+  gint      items_menu;       /* Items in small history */
   
   gboolean  hyperlinks_only;  /* Hyperlinks only */
   gboolean  confirm_clear;    /* Confirm clear */
