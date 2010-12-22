@@ -1,3 +1,9 @@
+ClipIt-v1.3.11-22122010001 - 22 Dec. 2010
+	+ Fixed: Indicator menu now actually refreshes properly.
+	+ Fixed: Removed "Full history" and changed the wording in the
+			"Preferences" dialog.
+	+ Fixed: Imported "Select first item in menu" fix from Parcellite 0.9.3.
+
 ClipIt-v1.3.10-21122010001 - 21 Dec. 2010
 	+ Fixed: Imported fixes from Parcellite 0.9.3 (thanks to Doug Springer).
 	+ Fixed: Fixed cast warnings when building on x86 machines.
