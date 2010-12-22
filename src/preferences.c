@@ -34,9 +34,8 @@ GtkWidget *copy_check,
           *synchronize_check,
           *show_indexes_check,
           *save_uris_check,
-          *full_hist_check,
           *history_spin,
-          *history_small,
+          *items_menu,
           *charlength_spin,
           *ellipsize_combo,
           *history_key_entry,
@@ -44,7 +43,6 @@ GtkWidget *copy_check,
           *menu_key_entry,
           *search_key_entry,
           *save_check,
-          *small_check,
           *confirm_check,
           *reverse_check,
           *linemode_check,
@@ -80,11 +78,9 @@ static void apply_preferences()
   prefs.save_uris = gtk_toggle_button_get_active((GtkToggleButton*)save_uris_check);
   prefs.save_history = gtk_toggle_button_get_active((GtkToggleButton*)save_check);
   prefs.history_limit = gtk_spin_button_get_value_as_int((GtkSpinButton*)history_spin);
-  prefs.small_history = gtk_toggle_button_get_active((GtkToggleButton*)small_check);
-  prefs.history_small = gtk_spin_button_get_value_as_int((GtkSpinButton*)history_small);
+  prefs.items_menu = gtk_spin_button_get_value_as_int((GtkSpinButton*)items_menu);
   prefs.hyperlinks_only = gtk_toggle_button_get_active((GtkToggleButton*)hyperlinks_check);
   prefs.confirm_clear = gtk_toggle_button_get_active((GtkToggleButton*)confirm_check);
-  prefs.full_hist_button = gtk_toggle_button_get_active((GtkToggleButton*)full_hist_check);
   prefs.single_line = gtk_toggle_button_get_active((GtkToggleButton*)linemode_check);
   prefs.reverse_history = gtk_toggle_button_get_active((GtkToggleButton*)reverse_check);
   prefs.item_length = gtk_spin_button_get_value_as_int((GtkSpinButton*)charlength_spin);
@@ -116,11 +112,9 @@ static void save_preferences()
   g_key_file_set_boolean(rc_key, "rc", "save_uris", prefs.save_uris);
   g_key_file_set_boolean(rc_key, "rc", "save_history", prefs.save_history);
   g_key_file_set_integer(rc_key, "rc", "history_limit", prefs.history_limit);
-  g_key_file_set_boolean(rc_key, "rc", "small_history", prefs.small_history);
-  g_key_file_set_integer(rc_key, "rc", "history_small", prefs.history_small);
+  g_key_file_set_integer(rc_key, "rc", "items_menu", prefs.items_menu);
   g_key_file_set_boolean(rc_key, "rc", "hyperlinks_only", prefs.hyperlinks_only);
   g_key_file_set_boolean(rc_key, "rc", "confirm_clear", prefs.confirm_clear);
-  g_key_file_set_boolean(rc_key, "rc", "full_hist_button", prefs.full_hist_button);
   g_key_file_set_boolean(rc_key, "rc", "single_line", prefs.single_line);
   g_key_file_set_boolean(rc_key, "rc", "reverse_history", prefs.reverse_history);
   g_key_file_set_integer(rc_key, "rc", "item_length", prefs.item_length);
@@ -221,11 +215,9 @@ void read_preferences()
     prefs.save_uris = g_key_file_get_boolean(rc_key, "rc", "save_uris", NULL);
     prefs.save_history = g_key_file_get_boolean(rc_key, "rc", "save_history", NULL);
     prefs.history_limit = g_key_file_get_integer(rc_key, "rc", "history_limit", NULL);
-    prefs.small_history = g_key_file_get_boolean(rc_key, "rc", "small_history", NULL);
-    prefs.history_small = g_key_file_get_integer(rc_key, "rc", "history_small", NULL);
+    prefs.items_menu = g_key_file_get_integer(rc_key, "rc", "items_menu", NULL);
     prefs.hyperlinks_only = g_key_file_get_boolean(rc_key, "rc", "hyperlinks_only", NULL);
     prefs.confirm_clear = g_key_file_get_boolean(rc_key, "rc", "confirm_clear", NULL);
-    prefs.full_hist_button = g_key_file_get_boolean(rc_key, "rc", "full_hist_button", NULL);
     prefs.single_line = g_key_file_get_boolean(rc_key, "rc", "single_line", NULL);
     prefs.reverse_history = g_key_file_get_boolean(rc_key, "rc", "reverse_history", NULL);
     prefs.item_length = g_key_file_get_integer(rc_key, "rc", "item_length", NULL);
@@ -238,8 +230,8 @@ void read_preferences()
     /* Check for errors and set default values if any */
     if ((!prefs.history_limit) || (prefs.history_limit > 1000) || (prefs.history_limit < 0))
       prefs.history_limit = DEF_HISTORY_LIMIT;
-    if ((!prefs.history_small) || (prefs.history_small > 100) || (prefs.history_small < 0))
-      prefs.history_limit = DEF_HISTORY_SMALL;
+    if ((!prefs.items_menu) || (prefs.items_menu > 1000) || (prefs.items_menu < 0))
+      prefs.items_menu = DEF_ITEMS_MENU;
     if ((!prefs.item_length) || (prefs.item_length > 75) || (prefs.item_length < 0))
       prefs.item_length = DEF_ITEM_LENGTH;
     if ((!prefs.ellipsize) || (prefs.ellipsize > 3) || (prefs.ellipsize < 0))
@@ -714,21 +706,15 @@ void show_preferences(gint tab)
   history_spin = gtk_spin_button_new((GtkAdjustment*)adjustment, 0.0, 0);
   gtk_spin_button_set_update_policy((GtkSpinButton*)history_spin, GTK_UPDATE_IF_VALID);
   gtk_box_pack_start((GtkBox*)hbox, history_spin, FALSE, FALSE, 0);
-  small_check = gtk_check_button_new_with_mnemonic(_("_Use small history"));
-  gtk_widget_set_tooltip_text(small_check, _("Use a small history window to prevent scrolling"));
-  gtk_box_pack_start((GtkBox*)vbox, small_check, FALSE, FALSE, 0);
   hbox = gtk_hbox_new(FALSE, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
-  label = gtk_label_new(_("Small history size:"));
+  label = gtk_label_new(_("Items in menu:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
   gtk_box_pack_start((GtkBox*)hbox, label, FALSE, FALSE, 0);
   adjustment_small = gtk_adjustment_new(25, 5, 100, 1, 10, 0);
-  history_small = gtk_spin_button_new((GtkAdjustment*)adjustment_small, 0.0, 0);
-  gtk_spin_button_set_update_policy((GtkSpinButton*)history_small, GTK_UPDATE_IF_VALID);
-  gtk_box_pack_start((GtkBox*)hbox, history_small, FALSE, FALSE, 0);
-  full_hist_check = gtk_check_button_new_with_mnemonic(_("_Full history button in panel menu"));
-  gtk_widget_set_tooltip_text(full_hist_check, _("Shows the \"full history\" button only in the panel menu, to keep the pop-up menu clean"));
-  gtk_box_pack_start((GtkBox*)vbox, full_hist_check, FALSE, FALSE, 0);
+  items_menu = gtk_spin_button_new((GtkAdjustment*)adjustment_small, 0.0, 0);
+  gtk_spin_button_set_update_policy((GtkSpinButton*)items_menu, GTK_UPDATE_IF_VALID);
+  gtk_box_pack_start((GtkBox*)hbox, items_menu, FALSE, FALSE, 0);
   gtk_box_pack_start((GtkBox*)vbox_history, frame, FALSE, FALSE, 0);
 
   /* Build the items frame */
@@ -975,11 +961,9 @@ void show_preferences(gint tab)
   gtk_toggle_button_set_active((GtkToggleButton*)save_uris_check, prefs.save_uris);
   gtk_toggle_button_set_active((GtkToggleButton*)save_check, prefs.save_history);
   gtk_spin_button_set_value((GtkSpinButton*)history_spin, (gdouble)prefs.history_limit);
-  gtk_toggle_button_set_active((GtkToggleButton*)small_check, prefs.small_history);
-  gtk_spin_button_set_value((GtkSpinButton*)history_small, (gdouble)prefs.history_small);
+  gtk_spin_button_set_value((GtkSpinButton*)items_menu, (gdouble)prefs.items_menu);
   gtk_toggle_button_set_active((GtkToggleButton*)hyperlinks_check, prefs.hyperlinks_only);
   gtk_toggle_button_set_active((GtkToggleButton*)confirm_check, prefs.confirm_clear);
-  gtk_toggle_button_set_active((GtkToggleButton*)full_hist_check, prefs.full_hist_button);
   gtk_toggle_button_set_active((GtkToggleButton*)linemode_check, prefs.single_line);
   gtk_toggle_button_set_active((GtkToggleButton*)reverse_check, prefs.reverse_history);
   gtk_spin_button_set_value((GtkSpinButton*)charlength_spin, (gdouble)prefs.item_length);
