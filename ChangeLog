@@ -1,3 +1,7 @@
+ClipIt-1.3.11-20101224001 - 24 Dec. 2010
+	+ Fixed: Removed some unneeded files from both the archive and git.
+	+ Fixed: Changed git versioning scheme.
+
 ClipIt-v1.3.11-22122010001 - 22 Dec. 2010
 	+ Fixed: Indicator menu now actually refreshes properly.
 	+ Fixed: Removed "Full history" and changed the wording in the
