@@ -15,4 +15,7 @@ EXTRA_DIST = \
 	intltool-update.in \
 	intltool-extract.in
 
+dist-hook:
+	rm -rf $(distdir)/m4/Makefile
+
 ACLOCAL_AMFLAGS = -I m4
