@@ -55,7 +55,7 @@ G_BEGIN_DECLS
 #define THEMES_FOLDER         "clipit/themes"
 
 #define SAVE_HIST_MESSAGE     "ClipIt can save your history in a plain text file. If you copy \
-passwords or other sensible data and other people have access to the computer, this might be a \
+passwords or other sensitive data and other people have access to the computer, this might be a \
 security risk. Do you want to enable history saving?"
 
 #define CHECK_HIST_MESSAGE    "It appears that you have disabled history saving, the current history \
