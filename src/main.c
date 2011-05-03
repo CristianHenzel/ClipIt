@@ -566,7 +566,6 @@ void create_app_indicator(gint create)
 
 	/* Create the menu */
 	indicator_menu = gtk_menu_new();
-	g_signal_connect((GObject*)indicator_menu, "selection-done", (GCallback)gtk_widget_destroy, NULL);
 	/* Items */
 	if ((history != NULL) && (history->data != NULL))
 	{
