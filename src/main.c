@@ -256,6 +256,17 @@ static void item_selected(GtkMenuItem *menu_item, gpointer user_data)
   GSList* element = g_slist_nth(history, GPOINTER_TO_INT(user_data));
   gtk_clipboard_set_text(clipboard, (gchar*)element->data, -1);
   gtk_clipboard_set_text(primary, (gchar*)element->data, -1);
+  /* Paste the clipboard contents automatically if enabled */
+  if (prefs.automatic_paste) {
+    gchar* cmd = g_strconcat("/bin/sh -c 'xdotool key ctrl+v'", NULL);
+    GPid pid;
+    gchar **argv;
+    g_shell_parse_argv(cmd, NULL, &argv, NULL);
+    g_free(cmd);
+    g_spawn_async(NULL, argv, NULL, G_SPAWN_DO_NOT_REAP_CHILD, NULL, NULL, &pid, NULL);
+    g_child_watch_add(pid, (GChildWatchFunc)action_exit, NULL);
+    g_strfreev(argv);
+  }
 }
 
 /* Clears all local data (specific to main.c) */
