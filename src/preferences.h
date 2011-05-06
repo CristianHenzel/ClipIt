@@ -32,6 +32,7 @@ G_BEGIN_DECLS
 #define DEF_USE_COPY          TRUE
 #define DEF_USE_PRIMARY       FALSE
 #define DEF_SYNCHRONIZE       FALSE
+#define DEF_AUTOMATIC_PASTE   FALSE
 #define DEF_SHOW_INDEXES      FALSE
 #define DEF_SAVE_URIS         TRUE
 #define DEF_SAVE_HISTORY      TRUE
