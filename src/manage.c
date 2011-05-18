@@ -107,13 +107,18 @@ static void edit_selected()
 {
   GtkTreeIter sel_iter;
   GtkTreeSelection* search_selection = gtk_tree_view_get_selection((GtkTreeView*)treeview_search);
-  /* This helps prevent multiple instances and checks if there's anything selected */
-  if (gtk_tree_selection_get_selected(search_selection, NULL, &sel_iter))
-  {
+  /* This checks if there's anything selected */
+  gint selected_count = gtk_tree_selection_count_selected_rows(search_selection);
+  if (selected_count > 0) {
     /* Create clipboard buffer and set its text */
     gint selected_item_nr;
-    gtk_tree_model_get((GtkTreeModel*)search_list, &sel_iter, 0, &selected_item_nr, -1);
+    GList *selected_rows = gtk_tree_selection_get_selected_rows(search_selection, NULL);
+    GList *row_loop = g_list_first(selected_rows);
+    selected_item_nr = atoi((gchar*)gtk_tree_path_to_string(row_loop->data));
+    g_list_foreach(selected_rows, (GFunc)gtk_tree_path_free, NULL);
+    g_list_free(selected_rows);
     GSList* element = g_slist_nth(history, selected_item_nr);
+    GSList* elementafter = element->next;
     GString* s_selected_item = g_string_new((gchar*)element->data);
     GtkTextBuffer* clipboard_buffer = gtk_text_buffer_new(NULL);
     gtk_text_buffer_set_text(clipboard_buffer, s_selected_item->str, -1);
@@ -151,12 +156,12 @@ static void edit_selected()
       /* Delete any duplicate */
       delete_duplicate(gtk_text_buffer_get_text(clipboard_buffer, &start, &end, TRUE));
 
-      /* Insert new element before the old one */
-      history = g_slist_insert_before(history, element->next,
-                    g_strdup(gtk_text_buffer_get_text(clipboard_buffer, &start, &end, TRUE)));
-
       /* Remove old entry */
       history = g_slist_remove(history, element->data);
+
+      /* Insert new element where the old one was */
+      history = g_slist_insert_before(history, elementafter,
+                    g_strdup(gtk_text_buffer_get_text(clipboard_buffer, &start, &end, TRUE)));
 
       if(selected_item_nr == 0)
       {
@@ -173,21 +178,31 @@ static void edit_selected()
   }
 }
 
+static void add_iter(GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *piter, gpointer userdata)
+{
+  GArray *sel = (GArray*)userdata;
+  GtkTreeIter iter = *piter;
+  g_array_append_val(sel, iter);
+}
+
 /* Called when Remove is selected from Manage dialog */
 static void remove_selected()
 {
-  GtkTreeIter sel_iter;
   GtkTreeSelection* search_selection = gtk_tree_view_get_selection((GtkTreeView*)treeview_search);
-  /* This checks if there's anything selected */
-  if (gtk_tree_selection_get_selected(search_selection, NULL, &sel_iter))
-  {
-    /* Get item to delete */
-    gint selected_item_nr;
-    gtk_tree_model_get((GtkTreeModel*)search_list, &sel_iter, 0, &selected_item_nr, -1);
-    GSList* element = g_slist_nth(history, selected_item_nr);
-    /* Remove entry */
-    history = g_slist_remove(history, element->data);
-    search_history();
+  gint selected_count = gtk_tree_selection_count_selected_rows(search_selection);
+  if (selected_count > 0) {
+    GtkListStore *store;
+    GArray *sel;
+    gint i;
+    store = GTK_LIST_STORE(gtk_tree_view_get_model((GtkTreeView*)treeview_search));
+    sel = g_array_new(FALSE, FALSE, sizeof(GtkTreeIter));
+    gtk_tree_selection_selected_foreach(search_selection, add_iter, sel);
+    gtk_tree_selection_unselect_all(search_selection);
+    for (i = 0; i < sel->len; i++) {
+        GtkTreeIter *iter = &g_array_index(sel, GtkTreeIter, i);
+        gtk_list_store_remove(store, iter);
+    }
+    g_array_free(sel, TRUE);
   }
 }
 
@@ -257,11 +272,14 @@ static gint search_click(GtkWidget *widget, GdkEventButton *event, GtkWidget *se
   return FALSE;
 }
 
-static gint search_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
+static gint search_key_released(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
 {
-  /* Check if [Return] key was pressed */
-  if ((event->keyval == 0xff0d) || (event->keyval == 0xff8d))
-    search_history();
+  search_history();
+  return FALSE;
+}
+
+static gboolean treeview_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
+{
   return FALSE;
 }
 
@@ -301,7 +319,7 @@ gboolean show_search()
   gtk_box_pack_start((GtkBox*)vbox_search, hbox, FALSE, FALSE, 0);
   search_entry = gtk_entry_new();
   gtk_box_pack_end((GtkBox*)hbox, search_entry, TRUE, TRUE, 0);
-  g_signal_connect((GObject*)search_entry, "key-press-event", (GCallback)search_key_pressed, NULL);
+  g_signal_connect((GObject*)search_entry, "key-release-event", (GCallback)search_key_released, NULL);
 
   /* Build the exclude treeview */
   GtkWidget* scrolled_window_search = gtk_scrolled_window_new(
@@ -336,8 +354,9 @@ gboolean show_search()
   g_signal_connect((GObject*)close_button, "clicked", (GCallback)search_history, NULL);
 
   GtkTreeSelection* search_selection = gtk_tree_view_get_selection((GtkTreeView*)treeview_search);
-  gtk_tree_selection_set_mode(search_selection, GTK_SELECTION_BROWSE);
+  gtk_tree_selection_set_mode(search_selection, GTK_SELECTION_MULTIPLE);
   g_signal_connect((GObject*)treeview_search, "button_press_event", (GCallback)search_click, search_dialog);
+  g_signal_connect((GObject*)treeview_search, "key-press-event", (GCallback)treeview_key_pressed, NULL);
 
   g_signal_connect((GtkDialog*)search_dialog, "response", (GCallback)search_window_response, search_dialog);
   gtk_widget_show_all(vbox_search);

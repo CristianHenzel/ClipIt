@@ -11,6 +11,7 @@ EXTRA_DIST = \
 	m4/ChangeLog \
 	$(desktop_DATA) \
 	$(autostart_DATA) \
+	$(pixmaps_DATA) \
 	intltool-merge.in \
 	intltool-update.in \
 	intltool-extract.in
