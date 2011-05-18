@@ -8,9 +8,13 @@ autostartdir = $(sysconfdir)/xdg/autostart
 autostart_in_file = clipit-startup.desktop.in
 autostart_DATA = $(autostart_in_file:.desktop.in=.desktop)
 
+pixmapsdir = $(datarootdir)/pixmaps/clipit
+pixmaps_DATA = trayicon.svg
+
 EXTRA_DIST = \
   $(desktop_in_file) \
-  $(autostart_in_file)
+  $(autostart_in_file) \
+  $(pixmaps_DATA)
 
 CLEANFILES = \
   $(desktop_DATA) \

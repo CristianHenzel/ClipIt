@@ -73,8 +73,8 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(autostartdir)" \
-	"$(DESTDIR)$(desktopdir)"
-DATA = $(autostart_DATA) $(desktop_DATA)
+	"$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(pixmapsdir)"
+DATA = $(autostart_DATA) $(desktop_DATA) $(pixmaps_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -224,9 +224,12 @@ desktop_DATA = $(desktop_in_file:.desktop.in=.desktop)
 autostartdir = $(sysconfdir)/xdg/autostart
 autostart_in_file = clipit-startup.desktop.in
 autostart_DATA = $(autostart_in_file:.desktop.in=.desktop)
+pixmapsdir = $(datarootdir)/pixmaps/clipit
+pixmaps_DATA = trayicon.svg
 EXTRA_DIST = \
   $(desktop_in_file) \
-  $(autostart_in_file)
+  $(autostart_in_file) \
+  $(pixmaps_DATA)
 
 CLEANFILES = \
   $(desktop_DATA) \
@@ -309,6 +312,26 @@ uninstall-desktopDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(desktopdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(desktopdir)" && rm -f $$files
+install-pixmapsDATA: $(pixmaps_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(pixmapsdir)" || $(MKDIR_P) "$(DESTDIR)$(pixmapsdir)"
+	@list='$(pixmaps_DATA)'; test -n "$(pixmapsdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(pixmapsdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(pixmapsdir)" || exit $$?; \
+	done
+
+uninstall-pixmapsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(pixmaps_DATA)'; test -n "$(pixmapsdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(pixmapsdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(pixmapsdir)" && rm -f $$files
 tags: TAGS
 TAGS:
 
@@ -350,7 +373,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(autostartdir)" "$(DESTDIR)$(desktopdir)"; do \
+	for dir in "$(DESTDIR)$(autostartdir)" "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(pixmapsdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -400,7 +423,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-autostartDATA install-desktopDATA
+install-data-am: install-autostartDATA install-desktopDATA \
+	install-pixmapsDATA
 
 install-dvi: install-dvi-am
 
@@ -444,7 +468,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-autostartDATA uninstall-desktopDATA
+uninstall-am: uninstall-autostartDATA uninstall-desktopDATA \
+	uninstall-pixmapsDATA
 
 .MAKE: install-am install-strip
 
@@ -454,11 +479,12 @@ uninstall-am: uninstall-autostartDATA uninstall-desktopDATA
 	install-data-am install-desktopDATA install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
-	pdf-am ps ps-am uninstall uninstall-am uninstall-autostartDATA \
-	uninstall-desktopDATA
+	install-pdf-am install-pixmapsDATA install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-generic pdf pdf-am ps ps-am uninstall uninstall-am \
+	uninstall-autostartDATA uninstall-desktopDATA \
+	uninstall-pixmapsDATA
 
 @INTLTOOL_DESKTOP_RULE@
 
