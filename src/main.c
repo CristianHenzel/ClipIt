@@ -476,6 +476,53 @@ static gboolean show_actions_menu(gpointer data)
   return FALSE;
 }
 
+static gboolean menu_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
+{
+  switch (event->keyval) {
+    case 0x0030:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(9));
+      gtk_widget_destroy(widget);
+      break;
+    case 0x0031:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(0));
+      gtk_widget_destroy(widget);
+      break;
+    case 0x0032:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(1));
+      gtk_widget_destroy(widget);
+      break;
+    case 0x0033:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(2));
+      gtk_widget_destroy(widget);
+      break;
+    case 0x0034:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(3));
+      gtk_widget_destroy(widget);
+      break;
+    case 0x0035:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(4));
+      gtk_widget_destroy(widget);
+      break;
+    case 0x0036:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(5));
+      gtk_widget_destroy(widget);
+      break;
+    case 0x0037:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(6));
+      gtk_widget_destroy(widget);
+      break;
+    case 0x0038:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(7));
+      gtk_widget_destroy(widget);
+      break;
+    case 0x0039:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(8));
+      gtk_widget_destroy(widget);
+      break;
+  }
+  return FALSE;
+}
+
 /* Generates the small history menu */
 static gboolean show_history_menu(gpointer data)
 {
@@ -485,6 +532,7 @@ static gboolean show_history_menu(gpointer data)
   /* Create the menu */
   menu = gtk_menu_new();
   g_signal_connect((GObject*)menu, "selection-done", (GCallback)gtk_widget_destroy, NULL);
+  g_signal_connect((GObject*)menu, "key-press-event", (GCallback)menu_key_pressed, NULL);
   /* Items */
   if ((history != NULL) && (history->data != NULL))
   {
@@ -566,53 +614,6 @@ static gboolean show_history_menu(gpointer data)
   gtk_menu_popup((GtkMenu*)menu, NULL, NULL, NULL, NULL, 1, gtk_get_current_event_time());
   gtk_menu_shell_select_first((GtkMenuShell*)menu, TRUE);
   /* Return FALSE so the g_timeout_add() function is called only once */
-  return FALSE;
-}
-
-static gboolean menu_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
-{
-  switch (event->keyval) {
-    case 0x0030:
-      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(9));
-      gtk_widget_destroy(widget);
-      break;
-    case 0x0031:
-      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(0));
-      gtk_widget_destroy(widget);
-      break;
-    case 0x0032:
-      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(1));
-      gtk_widget_destroy(widget);
-      break;
-    case 0x0033:
-      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(2));
-      gtk_widget_destroy(widget);
-      break;
-    case 0x0034:
-      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(3));
-      gtk_widget_destroy(widget);
-      break;
-    case 0x0035:
-      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(4));
-      gtk_widget_destroy(widget);
-      break;
-    case 0x0036:
-      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(5));
-      gtk_widget_destroy(widget);
-      break;
-    case 0x0037:
-      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(6));
-      gtk_widget_destroy(widget);
-      break;
-    case 0x0038:
-      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(7));
-      gtk_widget_destroy(widget);
-      break;
-    case 0x0039:
-      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(8));
-      gtk_widget_destroy(widget);
-      break;
-  }
   return FALSE;
 }
 
