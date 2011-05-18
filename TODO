@@ -5,3 +5,5 @@
 + Redo Preferences dialog.
 + Clean up the code and indent it properly.
 + Move all pop-up and menu functions from main.c to menus.c.
++ Use the shipped icon in the display.
++ Fix the allowed keys in the manage history dialog.

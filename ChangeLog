@@ -1,3 +1,12 @@
+ClipIt-1.4.0-20110518001 - 18 May. 2011
+	+ Fixed: Re-enabled indicator support.
+	+ Added: We are now installing a sepparate icon for clipit (not using it
+			yet, though).
+	+ Added: Search as you type in "Manage history" dialog.
+	+ Added: 1-0 shortcuts for fast selecting of menu items.
+	+ Added: Possiblity to select multiple items for deletion in the
+			"Manage history" dialog.
+
 ClipIt-1.4.0-20110506001 - 06 May. 2011
 	+ Added: Added option to automatically paste an entry after selecting it.
 	+ Fixed: Re-enabled indicator since it should now work properly.
