@@ -1,5 +1,9 @@
+ClipIt-1.4.0-20110520002 - 20 May. 2011
+	+ Fixed: Remove duplicate truncate_history functionality.
+	+ Added: Added basic history item structure.
+
 ClipIt-1.4.0-20110520001 - 20 May. 2011
-	+ Fixed: Delted items are now properly removed from the history.
+	+ Fixed: Deleted items are now properly removed from the history.
 	+ Fixed: Double clicking an item in the "Manage history" dialog now
 			properly selects it again.
 	+ Added: [Enter] (for selecting the item) and [Delete] (for removing
