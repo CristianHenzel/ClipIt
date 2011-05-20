@@ -33,7 +33,7 @@
 GSList *history;
 
 /* Reads history from DATADIR/clipit/history */
-void read_history ()
+void read_history()
 {
 	/* Build file path */
 	gchar *history_path = g_build_filename(g_get_user_data_dir(),
@@ -140,18 +140,7 @@ void check_and_append(gchar *item)
 void append_item(gchar *item)
 {
 	history = g_slist_prepend(history, g_strdup(item));
-	/* Shorten history if necessary */
-	GSList *last_possible_element = g_slist_nth(history,
-						prefs.history_limit - 1);
-	if (last_possible_element)
-	{
-		/* Free last posible element and subsequent elements */
-		g_slist_free(last_possible_element->next);
-		last_possible_element->next = NULL;
-	}
-	/* Save changes */
-	if (prefs.save_history)
-		save_history();
+	truncate_history();
 }
 
 /* Truncates history to history_limit items */
