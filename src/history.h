@@ -32,21 +32,26 @@ G_BEGIN_DECLS
  * 1 GB of RAM. If you don't want that, set this lower.      */
 #define ENTRY_MAX_SIZE 1048576
 
-extern GSList* history;
+typedef struct {
+	gboolean is_static;
+	char *content;
+} history_item;
+
+extern GSList *history;
 
 void read_history();
 
 void save_history();
 
-void check_and_append(gchar* item);
+void check_and_append(gchar *item);
 
-void append_item(gchar* item);
+void append_item(gchar *item);
 
 void truncate_history();
 
 gpointer get_last_item();
 
-void delete_duplicate(gchar* item);
+void delete_duplicate(gchar *item);
 
 G_END_DECLS
 
