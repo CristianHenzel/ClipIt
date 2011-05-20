@@ -1,3 +1,10 @@
+ClipIt-1.4.0-20110520001 - 20 May. 2011
+	+ Fixed: Delted items are now properly removed from the history.
+	+ Fixed: Double clicking an item in the "Manage history" dialog now
+			properly selects it again.
+	+ Added: [Enter] (for selecting the item) and [Delete] (for removing
+			the item(s)) now works in the "Manage history" dialog.
+
 ClipIt-1.4.0-20110518002 - 18 May. 2011
 	+ Added: Also added 1-0 shortcuts to the history menu.
 

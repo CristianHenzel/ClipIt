@@ -26,6 +26,7 @@
 #include <glib.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
+#include <X11/keysym.h>
 #ifdef HAVE_APPINDICATOR
 #include <libappindicator/app-indicator.h>
 #endif
@@ -479,43 +480,43 @@ static gboolean show_actions_menu(gpointer data)
 static gboolean menu_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
 {
   switch (event->keyval) {
-    case 0x0030:
+    case XK_0:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(9));
       gtk_widget_destroy(widget);
       break;
-    case 0x0031:
+    case XK_1:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(0));
       gtk_widget_destroy(widget);
       break;
-    case 0x0032:
+    case XK_2:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(1));
       gtk_widget_destroy(widget);
       break;
-    case 0x0033:
+    case XK_3:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(2));
       gtk_widget_destroy(widget);
       break;
-    case 0x0034:
+    case XK_4:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(3));
       gtk_widget_destroy(widget);
       break;
-    case 0x0035:
+    case XK_5:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(4));
       gtk_widget_destroy(widget);
       break;
-    case 0x0036:
+    case XK_6:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(5));
       gtk_widget_destroy(widget);
       break;
-    case 0x0037:
+    case XK_7:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(6));
       gtk_widget_destroy(widget);
       break;
-    case 0x0038:
+    case XK_8:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(7));
       gtk_widget_destroy(widget);
       break;
-    case 0x0039:
+    case XK_9:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(8));
       gtk_widget_destroy(widget);
       break;
