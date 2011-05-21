@@ -1,3 +1,6 @@
+ClipIt-1.4.0-20110521001 - 21 May. 2011
+	+ Added: We are now using the shipped icon in the systray.
+
 ClipIt-1.4.0-20110520002 - 20 May. 2011
 	+ Fixed: Remove duplicate truncate_history functionality.
 	+ Added: Added basic history item structure.

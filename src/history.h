@@ -34,7 +34,7 @@ G_BEGIN_DECLS
 
 typedef struct {
 	gboolean is_static;
-	char *content;
+	gpointer content;
 } history_item;
 
 extern GSList *history;
