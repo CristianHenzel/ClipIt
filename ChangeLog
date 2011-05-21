@@ -1,3 +1,33 @@
+ClipIt-1.4.0-20110521001 - 21 May. 2011
+	+ Added: We are now using the shipped icon in the systray.
+
+ClipIt-1.4.0-20110520002 - 20 May. 2011
+	+ Fixed: Remove duplicate truncate_history functionality.
+	+ Added: Added basic history item structure.
+
+ClipIt-1.4.0-20110520001 - 20 May. 2011
+	+ Fixed: Deleted items are now properly removed from the history.
+	+ Fixed: Double clicking an item in the "Manage history" dialog now
+			properly selects it again.
+	+ Added: [Enter] (for selecting the item) and [Delete] (for removing
+			the item(s)) now works in the "Manage history" dialog.
+
+ClipIt-1.4.0-20110518002 - 18 May. 2011
+	+ Added: Also added 1-0 shortcuts to the history menu.
+
+ClipIt-1.4.0-20110518001 - 18 May. 2011
+	+ Fixed: Re-enabled indicator support.
+	+ Added: We are now installing a sepparate icon for clipit (not using it
+			yet, though).
+	+ Added: Search as you type in "Manage history" dialog.
+	+ Added: 1-0 shortcuts for fast selecting of menu items.
+	+ Added: Possiblity to select multiple items for deletion in the
+			"Manage history" dialog.
+
+ClipIt-1.4.0-20110506001 - 06 May. 2011
+	+ Added: Added option to automatically paste an entry after selecting it.
+	+ Fixed: Re-enabled indicator since it should now work properly.
+
 ClipIt-1.3.13-20110503001 - 03 May. 2011
 	+ Fixed: Bug in the indicator code that makes ClipIt crash X under
 			certain circumstances.
@@ -64,25 +94,26 @@ ClipIt-v1.3.3-23112010001 - 23 Nov. 2010
 			item properly.
 
 ClipIt-v1.3.2-22112010001 - 22 Nov. 2010
-	+ Fixed: Fixed most of the markup and indentation (replaced double spaces
-			with tabs).
-	+ Fixed: Removed clipboard restoring from history, as this seems to cause
-			more problems than it solves.
+	+ Fixed: Fixed most of the markup and indentation (replaced double
+			spaces with tabs).
+	+ Fixed: Removed clipboard restoring from history, as this seems to
+			cause more problems than it solves.
 
 ClipIt-v1.3.1-17112010001 - 17 Nov. 2010
 	+ Added: Added autostart support for LXDE.
 	+ Fixed: Fixed problem with "Edit" window not appearing.
 
 ClipIt-v1.3.0-14112010001 - 14 Nov. 2010
-	+ Added: Added "Edit" and "Remove" buttons to the "Manage History" dialog.
+	+ Added: Added "Edit" and "Remove" buttons to the "Manage History"
+			dialog.
 	+ Fixed: Major speed improvements for big history entries while:
 			searching through the history;
 			populating the "Manage History" dialog;
 			generating the popup menus;
 		All of these should now be more than 99% faster, at the expense
 		of an (at most) 1MB overhead. I think it's worth it, though.
-	+ Fixed: Fixed a drawing issue with the small history menu when activated
-			by clicking on the systray icon.
+	+ Fixed: Fixed a drawing issue with the small history menu when
+			activated by clicking on the systray icon.
 
 ClipIt-v1.2.6-12112010003 - 12 Nov. 2010
 	+ Fixed: Removed reference to pthread.h from configure.in.
@@ -91,8 +122,8 @@ ClipIt-v1.2.6-12112010003 - 12 Nov. 2010
 ClipIt-v1.2.5-12112010002 - 12 Nov. 2010
 	+ Fixed: Now using autopoint instead of gettextize to avoid waiting for
 			user input.
-	+ Fixed: Added AM_MAINTAINER_MODE, to get rid of the disable-maintainer-mode
-			warning.
+	+ Fixed: Added AM_MAINTAINER_MODE, to get rid of the
+			disable-maintainer-mode warning.
 	+ Fixed: Fixed a small typo in main.c.
 	+ Fixed: removed dependency of pthread.h (the pthread_exit function that
 			we use is also included in glib.h).
@@ -135,9 +166,10 @@ ClipIt-v1.0.0-05112010001 - 05 Nov. 2010
 		+ Created "Small history" for quick access to last used items.
 		+ Renamed the old history to "Full history".
 		+ "Full history" can now hold up to 1000 items.
-		+ Ability to put the button for the "Full history" in the systray
-			menu.
-		+ Created a Search function, which allows searching through history.
+		+ Ability to put the button for the "Full history" in the
+			systray menu.
+		+ Created a Search function, which allows searching through
+			history.
 		+ Added Search hotkey.
 		+ Created Exceptions:
 			you can enter C or Perl regex into the window and

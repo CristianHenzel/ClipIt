@@ -26,6 +26,7 @@
 #include <glib.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
+#include <X11/keysym.h>
 #ifdef HAVE_APPINDICATOR
 #include <libappindicator/app-indicator.h>
 #endif
@@ -43,6 +44,7 @@ static gchar* clipboard_text;
 static gchar* synchronized_text;
 static GtkClipboard* primary;
 static GtkClipboard* clipboard;
+static char *trayicon_path;
 #ifdef HAVE_APPINDICATOR
 static AppIndicator *indicator;
 static GtkWidget *indicator_menu = NULL;
@@ -55,13 +57,13 @@ static gboolean status_menu_lock = FALSE;
 static gboolean actions_lock = FALSE;
 
 /* Init preferences structure */
-prefs_t prefs = {DEF_USE_COPY,        DEF_USE_PRIMARY,      DEF_SYNCHRONIZE,
-                 DEF_SHOW_INDEXES,    DEF_SAVE_URIS,        DEF_SAVE_HISTORY,
-                 DEF_HISTORY_LIMIT,   DEF_ITEMS_MENU,       DEF_HYPERLINKS_ONLY,
-                 DEF_CONFIRM_CLEAR,   DEF_SINGLE_LINE,      DEF_REVERSE_HISTORY,
-                 DEF_ITEM_LENGTH,     DEF_ELLIPSIZE,        INIT_HISTORY_KEY,
-                 INIT_ACTIONS_KEY,    INIT_MENU_KEY,        INIT_SEARCH_KEY,
-                 DEF_NO_ICON};
+prefs_t prefs = {DEF_USE_COPY,         DEF_USE_PRIMARY,      DEF_SYNCHRONIZE,
+                 DEF_AUTOMATIC_PASTE,  DEF_SHOW_INDEXES,     DEF_SAVE_URIS,
+                 DEF_SAVE_HISTORY,     DEF_HISTORY_LIMIT,    DEF_ITEMS_MENU,
+                 DEF_HYPERLINKS_ONLY,  DEF_CONFIRM_CLEAR,    DEF_SINGLE_LINE,
+                 DEF_REVERSE_HISTORY,  DEF_ITEM_LENGTH,      DEF_ELLIPSIZE,
+                 INIT_HISTORY_KEY,     INIT_ACTIONS_KEY,     INIT_MENU_KEY,
+                 INIT_SEARCH_KEY,      DEF_NO_ICON};
 
 /* Called every CHECK_INTERVAL seconds to check for new items */
 static gboolean item_check(gpointer data)
@@ -128,7 +130,7 @@ static gboolean item_check(gpointer data)
       }
     }
   }
-  
+
   /* Check if clipboard contents were lost */
   if ((clipboard_temp == NULL) && (clipboard_text != NULL))
   {
@@ -169,7 +171,7 @@ static gboolean item_check(gpointer data)
       }
     }
   }
-  
+
   /* Synchronization */
   if (prefs.synchronize)
   {
@@ -186,12 +188,21 @@ static gboolean item_check(gpointer data)
       gtk_clipboard_set_text(primary, clipboard_text, -1);
     }
   }
-  
+
   /* Cleanup */
   g_free(primary_temp);
   g_free(clipboard_temp);
 
   return TRUE;
+}
+
+static void set_icon_paths() {
+	gchar *pixmap_dir = g_build_path(G_DIR_SEPARATOR_S, g_get_user_data_dir(), DATA_DIR, "pixmaps", NULL);
+	gchar *test_path = g_build_path(G_DIR_SEPARATOR_S, pixmap_dir, "trayicon.svg", NULL);
+	if (g_file_test(test_path, G_FILE_TEST_EXISTS))
+		trayicon_path = test_path;
+	else
+		trayicon_path = g_build_path(G_DIR_SEPARATOR_S, CLIPITPIXMAPSDIR, "trayicon.svg", NULL);
 }
 
 /* Thread function called for each action performed */
@@ -229,7 +240,7 @@ static void action_selected(GtkButton *button, gpointer user_data)
   g_free(command);
   gchar* cmd = g_strconcat("/bin/sh -c ", shell_command, NULL);
   g_free(shell_command);
-  
+
   /* Execute action */
   GPid pid;
   gchar **argv;
@@ -256,6 +267,17 @@ static void item_selected(GtkMenuItem *menu_item, gpointer user_data)
   GSList* element = g_slist_nth(history, GPOINTER_TO_INT(user_data));
   gtk_clipboard_set_text(clipboard, (gchar*)element->data, -1);
   gtk_clipboard_set_text(primary, (gchar*)element->data, -1);
+  /* Paste the clipboard contents automatically if enabled */
+  if (prefs.automatic_paste) {
+    gchar* cmd = g_strconcat("/bin/sh -c 'xdotool key ctrl+v'", NULL);
+    GPid pid;
+    gchar **argv;
+    g_shell_parse_argv(cmd, NULL, &argv, NULL);
+    g_free(cmd);
+    g_spawn_async(NULL, argv, NULL, G_SPAWN_DO_NOT_REAP_CHILD, NULL, NULL, &pid, NULL);
+    g_child_watch_add(pid, (GChildWatchFunc)action_exit, NULL);
+    g_strfreev(argv);
+  }
 }
 
 /* Clears all local data (specific to main.c) */
@@ -291,22 +313,22 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
       "\n"
       "You should have received a copy of the GNU General Public License\n"
       "along with this program.  If not, see <http://www.gnu.org/licenses/>.";
-    
+
     /* Create the about dialog */
     GtkWidget* about_dialog = gtk_about_dialog_new();
     gtk_window_set_icon((GtkWindow*)about_dialog,
                         gtk_widget_render_icon(about_dialog, GTK_STOCK_ABOUT, GTK_ICON_SIZE_MENU, NULL));
-    
+
     gtk_about_dialog_set_name((GtkAboutDialog*)about_dialog, "ClipIt");
     #ifdef HAVE_CONFIG_H
     gtk_about_dialog_set_version((GtkAboutDialog*)about_dialog, VERSION);
     #endif
     gtk_about_dialog_set_comments((GtkAboutDialog*)about_dialog,
                                 _("Lightweight GTK+ clipboard manager."));
-    
+
     gtk_about_dialog_set_website((GtkAboutDialog*)about_dialog,
                                  "http://clipit.rspwn.com/");
-    
+
     gtk_about_dialog_set_copyright((GtkAboutDialog*)about_dialog, "Copyright (C) 2010 Cristian Henzel");
     gtk_about_dialog_set_authors((GtkAboutDialog*)about_dialog, authors);
     gtk_about_dialog_set_translator_credits ((GtkAboutDialog*)about_dialog,
@@ -328,7 +350,7 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
                                              "Hedef Türkçe <iletisim@hedefturkce.com>\n"
                                              "Lyman Li <lymanrb@gmail.com>\n"
                                              "Gilberto \"Xyhthyx\" Miralla <xyhthyx@gmail.com>");
-    
+
     gtk_about_dialog_set_license((GtkAboutDialog*)about_dialog, license);
     gtk_about_dialog_set_logo_icon_name((GtkAboutDialog*)about_dialog, GTK_STOCK_PASTE);
     /* Run the about dialog */
@@ -361,7 +383,7 @@ static gboolean show_actions_menu(gpointer data)
   /* Declare some variables */
   GtkWidget *menu,       *menu_item,
             *menu_image, *item_label;
-  
+
   /* Create menu */
   menu = gtk_menu_new();
   g_signal_connect((GObject*)menu, "selection-done", (GCallback)gtk_widget_destroy, NULL);
@@ -465,6 +487,53 @@ static gboolean show_actions_menu(gpointer data)
   return FALSE;
 }
 
+static gboolean menu_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
+{
+  switch (event->keyval) {
+    case XK_0:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(9));
+      gtk_widget_destroy(widget);
+      break;
+    case XK_1:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(0));
+      gtk_widget_destroy(widget);
+      break;
+    case XK_2:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(1));
+      gtk_widget_destroy(widget);
+      break;
+    case XK_3:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(2));
+      gtk_widget_destroy(widget);
+      break;
+    case XK_4:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(3));
+      gtk_widget_destroy(widget);
+      break;
+    case XK_5:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(4));
+      gtk_widget_destroy(widget);
+      break;
+    case XK_6:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(5));
+      gtk_widget_destroy(widget);
+      break;
+    case XK_7:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(6));
+      gtk_widget_destroy(widget);
+      break;
+    case XK_8:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(7));
+      gtk_widget_destroy(widget);
+      break;
+    case XK_9:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(8));
+      gtk_widget_destroy(widget);
+      break;
+  }
+  return FALSE;
+}
+
 /* Generates the small history menu */
 static gboolean show_history_menu(gpointer data)
 {
@@ -474,6 +543,7 @@ static gboolean show_history_menu(gpointer data)
   /* Create the menu */
   menu = gtk_menu_new();
   g_signal_connect((GObject*)menu, "selection-done", (GCallback)gtk_widget_destroy, NULL);
+  g_signal_connect((GObject*)menu, "key-press-event", (GCallback)menu_key_pressed, NULL);
   /* Items */
   if ((history != NULL) && (history->data != NULL))
   {
@@ -507,11 +577,11 @@ static gboolean show_history_menu(gpointer data)
       }
       menu_item = gtk_menu_item_new_with_label(list_item);
       g_signal_connect((GObject*)menu_item, "activate", (GCallback)item_selected, GINT_TO_POINTER(element_number));
-      
+
       /* Modify menu item label properties */
       item_label = gtk_bin_get_child((GtkBin*)menu_item);
       gtk_label_set_single_line_mode((GtkLabel*)item_label, prefs.single_line);
-      
+
       /* Check if item is also clipboard text and make bold */
       if ((clipboard_temp) && (g_strcmp0((gchar*)element->data, clipboard_temp) == 0))
       {
@@ -693,6 +763,7 @@ static gboolean show_clipit_menu()
 	/* Create the menu */
 	statusicon_menu = gtk_menu_new();
 	g_signal_connect((GObject*)statusicon_menu, "selection-done", (GCallback)gtk_widget_destroy, NULL);
+	g_signal_connect((GObject*)statusicon_menu, "key-press-event", (GCallback)menu_key_pressed, NULL);
 
 	/* Items */
 	if ((history != NULL) && (history->data != NULL))
@@ -876,10 +947,11 @@ static void clipit_init()
 	/* Create status icon */
 	if (!prefs.no_icon)
 	{
+	set_icon_paths();
 #ifdef HAVE_APPINDICATOR
 	create_app_indicator(1);
 #else
-	status_icon = gtk_status_icon_new_from_stock(GTK_STOCK_PASTE);
+	status_icon = gtk_status_icon_new_from_file(trayicon_path);
 	gtk_status_icon_set_tooltip((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
 	g_signal_connect((GObject*)status_icon, "button_press_event", (GCallback)status_icon_clicked, NULL);
 #endif
@@ -936,7 +1008,7 @@ int main(int argc, char **argv)
 			g_string_free(piped_string, TRUE);
 		}
 	}
-	
+
 	/* Init ClipIt */
 	clipit_init();
 

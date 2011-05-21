@@ -32,6 +32,7 @@
 GtkWidget *copy_check,
           *primary_check,
           *synchronize_check,
+          *paste_check,
           *show_indexes_check,
           *save_uris_check,
           *history_spin,
@@ -74,6 +75,7 @@ static void apply_preferences()
   prefs.use_copy = gtk_toggle_button_get_active((GtkToggleButton*)copy_check);
   prefs.use_primary = gtk_toggle_button_get_active((GtkToggleButton*)primary_check);
   prefs.synchronize = gtk_toggle_button_get_active((GtkToggleButton*)synchronize_check);
+  prefs.automatic_paste = gtk_toggle_button_get_active((GtkToggleButton*)paste_check);
   prefs.show_indexes = gtk_toggle_button_get_active((GtkToggleButton*)show_indexes_check);
   prefs.save_uris = gtk_toggle_button_get_active((GtkToggleButton*)save_uris_check);
   prefs.save_history = gtk_toggle_button_get_active((GtkToggleButton*)save_check);
@@ -108,6 +110,7 @@ static void save_preferences()
   g_key_file_set_boolean(rc_key, "rc", "use_copy", prefs.use_copy);
   g_key_file_set_boolean(rc_key, "rc", "use_primary", prefs.use_primary);
   g_key_file_set_boolean(rc_key, "rc", "synchronize", prefs.synchronize);
+  g_key_file_set_boolean(rc_key, "rc", "automatic_paste", prefs.automatic_paste);
   g_key_file_set_boolean(rc_key, "rc", "show_indexes", prefs.show_indexes);
   g_key_file_set_boolean(rc_key, "rc", "save_uris", prefs.save_uris);
   g_key_file_set_boolean(rc_key, "rc", "save_history", prefs.save_history);
@@ -211,6 +214,7 @@ void read_preferences()
     prefs.use_copy = g_key_file_get_boolean(rc_key, "rc", "use_copy", NULL);
     prefs.use_primary = g_key_file_get_boolean(rc_key, "rc", "use_primary", NULL);
     prefs.synchronize = g_key_file_get_boolean(rc_key, "rc", "synchronize", NULL);
+    prefs.automatic_paste = g_key_file_get_boolean(rc_key, "rc", "automatic_paste", NULL);
     prefs.show_indexes = g_key_file_get_boolean(rc_key, "rc", "show_indexes", NULL);
     prefs.save_uris = g_key_file_get_boolean(rc_key, "rc", "save_uris", NULL);
     prefs.save_history = g_key_file_get_boolean(rc_key, "rc", "save_history", NULL);
@@ -651,6 +655,9 @@ void show_preferences(gint tab)
   gtk_box_pack_start((GtkBox*)vbox, primary_check, FALSE, FALSE, 0);
   synchronize_check = gtk_check_button_new_with_mnemonic(_("S_ynchronize clipboards"));
   gtk_box_pack_start((GtkBox*)vbox, synchronize_check, FALSE, FALSE, 0);
+  paste_check = gtk_check_button_new_with_mnemonic(_("_Automatically paste selected item"));
+  g_signal_connect((GObject*)paste_check, "toggled", (GCallback)check_toggled, NULL);
+  gtk_box_pack_start((GtkBox*)vbox, paste_check, FALSE, FALSE, 0);
   gtk_box_pack_start((GtkBox*)vbox_settings, frame, FALSE, FALSE, 0);
 
   /* Build the miscellaneous frame */
@@ -957,6 +964,7 @@ void show_preferences(gint tab)
   gtk_toggle_button_set_active((GtkToggleButton*)copy_check, prefs.use_copy);
   gtk_toggle_button_set_active((GtkToggleButton*)primary_check, prefs.use_primary);
   gtk_toggle_button_set_active((GtkToggleButton*)synchronize_check, prefs.synchronize);
+  gtk_toggle_button_set_active((GtkToggleButton*)paste_check, prefs.automatic_paste);
   gtk_toggle_button_set_active((GtkToggleButton*)show_indexes_check, prefs.show_indexes);
   gtk_toggle_button_set_active((GtkToggleButton*)save_uris_check, prefs.save_uris);
   gtk_toggle_button_set_active((GtkToggleButton*)save_check, prefs.save_history);

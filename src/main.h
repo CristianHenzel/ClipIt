@@ -30,11 +30,11 @@ G_BEGIN_DECLS
 #define POPUP_DELAY    30
 #define CHECK_INTERVAL 500
 
-typedef struct
-{
+typedef struct {
   gboolean  use_copy;         /* Use copy */
   gboolean  use_primary;      /* Use primary */
   gboolean  synchronize;      /* Synchronize copy and primary */
+  gboolean  automatic_paste;  /* Automatically paste entry after selecting it */
   gboolean  show_indexes;     /* Show index numbers in history menu */
   gboolean  save_uris;        /* Save URIs in history */
   
@@ -58,8 +58,7 @@ typedef struct
   gchar*    search_key;       /* ClipIt search hotkey */
   
   gboolean  no_icon;          /* No icon */
-}
-prefs_t;
+} prefs_t;
 
 extern prefs_t prefs;
 
