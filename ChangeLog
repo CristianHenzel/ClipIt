@@ -1,3 +1,6 @@
+ClipIt-1.4.0-20110521002 - 21 May. 2011
+	+ Fixed: Fixed wrong selection behaviour in "Manage history" dialog.
+
 ClipIt-1.4.0-20110521001 - 21 May. 2011
 	+ Added: We are now using the shipped icon in the systray.
 

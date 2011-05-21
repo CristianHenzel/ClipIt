@@ -192,11 +192,9 @@ static void remove_selected()
   GtkTreeSelection* search_selection = gtk_tree_view_get_selection((GtkTreeView*)treeview_search);
   gint selected_count = gtk_tree_selection_count_selected_rows(search_selection);
   if (selected_count > 0) {
-    GtkListStore *store;
-    GArray *sel;
     gint i;
-    store = GTK_LIST_STORE(gtk_tree_view_get_model((GtkTreeView*)treeview_search));
-    sel = g_array_new(FALSE, FALSE, sizeof(GtkTreeIter));
+    GtkListStore *store = GTK_LIST_STORE(gtk_tree_view_get_model((GtkTreeView*)treeview_search));
+    GArray *sel = g_array_new(FALSE, FALSE, sizeof(GtkTreeIter));
     gtk_tree_selection_selected_foreach(search_selection, add_iter, sel);
     gtk_tree_selection_unselect_all(search_selection);
     for (i = 0; i < sel->len; i++) {
@@ -256,11 +254,12 @@ static void search_doubleclick()
   gint selected_count = gtk_tree_selection_count_selected_rows(search_selection);
   if (selected_count == 1) {
     gint selected_item_nr;
-    GList *selected_rows = gtk_tree_selection_get_selected_rows(search_selection, NULL);
-    GList *row_loop = g_list_first(selected_rows);
-    selected_item_nr = atoi((gchar*)gtk_tree_path_to_string(row_loop->data));
-    g_list_foreach(selected_rows, (GFunc)gtk_tree_path_free, NULL);
-    g_list_free(selected_rows);
+    GArray *sel = g_array_new(FALSE, FALSE, sizeof(GtkTreeIter));
+    gtk_tree_selection_selected_foreach(search_selection, add_iter, sel);
+    gtk_tree_selection_unselect_all(search_selection);
+    GtkTreeIter *iter = &g_array_index(sel, GtkTreeIter, 0);
+    gtk_tree_model_get((GtkTreeModel*)search_list, iter, 0, &selected_item_nr, -1);
+    g_array_free(sel, TRUE);
     GSList *element = g_slist_nth(history, selected_item_nr);
     GtkClipboard* prim = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
     GtkClipboard* clip = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
