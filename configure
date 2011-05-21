@@ -7487,7 +7487,7 @@ APPINDICATOR_REQUIRED_VERSION=0.2.4
 if test "${enable_appindicator+set}" = set; then :
   enableval=$enable_appindicator; enable_appindicator=$enableval
 else
-  enable_appindicator="no"
+  enable_appindicator="auto"
 fi
 
 
