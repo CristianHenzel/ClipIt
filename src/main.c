@@ -44,6 +44,7 @@ static gchar* clipboard_text;
 static gchar* synchronized_text;
 static GtkClipboard* primary;
 static GtkClipboard* clipboard;
+static char *trayicon_path;
 #ifdef HAVE_APPINDICATOR
 static AppIndicator *indicator;
 static GtkWidget *indicator_menu = NULL;
@@ -193,6 +194,15 @@ static gboolean item_check(gpointer data)
   g_free(clipboard_temp);
 
   return TRUE;
+}
+
+static void set_icon_paths() {
+	gchar *pixmap_dir = g_build_path(G_DIR_SEPARATOR_S, g_get_user_data_dir(), DATA_DIR, "pixmaps", NULL);
+	gchar *test_path = g_build_path(G_DIR_SEPARATOR_S, pixmap_dir, "trayicon.svg", NULL);
+	if (g_file_test(test_path, G_FILE_TEST_EXISTS))
+		trayicon_path = test_path;
+	else
+		trayicon_path = g_build_path(G_DIR_SEPARATOR_S, CLIPITPIXMAPSDIR, "trayicon.svg", NULL);
 }
 
 /* Thread function called for each action performed */
@@ -937,10 +947,11 @@ static void clipit_init()
 	/* Create status icon */
 	if (!prefs.no_icon)
 	{
+	set_icon_paths();
 #ifdef HAVE_APPINDICATOR
 	create_app_indicator(1);
 #else
-	status_icon = gtk_status_icon_new_from_stock(GTK_STOCK_PASTE);
+	status_icon = gtk_status_icon_new_from_file(trayicon_path);
 	gtk_status_icon_set_tooltip((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
 	g_signal_connect((GObject*)status_icon, "button_press_event", (GCallback)status_icon_clicked, NULL);
 #endif
