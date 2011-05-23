@@ -1,3 +1,7 @@
+ClipIt-1.4.1-20110523001 - 23 May. 2011
+	+ Fixed: Removed some files from git again. You now need to run
+			./autogen.sh first when building from git.
+
 ClipIt-1.4.0-20110521002 - 21 May. 2011
 	+ Fixed: Fixed wrong selection behaviour in "Manage history" dialog.
 

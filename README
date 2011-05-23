@@ -22,6 +22,7 @@ How to compile and install clipit
 
 Requirements:
 	* gtk+ >= 2.10.0
+	* xdotool
 
 Download the clipit source code, then:
 	$ tar zxvf clipit-x.y.z.tar.gz
