@@ -1,3 +1,9 @@
+ClipIt-1.4.1-20110523003 - 23 May 2011
+
+	+ Fixed: We are now checking if the history should be saved in the
+			save_history function itself.
+	+ Fixed: Indicator menu should now refresh even if "Save history"
+			is disabled.
 ClipIt-1.4.1-20110523002 - 23 May. 2011
 	+ Fixed: Unified indicator and systray menu into a single function.
 

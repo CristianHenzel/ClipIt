@@ -73,35 +73,37 @@ void read_history()
 /* Saves history to DATADIR/clipit/history */
 void save_history()
 {
-	/* Check that the directory is available */
-	check_dirs();
-	/* Build file path */
-	gchar *history_path = g_build_filename(g_get_user_data_dir(),
-						HISTORY_FILE,
-						NULL);
-	/* Open the file for writing */
-	FILE *history_file = fopen(history_path, "wb");
-	g_free(history_path);
-	/* Check that it opened and begin write */
-	if (history_file)
-	{
-		GSList *element;
-		/* Write each element to a binary file */
-		for (element = history; element != NULL; element = element->next)
+	if(prefs.save_history) {
+		/* Check that the directory is available */
+		check_dirs();
+		/* Build file path */
+		gchar *history_path = g_build_filename(g_get_user_data_dir(),
+							HISTORY_FILE,
+							NULL);
+		/* Open the file for writing */
+		FILE *history_file = fopen(history_path, "wb");
+		g_free(history_path);
+		/* Check that it opened and begin write */
+		if (history_file)
 		{
-			/* Create new GString from element data, write its
-			 * length (size) to file followed by the element
-			 * data itself
-			 */
-			GString *item = g_string_new((gchar*)element->data);
-			fwrite(&(item->len), 4, 1, history_file);
-			fputs(item->str, history_file);
-			g_string_free(item, TRUE);
+			GSList *element;
+			/* Write each element to a binary file */
+			for (element = history; element != NULL; element = element->next)
+			{
+				/* Create new GString from element data, write its
+				 * length (size) to file followed by the element
+				 * data itself
+				 */
+				GString *item = g_string_new((gchar*)element->data);
+				fwrite(&(item->len), 4, 1, history_file);
+				fputs(item->str, history_file);
+				g_string_free(item, TRUE);
+			}
+			/* Write 0 to indicate end of file */
+			gint end = 0;
+			fwrite(&end, 4, 1, history_file);
+			fclose(history_file);
 		}
-		/* Write 0 to indicate end of file */
-		gint end = 0;
-		fwrite(&end, 4, 1, history_file);
-		fclose(history_file);
 	}
 	/* Refresh indicator menu. Temporary solution until
 	 * getting the visible status of the menu is supported by the API
@@ -158,8 +160,7 @@ void truncate_history()
 			last_possible_element->next = NULL;
 		}
 		/* Save changes */
-		if (prefs.save_history)
-			save_history();
+		save_history();
 	}
 }
 
