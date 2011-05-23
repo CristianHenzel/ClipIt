@@ -1,3 +1,6 @@
+ClipIt-1.4.1-20110523002 - 23 May. 2011
+	+ Fixed: Unified indicator and systray menu into a single function.
+
 ClipIt-1.4.1-20110523001 - 23 May. 2011
 	+ Fixed: Removed some files from git again. You now need to run
 			./autogen.sh first when building from git.
