@@ -61,8 +61,7 @@ void check_dirs()
 }
 
 /* Returns TRUE if text is a hyperlink */
-gboolean
-is_hyperlink(gchar *text)
+gboolean is_hyperlink(gchar *text)
 {
 	/* TODO: I need a better regex, this one is poor */
 	GRegex *regex = g_regex_new("([A-Za-z][A-Za-z0-9+.-]{1,120}:[A-Za-z0-9/]" \
@@ -73,44 +72,6 @@ is_hyperlink(gchar *text)
 	gboolean result = g_regex_match(regex, text, 0, NULL);
 	g_regex_unref(regex);
 	return result;
-}
-
-/* Returns TRUE if text should be excluded from history */
-gboolean is_excluded(gchar *text)
-{
-	/* Open the file for reading */
-	gchar *path = g_build_filename(g_get_user_data_dir(), EXCLUDES_FILE, NULL);
-	FILE *excludes_file = fopen(path, "rb");
-	g_free(path);
-	/* Check that it opened and begin read */
-	if (excludes_file)
-	{
-		/* Keep a row reference */
-		GtkTreeIter row_iter;
-		/* Read the size of the first item */
-		gint size;
-		size_t fread_return;
-		fread_return = fread(&size, 4, 1, excludes_file);
-		/* Continue reading until size is 0 */
-		while (size != 0)
-		{
-			/* Read Regex */
-			gchar *regex = (gchar*)g_malloc(size + 1);
-			fread_return = fread(regex, size, 1, excludes_file);
-			regex[size] = '\0';
-			fread_return = fread(&size, 4, 1, excludes_file);
-			/* Append the read action */
-			GRegex *regexp = g_regex_new(regex, G_REGEX_CASELESS, 0, NULL);
-			gboolean result = g_regex_match(regexp, text, 0, NULL);
-			g_regex_unref(regexp);
-			g_free(regex);
-			if(result)
-				return result;
-		}
-		fclose(excludes_file);
-	}
-	else
-		return FALSE;
 }
 
 /* Ellipsize a string according to the settings */
