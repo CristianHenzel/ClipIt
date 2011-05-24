@@ -92,7 +92,7 @@ static gboolean item_check(gpointer data)
       }
       /* else
        * {
-       *  /* else, we restore from history 
+       *  // else, we restore from history
        *  GSList* element = g_slist_nth(history, 0);
        *  gtk_clipboard_set_text(primary, (gchar*)element->data, -1);
        * }
@@ -205,19 +205,6 @@ static void set_icon_paths() {
 		trayicon_path = g_build_path(G_DIR_SEPARATOR_S, CLIPITPIXMAPSDIR, "trayicon.svg", NULL);
 }
 
-/* Thread function called for each action performed */
-static void *execute_action(void *command)
-{
-  /* Execute action */
-  int sys_return;
-  actions_lock = TRUE;
-  sys_return = system((gchar*)command);
-  actions_lock = FALSE;
-  g_free((gchar*)command);
-  /* Exit this thread */
-  pthread_exit(NULL);
-}
-
 /* Called when execution action exits */
 static void action_exit(GPid pid, gint status, gpointer data)
 {
@@ -265,8 +252,9 @@ static void item_selected(GtkMenuItem *menu_item, gpointer user_data)
 {
   /* Get the text from the right element and set as clipboard */
   GSList* element = g_slist_nth(history, GPOINTER_TO_INT(user_data));
-  gtk_clipboard_set_text(clipboard, (gchar*)element->data, -1);
-  gtk_clipboard_set_text(primary, (gchar*)element->data, -1);
+  history_item *elem_data = element->data;
+  gtk_clipboard_set_text(clipboard, (gchar*)elem_data->content, -1);
+  gtk_clipboard_set_text(primary, (gchar*)elem_data->content, -1);
   /* Paste the clipboard contents automatically if enabled */
   if (prefs.automatic_paste) {
     gchar* cmd = g_strconcat("/bin/sh -c 'xdotool key ctrl+v'", NULL);
@@ -538,7 +526,7 @@ static gboolean menu_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer
 static gboolean show_history_menu(gpointer data)
 {
   /* Declare some variables */
-  GtkWidget *menu, *menu_item, *menu_image, *item_label;
+  GtkWidget *menu, *menu_item, *item_label;
   
   /* Create the menu */
   menu = gtk_menu_new();
@@ -562,7 +550,8 @@ static gboolean show_history_menu(gpointer data)
     /* Go through each element and adding each */
     for (element = history; (element != NULL) && (element_number_small < prefs.items_menu); element = element->next)
     {
-      GString* string = g_string_new((gchar*)element->data);
+      history_item *elem_data = element->data;
+      GString* string = g_string_new((gchar*)elem_data->content);
       /* Ellipsize text */
       string = ellipsize_string(string);
       /* Remove control characters */
@@ -583,13 +572,13 @@ static gboolean show_history_menu(gpointer data)
       gtk_label_set_single_line_mode((GtkLabel*)item_label, prefs.single_line);
 
       /* Check if item is also clipboard text and make bold */
-      if ((clipboard_temp) && (g_strcmp0((gchar*)element->data, clipboard_temp) == 0))
+      if ((clipboard_temp) && (g_strcmp0((gchar*)elem_data->content, clipboard_temp) == 0))
       {
         gchar* bold_text = g_markup_printf_escaped("<b>%s</b>", list_item);
         gtk_label_set_markup((GtkLabel*)item_label, bold_text);
         g_free(bold_text);
       }
-      else if ((primary_temp) && (g_strcmp0((gchar*)element->data, primary_temp) == 0))
+      else if ((primary_temp) && (g_strcmp0((gchar*)elem_data->content, primary_temp) == 0))
       {
         gchar* italic_text = g_markup_printf_escaped("<i>%s</i>", list_item);
         gtk_label_set_markup((GtkLabel*)item_label, italic_text);
@@ -650,7 +639,8 @@ static GtkWidget *create_tray_menu(GtkWidget *tray_menu)
 		/* Go through each element and adding each */
 		for (element = history; (element != NULL) && (element_number_small < prefs.items_menu); element = element->next)
 		{
-			GString* string = g_string_new((gchar*)element->data);
+			history_item *elem_data = element->data;
+			GString* string = g_string_new((gchar*)elem_data->content);
 			/* Ellipsize text */
 			string = ellipsize_string(string);
 			/* Remove control characters */
@@ -673,13 +663,13 @@ static GtkWidget *create_tray_menu(GtkWidget *tray_menu)
 			gtk_label_set_single_line_mode((GtkLabel*)item_label, prefs.single_line);
 
 			/* Check if item is also clipboard text and make bold */
-			if ((clipboard_temp) && (g_strcmp0((gchar*)element->data, clipboard_temp) == 0))
+			if ((clipboard_temp) && (g_strcmp0((gchar*)elem_data->content, clipboard_temp) == 0))
 			{
 				gchar* bold_text = g_markup_printf_escaped("<b>%s</b>", list_item);
 				gtk_label_set_markup((GtkLabel*)item_label, bold_text);
 				g_free(bold_text);
 			}
-			else if ((primary_temp) && (g_strcmp0((gchar*)element->data, primary_temp) == 0))
+			else if ((primary_temp) && (g_strcmp0((gchar*)elem_data->content, primary_temp) == 0))
 			{
 				gchar* italic_text = g_markup_printf_escaped("<i>%s</i>", list_item);
 				gtk_label_set_markup((GtkLabel*)item_label, italic_text);
@@ -753,7 +743,7 @@ void create_app_indicator(gint create)
 #else
 
 /* Called when status icon is clicked */
-static gboolean show_clipit_menu()
+static void show_clipit_menu()
 {
 	/* If the menu is visible, we don't do anything, so that it gets hidden */
 	if((statusicon_menu != NULL) && gtk_widget_get_visible((GtkWidget *)statusicon_menu))
@@ -813,7 +803,7 @@ void actions_hotkey(char *keystring, gpointer user_data)
 void menu_hotkey(char *keystring, gpointer user_data)
 {
 #ifndef HAVE_APPINDICATOR
-	show_clipit_menu(status_icon, 0, 0);
+	show_clipit_menu();
 #endif
 }
 

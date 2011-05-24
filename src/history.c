@@ -32,6 +32,41 @@
 
 GSList *history;
 
+/* Returns TRUE if text should be excluded from history */
+static gboolean is_excluded(gchar *text)
+{
+	/* Open the file for reading */
+	gchar *path = g_build_filename(g_get_user_data_dir(), EXCLUDES_FILE, NULL);
+	FILE *excludes_file = fopen(path, "rb");
+	g_free(path);
+	/* Check that it opened and begin read */
+	if (excludes_file)
+	{
+		/* Read the size of the first item */
+		gint size;
+		size_t fread_return;
+		fread_return = fread(&size, 4, 1, excludes_file);
+		/* Continue reading until size is 0 */
+		while (size != 0)
+		{
+			/* Read Regex */
+			gchar *regex = (gchar*)g_malloc(size + 1);
+			fread_return = fread(regex, size, 1, excludes_file);
+			regex[size] = '\0';
+			fread_return = fread(&size, 4, 1, excludes_file);
+			/* Append the read action */
+			GRegex *regexp = g_regex_new(regex, G_REGEX_CASELESS, 0, NULL);
+			gboolean result = g_regex_match(regexp, text, 0, NULL);
+			g_regex_unref(regexp);
+			g_free(regex);
+			if(result)
+				return result;
+		}
+		fclose(excludes_file);
+	}
+	return FALSE;
+}
+
 /* Reads history from DATADIR/clipit/history */
 void read_history()
 {
@@ -60,7 +95,9 @@ void read_history()
 			fread_return = fread(item, size, 1, history_file);
 			item[size] = '\0';
 			/* Prepend item and read next size */
-			history = g_slist_prepend(history, item);
+			history_item *hitem = g_new0 (history_item, 1);
+			hitem->content = item;
+			history = g_slist_prepend(history, hitem);
 			if (fread(&size, 4, 1, history_file) != 1)
 				size = 0;
 		}
@@ -94,7 +131,8 @@ void save_history()
 				 * length (size) to file followed by the element
 				 * data itself
 				 */
-				GString *item = g_string_new((gchar*)element->data);
+				history_item *elem_data = element->data;
+				GString *item = g_string_new((gchar*)elem_data->content);
 				fwrite(&(item->len), 4, 1, history_file);
 				fputs(item->str, history_file);
 				g_string_free(item, TRUE);
@@ -141,7 +179,9 @@ void check_and_append(gchar *item)
 /* Adds item to the end of history */
 void append_item(gchar *item)
 {
-	history = g_slist_prepend(history, g_strdup(item));
+	history_item *hitem = g_new0(history_item, 1);
+	hitem->content = g_strdup(item);
+	history = g_slist_prepend(history, hitem);
 	truncate_history();
 }
 
@@ -169,10 +209,11 @@ gpointer get_last_item()
 {
 	if (history)
 	{
-		if (history->data)
+		history_item *elem_data = history->data;
+		if (elem_data->content)
 		{
 			/* Return the last element */
-			gpointer last_item = history->data;
+			gpointer last_item = elem_data->content;
 			return last_item;
 		}
 		else
@@ -189,9 +230,10 @@ void delete_duplicate(gchar *item)
 	/* Go through each element compare each */
 	for (element = history; element != NULL; element = element->next)
 	{
-		if (g_strcmp0((gchar*)element->data, item) == 0)
+		history_item *elem_data = element->data;
+		if (g_strcmp0((gchar*)elem_data->content, item) == 0)
 		{
-			g_free(element->data);
+			g_free(elem_data->content);
 			history = g_slist_delete_link(history, element);
 			break;
 		}

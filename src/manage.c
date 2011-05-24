@@ -22,6 +22,7 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <string.h>
+#include <stdlib.h>
 #include <X11/keysym.h>
 #include "main.h"
 #include "utils.h"
@@ -54,7 +55,8 @@ static void search_history()
       /* Go through each element and adding each */
       for (element = history; element != NULL; element = element->next)
       {
-        GString* string = g_string_new((gchar*)element->data);
+        history_item *elem_data = element->data;
+        GString* string = g_string_new((gchar*)elem_data->content);
         gchar* strn_cmp_to = g_utf8_strdown(string->str, string->len);
         gchar* strn_find = g_utf8_strdown(search_input, search_len);
         char* result = strstr(strn_cmp_to, strn_find);
@@ -88,7 +90,8 @@ static void search_history()
       /* Go through each element and adding each */
       for (element = history; element != NULL; element = element->next)
       {
-        GString *string = g_string_new((gchar*)element->data);
+        history_item *elem_data = element->data;
+        GString *string = g_string_new((gchar*)elem_data->content);
         GtkTreeIter row_iter;
         gtk_list_store_append(search_list, &row_iter);
         string = ellipsize_string(string);
@@ -106,7 +109,6 @@ static void search_history()
 /* Called when Edit is selected from Manage dialog */
 static void edit_selected()
 {
-  GtkTreeIter sel_iter;
   GtkTreeSelection* search_selection = gtk_tree_view_get_selection((GtkTreeView*)treeview_search);
   /* This checks if there's anything selected */
   gint selected_count = gtk_tree_selection_count_selected_rows(search_selection);
@@ -120,7 +122,8 @@ static void edit_selected()
     g_list_free(selected_rows);
     GSList* element = g_slist_nth(history, selected_item_nr);
     GSList* elementafter = element->next;
-    GString* s_selected_item = g_string_new((gchar*)element->data);
+    history_item *elem_data = element->data;
+    GString* s_selected_item = g_string_new((gchar*)elem_data->content);
     GtkTextBuffer* clipboard_buffer = gtk_text_buffer_new(NULL);
     gtk_text_buffer_set_text(clipboard_buffer, s_selected_item->str, -1);
     /* Create the dialog */
@@ -158,7 +161,7 @@ static void edit_selected()
       delete_duplicate(gtk_text_buffer_get_text(clipboard_buffer, &start, &end, TRUE));
 
       /* Remove old entry */
-      history = g_slist_remove(history, element->data);
+      history = g_slist_remove(history, elem_data->content);
 
       /* Insert new element where the old one was */
       history = g_slist_insert_before(history, elementafter,
@@ -261,10 +264,11 @@ static void search_doubleclick()
     gtk_tree_model_get((GtkTreeModel*)search_list, iter, 0, &selected_item_nr, -1);
     g_array_free(sel, TRUE);
     GSList *element = g_slist_nth(history, selected_item_nr);
+    history_item *elem_data = element->data;
     GtkClipboard* prim = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
     GtkClipboard* clip = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
-    gtk_clipboard_set_text(prim, (gchar*)element->data, -1);
-    gtk_clipboard_set_text(clip, (gchar*)element->data, -1);
+    gtk_clipboard_set_text(prim, (gchar*)elem_data->content, -1);
+    gtk_clipboard_set_text(clip, (gchar*)elem_data->content, -1);
   }
 }
 
