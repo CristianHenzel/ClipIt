@@ -478,44 +478,54 @@ static gboolean show_actions_menu(gpointer data)
 static gboolean menu_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
 {
   switch (event->keyval) {
-    case XK_0:
-      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(9));
-      gtk_widget_destroy(widget);
-      break;
     case XK_1:
+    case XK_KP_1:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(0));
       gtk_widget_destroy(widget);
       break;
     case XK_2:
+    case XK_KP_2:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(1));
       gtk_widget_destroy(widget);
       break;
     case XK_3:
+    case XK_KP_3:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(2));
       gtk_widget_destroy(widget);
       break;
     case XK_4:
+    case XK_KP_4:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(3));
       gtk_widget_destroy(widget);
       break;
     case XK_5:
+    case XK_KP_5:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(4));
       gtk_widget_destroy(widget);
       break;
     case XK_6:
+    case XK_KP_6:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(5));
       gtk_widget_destroy(widget);
       break;
     case XK_7:
+    case XK_KP_7:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(6));
       gtk_widget_destroy(widget);
       break;
     case XK_8:
+    case XK_KP_8:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(7));
       gtk_widget_destroy(widget);
       break;
     case XK_9:
+    case XK_KP_9:
       item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(8));
+      gtk_widget_destroy(widget);
+      break;
+    case XK_0:
+    case XK_KP_0:
+      item_selected((GtkMenuItem*)widget, GINT_TO_POINTER(9));
       gtk_widget_destroy(widget);
       break;
   }
