@@ -119,7 +119,6 @@ void read_history()
 						history_item *hitem = history->data;
 						fread_return = fread(&read_static, size, 1, history_file);
 						hitem->is_static = read_static;
-						printf("static: %d\n", read_static);
 						break;
 					}
 				}
