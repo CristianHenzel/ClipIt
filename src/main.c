@@ -196,11 +196,13 @@ static gboolean item_check(gpointer data)
   return TRUE;
 }
 
-static void set_icon_paths() {
+static void set_icon_paths()
+{
 	gchar *pixmap_dir = g_build_path(G_DIR_SEPARATOR_S, g_get_user_data_dir(), DATA_DIR, "pixmaps", NULL);
-	gchar *test_path = g_build_path(G_DIR_SEPARATOR_S, pixmap_dir, "trayicon.svg", NULL);
-	if (g_file_test(test_path, G_FILE_TEST_EXISTS))
-		trayicon_path = test_path;
+	if (g_file_test(g_build_filename(pixmap_dir, "trayicon.svg", NULL), G_FILE_TEST_EXISTS))
+		trayicon_path = g_build_filename(pixmap_dir, "trayicon.svg", NULL);
+	else if (g_file_test(g_build_filename(pixmap_dir, "trayicon.png", NULL), G_FILE_TEST_EXISTS))
+		trayicon_path = g_build_filename(pixmap_dir, "trayicon.png", NULL);
 	else
 		trayicon_path = g_build_path(G_DIR_SEPARATOR_S, CLIPITPIXMAPSDIR, "trayicon.svg", NULL);
 }
@@ -743,7 +745,7 @@ void create_app_indicator(gint create)
 	indicator_menu = create_tray_menu(indicator_menu);
 	/* check if we need to create the indicator or just refresh the menu */
 	if(create == 1) {
-		indicator = app_indicator_new ("clipit", "stock_paste", APP_INDICATOR_CATEGORY_APPLICATION_STATUS);
+		indicator = app_indicator_new_with_path ("clipit", "trayicon", APP_INDICATOR_CATEGORY_APPLICATION_STATUS, "/usr/share/pixmaps/clipit");
 		app_indicator_set_status (indicator, APP_INDICATOR_STATUS_ACTIVE);
 		app_indicator_set_attention_icon (indicator, "stock_paste");
 	}
