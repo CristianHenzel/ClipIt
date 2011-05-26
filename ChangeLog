@@ -1,3 +1,7 @@
+ClipIt-1.4.1-20110526008 - 26 May. 2011
+
+	+ Fixed: We're not loosing the static flag on existing items anymore.
+
 ClipIt-1.4.1-20110526007 - 26 May. 2011
 
 	+ Fixed: Fixed a bug in the history saving function.

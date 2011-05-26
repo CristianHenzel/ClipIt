@@ -33,6 +33,20 @@
 
 GList *history;
 
+/* Deletes duplicate item in history */
+static GList *find_duplicate(gchar *item)
+{
+	GList *element;
+	/* Go through each element compare each */
+	for (element = history; element != NULL; element = element->next) {
+		history_item *elem_data = element->data;
+		if (g_strcmp0((gchar*)elem_data->content, item) == 0) {
+			return element;
+		}
+	}
+	return NULL;
+}
+
 static history_item *initialize_history_item()
 {
 	history_item *hitem = g_new0(history_item, 1);
@@ -224,8 +238,13 @@ void check_and_append(gchar *item)
 			/* User only wants hyperlinks, but this isn't one */
 			return;
 
-		delete_duplicate(item);
-		append_item(item);
+		GList *duplicate_elem = find_duplicate(item);
+		if (duplicate_elem) {
+			history = g_list_remove_link(history, duplicate_elem);
+			history = g_list_concat(duplicate_elem, history);
+		} else {
+			append_item(item);
+		}
 	}
 }
 
