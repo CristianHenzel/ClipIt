@@ -214,15 +214,20 @@ void check_and_append(gchar *item)
 			return;
 		GtkClipboard *clip = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
 		/* Check if we have URIs */
-		gchar **arr = gtk_clipboard_wait_for_uris(clip);
-		if(arr != NULL) {
-			/* We have URIs */
-			if(!prefs.save_uris)
-				return;
-		}
-		g_strfreev(arr);
-		if(!is_excluded(item))
-			append_item(item);
+		//gchar **arr = gtk_clipboard_wait_for_uris(clip);
+		if((gtk_clipboard_wait_for_uris(clip) != NULL) && !prefs.save_uris)
+			/* We have URIs but the user doesn't want to save them */
+			return;
+		//g_strfreev(arr);
+		if(is_excluded(item))
+			/* This item is excluded from the history */
+			return;
+		if (prefs.hyperlinks_only && !is_hyperlink(item))
+			/* User only wants hyperlinks, but this isn't one */
+			return;
+
+		delete_duplicate(item);
+		append_item(item);
 	}
 }
 
