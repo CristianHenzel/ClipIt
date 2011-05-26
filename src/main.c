@@ -59,11 +59,11 @@ static gboolean actions_lock = FALSE;
 /* Init preferences structure */
 prefs_t prefs = {DEF_USE_COPY,         DEF_USE_PRIMARY,      DEF_SYNCHRONIZE,
                  DEF_AUTOMATIC_PASTE,  DEF_SHOW_INDEXES,     DEF_SAVE_URIS,
-                 DEF_SAVE_HISTORY,     DEF_HISTORY_LIMIT,    DEF_ITEMS_MENU,
-                 DEF_HYPERLINKS_ONLY,  DEF_CONFIRM_CLEAR,    DEF_SINGLE_LINE,
-                 DEF_REVERSE_HISTORY,  DEF_ITEM_LENGTH,      DEF_ELLIPSIZE,
-                 INIT_HISTORY_KEY,     INIT_ACTIONS_KEY,     INIT_MENU_KEY,
-                 INIT_SEARCH_KEY,      DEF_NO_ICON};
+                 DEF_USE_RMB_MENU,     DEF_SAVE_HISTORY,     DEF_HISTORY_LIMIT,
+                 DEF_ITEMS_MENU,       DEF_HYPERLINKS_ONLY,  DEF_CONFIRM_CLEAR,
+                 DEF_SINGLE_LINE,      DEF_REVERSE_HISTORY,  DEF_ITEM_LENGTH,
+                 DEF_ELLIPSIZE,        INIT_HISTORY_KEY,     INIT_ACTIONS_KEY,
+                 INIT_MENU_KEY,        INIT_SEARCH_KEY,      DEF_NO_ICON};
 
 /* Called every CHECK_INTERVAL seconds to check for new items */
 static gboolean item_check(gpointer data)
@@ -614,30 +614,42 @@ static gboolean show_history_menu(gpointer data)
   return FALSE;
 }
 
-static GtkWidget *create_tray_menu(GtkWidget *tray_menu)
+static GtkWidget *create_tray_menu(GtkWidget *tray_menu, int menu_type)
 {
 	GtkWidget *menu_item, *menu_image;
-	tray_menu = create_history_menu(tray_menu);
-	/* -------------------- */
-	gtk_menu_shell_append((GtkMenuShell*)tray_menu, gtk_separator_menu_item_new());
-	/* About */
-	menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_ABOUT, NULL);
-	g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_about_dialog, NULL);
-	gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
-	/* Manage history */
-	menu_item = gtk_image_menu_item_new_with_mnemonic(_("_Manage history"));
-	menu_image = gtk_image_new_from_stock(GTK_STOCK_FIND, GTK_ICON_SIZE_MENU);
-	gtk_image_menu_item_set_image((GtkImageMenuItem*)menu_item, menu_image);
-	g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_search, NULL);
-	gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
-	/* Preferences */
-	menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_PREFERENCES, NULL);
-	g_signal_connect((GObject*)menu_item, "activate", (GCallback)preferences_selected, NULL);
-	gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
-	/* Quit */
-	menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_QUIT, NULL);
-	g_signal_connect((GObject*)menu_item, "activate", (GCallback)quit_selected, NULL);
-	gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
+
+	if (menu_type == 1) {
+		tray_menu = create_history_menu(tray_menu);
+	} else {
+		tray_menu = gtk_menu_new();
+	}
+	if (!prefs.use_rmb_menu) {
+		/* -------------------- */
+		gtk_menu_shell_append((GtkMenuShell*)tray_menu, gtk_separator_menu_item_new());
+	}
+	/* We show the options only if:
+	 * - use_rmb_menu is active and menu_type is right-click, OR
+	 * - use_rmb_menu is inactive and menu_type is left-click */
+	if ((prefs.use_rmb_menu && (menu_type == 3)) || (!prefs.use_rmb_menu)) {
+		/* About */
+		menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_ABOUT, NULL);
+		g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_about_dialog, NULL);
+		gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
+		/* Manage history */
+		menu_item = gtk_image_menu_item_new_with_mnemonic(_("_Manage history"));
+		menu_image = gtk_image_new_from_stock(GTK_STOCK_FIND, GTK_ICON_SIZE_MENU);
+		gtk_image_menu_item_set_image((GtkImageMenuItem*)menu_item, menu_image);
+		g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_search, NULL);
+		gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
+		/* Preferences */
+		menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_PREFERENCES, NULL);
+		g_signal_connect((GObject*)menu_item, "activate", (GCallback)preferences_selected, NULL);
+		gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
+		/* Quit */
+		menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_QUIT, NULL);
+		g_signal_connect((GObject*)menu_item, "activate", (GCallback)quit_selected, NULL);
+		gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
+	}
 	/* Popup the menu... */
 	gtk_widget_show_all(tray_menu);
 	return tray_menu;
@@ -661,7 +673,7 @@ void create_app_indicator(gint create)
 #else
 
 /* Called when status icon is clicked */
-static void show_clipit_menu()
+static void show_clipit_menu(int menu_type)
 {
 	/* If the menu is visible, we don't do anything, so that it gets hidden */
 	if((statusicon_menu != NULL) && gtk_widget_get_visible((GtkWidget *)statusicon_menu))
@@ -670,7 +682,7 @@ static void show_clipit_menu()
 		return;
 	status_menu_lock = TRUE;
 	/* Create the menu */
-	statusicon_menu = create_tray_menu(statusicon_menu);
+	statusicon_menu = create_tray_menu(statusicon_menu, menu_type);
 	g_signal_connect((GObject*)statusicon_menu, "selection-done", (GCallback)gtk_widget_destroy, NULL);
 	/* GENERATE THE MENU*/
 	gtk_widget_set_visible(statusicon_menu, TRUE);
@@ -698,7 +710,12 @@ static void status_icon_clicked(GtkStatusIcon *status_icon, GdkEventButton *even
 	/* Left click */
 	else if (event->button == 1)
 	{
-		show_clipit_menu();
+		show_clipit_menu(1);
+	}
+	else if (event->button == 3)
+	{
+		if (prefs.use_rmb_menu)
+			show_clipit_menu(3);
 	}
 }
 
@@ -720,7 +737,7 @@ void actions_hotkey(char *keystring, gpointer user_data)
 void menu_hotkey(char *keystring, gpointer user_data)
 {
 #ifndef HAVE_APPINDICATOR
-	show_clipit_menu();
+	show_clipit_menu(1);
 #endif
 }
 

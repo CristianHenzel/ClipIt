@@ -36,6 +36,7 @@ G_BEGIN_DECLS
 #define DEF_SHOW_INDEXES      FALSE
 #define DEF_SAVE_URIS         TRUE
 #define DEF_SAVE_HISTORY      TRUE
+#define DEF_USE_RMB_MENU      FALSE
 #define DEF_HISTORY_LIMIT     50
 #define DEF_ITEMS_MENU        20
 #define DEF_HYPERLINKS_ONLY   FALSE
