@@ -32,7 +32,6 @@ void check_dirs()
 {
 	gchar *data_dir = g_build_path(G_DIR_SEPARATOR_S, g_get_user_data_dir(), DATA_DIR, NULL);
 	gchar *config_dir = g_build_path(G_DIR_SEPARATOR_S, g_get_user_config_dir(), CONFIG_DIR, NULL);
-	gchar *pixmap_dir = g_build_path(G_DIR_SEPARATOR_S, g_get_user_data_dir(), DATA_DIR, "pixmaps", NULL);
 	/* Check if data directory exists */
 	if (!g_file_test(data_dir, G_FILE_TEST_EXISTS))
 	{
@@ -47,17 +46,9 @@ void check_dirs()
 		if (g_mkdir_with_parents(config_dir, 0755) != 0)
 			g_warning(_("Couldn't create directory: %s\n"), config_dir);
 	}
-	/* Check if pixmap directory exists */
-	if (!g_file_test(pixmap_dir, G_FILE_TEST_EXISTS))
-	{
-		/* Try to make pixmap directory */
-		if (g_mkdir_with_parents(pixmap_dir, 0755) != 0)
-			g_warning(_("Couldn't create directory: %s\n"), pixmap_dir);
-	}
 	/* Cleanup */
 	g_free(data_dir);
 	g_free(config_dir);
-	g_free(pixmap_dir);
 }
 
 /* Returns TRUE if text is a hyperlink */
