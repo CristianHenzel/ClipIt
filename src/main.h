@@ -37,26 +37,27 @@ typedef struct {
   gboolean  automatic_paste;  /* Automatically paste entry after selecting it */
   gboolean  show_indexes;     /* Show index numbers in history menu */
   gboolean  save_uris;        /* Save URIs in history */
-  
+  gboolean  use_rmb_menu;     /* Use Right-Mouse-Button Menu */
+
   gboolean  save_history;     /* Save history */
   gint      history_limit;    /* Items in history */
 
   gint      items_menu;       /* Items in small history */
-  
+
   gboolean  hyperlinks_only;  /* Hyperlinks only */
   gboolean  confirm_clear;    /* Confirm clear */
-  
+
   gboolean  single_line;      /* Show in a single line */
   gboolean  reverse_history;  /* Show in reverse order */
   gint      item_length;      /* Length of items */
-  
+
   gint      ellipsize;        /* Omitting */
-  
+
   gchar*    history_key;      /* History menu hotkey */
   gchar*    actions_key;      /* Actions menu hotkey */
   gchar*    menu_key;         /* ClipIt menu hotkey */
   gchar*    search_key;       /* ClipIt search hotkey */
-  
+
   gboolean  no_icon;          /* No icon */
 } prefs_t;
 
