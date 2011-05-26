@@ -1,3 +1,7 @@
+ClipIt-1.4.1-20110526003 - 26 May. 2011
+
+	+ Fixed: Unified history and tray menu for easier maintenance.
+
 ClipIt-1.4.1-20110526002 - 26 May. 2011
 
 	+ Fixed: Simplified add item process.
@@ -6,7 +10,7 @@ ClipIt-1.4.1-20110526001 - 26 May. 2011
 
 	+ Added: Items marked as static are not purged from the history anymore.
 
-ClipIt-1.4.1-20110525003
+ClipIt-1.4.1-20110525003 - 25 May. 2011
 
 + Added: We now also use png icons, if there are any.
 
