@@ -31,7 +31,7 @@
 #include "utils.h"
 #include "history.h"
 
-GSList *history;
+GList *history;
 
 static history_item *initialize_history_item()
 {
@@ -111,7 +111,7 @@ void read_history()
 						item[size] = '\0';
 						history_item *hitem = initialize_history_item();
 						hitem->content = item;
-						history = g_slist_prepend(history, hitem);
+						history = g_list_prepend(history, hitem);
 						break;
 					}
 					case 2: {
@@ -138,14 +138,14 @@ void read_history()
 				/* Prepend item and read next size */
 				history_item *hitem = initialize_history_item();
 				hitem->content = item;
-				history = g_slist_prepend(history, hitem);
+				history = g_list_prepend(history, hitem);
 				if (fread(&size, 4, 1, history_file) != 1)
 					size = 0;
 			}
 		}
 		/* Close file and reverse the history to normal */
 		fclose(history_file);
-		history = g_slist_reverse(history);
+		history = g_list_reverse(history);
 	}
 }
 
@@ -164,7 +164,7 @@ void save_history()
 		g_free(history_path);
 		/* Check that it opened and begin write */
 		if (history_file) {
-			GSList *element;
+			GList *element;
 			/* Write each element to a binary file */
 			int i;
 			for (i=1; i<=17; i++) {
@@ -229,9 +229,9 @@ void check_and_append(gchar *item)
 /* Adds item to the end of history */
 void append_item(gchar *item)
 {
-	history_item *hitem = g_new0(history_item, 1);
+	history_item *hitem = initialize_history_item();
 	hitem->content = g_strdup(item);
-	history = g_slist_prepend(history, hitem);
+	history = g_list_prepend(history, hitem);
 	truncate_history();
 }
 
@@ -240,12 +240,29 @@ void truncate_history()
 {
 	if (history) {
 		/* Shorten history if necessary */
-		GSList *last_possible_element = g_slist_nth(history,
-						prefs.history_limit - 1);
-		if (last_possible_element) {
-			/* Free last posible element and subsequent elements */
-			g_slist_free(last_possible_element->next);
-			last_possible_element->next = NULL;
+		GList *last_element = g_list_nth (history, prefs.history_limit);
+		while (last_element) {
+			history_item *elem_data = last_element->data;
+			last_element = last_element->next;
+			if (elem_data->is_static == 0)
+				history = g_list_remove(history, elem_data);
+		}
+		
+		last_element = g_list_nth (history, prefs.history_limit - 1);
+		/* last_element->next checks if the list is longer than the user
+		 * wants it; last_element->prev checks if this isn't the first
+		 * item, which we wouldn't want to delete */
+		while (last_element->next && last_element->prev) {
+			history_item *elem_data = last_element->data;
+
+			while (elem_data->is_static && last_element->prev) {
+				if (last_element->prev->prev)
+					last_element = last_element->prev;
+				elem_data = last_element->data;
+			}
+			if (elem_data->is_static == 0)
+				history = g_list_remove(history, elem_data);
+			last_element = g_list_nth (history, prefs.history_limit - 1);
 		}
 		/* Save changes */
 		save_history();
@@ -270,13 +287,13 @@ gpointer get_last_item()
 /* Deletes duplicate item in history */
 void delete_duplicate(gchar *item)
 {
-	GSList *element;
+	GList *element;
 	/* Go through each element compare each */
 	for (element = history; element != NULL; element = element->next) {
 		history_item *elem_data = element->data;
 		if (g_strcmp0((gchar*)elem_data->content, item) == 0) {
 			g_free(elem_data->content);
-			history = g_slist_delete_link(history, element);
+			history = g_list_delete_link(history, element);
 			break;
 		}
 	}

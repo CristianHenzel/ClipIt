@@ -1,3 +1,7 @@
+ClipIt-1.4.1-20110526001 - 26 May. 2011
+
+	+ Added: Items marked as static are not purged from the history anymore.
+
 ClipIt-1.4.1-20110525003
 
 + Added: We now also use png icons, if there are any.

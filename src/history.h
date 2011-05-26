@@ -37,7 +37,7 @@ typedef struct {
 	gpointer content;
 } history_item;
 
-extern GSList *history;
+extern GList *history;
 
 void read_history();
 

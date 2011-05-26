@@ -93,7 +93,7 @@ static gboolean item_check(gpointer data)
       /* else
        * {
        *  // else, we restore from history
-       *  GSList* element = g_slist_nth(history, 0);
+       *  GList* element = g_list_nth(history, 0);
        *  gtk_clipboard_set_text(primary, (gchar*)element->data, -1);
        * }
        */
@@ -253,7 +253,7 @@ static void edit_actions_selected(GtkButton *button, gpointer user_data)
 static void item_selected(GtkMenuItem *menu_item, gpointer user_data)
 {
   /* Get the text from the right element and set as clipboard */
-  GSList* element = g_slist_nth(history, GPOINTER_TO_INT(user_data));
+  GList* element = g_list_nth(history, GPOINTER_TO_INT(user_data));
   history_item *elem_data = element->data;
   gtk_clipboard_set_text(clipboard, (gchar*)elem_data->content, -1);
   gtk_clipboard_set_text(primary, (gchar*)elem_data->content, -1);
@@ -548,7 +548,7 @@ static gboolean show_history_menu(gpointer data)
   if ((history != NULL) && (history->data != NULL))
   {
     /* Declare some variables */
-    GSList* element;
+    GList* element;
     gint element_number = 0;
     gint element_number_small = 0;
     gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
@@ -556,8 +556,8 @@ static gboolean show_history_menu(gpointer data)
     /* Reverse history if enabled */
     if (prefs.reverse_history)
     {
-      history = g_slist_reverse(history);
-      element_number = g_slist_length(history) - 1;
+      history = g_list_reverse(history);
+      element_number = g_list_length(history) - 1;
     }
     /* Go through each element and adding each */
     for (element = history; (element != NULL) && (element_number_small < prefs.items_menu); element = element->next)
@@ -612,7 +612,7 @@ static gboolean show_history_menu(gpointer data)
     g_free(clipboard_temp);
     /* Return history to normal if reversed */
     if (prefs.reverse_history)
-      history = g_slist_reverse(history);
+      history = g_list_reverse(history);
   }
   else
   {
@@ -637,7 +637,7 @@ static GtkWidget *create_tray_menu(GtkWidget *tray_menu)
 	if ((history != NULL) && (history->data != NULL))
 	{
 		/* Declare some variables */
-		GSList* element;
+		GList* element;
 		gint element_number = 0;
 		gint element_number_small = 0;
 		gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
@@ -645,8 +645,8 @@ static GtkWidget *create_tray_menu(GtkWidget *tray_menu)
 		/* Reverse history if enabled */
 		if (prefs.reverse_history)
 		{
-			history = g_slist_reverse(history);
-			element_number = g_slist_length(history) - 1;
+			history = g_list_reverse(history);
+			element_number = g_list_length(history) - 1;
 		}
 		/* Go through each element and adding each */
 		for (element = history; (element != NULL) && (element_number_small < prefs.items_menu); element = element->next)
@@ -703,7 +703,7 @@ static GtkWidget *create_tray_menu(GtkWidget *tray_menu)
 		g_free(clipboard_temp);
 		/* Return history to normal if reversed */
 		if (prefs.reverse_history)
-			history = g_slist_reverse(history);
+			history = g_list_reverse(history);
 	}
 	else
 	{
@@ -928,8 +928,8 @@ int main(int argc, char **argv)
 	g_free(prefs.actions_key);
 	g_free(prefs.menu_key);
 	g_free(prefs.search_key);
-	g_slist_foreach(history, (GFunc)g_free, NULL);
-	g_slist_free(history);
+	g_list_foreach(history, (GFunc)g_free, NULL);
+	g_list_free(history);
 	g_free(primary_text);
 	g_free(clipboard_text);
 	g_free(synchronized_text);
