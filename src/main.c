@@ -44,7 +44,6 @@ static gchar* clipboard_text;
 static gchar* synchronized_text;
 static GtkClipboard* primary;
 static GtkClipboard* clipboard;
-static char *trayicon_path;
 #ifdef HAVE_APPINDICATOR
 static AppIndicator *indicator;
 static GtkWidget *indicator_menu = NULL;
@@ -175,17 +174,6 @@ static gboolean item_check(gpointer data)
   g_free(clipboard_temp);
 
   return TRUE;
-}
-
-static void set_icon_paths()
-{
-	gchar *pixmap_dir = g_build_path(G_DIR_SEPARATOR_S, g_get_user_data_dir(), DATA_DIR, "pixmaps", NULL);
-	if (g_file_test(g_build_filename(pixmap_dir, "trayicon.svg", NULL), G_FILE_TEST_EXISTS))
-		trayicon_path = g_build_filename(pixmap_dir, "trayicon.svg", NULL);
-	else if (g_file_test(g_build_filename(pixmap_dir, "trayicon.png", NULL), G_FILE_TEST_EXISTS))
-		trayicon_path = g_build_filename(pixmap_dir, "trayicon.png", NULL);
-	else
-		trayicon_path = g_build_path(G_DIR_SEPARATOR_S, CLIPITPIXMAPSDIR, "trayicon.svg", NULL);
 }
 
 /* Called when execution action exits */
@@ -620,19 +608,19 @@ static GtkWidget *create_tray_menu(GtkWidget *tray_menu, int menu_type)
 {
 	GtkWidget *menu_item, *menu_image;
 
-	if (menu_type == 1) {
+	if ((menu_type == 1) || (menu_type == 2)) {
 		tray_menu = create_history_menu(tray_menu);
 	} else {
 		tray_menu = gtk_menu_new();
 	}
-	if (!prefs.use_rmb_menu) {
+	if (!prefs.use_rmb_menu || (menu_type == 2)) {
 		/* -------------------- */
 		gtk_menu_shell_append((GtkMenuShell*)tray_menu, gtk_separator_menu_item_new());
 	}
 	/* We show the options only if:
 	 * - use_rmb_menu is active and menu_type is right-click, OR
 	 * - use_rmb_menu is inactive and menu_type is left-click */
-	if ((prefs.use_rmb_menu && (menu_type == 3)) || (!prefs.use_rmb_menu)) {
+	if ((prefs.use_rmb_menu && (menu_type == 3)) || (!prefs.use_rmb_menu) || (menu_type == 2)) {
 		/* About */
 		menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_ABOUT, NULL);
 		g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_about_dialog, NULL);
@@ -662,12 +650,12 @@ static GtkWidget *create_tray_menu(GtkWidget *tray_menu, int menu_type)
 void create_app_indicator(gint create)
 {
 	/* Create the menu */
-	indicator_menu = create_tray_menu(indicator_menu);
+	indicator_menu = create_tray_menu(indicator_menu, 2);
 	/* check if we need to create the indicator or just refresh the menu */
 	if(create == 1) {
-		indicator = app_indicator_new_with_path ("clipit", "trayicon", APP_INDICATOR_CATEGORY_APPLICATION_STATUS, "/usr/share/pixmaps/clipit");
+		indicator = app_indicator_new("clipit", "clipit-trayicon", APP_INDICATOR_CATEGORY_APPLICATION_STATUS);
 		app_indicator_set_status (indicator, APP_INDICATOR_STATUS_ACTIVE);
-		app_indicator_set_attention_icon (indicator, "stock_paste");
+		app_indicator_set_attention_icon (indicator, "clipit-trayicon");
 	}
 	app_indicator_set_menu (indicator, GTK_MENU (indicator_menu));
 }
@@ -774,11 +762,10 @@ static void clipit_init()
 	/* Create status icon */
 	if (!prefs.no_icon)
 	{
-	set_icon_paths();
 #ifdef HAVE_APPINDICATOR
 	create_app_indicator(1);
 #else
-	status_icon = gtk_status_icon_new_from_file(trayicon_path);
+	status_icon = gtk_status_icon_new_from_stock("clipit-trayicon");
 	gtk_status_icon_set_tooltip((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
 	g_signal_connect((GObject*)status_icon, "button_press_event", (GCallback)status_icon_clicked, NULL);
 #endif
