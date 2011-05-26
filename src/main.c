@@ -223,7 +223,9 @@ static void item_selected(GtkMenuItem *menu_item, gpointer user_data)
 {
   /* Get the text from the right element and set as clipboard */
   GList* element = g_list_nth(history, GPOINTER_TO_INT(user_data));
-  history_item *elem_data = element->data;
+  history = g_list_remove_link(history, element);
+  history = g_list_concat(element, history);
+  history_item *elem_data = history->data;
   gtk_clipboard_set_text(clipboard, (gchar*)elem_data->content, -1);
   gtk_clipboard_set_text(primary, (gchar*)elem_data->content, -1);
   /* Paste the clipboard contents automatically if enabled */
@@ -585,6 +587,43 @@ static GtkWidget *create_history_menu(GtkWidget *history_menu)
 		menu_item = gtk_menu_item_new_with_label(_("Empty"));
 		gtk_widget_set_sensitive(menu_item, FALSE);
 		gtk_menu_shell_append((GtkMenuShell*)history_menu, menu_item);
+	}
+	if (prefs.statics_show) {
+		/* -------------------- */
+		gtk_menu_shell_append((GtkMenuShell*)history_menu, gtk_separator_menu_item_new());
+
+		/* Items */
+		GList *elem = history;
+		int elem_num = 0;
+		int elem_num_static = 1;
+		while (elem && (elem_num_static <= prefs.statics_items)) {
+			history_item *hitem = elem->data;
+			if (hitem->is_static) {
+				GString* string = g_string_new((gchar*)hitem->content);
+				/* Ellipsize text */
+				string = ellipsize_string(string);
+				/* Remove control characters */
+				string = remove_newlines_string(string);
+				gchar* list_item;
+				if (prefs.show_indexes)
+				{
+					list_item = g_strdup_printf("%d. %s", (elem_num_static), string->str);
+				} else {
+					list_item = g_strdup(string->str);
+				}
+				menu_item = gtk_menu_item_new_with_label(list_item);
+				g_signal_connect((GObject*)menu_item, "activate", (GCallback)item_selected, GINT_TO_POINTER(elem_num));
+				/* Modify menu item label properties */
+				item_label = gtk_bin_get_child((GtkBin*)menu_item);
+				gtk_label_set_single_line_mode((GtkLabel*)item_label, prefs.single_line);
+				g_free(list_item);
+				g_string_free(string, TRUE);
+				gtk_menu_shell_append((GtkMenuShell*)history_menu, menu_item);
+				elem_num_static++;
+			}
+			elem_num++;
+			elem = elem->next;
+		}
 	}
 	return history_menu;
 }

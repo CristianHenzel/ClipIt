@@ -1,8 +1,13 @@
+ClipIt-1.4.1-20110526007 - 26 May. 2011
+
+	+ Fixed: Fixed a bug in the history saving function.
+	+ Added: We are now showing static items in the menu.
+
 ClipIt-1.4.1-20110526006 - 26 May. 2011
 
 	+ Fixed: Fixed display and icon of indicator menu.
 	+ Fixed: We are now installing the icon to the icontheme instead of
-			the pixmaps folder.
+		the pixmaps folder.
 
 ClipIt-1.4.1-20110526005 - 26 May. 2011
 
