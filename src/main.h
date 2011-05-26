@@ -42,7 +42,9 @@ typedef struct {
   gboolean  save_history;     /* Save history */
   gint      history_limit;    /* Items in history */
 
-  gint      items_menu;       /* Items in small history */
+  gint      items_menu;       /* Items in history menu */
+  gboolean  statics_show;     /* Show statics items in history menu */
+  gint      statics_items;    /* Static items in history menu */
 
   gboolean  hyperlinks_only;  /* Hyperlinks only */
   gboolean  confirm_clear;    /* Confirm clear */
