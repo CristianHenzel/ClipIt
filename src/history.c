@@ -214,11 +214,9 @@ void check_and_append(gchar *item)
 			return;
 		GtkClipboard *clip = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
 		/* Check if we have URIs */
-		//gchar **arr = gtk_clipboard_wait_for_uris(clip);
 		if((gtk_clipboard_wait_for_uris(clip) != NULL) && !prefs.save_uris)
 			/* We have URIs but the user doesn't want to save them */
 			return;
-		//g_strfreev(arr);
 		if(is_excluded(item))
 			/* This item is excluded from the history */
 			return;
@@ -257,17 +255,19 @@ void truncate_history()
 		/* last_element->next checks if the list is longer than the user
 		 * wants it; last_element->prev checks if this isn't the first
 		 * item, which we wouldn't want to delete */
-		while (last_element->next && last_element->prev) {
-			history_item *elem_data = last_element->data;
+		if (last_element) {
+			while (last_element->next && last_element->prev) {
+				history_item *elem_data = last_element->data;
 
-			while (elem_data->is_static && last_element->prev) {
-				if (last_element->prev->prev)
-					last_element = last_element->prev;
-				elem_data = last_element->data;
+				while (elem_data->is_static && last_element->prev) {
+					if (last_element->prev->prev)
+						last_element = last_element->prev;
+					elem_data = last_element->data;
+				}
+				if (elem_data->is_static == 0)
+					history = g_list_remove(history, elem_data);
+				last_element = g_list_nth (history, prefs.history_limit - 1);
 			}
-			if (elem_data->is_static == 0)
-				history = g_list_remove(history, elem_data);
-			last_element = g_list_nth (history, prefs.history_limit - 1);
 		}
 		/* Save changes */
 		save_history();
