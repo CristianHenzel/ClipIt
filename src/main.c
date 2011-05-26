@@ -115,17 +115,7 @@ static gboolean item_check(gpointer data)
         /* Check if primary option is enabled and if there's text to add */
         if (prefs.use_primary && primary_text)
         {
-          /* Check contents before adding */
-          if (prefs.hyperlinks_only && is_hyperlink(primary_text))
-          {
-            delete_duplicate(primary_text);
-            check_and_append(primary_text);
-          }
-          else
-          {
-            delete_duplicate(primary_text);
-            check_and_append(primary_text);
-          }
+          check_and_append(primary_text);
         }
       }
     }
@@ -157,17 +147,7 @@ static gboolean item_check(gpointer data)
       /* Check if clipboard option is enabled and if there's text to add */
       if (prefs.use_copy && clipboard_text)
       {
-        /* Check contents before adding */
-        if (prefs.hyperlinks_only && is_hyperlink(clipboard_text))
-        {
-          delete_duplicate(clipboard_text);
-          check_and_append(clipboard_text);
-        }
-        else
-        {
-          delete_duplicate(clipboard_text);
-          check_and_append(clipboard_text);
-        }
+        check_and_append(clipboard_text);
       }
     }
   }
