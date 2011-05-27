@@ -804,7 +804,7 @@ static void clipit_init()
 #ifdef HAVE_APPINDICATOR
 	create_app_indicator(1);
 #else
-	status_icon = gtk_status_icon_new_from_stock("clipit-trayicon");
+	status_icon = gtk_status_icon_new_from_icon_name("clipit-trayicon");
 	gtk_status_icon_set_tooltip((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
 	g_signal_connect((GObject*)status_icon, "button_press_event", (GCallback)status_icon_clicked, NULL);
 #endif

@@ -370,17 +370,18 @@ static void save_actions()
 static void check_toggled(GtkToggleButton *togglebutton, gpointer user_data)
 {
   if (gtk_toggle_button_get_active((GtkToggleButton*)copy_check) &&
-      gtk_toggle_button_get_active((GtkToggleButton*)primary_check))
-  {
+      gtk_toggle_button_get_active((GtkToggleButton*)primary_check)) {
     /* Only allow synchronize option if both primary and clipboard are enabled */
     gtk_widget_set_sensitive((GtkWidget*)synchronize_check, TRUE);
-  }
-  else
-  {
+  } else {
     /* Disable synchronize option */
     gtk_toggle_button_set_active((GtkToggleButton*)synchronize_check, FALSE);
     gtk_widget_set_sensitive((GtkWidget*)synchronize_check, FALSE);
-
+  }
+  if (gtk_toggle_button_get_active((GtkToggleButton*)statics_show_check)) {
+    gtk_widget_set_sensitive((GtkWidget*)statics_items_spin, TRUE);
+  } else {
+    gtk_widget_set_sensitive((GtkWidget*)statics_items_spin, FALSE);
   }
 }
 
@@ -682,7 +683,7 @@ void show_preferences(gint tab)
   gtk_container_add((GtkContainer*)frame, alignment);
   vbox = gtk_vbox_new(FALSE, 2);
   gtk_container_add((GtkContainer*)alignment, vbox);
-  show_indexes_check = gtk_check_button_new_with_mnemonic(_("S_how indexes in history menu"));
+  show_indexes_check = gtk_check_button_new_with_mnemonic(_("Show _indexes in history menu"));
   gtk_box_pack_start((GtkBox*)vbox, show_indexes_check, FALSE, FALSE, 0);
   save_uris_check = gtk_check_button_new_with_mnemonic(_("S_ave URIs"));
   gtk_box_pack_start((GtkBox*)vbox, save_uris_check, FALSE, FALSE, 0);
@@ -714,7 +715,7 @@ void show_preferences(gint tab)
   gtk_container_add((GtkContainer*)frame, alignment);
   vbox = gtk_vbox_new(FALSE, 2);
   gtk_container_add((GtkContainer*)alignment, vbox);
-  save_check = gtk_check_button_new_with_mnemonic(_("_Save history"));
+  save_check = gtk_check_button_new_with_mnemonic(_("Save _history"));
   gtk_widget_set_tooltip_text(save_check, _("Save and restore history between sessions"));
   gtk_box_pack_start((GtkBox*)vbox, save_check, FALSE, FALSE, 0);
   hbox = gtk_hbox_new(FALSE, 4);
@@ -735,7 +736,8 @@ void show_preferences(gint tab)
   items_menu = gtk_spin_button_new((GtkAdjustment*)adjustment_small, 0.0, 0);
   gtk_spin_button_set_update_policy((GtkSpinButton*)items_menu, GTK_UPDATE_IF_VALID);
   gtk_box_pack_start((GtkBox*)hbox, items_menu, FALSE, FALSE, 0);
-  statics_show_check = gtk_check_button_new_with_mnemonic(_("_Show static items in menu"));
+  statics_show_check = gtk_check_button_new_with_mnemonic(_("Show _static items in menu"));
+  g_signal_connect((GObject*)statics_show_check, "toggled", (GCallback)check_toggled, NULL);
   gtk_box_pack_start((GtkBox*)vbox, statics_show_check, FALSE, FALSE, 0);
   hbox = gtk_hbox_new(FALSE, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
@@ -759,7 +761,7 @@ void show_preferences(gint tab)
   gtk_container_add((GtkContainer*)frame, alignment);
   vbox = gtk_vbox_new(FALSE, 2);
   gtk_container_add((GtkContainer*)alignment, vbox);
-  linemode_check = gtk_check_button_new_with_mnemonic(_("Show in a _single line"));
+  linemode_check = gtk_check_button_new_with_mnemonic(_("Show in a single _line"));
   gtk_box_pack_start((GtkBox*)vbox, linemode_check, FALSE, FALSE, 0);
   reverse_check = gtk_check_button_new_with_mnemonic(_("Show in _reverse order"));
   gtk_box_pack_start((GtkBox*)vbox, reverse_check, FALSE, FALSE, 0);
@@ -1014,6 +1016,9 @@ void show_preferences(gint tab)
   
   /* Run the dialog */
   gtk_widget_show_all(dialog);
+#ifdef HAVE_APPINDICATOR
+  gtk_widget_hide(use_rmb_menu_check);
+#endif
   gtk_notebook_set_current_page((GtkNotebook*)notebook, tab);
   if (gtk_dialog_run((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT)
   {
