@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 by Cristian Henzel <oss@web-tm.com>
+/* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -32,7 +32,6 @@ void check_dirs()
 {
 	gchar *data_dir = g_build_path(G_DIR_SEPARATOR_S, g_get_user_data_dir(), DATA_DIR, NULL);
 	gchar *config_dir = g_build_path(G_DIR_SEPARATOR_S, g_get_user_config_dir(), CONFIG_DIR, NULL);
-	gchar *pixmap_dir = g_build_path(G_DIR_SEPARATOR_S, g_get_user_data_dir(), DATA_DIR, "pixmaps", NULL);
 	/* Check if data directory exists */
 	if (!g_file_test(data_dir, G_FILE_TEST_EXISTS))
 	{
@@ -47,22 +46,13 @@ void check_dirs()
 		if (g_mkdir_with_parents(config_dir, 0755) != 0)
 			g_warning(_("Couldn't create directory: %s\n"), config_dir);
 	}
-	/* Check if pixmap directory exists */
-	if (!g_file_test(pixmap_dir, G_FILE_TEST_EXISTS))
-	{
-		/* Try to make pixmap directory */
-		if (g_mkdir_with_parents(pixmap_dir, 0755) != 0)
-			g_warning(_("Couldn't create directory: %s\n"), pixmap_dir);
-	}
 	/* Cleanup */
 	g_free(data_dir);
 	g_free(config_dir);
-	g_free(pixmap_dir);
 }
 
 /* Returns TRUE if text is a hyperlink */
-gboolean
-is_hyperlink(gchar *text)
+gboolean is_hyperlink(gchar *text)
 {
 	/* TODO: I need a better regex, this one is poor */
 	GRegex *regex = g_regex_new("([A-Za-z][A-Za-z0-9+.-]{1,120}:[A-Za-z0-9/]" \
@@ -73,44 +63,6 @@ is_hyperlink(gchar *text)
 	gboolean result = g_regex_match(regex, text, 0, NULL);
 	g_regex_unref(regex);
 	return result;
-}
-
-/* Returns TRUE if text should be excluded from history */
-gboolean is_excluded(gchar *text)
-{
-	/* Open the file for reading */
-	gchar *path = g_build_filename(g_get_user_data_dir(), EXCLUDES_FILE, NULL);
-	FILE *excludes_file = fopen(path, "rb");
-	g_free(path);
-	/* Check that it opened and begin read */
-	if (excludes_file)
-	{
-		/* Keep a row reference */
-		GtkTreeIter row_iter;
-		/* Read the size of the first item */
-		gint size;
-		size_t fread_return;
-		fread_return = fread(&size, 4, 1, excludes_file);
-		/* Continue reading until size is 0 */
-		while (size != 0)
-		{
-			/* Read Regex */
-			gchar *regex = (gchar*)g_malloc(size + 1);
-			fread_return = fread(regex, size, 1, excludes_file);
-			regex[size] = '\0';
-			fread_return = fread(&size, 4, 1, excludes_file);
-			/* Append the read action */
-			GRegex *regexp = g_regex_new(regex, G_REGEX_CASELESS, 0, NULL);
-			gboolean result = g_regex_match(regexp, text, 0, NULL);
-			g_regex_unref(regexp);
-			g_free(regex);
-			if(result)
-				return result;
-		}
-		fclose(excludes_file);
-	}
-	else
-		return FALSE;
 }
 
 /* Ellipsize a string according to the settings */
@@ -206,7 +158,7 @@ gboolean parse_options(int argc, char* argv[])
 	/* Set description */
 	g_option_context_set_description(context,
 			_("Written by Cristian Henzel.\n"
-			"Report bugs to <oss@web-tm.com>."));
+			"Report bugs to <oss@rspwn.com>."));
 	/* Add entries and parse options */
 	g_option_context_add_main_entries(context, main_entries, NULL);
 	g_option_context_parse(context, &argc, &argv, NULL);

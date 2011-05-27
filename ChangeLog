@@ -1,14 +1,96 @@
+ClipIt-1.4.1-20110527002 - 27 May. 2011
+
+	+ Fixed: Made autogen.sh executable.
+
+ClipIt-1.4.1-20110527001 - 27 May. 2011
+
+	+ Fixed: Hidden righ-click menu option when indicator is active and
+			disabled the static item spin when static items are not
+			shown.
+
+ClipIt-1.4.1-20110526008 - 26 May. 2011
+
+	+ Fixed: We're not loosing the static flag on existing items anymore.
+
+ClipIt-1.4.1-20110526007 - 26 May. 2011
+
+	+ Fixed: Fixed a bug in the history saving function.
+	+ Added: We are now showing static items in the menu.
+
+ClipIt-1.4.1-20110526006 - 26 May. 2011
+
+	+ Fixed: Fixed display and icon of indicator menu.
+	+ Fixed: We are now installing the icon to the icontheme instead of
+		the pixmaps folder.
+
+ClipIt-1.4.1-20110526005 - 26 May. 2011
+
+	+ Added: Added options for static items in menu.
+
+ClipIt-1.4.1-20110526004 - 26 May. 2011
+
+	+ Added: Added option for using right-click menu.
+
+ClipIt-1.4.1-20110526003 - 26 May. 2011
+
+	+ Fixed: Unified history and tray menu for easier maintenance.
+
+ClipIt-1.4.1-20110526002 - 26 May. 2011
+
+	+ Fixed: Simplified add item process.
+
+ClipIt-1.4.1-20110526001 - 26 May. 2011
+
+	+ Added: Items marked as static are not purged from the history anymore.
+
+ClipIt-1.4.1-20110525003 - 25 May. 2011
+
+	+ Added: We now also use png icons, if there are any.
+
+ClipIt-1.4.1-20110525002 - 25 May. 2011
+
+	+ Fixed: Numpad keys now work for selecting too.
+
+ClipIt-1.4.1-20110525001 - 25 May. 2011
+
+	+ Fixed: Changed history file to new type.
+
+ClipIt-1.4.1-20110524001 - 24 May. 2011
+
+	+ Fixed: Converted history to new data type.
+	+ Fixed: Fixed all of the remaining warnings.
+
+ClipIt-1.4.1-20110523003 - 23 May 2011
+
+	+ Fixed: We are now checking if the history should be saved in the
+			save_history function itself.
+	+ Fixed: Indicator menu should now refresh even if "Save history"
+			is disabled.
+
+ClipIt-1.4.1-20110523002 - 23 May. 2011
+
+	+ Fixed: Unified indicator and systray menu into a single function.
+
+ClipIt-1.4.1-20110523001 - 23 May. 2011
+
+	+ Fixed: Removed some files from git again. You now need to run
+			./autogen.sh first when building from git.
+
 ClipIt-1.4.0-20110521002 - 21 May. 2011
+
 	+ Fixed: Fixed wrong selection behaviour in "Manage history" dialog.
 
 ClipIt-1.4.0-20110521001 - 21 May. 2011
+
 	+ Added: We are now using the shipped icon in the systray.
 
 ClipIt-1.4.0-20110520002 - 20 May. 2011
+
 	+ Fixed: Remove duplicate truncate_history functionality.
 	+ Added: Added basic history item structure.
 
 ClipIt-1.4.0-20110520001 - 20 May. 2011
+
 	+ Fixed: Deleted items are now properly removed from the history.
 	+ Fixed: Double clicking an item in the "Manage history" dialog now
 			properly selects it again.
@@ -16,9 +98,11 @@ ClipIt-1.4.0-20110520001 - 20 May. 2011
 			the item(s)) now works in the "Manage history" dialog.
 
 ClipIt-1.4.0-20110518002 - 18 May. 2011
+
 	+ Added: Also added 1-0 shortcuts to the history menu.
 
 ClipIt-1.4.0-20110518001 - 18 May. 2011
+
 	+ Fixed: Re-enabled indicator support.
 	+ Added: We are now installing a sepparate icon for clipit (not using it
 			yet, though).
@@ -28,28 +112,34 @@ ClipIt-1.4.0-20110518001 - 18 May. 2011
 			"Manage history" dialog.
 
 ClipIt-1.4.0-20110506001 - 06 May. 2011
+
 	+ Added: Added option to automatically paste an entry after selecting it.
 	+ Fixed: Re-enabled indicator since it should now work properly.
 
 ClipIt-1.3.13-20110503001 - 03 May. 2011
+
 	+ Fixed: Bug in the indicator code that makes ClipIt crash X under
 			certain circumstances.
 
 ClipIt-1.3.12-20110228001 - 28 Feb. 2011
+
 	+ Fixed: Fixed a typo in the warnings.
 	+ Fixed: Turned off appindicator because it's buggy.
 
 ClipIt-1.3.11-20101224001 - 24 Dec. 2010
+
 	+ Fixed: Removed some unneeded files from both the archive and git.
 	+ Fixed: Changed git versioning scheme.
 
 ClipIt-v1.3.11-22122010001 - 22 Dec. 2010
+
 	+ Fixed: Indicator menu now actually refreshes properly.
 	+ Fixed: Removed "Full history" and changed the wording in the
 			"Preferences" dialog.
 	+ Fixed: Imported "Select first item in menu" fix from Parcellite 0.9.3.
 
 ClipIt-v1.3.10-21122010001 - 21 Dec. 2010
+
 	+ Fixed: Imported fixes from Parcellite 0.9.3 (thanks to Doug Springer).
 	+ Fixed: Fixed cast warnings when building on x86 machines.
 	+ Fixed: Fixed build error on ubuntu 11.04.
@@ -58,30 +148,37 @@ ClipIt-v1.3.10-21122010001 - 21 Dec. 2010
 			times killing the program.
 
 ClipIt-v1.3.9-19122010001 - 19 Dec. 2010
+
 	+ Fixed: Fixed error while compiling without indicator support.
 	+ Fixed: Fixed a couple of memory leaks.
 
 ClipIt-v1.3.8-18122010002 - 18 Dec. 2010
+
 	+ Fixed: Updated configure script for 1.3.8.
 
 ClipIt-v1.3.8-18122010001 - 18 Dec. 2010
+
 	+ Fixed: Changed the "old" menu to look exactly like the indicator
 			menu.
 	+ Fixed: Changed the indicator menu to refresh automatically.
 
 ClipIt-v1.3.7-12122010001 - 12 Dec. 2010
+
 	+ Fixed: Changed E-Mail address and Project website.
 	+ Fixed: Included all files that get generated by autogen.sh, so
 			that now you don't need to run it anymore.
 
 ClipIt-v1.3.6-06122010002 - 06 Dec. 2010
+
 	+ Fixed: Fixed a small bug when building without indicator support.
 
 ClipIt-v1.3.5-06122010001 - 06 Dec. 2010
+
 	+ Added: Added support for "Application Indicator".
 	+ Fixed: Fixed a couple of typos and indentations.
 
 ClipIt-v1.3.4-26112010001 - 26 Nov. 2010
+
 	+ Fixed: Now we are warning the user that his history is saved in a
 			plain text file and ask for his explicit permission
 			to save the history.
@@ -91,22 +188,26 @@ ClipIt-v1.3.4-26112010001 - 26 Nov. 2010
 	+ Fixed: ClipIt now complies to the "XDG Base Directory Specification".
 
 ClipIt-v1.3.3-23112010001 - 23 Nov. 2010
+
 	+ Fixed: Fixed some more markup.
 	+ Fixed: Rearranged parts of the Preferences dialog to be cleaner.
 	+ Fixed: Fixed bug in "Manage History" window not selecting the history
 			item properly.
 
 ClipIt-v1.3.2-22112010001 - 22 Nov. 2010
+
 	+ Fixed: Fixed most of the markup and indentation (replaced double
 			spaces with tabs).
 	+ Fixed: Removed clipboard restoring from history, as this seems to
 			cause more problems than it solves.
 
 ClipIt-v1.3.1-17112010001 - 17 Nov. 2010
+
 	+ Added: Added autostart support for LXDE.
 	+ Fixed: Fixed problem with "Edit" window not appearing.
 
 ClipIt-v1.3.0-14112010001 - 14 Nov. 2010
+
 	+ Added: Added "Edit" and "Remove" buttons to the "Manage History"
 			dialog.
 	+ Fixed: Major speed improvements for big history entries while:
@@ -119,10 +220,12 @@ ClipIt-v1.3.0-14112010001 - 14 Nov. 2010
 			activated by clicking on the systray icon.
 
 ClipIt-v1.2.6-12112010003 - 12 Nov. 2010
+
 	+ Fixed: Removed reference to pthread.h from configure.in.
 	+ Fixed: Set AM_MAINTAINER_MODE to disabled by default.
 
 ClipIt-v1.2.5-12112010002 - 12 Nov. 2010
+
 	+ Fixed: Now using autopoint instead of gettextize to avoid waiting for
 			user input.
 	+ Fixed: Added AM_MAINTAINER_MODE, to get rid of the
@@ -132,15 +235,18 @@ ClipIt-v1.2.5-12112010002 - 12 Nov. 2010
 			we use is also included in glib.h).
 
 ClipIt-v1.2.4-12112010001 - 12 Nov. 2010
+
 	+ Fixed: Fixed 2 small omitions from previous changes.
 
 ClipIt-v1.2.3-11112010002 - 11 Nov. 2010
+
 	+ Fixed: Fixed the manpage so it now aligns to the conventions for 
 			writing Linux man pages.
 	+ Fixed: Added the "-Wl,--as-needed" flag, so only the needed packages
 			are included.
 
 ClipIt-v1.2.2-11112010001 - 11 Nov. 2010
+
 	+ Fixed: Some small compatibility changes for debian packaging.
 
 ClipIt-v1.2.1-10112010002 - 10 Nov. 2010
@@ -149,12 +255,14 @@ ClipIt-v1.2.1-10112010002 - 10 Nov. 2010
 			(http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=602205)
 
 ClipIt-v1.2.0-10112010001 - 10 Nov. 2010
+
 	+ Added: Option to save URIs (they were actually saved by default before,
 			but now you have the option to disable this behaviour).
 	+ Fixed: Copying files and folders now works again.
 	+ Fixed: Changed some of the default configuration values.
 
 ClipIt-v1.1.0-09112010001 - 09 Nov. 2010
+
 	+ Added: Option to show index numbers in history.
 	+ Fixed: Search window now gets properly focused when launched with the
 			hotkey.
@@ -165,6 +273,7 @@ ClipIt-v1.1.0-09112010001 - 09 Nov. 2010
 			will become "Manage Clipboard" in the next version.
 
 ClipIt-v1.0.0-05112010001 - 05 Nov. 2010
+
 	Changes from Parcellite 0.9.2:
 		+ Created "Small history" for quick access to last used items.
 		+ Renamed the old history to "Full history".

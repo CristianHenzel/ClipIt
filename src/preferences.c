@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 by Cristian Henzel <oss@web-tm.com>
+/* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -35,8 +35,11 @@ GtkWidget *copy_check,
           *paste_check,
           *show_indexes_check,
           *save_uris_check,
+          *use_rmb_menu_check,
           *history_spin,
           *items_menu,
+          *statics_show_check,
+          *statics_items_spin,
           *charlength_spin,
           *ellipsize_combo,
           *history_key_entry,
@@ -78,9 +81,12 @@ static void apply_preferences()
   prefs.automatic_paste = gtk_toggle_button_get_active((GtkToggleButton*)paste_check);
   prefs.show_indexes = gtk_toggle_button_get_active((GtkToggleButton*)show_indexes_check);
   prefs.save_uris = gtk_toggle_button_get_active((GtkToggleButton*)save_uris_check);
+  prefs.use_rmb_menu = gtk_toggle_button_get_active((GtkToggleButton*)use_rmb_menu_check);
   prefs.save_history = gtk_toggle_button_get_active((GtkToggleButton*)save_check);
   prefs.history_limit = gtk_spin_button_get_value_as_int((GtkSpinButton*)history_spin);
   prefs.items_menu = gtk_spin_button_get_value_as_int((GtkSpinButton*)items_menu);
+  prefs.statics_show = gtk_toggle_button_get_active((GtkToggleButton*)statics_show_check);
+  prefs.statics_items = gtk_spin_button_get_value_as_int((GtkSpinButton*)statics_items_spin);
   prefs.hyperlinks_only = gtk_toggle_button_get_active((GtkToggleButton*)hyperlinks_check);
   prefs.confirm_clear = gtk_toggle_button_get_active((GtkToggleButton*)confirm_check);
   prefs.single_line = gtk_toggle_button_get_active((GtkToggleButton*)linemode_check);
@@ -113,9 +119,12 @@ static void save_preferences()
   g_key_file_set_boolean(rc_key, "rc", "automatic_paste", prefs.automatic_paste);
   g_key_file_set_boolean(rc_key, "rc", "show_indexes", prefs.show_indexes);
   g_key_file_set_boolean(rc_key, "rc", "save_uris", prefs.save_uris);
+  g_key_file_set_boolean(rc_key, "rc", "use_rmb_menu", prefs.use_rmb_menu);
   g_key_file_set_boolean(rc_key, "rc", "save_history", prefs.save_history);
   g_key_file_set_integer(rc_key, "rc", "history_limit", prefs.history_limit);
   g_key_file_set_integer(rc_key, "rc", "items_menu", prefs.items_menu);
+  g_key_file_set_boolean(rc_key, "rc", "statics_show", prefs.statics_show);
+  g_key_file_set_integer(rc_key, "rc", "statics_items", prefs.statics_items);
   g_key_file_set_boolean(rc_key, "rc", "hyperlinks_only", prefs.hyperlinks_only);
   g_key_file_set_boolean(rc_key, "rc", "confirm_clear", prefs.confirm_clear);
   g_key_file_set_boolean(rc_key, "rc", "single_line", prefs.single_line);
@@ -217,9 +226,12 @@ void read_preferences()
     prefs.automatic_paste = g_key_file_get_boolean(rc_key, "rc", "automatic_paste", NULL);
     prefs.show_indexes = g_key_file_get_boolean(rc_key, "rc", "show_indexes", NULL);
     prefs.save_uris = g_key_file_get_boolean(rc_key, "rc", "save_uris", NULL);
+    prefs.use_rmb_menu = g_key_file_get_boolean(rc_key, "rc", "use_rmb_menu", NULL);
     prefs.save_history = g_key_file_get_boolean(rc_key, "rc", "save_history", NULL);
     prefs.history_limit = g_key_file_get_integer(rc_key, "rc", "history_limit", NULL);
     prefs.items_menu = g_key_file_get_integer(rc_key, "rc", "items_menu", NULL);
+    prefs.statics_show = g_key_file_get_boolean(rc_key, "rc", "statics_show", NULL);
+    prefs.statics_items = g_key_file_get_integer(rc_key, "rc", "statics_items", NULL);
     prefs.hyperlinks_only = g_key_file_get_boolean(rc_key, "rc", "hyperlinks_only", NULL);
     prefs.confirm_clear = g_key_file_get_boolean(rc_key, "rc", "confirm_clear", NULL);
     prefs.single_line = g_key_file_get_boolean(rc_key, "rc", "single_line", NULL);
@@ -358,17 +370,18 @@ static void save_actions()
 static void check_toggled(GtkToggleButton *togglebutton, gpointer user_data)
 {
   if (gtk_toggle_button_get_active((GtkToggleButton*)copy_check) &&
-      gtk_toggle_button_get_active((GtkToggleButton*)primary_check))
-  {
+      gtk_toggle_button_get_active((GtkToggleButton*)primary_check)) {
     /* Only allow synchronize option if both primary and clipboard are enabled */
     gtk_widget_set_sensitive((GtkWidget*)synchronize_check, TRUE);
-  }
-  else
-  {
+  } else {
     /* Disable synchronize option */
     gtk_toggle_button_set_active((GtkToggleButton*)synchronize_check, FALSE);
     gtk_widget_set_sensitive((GtkWidget*)synchronize_check, FALSE);
-
+  }
+  if (gtk_toggle_button_get_active((GtkToggleButton*)statics_show_check)) {
+    gtk_widget_set_sensitive((GtkWidget*)statics_items_spin, TRUE);
+  } else {
+    gtk_widget_set_sensitive((GtkWidget*)statics_items_spin, FALSE);
   }
 }
 
@@ -608,8 +621,7 @@ void show_preferences(gint tab)
             *alignment, *hbox,
             *vbox;
   
-  GtkObject *adjustment;
-  GtkObject *adjustment_small;
+  GtkObject *adjustment, *adjustment_small, *adjustment_statics;
   GtkTreeViewColumn *tree_column;
   
   /* Create the dialog */
@@ -671,7 +683,7 @@ void show_preferences(gint tab)
   gtk_container_add((GtkContainer*)frame, alignment);
   vbox = gtk_vbox_new(FALSE, 2);
   gtk_container_add((GtkContainer*)alignment, vbox);
-  show_indexes_check = gtk_check_button_new_with_mnemonic(_("S_how indexes in history menu"));
+  show_indexes_check = gtk_check_button_new_with_mnemonic(_("Show _indexes in history menu"));
   gtk_box_pack_start((GtkBox*)vbox, show_indexes_check, FALSE, FALSE, 0);
   save_uris_check = gtk_check_button_new_with_mnemonic(_("S_ave URIs"));
   gtk_box_pack_start((GtkBox*)vbox, save_uris_check, FALSE, FALSE, 0);
@@ -679,6 +691,8 @@ void show_preferences(gint tab)
   gtk_box_pack_start((GtkBox*)vbox, hyperlinks_check, FALSE, FALSE, 0);
   confirm_check = gtk_check_button_new_with_mnemonic(_("C_onfirm before clearing history"));
   gtk_box_pack_start((GtkBox*)vbox, confirm_check, FALSE, FALSE, 0);
+  use_rmb_menu_check = gtk_check_button_new_with_mnemonic(_("_Use right-click menu"));
+  gtk_box_pack_start((GtkBox*)vbox, use_rmb_menu_check, FALSE, FALSE, 0);
   hbox = gtk_hbox_new(FALSE, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
   gtk_box_pack_start((GtkBox*)vbox_settings, frame, FALSE, FALSE, 0);
@@ -701,7 +715,7 @@ void show_preferences(gint tab)
   gtk_container_add((GtkContainer*)frame, alignment);
   vbox = gtk_vbox_new(FALSE, 2);
   gtk_container_add((GtkContainer*)alignment, vbox);
-  save_check = gtk_check_button_new_with_mnemonic(_("_Save history"));
+  save_check = gtk_check_button_new_with_mnemonic(_("Save _history"));
   gtk_widget_set_tooltip_text(save_check, _("Save and restore history between sessions"));
   gtk_box_pack_start((GtkBox*)vbox, save_check, FALSE, FALSE, 0);
   hbox = gtk_hbox_new(FALSE, 4);
@@ -722,6 +736,18 @@ void show_preferences(gint tab)
   items_menu = gtk_spin_button_new((GtkAdjustment*)adjustment_small, 0.0, 0);
   gtk_spin_button_set_update_policy((GtkSpinButton*)items_menu, GTK_UPDATE_IF_VALID);
   gtk_box_pack_start((GtkBox*)hbox, items_menu, FALSE, FALSE, 0);
+  statics_show_check = gtk_check_button_new_with_mnemonic(_("Show _static items in menu"));
+  g_signal_connect((GObject*)statics_show_check, "toggled", (GCallback)check_toggled, NULL);
+  gtk_box_pack_start((GtkBox*)vbox, statics_show_check, FALSE, FALSE, 0);
+  hbox = gtk_hbox_new(FALSE, 4);
+  gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
+  label = gtk_label_new(_("Static items in menu:"));
+  gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
+  gtk_box_pack_start((GtkBox*)hbox, label, FALSE, FALSE, 0);
+  adjustment_statics = gtk_adjustment_new(10, 1, 100, 1, 10, 0);
+  statics_items_spin = gtk_spin_button_new((GtkAdjustment*)adjustment_statics, 0.0, 0);
+  gtk_spin_button_set_update_policy((GtkSpinButton*)statics_items_spin, GTK_UPDATE_IF_VALID);
+  gtk_box_pack_start((GtkBox*)hbox, statics_items_spin, FALSE, FALSE, 0);
   gtk_box_pack_start((GtkBox*)vbox_history, frame, FALSE, FALSE, 0);
 
   /* Build the items frame */
@@ -735,7 +761,7 @@ void show_preferences(gint tab)
   gtk_container_add((GtkContainer*)frame, alignment);
   vbox = gtk_vbox_new(FALSE, 2);
   gtk_container_add((GtkContainer*)alignment, vbox);
-  linemode_check = gtk_check_button_new_with_mnemonic(_("Show in a _single line"));
+  linemode_check = gtk_check_button_new_with_mnemonic(_("Show in a single _line"));
   gtk_box_pack_start((GtkBox*)vbox, linemode_check, FALSE, FALSE, 0);
   reverse_check = gtk_check_button_new_with_mnemonic(_("Show in _reverse order"));
   gtk_box_pack_start((GtkBox*)vbox, reverse_check, FALSE, FALSE, 0);
@@ -967,9 +993,12 @@ void show_preferences(gint tab)
   gtk_toggle_button_set_active((GtkToggleButton*)paste_check, prefs.automatic_paste);
   gtk_toggle_button_set_active((GtkToggleButton*)show_indexes_check, prefs.show_indexes);
   gtk_toggle_button_set_active((GtkToggleButton*)save_uris_check, prefs.save_uris);
+  gtk_toggle_button_set_active((GtkToggleButton*)use_rmb_menu_check, prefs.use_rmb_menu);
   gtk_toggle_button_set_active((GtkToggleButton*)save_check, prefs.save_history);
   gtk_spin_button_set_value((GtkSpinButton*)history_spin, (gdouble)prefs.history_limit);
   gtk_spin_button_set_value((GtkSpinButton*)items_menu, (gdouble)prefs.items_menu);
+  gtk_toggle_button_set_active((GtkToggleButton*)statics_show_check, prefs.statics_show);
+  gtk_spin_button_set_value((GtkSpinButton*)statics_items_spin, (gdouble)prefs.statics_items);
   gtk_toggle_button_set_active((GtkToggleButton*)hyperlinks_check, prefs.hyperlinks_only);
   gtk_toggle_button_set_active((GtkToggleButton*)confirm_check, prefs.confirm_clear);
   gtk_toggle_button_set_active((GtkToggleButton*)linemode_check, prefs.single_line);
@@ -987,6 +1016,9 @@ void show_preferences(gint tab)
   
   /* Run the dialog */
   gtk_widget_show_all(dialog);
+#ifdef HAVE_APPINDICATOR
+  gtk_widget_hide(use_rmb_menu_check);
+#endif
   gtk_notebook_set_current_page((GtkNotebook*)notebook, tab);
   if (gtk_dialog_run((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT)
   {

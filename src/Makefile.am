@@ -1,6 +1,5 @@
 AM_CPPFLAGS = -I$(top_srcdir)
-AM_CFLAGS = -DCLIPITLOCALEDIR=\""$(clipitlocaledir)"\" \
-		-DCLIPITPIXMAPSDIR=\""$(datarootdir)"/pixmaps/clipit\"
+AM_CFLAGS = -Wall -g -DCLIPITLOCALEDIR=\""$(clipitlocaledir)"\" \
 INCLUDES = $(GTK_CFLAGS) $(APPINDICATOR_CFLAGS)
 LDADD = $(GTK_LIBS) $(APPINDICATOR_LIBS) $(X11_LIBS)
 AM_LDFLAGS = -Wl,--as-needed

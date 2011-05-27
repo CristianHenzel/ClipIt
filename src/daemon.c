@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 by Cristian Henzel <oss@web-tm.com>
+/* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>

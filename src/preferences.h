@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 by Cristian Henzel <oss@web-tm.com>
+/* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -36,8 +36,11 @@ G_BEGIN_DECLS
 #define DEF_SHOW_INDEXES      FALSE
 #define DEF_SAVE_URIS         TRUE
 #define DEF_SAVE_HISTORY      TRUE
+#define DEF_USE_RMB_MENU      FALSE
 #define DEF_HISTORY_LIMIT     50
 #define DEF_ITEMS_MENU        20
+#define DEF_STATICS_SHOW      TRUE
+#define DEF_STATICS_ITEMS     10
 #define DEF_HYPERLINKS_ONLY   FALSE
 #define DEF_CONFIRM_CLEAR     FALSE
 #define DEF_SINGLE_LINE       TRUE

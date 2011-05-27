@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 by Cristian Henzel <oss@web-tm.com>
+/* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -22,6 +22,7 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <string.h>
+#include <stdlib.h>
 #include <X11/keysym.h>
 #include "main.h"
 #include "utils.h"
@@ -49,12 +50,13 @@ static void search_history()
         gtk_list_store_remove(search_list, &search_iter);
 
       /* Declare some variables */
-      GSList* element;
+      GList* element;
       gint element_number = 0;
       /* Go through each element and adding each */
       for (element = history; element != NULL; element = element->next)
       {
-        GString* string = g_string_new((gchar*)element->data);
+        history_item *elem_data = element->data;
+        GString* string = g_string_new((gchar*)elem_data->content);
         gchar* strn_cmp_to = g_utf8_strdown(string->str, string->len);
         gchar* strn_find = g_utf8_strdown(search_input, search_len);
         char* result = strstr(strn_cmp_to, strn_find);
@@ -64,7 +66,7 @@ static void search_history()
           gtk_list_store_append(search_list, &row_iter);
           string = ellipsize_string(string);
           string = remove_newlines_string(string);
-          int row_num = g_slist_position(history, element);
+          int row_num = g_list_position(history, element);
           gtk_list_store_set(search_list, &row_iter, 0, row_num, 1, string->str, -1);
         }
         /* Prepare for next item */
@@ -84,16 +86,17 @@ static void search_history()
         gtk_list_store_remove(search_list, &search_iter);
 
       /* Declare some variables */
-      GSList *element;
+      GList *element;
       /* Go through each element and adding each */
       for (element = history; element != NULL; element = element->next)
       {
-        GString *string = g_string_new((gchar*)element->data);
+        history_item *elem_data = element->data;
+        GString *string = g_string_new((gchar*)elem_data->content);
         GtkTreeIter row_iter;
         gtk_list_store_append(search_list, &row_iter);
         string = ellipsize_string(string);
         string = remove_newlines_string(string);
-        int row_num = g_slist_position(history, element);
+        int row_num = g_list_position(history, element);
         gtk_list_store_set(search_list, &row_iter, 0, row_num, 1, string->str, -1);
         
         /* Prepare for next item */
@@ -106,7 +109,6 @@ static void search_history()
 /* Called when Edit is selected from Manage dialog */
 static void edit_selected()
 {
-  GtkTreeIter sel_iter;
   GtkTreeSelection* search_selection = gtk_tree_view_get_selection((GtkTreeView*)treeview_search);
   /* This checks if there's anything selected */
   gint selected_count = gtk_tree_selection_count_selected_rows(search_selection);
@@ -118,9 +120,10 @@ static void edit_selected()
     selected_item_nr = atoi((gchar*)gtk_tree_path_to_string(row_loop->data));
     g_list_foreach(selected_rows, (GFunc)gtk_tree_path_free, NULL);
     g_list_free(selected_rows);
-    GSList* element = g_slist_nth(history, selected_item_nr);
-    GSList* elementafter = element->next;
-    GString* s_selected_item = g_string_new((gchar*)element->data);
+    GList* element = g_list_nth(history, selected_item_nr);
+    GList* elementafter = element->next;
+    history_item *elem_data = element->data;
+    GString* s_selected_item = g_string_new((gchar*)elem_data->content);
     GtkTextBuffer* clipboard_buffer = gtk_text_buffer_new(NULL);
     gtk_text_buffer_set_text(clipboard_buffer, s_selected_item->str, -1);
     /* Create the dialog */
@@ -144,6 +147,9 @@ static void edit_selected()
     gtk_text_view_set_left_margin((GtkTextView*)text_view, 2);
     gtk_text_view_set_right_margin((GtkTextView*)text_view, 2);
     gtk_container_add((GtkContainer*)scrolled_window, text_view);
+    GtkWidget *static_check = gtk_check_button_new_with_mnemonic(_("_Static item"));
+    gtk_toggle_button_set_active((GtkToggleButton*)static_check, elem_data->is_static);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), static_check, FALSE, FALSE, 2);
     
     /* Run the dialog */
     gtk_widget_show_all(dialog);
@@ -158,19 +164,19 @@ static void edit_selected()
       delete_duplicate(gtk_text_buffer_get_text(clipboard_buffer, &start, &end, TRUE));
 
       /* Remove old entry */
-      history = g_slist_remove(history, element->data);
+      history = g_list_remove(history, elem_data);
 
       /* Insert new element where the old one was */
-      history = g_slist_insert_before(history, elementafter,
-                    g_strdup(gtk_text_buffer_get_text(clipboard_buffer, &start, &end, TRUE)));
+      history_item *hitem = g_new0(history_item, 1);
+      hitem->content = g_strdup(gtk_text_buffer_get_text(clipboard_buffer, &start, &end, TRUE));
+      hitem->is_static = gtk_toggle_button_get_active((GtkToggleButton*)static_check);
+      history = g_list_insert_before(history, elementafter, hitem);
 
       if(selected_item_nr == 0)
       {
-        GtkClipboard* clipboard;
-        clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
-        gtk_clipboard_set_text(clipboard, 
-                               gtk_text_buffer_get_text(clipboard_buffer, &start, &end, TRUE),
-                               -1);
+        GtkClipboard *clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
+        history_item *hitem = history->data;
+        gtk_clipboard_set_text(clipboard, hitem->content, -1);
       }
     }
     gtk_widget_destroy(dialog);
@@ -201,7 +207,7 @@ static void remove_selected()
         gint remove_item;
         GtkTreeIter *iter = &g_array_index(sel, GtkTreeIter, i);
         gtk_tree_model_get((GtkTreeModel*)search_list, iter, 0, &remove_item, -1);
-        history = g_slist_remove(history, g_slist_nth_data(history, remove_item));
+        history = g_list_remove(history, g_list_nth_data(history, remove_item));
         gtk_list_store_remove(store, iter);
     }
     g_array_free(sel, TRUE);
@@ -224,7 +230,7 @@ static void remove_all_selected(gpointer user_data)
     if (gtk_dialog_run((GtkDialog*)confirm_dialog) == GTK_RESPONSE_OK)
     {
       /* Clear history and free history-related variables */
-      g_slist_free(history);
+      g_list_free(history);
       history = NULL;
       save_history();
       clear_main_data();
@@ -237,7 +243,7 @@ static void remove_all_selected(gpointer user_data)
   else
   {
     /* Clear history and free history-related variables */
-    g_slist_free(history);
+    g_list_free(history);
     history = NULL;
     save_history();
     clear_main_data();
@@ -260,11 +266,12 @@ static void search_doubleclick()
     GtkTreeIter *iter = &g_array_index(sel, GtkTreeIter, 0);
     gtk_tree_model_get((GtkTreeModel*)search_list, iter, 0, &selected_item_nr, -1);
     g_array_free(sel, TRUE);
-    GSList *element = g_slist_nth(history, selected_item_nr);
+    GList *element = g_list_nth(history, selected_item_nr);
+    history_item *elem_data = element->data;
     GtkClipboard* prim = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
     GtkClipboard* clip = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
-    gtk_clipboard_set_text(prim, (gchar*)element->data, -1);
-    gtk_clipboard_set_text(clip, (gchar*)element->data, -1);
+    gtk_clipboard_set_text(prim, (gchar*)elem_data->content, -1);
+    gtk_clipboard_set_text(clip, (gchar*)elem_data->content, -1);
   }
 }
 
