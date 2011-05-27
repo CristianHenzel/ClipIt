@@ -1,3 +1,9 @@
+ClipIt-1.4.1-20110527001 - 27 May. 2011
+
+	+ Fixed: Hidden righ-click menu option when indicator is active and
+			disabled the static item spin when static items are not
+			shown.
+
 ClipIt-1.4.1-20110526008 - 26 May. 2011
 
 	+ Fixed: We're not loosing the static flag on existing items anymore.
