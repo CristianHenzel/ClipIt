@@ -1,3 +1,7 @@
+ClipIt-1.4.1-20110527003 - 27 May. 2011
+
+	+ Fixed: Removed some files from git. Again.
+
 ClipIt-1.4.1-20110527002 - 27 May. 2011
 
 	+ Fixed: Made autogen.sh executable.
