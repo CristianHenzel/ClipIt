@@ -1,3 +1,7 @@
+ClipIt-1.4.1-20110527002 - 27 May. 2011
+
+	+ Fixed: Made autogen.sh executable.
+
 ClipIt-1.4.1-20110527001 - 27 May. 2011
 
 	+ Fixed: Hidden righ-click menu option when indicator is active and
