@@ -1,3 +1,7 @@
+ClipIt-1.4.1-20110604001 - 04 Jun. 2011
+
+	+ Fixed: Removed some more files from git.
+
 ClipIt-1.4.1-20110527004 - 27 May. 2011
 
 	+ Fixed: Typo in src/Makefile.am.
