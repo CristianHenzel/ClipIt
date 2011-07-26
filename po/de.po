@@ -2,7 +2,7 @@
 # Copyright (C) 2008 Xyhthyx <xyhthyx@gmail.com>
 # This file is distributed under the same license as the clipit package.
 # Eckhard M. Jäger <bart@neeneenee.de>, 2008.
-# Michael Stempin <mstempin@web.de>, 2008.
+# Michael Stempin <mstempin@web.de>, 2008, 2010.
 #
 #
 msgid ""
@@ -17,75 +17,60 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/main.c:166
-msgid "Executing action..."
-msgstr "Aktion ausführen..."
+msgid "<b>Clipboards</b>"
+msgstr "<b>Zwischenablagen</b>"
 
-#: ../src/main.c:172 ../src/main.c:704 ../data/clipit.desktop.in.h:1
-#: ../data/clipit-startup.desktop.in.h:1
-msgid "Clipboard Manager"
-msgstr "Zwischenablage-Manager"
+msgid "<b>History</b>"
+msgstr "<b>Verlauf</b>"
 
-#: ../src/main.c:195
-msgid "Could not create thread for executed action\n"
-msgstr "Kann keinen Thread für ausgeführte Aktion anlegen\n"
+msgid "<b>Hotkeys</b>"
+msgstr "<b>Tastenkombinationen</b>"
 
-#. Create the dialog
-#: ../src/main.c:225
-msgid "Editing Clipboard"
-msgstr "Zwischenablage bearbeiten"
+msgid "<b>Items</b>"
+msgstr "<b>Einträge</b>"
 
-#: ../src/main.c:284
-msgid "Clear the history?"
-msgstr "Verlauf leeren?"
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Verschiedenes</b>"
 
-#: ../src/main.c:336
-msgid "Lightweight GTK+ clipboard manager."
-msgstr "Ein schlanker GTK+-Manager für die Zwischenablage."
-
-#: ../src/main.c:423
 msgid "<b>None</b>"
 msgstr "<b>Nichts</b>"
 
-#. File contained no actions so adding empty
-#. File did not open so adding empty
-#. Nothing in history so adding empty
-#: ../src/main.c:444 ../src/main.c:473 ../src/main.c:588
-msgid "Empty"
-msgstr "Leer"
+msgid "<b>Omitting</b>"
+msgstr "<b>Kürzen</b>"
 
-#. Edit actions
-#: ../src/main.c:480
-msgid "_Edit actions"
-msgstr "Aktion_en bearbeiten"
+msgid "Action"
+msgstr "Aktion"
 
-#. Edit clipboard
-#: ../src/main.c:504
-msgid "_Edit Clipboard"
-msgstr "Zwisch_enablage bearbeiten"
+msgid "Actions"
+msgstr "Aktionen"
 
-#: ../src/utils.c:38 ../src/utils.c:45
-#, c-format
-msgid "Couldn't create directory: %s\n"
-msgstr "Verzeichnis kann nicht erzeugt werden: %s\n"
+msgid "Actions key combination:"
+msgstr "Aktionen Tastenkombination"
 
-#: ../src/utils.c:84
-msgid "Run as daemon"
-msgstr "Als Dienst starten"
+msgid "Add..."
+msgstr "Hinzufügen..."
 
-#: ../src/utils.c:91
-msgid "Do not use status icon (Ctrl-Alt-P for menu)"
-msgstr "Statussymbol nicht benutzen (Strg+Alt+P für Menü)"
+msgid "Beginning"
+msgstr "Am Anfang"
 
-#: ../src/utils.c:98
-msgid "Print clipboard contents"
-msgstr "Inhalt der Zwischenablage drucken"
+msgid "Behavior"
+msgstr "Verhalten"
 
-#: ../src/utils.c:105
-msgid "Print primary contents"
-msgstr "Inhalt der Zwischenablage drucken"
+msgid "C_onfirm before clearing history"
+msgstr "Leeren des Verlaufes bestätigen"
 
-#: ../src/utils.c:117
+msgid "Capture _hyperlinks only"
+msgstr "Nur Hyperlinks erfassen"
+
+msgid "Character length of items:"
+msgstr "Länge der Einträge im Verlauf"
+
+msgid "Clear the history?"
+msgstr "Verlauf leeren?"
+
+msgid "ClipIt"
+msgstr "ClipIt"
+
 msgid ""
 "Clipboard CLI usage examples:\n"
 "\n"
@@ -99,7 +84,102 @@ msgstr ""
 "  clipit \"In Zwischenablage kopiert\"\n"
 "  echo \"In Zwischenablage kopiert\" | clipit -o"
 
-#: ../src/utils.c:123
+msgid "Clipboard Manager"
+msgstr "Zwischenablage-Manager"
+
+msgid "Command"
+msgstr "Befehl"
+
+msgid "Control-click ClipIt's tray icon to use actions"
+msgstr "STRG+Mausklick auf das ClipIt-Symbol um Aktionen auszuführen"
+
+msgid "Could not create thread for executed action\n"
+msgstr "Kann keinen Thread für ausgeführte Aktion anlegen\n"
+
+msgid "Couldn't create directory: %s\n"
+msgstr "Verzeichnis kann nicht erzeugt werden: %s\n"
+
+msgid "Display"
+msgstr "Ansicht"
+
+msgid "Do not use status icon (Ctrl-Alt-P for menu)"
+msgstr "Statussymbol nicht benutzen (Strg+Alt+P für Menü)"
+
+msgid "Editing Clipboard"
+msgstr "Zwischenablage bearbeiten"
+
+msgid "Empty"
+msgstr "Leer"
+
+msgid "End"
+msgstr "Am Ende"
+
+msgid "Executing action..."
+msgstr "Aktion ausführen..."
+
+msgid "History key combination:"
+msgstr "Verlauf Tastenkombination"
+
+msgid "History"
+msgstr "Verlauf"
+
+msgid "Hotkeys"
+msgstr "Tastenkombinationen"
+
+msgid "Items in history:"
+msgstr "Einträge im Verlauf:"
+
+msgid "Lightweight GTK+ clipboard manager."
+msgstr "Ein schlanker GTK+-Manager für die Zwischenablage."
+
+msgid "Menu key combination:"
+msgstr "Menü Tastenkombination"
+
+msgid "Middle"
+msgstr "In der Mitte"
+
+msgid "Omit items in the:"
+msgstr "Einträge kürzen:"
+
+msgid "Preferences"
+msgstr "Einstellungen"
+
+msgid "Manage History"
+msgstr "Verlauf verwalten"
+
+msgid "_Manage history"
+msgstr "_Verlauf verwalten"
+
+msgid "Print clipboard contents"
+msgstr "Inhalt der Zwischenablage drucken"
+
+msgid "Print primary contents"
+msgstr "Inhalt der Zwischenablage drucken"
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "Run as daemon"
+msgstr "Als Dienst starten"
+
+msgid "S_ynchronize clipboards"
+msgstr "Zwischenblagen s_ynchronisieren"
+
+msgid "Save and restore history between sessions"
+msgstr "Verlauf zwischen den einzelnen Sitzungen speichern/ wiederherstellen"
+
+msgid "Show in _reverse order"
+msgstr "In umgekehrter Reihenfolge anzeigen"
+
+msgid "Show in a _single line"
+msgstr "Als einzelne Zeile anzeigen"
+
+msgid "Use _Copy (Ctrl-C)"
+msgstr "Kopieren benutzen (Ctrl-C)"
+
+msgid "Use _Primary (Selection)"
+msgstr "_Primäre Zwischenablage benutzen (Auswahl)"
+
 msgid ""
 "Written by Gilberto \"Xyhthyx\" Miralla.\n"
 "Report bugs to <xyhthyx@gmail.com>."
@@ -107,224 +187,11 @@ msgstr ""
 "Entwickelt von Gilberto \"Xyhthyx\" Miralla.\n"
 "Melden Sie Fehler bitte an <xyhthyx@gmail.com>."
 
-#. Create the dialog
-#: ../src/preferences.c:375
-msgid "Preferences"
-msgstr "Einstellungen"
+msgid "_Edit Clipboard"
+msgstr "Zwisch_enablage bearbeiten"
 
-#: ../src/preferences.c:390
-msgid "Behavior"
-msgstr "Verhalten"
+msgid "_Edit actions"
+msgstr "Aktion_en bearbeiten"
 
-#: ../src/preferences.c:398
-msgid "<b>Clipboards</b>"
-msgstr "<b>Zwischenablagen</b>"
-
-#: ../src/preferences.c:405
-msgid "Use _Copy (Ctrl-C)"
-msgstr "Kopieren benutzen (Ctrl-C)"
-
-#: ../src/preferences.c:407
-msgid "Use _Primary (Selection)"
-msgstr "_Primäre Zwischenablage benutzen (Auswahl)"
-
-#: ../src/preferences.c:409
-msgid "S_ynchronize clipboards"
-msgstr "Zwischenblagen s_ynchronisieren"
-
-#: ../src/preferences.c:417
-msgid "<b>History</b>"
-msgstr "<b>Verlauf</b>"
-
-#: ../src/preferences.c:424
 msgid "_Save history"
 msgstr "Verlauf _speichern"
-
-#: ../src/preferences.c:425
-msgid "Save and restore history between sessions"
-msgstr "Verlauf zwischen den einzelnen Sitzungen speichern/ wiederherstellen"
-
-#: ../src/preferences.c:429
-msgid "Items in history:"
-msgstr "Einträge im Verlauf:"
-
-#: ../src/preferences.c:442
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>Verschiedenes</b>"
-
-#: ../src/preferences.c:449
-msgid "Capture _hyperlinks only"
-msgstr "Nur Hyperlinks erfassen"
-
-#: ../src/preferences.c:451
-msgid "C_onfirm before clearing history"
-msgstr "Leeren des Verlaufes bestätigen"
-
-#: ../src/preferences.c:458
-msgid "Display"
-msgstr "Ansicht"
-
-#: ../src/preferences.c:466
-msgid "<b>Items</b>"
-msgstr "<b>Einträge</b>"
-
-#: ../src/preferences.c:473
-msgid "Show in a _single line"
-msgstr "Als einzelne Zeile anzeigen"
-
-#: ../src/preferences.c:475
-msgid "Show in _reverse order"
-msgstr "In umgekehrter Reihenfolge anzeigen"
-
-#: ../src/preferences.c:479
-msgid "Character length of items:"
-msgstr "Länge der Einträge im Verlauf"
-
-#: ../src/preferences.c:492
-msgid "<b>Omitting</b>"
-msgstr "<b>Kürzen</b>"
-
-#: ../src/preferences.c:501
-msgid "Omit items in the:"
-msgstr "Einträge kürzen:"
-
-#: ../src/preferences.c:505
-msgid "Beginning"
-msgstr "Am Anfang"
-
-#: ../src/preferences.c:506
-msgid "Middle"
-msgstr "In der Mitte"
-
-#: ../src/preferences.c:507
-msgid "End"
-msgstr "Am Ende"
-
-#: ../src/preferences.c:514
-msgid "Actions"
-msgstr "Aktionen"
-
-#. Build the actions label
-#: ../src/preferences.c:519
-msgid "Control-click ClipIt's tray icon to use actions"
-msgstr "STRG+Mausklick auf das ClipIt-Symbol um Aktionen auszuführen"
-
-#: ../src/preferences.c:539
-msgid "Action"
-msgstr "Aktion"
-
-#: ../src/preferences.c:546
-msgid "Command"
-msgstr "Befehl"
-
-#: ../src/preferences.c:561
-msgid "Add..."
-msgstr "Hinzufügen..."
-
-#: ../src/preferences.c:565
-msgid "Remove"
-msgstr "Entfernen"
-
-#: ../src/preferences.c:582
-msgid "Hotkeys"
-msgstr "<b>Tastenkombinationen</b>"
-
-#: ../src/preferences.c:590
-msgid "<b>Hotkeys</b>"
-msgstr "<b>Tastenkombinationen</b>"
-
-#: ../src/preferences.c:599
-msgid "History key combination:"
-msgstr "Verlauf Tastenkombination"
-
-#: ../src/preferences.c:607
-msgid "Actions key combination:"
-msgstr "Aktionen Tastenkombination"
-
-#: ../src/preferences.c:615
-msgid "Menu key combination:"
-msgstr "Menü Tastenkombination"
-
-#: ../data/clipit.desktop.in.h:2 ../data/clipit-startup.desktop.in.h:2
-msgid "ClipIt"
-msgstr "ClipIt"
-
-#~ msgid "<b>Clipboard</b>"
-#~ msgstr "<b>Zwischenablage</b>"
-
-#~ msgid "Save changes"
-#~ msgstr "Änderungen speichern"
-
-#~ msgid "Discard changes"
-#~ msgstr "Änderungen verwerfen"
-
-#~ msgid "Extras"
-#~ msgstr "Extras"
-
-#, fuzzy
-#~ msgid ""
-#~ "Add a new action\n"
-#~ "\"%s\" in a command is replaced with the clipboard contents"
-#~ msgstr "\"%s\" wird mit dem Inhalt der Zwischenablage ersetzt"
-
-#, fuzzy
-#~ msgid "Move selected action up"
-#~ msgstr "Auswahl nach oben verschieben"
-
-#, fuzzy
-#~ msgid "Move selected action down"
-#~ msgstr "Auswahl nach unten verschieben"
-
-#~ msgid "Close"
-#~ msgstr "Schließen"
-
-#~ msgid "New Action"
-#~ msgstr "Neue Aktion"
-
-#~ msgid "<b>Name:</b>"
-#~ msgstr "<b>Name:</b>"
-
-#~ msgid "Name your action"
-#~ msgstr "Benennen Sie Ihre Aktion"
-
-#~ msgid "<b>Command:</b>"
-#~ msgstr "<b>Befehl:</b>"
-
-#~ msgid "Edit Action"
-#~ msgstr "Aktion bearbeiten"
-
-#~ msgid "General"
-#~ msgstr "Allgemein"
-
-#~ msgid "Length in characters of history items:"
-#~ msgstr "Maximale Länge der Zeichen pro Eintrag:"
-
-#~ msgid "History menu global hotkey:"
-#~ msgstr "Globale Tastenkombination für Verlaufsmenü:"
-
-#~ msgid "Actions menu global hotkey:"
-#~ msgstr "Globale Tastenkombination für Aktionsmenü:"
-
-#~ msgid "Single _line mode"
-#~ msgstr "Zei_lenmodus"
-
-#~ msgid "Ignore all non-hyperlink text"
-#~ msgstr "Ignoriere nicht verlinkten Text"
-
-#~ msgid "New"
-#~ msgstr "Neu"
-
-#~ msgid "New action"
-#~ msgstr "Neue Aktion"
-
-#~ msgid "Edit"
-#~ msgstr "Bearbeiten"
-
-#~ msgid "Edit selected"
-#~ msgstr "Auswahl bearbeiten"
-
-#~ msgid "Delete"
-#~ msgstr "Löschen"
-
-#~ msgid "Delete selected"
-#~ msgstr "Auswahl löschen"

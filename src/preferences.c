@@ -832,7 +832,7 @@ void show_preferences(gint tab)
   GtkWidget* treeview = gtk_tree_view_new();
   gtk_tree_view_set_reorderable((GtkTreeView*)treeview, TRUE);
   gtk_tree_view_set_rules_hint((GtkTreeView*)treeview, TRUE);
-  actions_list = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING);
+  actions_list = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING, -1);
   gtk_tree_view_set_model((GtkTreeView*)treeview, (GtkTreeModel*)actions_list);
   GtkCellRenderer* name_renderer = gtk_cell_renderer_text_new();
   g_object_set(name_renderer, "editable", TRUE, NULL);
@@ -900,7 +900,7 @@ void show_preferences(gint tab)
   GtkWidget* treeview_exclude = gtk_tree_view_new();
   gtk_tree_view_set_reorderable((GtkTreeView*)treeview_exclude, TRUE);
   gtk_tree_view_set_rules_hint((GtkTreeView*)treeview_exclude, TRUE);
-  exclude_list = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING);
+  exclude_list = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING, -1);
   gtk_tree_view_set_model((GtkTreeView*)treeview_exclude, (GtkTreeModel*)exclude_list);
   GtkCellRenderer* name_renderer_exclude = gtk_cell_renderer_text_new();
   g_object_set(name_renderer_exclude, "editable", TRUE, NULL);
