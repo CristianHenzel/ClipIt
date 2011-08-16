@@ -158,7 +158,7 @@ static void first_run_check()
                                                        GTK_MESSAGE_OTHER,
                                                        GTK_BUTTONS_YES_NO,
                                                        SAVE_HIST_MESSAGE);
-    gtk_window_set_title((GtkWindow*)confirm_dialog, "Save history");
+    gtk_window_set_title((GtkWindow*)confirm_dialog, _("Save history"));
     
     if (gtk_dialog_run((GtkDialog*)confirm_dialog) == GTK_RESPONSE_YES)
     {
@@ -190,7 +190,7 @@ static void check_saved_hist_file()
                                                        GTK_MESSAGE_OTHER,
                                                        GTK_BUTTONS_YES_NO,
                                                        CHECK_HIST_MESSAGE);
-    gtk_window_set_title((GtkWindow*)confirm_dialog, "Remove history file");
+    gtk_window_set_title((GtkWindow*)confirm_dialog, _("Remove history file"));
     
     if (gtk_dialog_run((GtkDialog*)confirm_dialog) == GTK_RESPONSE_YES)
     {

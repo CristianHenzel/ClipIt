@@ -6,87 +6,287 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ClipIt 1.0.0\n"
+"Project-Id-Version: clipit-ja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-18 12:08-0400\n"
+"POT-Creation-Date: 2011-08-16 12:49+0300\n"
 "PO-Revision-Date: 2009-03-14 11:08+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: JAPANESE\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Japanese\n"
 "X-Poedit-Country: JAPAN\n"
 
-#: ../src/main.c:166
-msgid "Executing action..."
-msgstr "アクション実行中..."
-
-#: ../src/main.c:172 ../src/main.c:704 ../data/clipit.desktop.in.h:1
-#: ../data/clipit-startup.desktop.in.h:1
-msgid "Clipboard Manager"
-msgstr "クリップボード・マネージャ"
-
-#: ../src/main.c:195
-msgid "Could not create thread for executed action\n"
-msgstr "実行されたアクションのためのスレッドが作成できませんでした。\n"
-
-#. Create the dialog
-#: ../src/main.c:225
-msgid "Editing Clipboard"
-msgstr "クリップボード編集中"
-
-#: ../src/main.c:284
-msgid "Clear the history?"
-msgstr "履歴を消去しますか？"
-
-#: ../src/main.c:336
+#: .././src/main.c:288
 msgid "Lightweight GTK+ clipboard manager."
 msgstr "軽量な GTK+ クリップボード・マネージャ"
 
-#: ../src/main.c:423
+#: .././src/main.c:381
 msgid "<b>None</b>"
 msgstr "<b>なし</b>"
 
 #. File contained no actions so adding empty
 #. File did not open so adding empty
 #. Nothing in history so adding empty
-#: ../src/main.c:444 ../src/main.c:473 ../src/main.c:588
+#: .././src/main.c:403 .././src/main.c:432 .././src/main.c:587
 msgid "Empty"
 msgstr "空"
 
 #. Edit actions
-#: ../src/main.c:480
+#: .././src/main.c:439
 msgid "_Edit actions"
 msgstr "アクション編集(_E)"
 
-#. Edit clipboard
-#: ../src/main.c:504
-msgid "_Edit Clipboard"
-msgstr "クリップボード編集(_E)"
+#. Manage history
+#: .././src/main.c:668
+#, fuzzy
+msgid "_Manage history"
+msgstr "履歴を保存(_S)"
 
-#: ../src/utils.c:38 ../src/utils.c:45
+#: .././src/main.c:808
+msgid "Clipboard Manager"
+msgstr "クリップボード・マネージャ"
+
+#. Create the dialog
+#: .././src/manage.c:130
+msgid "Editing Clipboard"
+msgstr "クリップボード編集中"
+
+#: .././src/manage.c:150
+msgid "_Static item"
+msgstr ""
+
+#: .././src/manage.c:227
+msgid "Clear the history?"
+msgstr "履歴を消去しますか？"
+
+#: .././src/manage.c:228
+#, fuzzy
+msgid "Clear history"
+msgstr "履歴を消去しますか？"
+
+#: .././src/preferences.c:161
+#, fuzzy
+msgid "Save history"
+msgstr "履歴を保存(_S)"
+
+#: .././src/preferences.c:193
+#, fuzzy
+msgid "Remove history file"
+msgstr "履歴を保存(_S)"
+
+#. Create the dialog
+#: .././src/preferences.c:628
+msgid "Preferences"
+msgstr "設定"
+
+#: .././src/preferences.c:647
+msgid "Settings"
+msgstr ""
+
+#: .././src/preferences.c:655
+msgid "<b>Clipboards</b>"
+msgstr "<b>クリップボード</b>"
+
+#: .././src/preferences.c:662
+msgid "Use _Copy (Ctrl-C)"
+msgstr "コピー(Ctrl-C)を使用(_C)"
+
+#: .././src/preferences.c:665
+msgid "Use _Primary (Selection)"
+msgstr "プライマリ・セレクション（選択）を使用(_P)"
+
+#: .././src/preferences.c:668
+msgid "S_ynchronize clipboards"
+msgstr "クリップボード同士を同期(_Y)"
+
+#: .././src/preferences.c:670
+msgid "_Automatically paste selected item"
+msgstr ""
+
+#: .././src/preferences.c:679
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>その他</b>"
+
+#: .././src/preferences.c:686
+msgid "Show _indexes in history menu"
+msgstr ""
+
+#: .././src/preferences.c:688
+msgid "S_ave URIs"
+msgstr ""
+
+#: .././src/preferences.c:690
+msgid "Capture _hyperlinks only"
+msgstr "ハイパーリンクのみを取り込み(_H)"
+
+#: .././src/preferences.c:692
+msgid "C_onfirm before clearing history"
+msgstr "履歴を消去する前に確認を取る(_O)"
+
+#: .././src/preferences.c:694
+msgid "_Use right-click menu"
+msgstr ""
+
+#: .././src/preferences.c:703
+#, fuzzy
+msgid "History"
+msgstr "<b>履歴</b>"
+
+#: .././src/preferences.c:711
+msgid "<b>History</b>"
+msgstr "<b>履歴</b>"
+
+#: .././src/preferences.c:718
+#, fuzzy
+msgid "Save _history"
+msgstr "履歴を保存(_S)"
+
+#: .././src/preferences.c:719
+msgid "Save and restore history between sessions"
+msgstr "セッション間の履歴を保存して復元"
+
+#: .././src/preferences.c:723
+msgid "Items in history:"
+msgstr "履歴アイテム数:"
+
+#: .././src/preferences.c:732
+#, fuzzy
+msgid "Items in menu:"
+msgstr "履歴アイテム数:"
+
+#: .././src/preferences.c:739
+msgid "Show _static items in menu"
+msgstr ""
+
+#: .././src/preferences.c:744
+#, fuzzy
+msgid "Static items in menu:"
+msgstr "アイテムの省略表示:"
+
+#: .././src/preferences.c:757
+msgid "<b>Items</b>"
+msgstr "<b>アイテム</b>"
+
+#: .././src/preferences.c:764
+#, fuzzy
+msgid "Show in a single _line"
+msgstr "1行で表示(_S)"
+
+#: .././src/preferences.c:766
+msgid "Show in _reverse order"
+msgstr "逆順に表示(_R)"
+
+#: .././src/preferences.c:770
+msgid "Character length of items:"
+msgstr "アイテムの表示文字数:"
+
+#: .././src/preferences.c:779
+msgid "Omit items in the:"
+msgstr "アイテムの省略表示:"
+
+#: .././src/preferences.c:783
+msgid "Beginning"
+msgstr "文頭"
+
+#: .././src/preferences.c:784
+msgid "Middle"
+msgstr "文中"
+
+#: .././src/preferences.c:785
+msgid "End"
+msgstr "文末"
+
+#: .././src/preferences.c:815
+msgid "Actions"
+msgstr "アクション"
+
+#. Build the actions label
+#: .././src/preferences.c:820
+msgid "Control-click ClipIt's tray icon to use actions"
+msgstr "アクションの使用は Ctrl + ClipIt トレイアイコンのクリック"
+
+#: .././src/preferences.c:840
+msgid "Action"
+msgstr "アクション"
+
+#: .././src/preferences.c:847
+msgid "Command"
+msgstr "コマンド"
+
+#: .././src/preferences.c:862 .././src/preferences.c:923
+msgid "Add..."
+msgstr "追加..."
+
+#: .././src/preferences.c:866 .././src/preferences.c:927
+msgid "Remove"
+msgstr "削除"
+
+#: .././src/preferences.c:883
+msgid "Exclude"
+msgstr ""
+
+#. Build the exclude label
+#: .././src/preferences.c:888
+msgid ""
+"Regex list of icons that should not be inserted into the history (passwords/"
+"sites that you don't need in history, etc)."
+msgstr ""
+
+#: .././src/preferences.c:908
+msgid "Regex"
+msgstr ""
+
+#: .././src/preferences.c:936
+msgid "Hotkeys"
+msgstr "ホットキー"
+
+#: .././src/preferences.c:944
+msgid "<b>Hotkeys</b>"
+msgstr "<b>ホットキー</b>"
+
+#: .././src/preferences.c:954
+#, fuzzy
+msgid "History hotkey:"
+msgstr "履歴キーの組み合せ:"
+
+#: .././src/preferences.c:963
+#, fuzzy
+msgid "Actions hotkey:"
+msgstr "アクション"
+
+#: .././src/preferences.c:972
+msgid "Menu hotkey:"
+msgstr ""
+
+#: .././src/preferences.c:981
+msgid "Manage hotkey:"
+msgstr ""
+
+#: .././src/utils.c:40 .././src/utils.c:47
 #, c-format
 msgid "Couldn't create directory: %s\n"
 msgstr "ディレクトリの作成ができませんでした。: %s\n"
 
-#: ../src/utils.c:84
+#: .././src/utils.c:121
 msgid "Run as daemon"
 msgstr "デーモンとして実行"
 
-#: ../src/utils.c:91
+#: .././src/utils.c:128
 msgid "Do not use status icon (Ctrl-Alt-P for menu)"
 msgstr "ステータスアイコンを使用しない（Ctrl-Alt-P でメニュー）"
 
-#: ../src/utils.c:98
+#: .././src/utils.c:135
 msgid "Print clipboard contents"
 msgstr "クリップボード内容を出力"
 
-#: ../src/utils.c:105
+#: .././src/utils.c:142
 msgid "Print primary contents"
 msgstr "プライマリ内容を出力"
 
-#: ../src/utils.c:117
+#: .././src/utils.c:154
 msgid ""
 "Clipboard CLI usage examples:\n"
 "\n"
@@ -100,155 +300,41 @@ msgstr ""
 "  clipit \"クリップボードにコピー\"\n"
 "  echo \"クリップボードにコピー\" | clipit -c"
 
-#: ../src/utils.c:123
+#: .././src/utils.c:160
+#, fuzzy
 msgid ""
-"Written by Gilberto \"Xyhthyx\" Miralla.\n"
-"Report bugs to <xyhthyx@gmail.com>."
+"Written by Cristian Henzel.\n"
+"Report bugs to <oss@rspwn.com>."
 msgstr ""
 "Gilberto \"Xyhthyx\" Miralla による制作\n"
 "バグ報告はこちらに <xyhthyx@gmail.com>"
 
-#. Create the dialog
-#: ../src/preferences.c:375
-msgid "Preferences"
-msgstr "設定"
+#~ msgid "ClipIt"
+#~ msgstr "ClipIt"
 
-#: ../src/preferences.c:390
-msgid "Behavior"
-msgstr "動作"
+#~ msgid "Executing action..."
+#~ msgstr "アクション実行中..."
 
-#: ../src/preferences.c:398
-msgid "<b>Clipboards</b>"
-msgstr "<b>クリップボード</b>"
+#~ msgid "Could not create thread for executed action\n"
+#~ msgstr "実行されたアクションのためのスレッドが作成できませんでした。\n"
 
-#: ../src/preferences.c:405
-msgid "Use _Copy (Ctrl-C)"
-msgstr "コピー(Ctrl-C)を使用(_C)"
+#~ msgid "_Edit Clipboard"
+#~ msgstr "クリップボード編集(_E)"
 
-#: ../src/preferences.c:407
-msgid "Use _Primary (Selection)"
-msgstr "プライマリ・セレクション（選択）を使用(_P)"
+#~ msgid "Behavior"
+#~ msgstr "動作"
 
-#: ../src/preferences.c:409
-msgid "S_ynchronize clipboards"
-msgstr "クリップボード同士を同期(_Y)"
+#~ msgid "Display"
+#~ msgstr "表示"
 
-#: ../src/preferences.c:417
-msgid "<b>History</b>"
-msgstr "<b>履歴</b>"
+#~ msgid "<b>Omitting</b>"
+#~ msgstr "<b>省略</b>"
 
-#: ../src/preferences.c:424
-msgid "_Save history"
-msgstr "履歴を保存(_S)"
+#~ msgid "Actions key combination:"
+#~ msgstr "アクションキーの組み合せ:"
 
-#: ../src/preferences.c:425
-msgid "Save and restore history between sessions"
-msgstr "セッション間の履歴を保存して復元"
-
-#: ../src/preferences.c:429
-msgid "Items in history:"
-msgstr "履歴アイテム数:"
-
-#: ../src/preferences.c:442
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>その他</b>"
-
-#: ../src/preferences.c:449
-msgid "Capture _hyperlinks only"
-msgstr "ハイパーリンクのみを取り込み(_H)"
-
-#: ../src/preferences.c:451
-msgid "C_onfirm before clearing history"
-msgstr "履歴を消去する前に確認を取る(_O)"
-
-#: ../src/preferences.c:458
-msgid "Display"
-msgstr "表示"
-
-#: ../src/preferences.c:466
-msgid "<b>Items</b>"
-msgstr "<b>アイテム</b>"
-
-#: ../src/preferences.c:473
-msgid "Show in a _single line"
-msgstr "1行で表示(_S)"
-
-#: ../src/preferences.c:475
-msgid "Show in _reverse order"
-msgstr "逆順に表示(_R)"
-
-#: ../src/preferences.c:479
-msgid "Character length of items:"
-msgstr "アイテムの表示文字数:"
-
-#: ../src/preferences.c:492
-msgid "<b>Omitting</b>"
-msgstr "<b>省略</b>"
-
-#: ../src/preferences.c:501
-msgid "Omit items in the:"
-msgstr "アイテムの省略表示:"
-
-#: ../src/preferences.c:505
-msgid "Beginning"
-msgstr "文頭"
-
-#: ../src/preferences.c:506
-msgid "Middle"
-msgstr "文中"
-
-#: ../src/preferences.c:507
-msgid "End"
-msgstr "文末"
-
-#: ../src/preferences.c:514
-msgid "Actions"
-msgstr "アクション"
-
-#. Build the actions label
-#: ../src/preferences.c:519
-msgid "Control-click ClipIt's tray icon to use actions"
-msgstr "アクションの使用は Ctrl + ClipIt トレイアイコンのクリック"
-
-#: ../src/preferences.c:539
-msgid "Action"
-msgstr "アクション"
-
-#: ../src/preferences.c:546
-msgid "Command"
-msgstr "コマンド"
-
-#: ../src/preferences.c:561
-msgid "Add..."
-msgstr "追加..."
-
-#: ../src/preferences.c:565
-msgid "Remove"
-msgstr "削除"
-
-#: ../src/preferences.c:582
-msgid "Hotkeys"
-msgstr "ホットキー"
-
-#: ../src/preferences.c:590
-msgid "<b>Hotkeys</b>"
-msgstr "<b>ホットキー</b>"
-
-#: ../src/preferences.c:599
-msgid "History key combination:"
-msgstr "履歴キーの組み合せ:"
-
-#: ../src/preferences.c:607
-msgid "Actions key combination:"
-msgstr "アクションキーの組み合せ:"
-
-#: ../src/preferences.c:615
-msgid "Menu key combination:"
-msgstr "メニューキーの組み合せ:"
-
-#: ../data/clipit.desktop.in.h:2 ../data/clipit-startup.desktop.in.h:2
-msgid "ClipIt"
-msgstr "ClipIt"
+#~ msgid "Menu key combination:"
+#~ msgstr "メニューキーの組み合せ:"
 
 #~ msgid "<b>Clipboard</b>"
 #~ msgstr "<b>クリップボード</b>"

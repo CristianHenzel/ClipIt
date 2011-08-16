@@ -1,8 +1,14 @@
-ClipIt-1.4.2-20110726001 ~ 2011-07-26 18:10:19 +0300
+ClipIt-1.4.2-20110816001 ~ 2011-08-16 12:50:54 +0300
+
++ Added: Added logic to Makefile to automatically update translation files.
++ Fixed: Added some more strings to gettext and updated translations.
+
+
+ClipIt-1.4.2-20110726001 - 2011-07-26 18:10:39 +0300
 
 + Fixed: Updated German localisation. (LP: #793878)
 + Fixed: Fixed problem with excludes and actions lists not working properly
-		on Debian derived distributions. (SF: #3315622) 
+		on Debian derived distributions. (SF: #3315622)
 
 
 ClipIt-1.4.2-20110623001 - 2011-06-23 13:46:10 +0300
