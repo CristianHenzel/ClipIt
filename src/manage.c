@@ -341,7 +341,7 @@ gboolean show_search()
   GtkWidget* search_dialog = gtk_dialog_new();
 
   gtk_window_set_icon((GtkWindow*)search_dialog, gtk_widget_render_icon(search_dialog, GTK_STOCK_FIND, GTK_ICON_SIZE_MENU, NULL));
-  gtk_window_set_title((GtkWindow*)search_dialog, "Manage History");
+  gtk_window_set_title((GtkWindow*)search_dialog, _("Manage History"));
   gtk_window_set_resizable((GtkWindow*)search_dialog, TRUE);
   gtk_window_set_position((GtkWindow*)search_dialog, GTK_WIN_POS_CENTER);
 
@@ -373,18 +373,18 @@ gboolean show_search()
   cell_renderer = gtk_cell_renderer_text_new();
   g_object_set(cell_renderer, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
   g_object_set(cell_renderer, "single-paragraph-mode", TRUE, NULL);
-  tree_column = gtk_tree_view_column_new_with_attributes("Results", cell_renderer, "text", 1, NULL);
+  tree_column = gtk_tree_view_column_new_with_attributes(_("Results"), cell_renderer, "text", 1, NULL);
   gtk_tree_view_append_column((GtkTreeView*)treeview_search, tree_column);
   gtk_container_add((GtkContainer*)scrolled_window_search, treeview_search);
   gtk_box_pack_start((GtkBox*)vbox_search, scrolled_window_search, TRUE, TRUE, 0);
 
-  GtkWidget* edit_button = gtk_dialog_add_button((GtkDialog*)search_dialog, "Edit", 1);
+  GtkWidget* edit_button = gtk_dialog_add_button((GtkDialog*)search_dialog, _("Edit"), 1);
   g_signal_connect((GObject*)edit_button, "clicked", (GCallback)edit_selected, NULL);
-  GtkWidget* remove_button = gtk_dialog_add_button((GtkDialog*)search_dialog, "Remove", 1);
+  GtkWidget* remove_button = gtk_dialog_add_button((GtkDialog*)search_dialog, _("Remove"), 1);
   g_signal_connect((GObject*)remove_button, "clicked", (GCallback)remove_selected, NULL);
-  GtkWidget* remove_all_button = gtk_dialog_add_button((GtkDialog*)search_dialog, "Remove all", 1);
+  GtkWidget* remove_all_button = gtk_dialog_add_button((GtkDialog*)search_dialog, _("Remove all"), 1);
   g_signal_connect((GObject*)remove_all_button, "clicked", (GCallback)remove_all_selected, NULL);
-  GtkWidget* close_button = gtk_dialog_add_button((GtkDialog*)search_dialog, "Close", GTK_RESPONSE_OK);
+  GtkWidget* close_button = gtk_dialog_add_button((GtkDialog*)search_dialog, _("Close"), GTK_RESPONSE_OK);
   g_signal_connect((GObject*)close_button, "clicked", (GCallback)search_history, NULL);
 
   GtkTreeSelection* search_selection = gtk_tree_view_get_selection((GtkTreeView*)treeview_search);

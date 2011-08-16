@@ -1,0 +1,328 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Guido Tabbernuk <boamaod@gmail.com>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ClipIt 1.4.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-14 21:39+0300\n"
+"PO-Revision-Date: 2011-08-14 20:01+0300\n"
+"Last-Translator: Guido Tabbernuk <boamaod@gmail.com>\n"
+"Language-Team: Eesti <gnome-et@linux.ee>\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: utf-8\n"
+"Plural-Forms: 2\n"
+
+#: ../src/main.c:288
+msgid "Lightweight GTK+ clipboard manager."
+msgstr "Kergekaaluline GTK+ lõikepuhvrihaldur"
+
+#. Actions using:
+#: ../src/main.c:353
+msgid "Actions using:"
+msgstr "Käsklused:"
+
+#. Create menu item for empty clipboard contents
+#: ../src/main.c:362 ../src/main.c:379
+msgid "None"
+msgstr "Puudub"
+
+#: ../src/main.c:382
+msgid "<b>None</b>"
+msgstr "<b>Puudub</b>"
+
+#. File contained no actions so adding empty
+#. File did not open so adding empty
+#. Nothing in history so adding empty
+#: ../src/main.c:404 ../src/main.c:433 ../src/main.c:588
+msgid "Empty"
+msgstr "Tühi"
+
+#. Edit actions
+#: ../src/main.c:440
+msgid "_Edit actions"
+msgstr "_Toimeta käsklusi"
+
+#. Manage history
+#: ../src/main.c:669
+msgid "_Manage history"
+msgstr "_Toimeta ajalugu"
+
+#: ../src/main.c:809 ../data/clipit.desktop.in.h:2
+#: ../data/clipit-startup.desktop.in.h:2
+msgid "Clipboard Manager"
+msgstr "Lõikepuhvrihaldur"
+
+#: ../src/utils.c:40 ../src/utils.c:47
+#, c-format
+msgid "Couldn't create directory: %s\n"
+msgstr "Kataloogi loomine ebaõnnestus: %s\n"
+
+#: ../src/utils.c:121
+msgid "Run as daemon"
+msgstr "Käivita deemonina"
+
+#: ../src/utils.c:128
+msgid "Do not use status icon (Ctrl-Alt-P for menu)"
+msgstr "Ära kasuta näidikuriba ikooni (Ctrl-Alt-P avab menüü)"
+
+#: ../src/utils.c:135
+msgid "Print clipboard contents"
+msgstr "Väljasta lõikepuhvri sisu"
+
+#: ../src/utils.c:142
+msgid "Print primary contents"
+msgstr "Väljasta primaarpuhvri sisu"
+
+#: ../src/utils.c:154
+msgid ""
+"Clipboard CLI usage examples:\n"
+"\n"
+"  echo \"copied to clipboard\" | clipit\n"
+"  clipit \"copied to clipboard\"\n"
+"  echo \"copied to clipboard\" | clipit -c"
+msgstr ""
+"Lõikepuhvri CLI kasutusnäited:\n"
+"\n"
+"  echo \"copied to clipboard\" | clipit\n"
+"  clipit \"copied to clipboard\"\n"
+"  echo \"copied to clipboard\" | clipit -c"
+
+#: ../src/utils.c:160
+msgid ""
+"Written by Cristian Henzel.\n"
+"Report bugs to <oss@rspwn.com>."
+msgstr ""
+"Koodinud Cristian Henzel.\n"
+"Vearaportid aadressile <oss@rspwn.com>."
+
+#. Create the dialog
+#: ../src/manage.c:130
+msgid "Editing Clipboard"
+msgstr "Lõikepuhvri toimetamine"
+
+#: ../src/manage.c:150
+msgid "_Static item"
+msgstr "_Staatiline kirje"
+
+#: ../src/manage.c:227
+msgid "Clear the history?"
+msgstr "Kas tühjendada ajalugu?"
+
+#: ../src/manage.c:228
+msgid "Clear history"
+msgstr "Ajaloo tühjendamine"
+
+#: ../src/manage.c:344
+#, fuzzy
+msgid "Manage History"
+msgstr "_Toimeta ajalugu"
+
+#: ../src/manage.c:376
+msgid "Results"
+msgstr "Tulemused"
+
+#: ../src/manage.c:381
+msgid "Edit"
+msgstr "Toimeta"
+
+#: ../src/manage.c:383 ../src/preferences.c:866 ../src/preferences.c:927
+msgid "Remove"
+msgstr "Eemalda"
+
+#: ../src/manage.c:385
+#, fuzzy
+msgid "Remove all"
+msgstr "Eemalda"
+
+#: ../src/manage.c:387
+msgid "Close"
+msgstr "Sulge"
+
+#. Create the dialog
+#: ../src/preferences.c:628
+msgid "Preferences"
+msgstr "Eelistused"
+
+#: ../src/preferences.c:647
+msgid "Settings"
+msgstr "Seaded"
+
+#: ../src/preferences.c:655
+msgid "<b>Clipboards</b>"
+msgstr "<b>Lõikepuhvrid</b>"
+
+#: ../src/preferences.c:662
+msgid "Use _Copy (Ctrl-C)"
+msgstr "_Kopeerimispuhvri (Ctrl-C) kasutamine"
+
+#: ../src/preferences.c:665
+msgid "Use _Primary (Selection)"
+msgstr "_Primaarpuhvri (valik) kasutamine"
+
+#: ../src/preferences.c:668
+msgid "S_ynchronize clipboards"
+msgstr "_Lõikepuhvrite sünkimine"
+
+#: ../src/preferences.c:670
+msgid "_Automatically paste selected item"
+msgstr "Valitud kirje _automaatne asetamine"
+
+#: ../src/preferences.c:679
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Mitmesugust</b>"
+
+#: ../src/preferences.c:686
+msgid "Show _indexes in history menu"
+msgstr "_Indeksite näitamine ajaloomenüüs"
+
+#: ../src/preferences.c:688
+msgid "S_ave URIs"
+msgstr "URI'de _salvestamine"
+
+#: ../src/preferences.c:690
+msgid "Capture _hyperlinks only"
+msgstr "Ainult _hüperlinkide salvestamine"
+
+#: ../src/preferences.c:692
+msgid "C_onfirm before clearing history"
+msgstr "Nõusoleku küsimine enne ajaloo _tühjendamist"
+
+#: ../src/preferences.c:694
+msgid "_Use right-click menu"
+msgstr "Hiire _paremklõpsu menüü kasutamine"
+
+#: ../src/preferences.c:703
+msgid "History"
+msgstr "Ajalugu"
+
+#: ../src/preferences.c:711
+msgid "<b>History</b>"
+msgstr "<b>Ajalugu</b>"
+
+#: ../src/preferences.c:718
+msgid "Save _history"
+msgstr "Ajaloo _salvestamine"
+
+#: ../src/preferences.c:719
+msgid "Save and restore history between sessions"
+msgstr "Salvestab ajaloo ja taastab selle uues sessioonis"
+
+#: ../src/preferences.c:723
+msgid "Items in history:"
+msgstr "Kirjeid ajaloos:"
+
+#: ../src/preferences.c:732
+msgid "Items in menu:"
+msgstr "Kirjeid menüüs:"
+
+#: ../src/preferences.c:739
+msgid "Show _static items in menu"
+msgstr "_Püsikirjete näitamine menüüs"
+
+#: ../src/preferences.c:744
+msgid "Static items in menu:"
+msgstr "Püsikirjeid menüüs:"
+
+#: ../src/preferences.c:757
+msgid "<b>Items</b>"
+msgstr "<b>Kirjed</b>"
+
+#: ../src/preferences.c:764
+msgid "Show in a single _line"
+msgstr "Näitamine ühel _real"
+
+#: ../src/preferences.c:766
+msgid "Show in _reverse order"
+msgstr "_Tagurpidijärjestus"
+
+#: ../src/preferences.c:770
+msgid "Character length of items:"
+msgstr "Kirje pikkus tärkides:"
+
+#: ../src/preferences.c:779
+msgid "Omit items in the:"
+msgstr "Kärbitakse kirjed:"
+
+#: ../src/preferences.c:783
+msgid "Beginning"
+msgstr "Algusest"
+
+#: ../src/preferences.c:784
+msgid "Middle"
+msgstr "Keskelt"
+
+#: ../src/preferences.c:785
+msgid "End"
+msgstr "Lõpust"
+
+#: ../src/preferences.c:815
+msgid "Actions"
+msgstr "Käsklused"
+
+#. Build the actions label
+#: ../src/preferences.c:820
+msgid "Control-click ClipIt's tray icon to use actions"
+msgstr "Käskluste kasutamiseks Ctrl-klõpsa ClipIt'i seisundiikoonil"
+
+#: ../src/preferences.c:840
+msgid "Action"
+msgstr "Nimi"
+
+#: ../src/preferences.c:847
+msgid "Command"
+msgstr "Käsk"
+
+#: ../src/preferences.c:862 ../src/preferences.c:923
+msgid "Add..."
+msgstr "Lisa..."
+
+#: ../src/preferences.c:883
+msgid "Exclude"
+msgstr "Välistamine"
+
+#. Build the exclude label
+#: ../src/preferences.c:888
+msgid ""
+"Regex list of icons that should not be inserted into the history (passwords/"
+"sites that you don't need in history, etc)."
+msgstr ""
+"Regulaaravaldiste nimekiri, mille alusel välistada kirjeid ajaloost (nt "
+"paroolid/saidid, mida ajaloos ei tohiks olla jne)"
+
+#: ../src/preferences.c:908
+msgid "Regex"
+msgstr "Avaldis"
+
+#: ../src/preferences.c:936
+msgid "Hotkeys"
+msgstr "Välksõrmised"
+
+#: ../src/preferences.c:944
+msgid "<b>Hotkeys</b>"
+msgstr "<b>Välksõrmised</b>"
+
+#: ../src/preferences.c:954
+msgid "History hotkey:"
+msgstr "Ajaloo sõrmis:"
+
+#: ../src/preferences.c:963
+msgid "Actions hotkey:"
+msgstr "Käskluste sõrmis:"
+
+#: ../src/preferences.c:972
+msgid "Menu hotkey:"
+msgstr "Menüü sõrmis:"
+
+#: ../src/preferences.c:981
+msgid "Manage hotkey:"
+msgstr "Toimetamise sõrmis:"
+
+#: ../data/clipit.desktop.in.h:1 ../data/clipit-startup.desktop.in.h:1
+msgid "ClipIt"
+msgstr ""

@@ -1,4 +1,10 @@
-ClipIt-1.4.2-20110816002 ~ 2011-08-16 13:04:13 +0300
+ClipIt-1.4.2-20110816003 ~ 2011-08-16 14:23:28 +0300
+
++ Added: Added some more strings to gettext.
++ Added: Added Estonian translation.
+
+
+ClipIt-1.4.2-20110816002 - 2011-08-16 13:06:12 +0300
 
 + Fixed: Fixed bug where in some cases actions and excludes couldn't be
 		added. (SF: #3315622) (Thanks to Guido Tabbernuk)

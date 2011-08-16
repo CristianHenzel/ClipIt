@@ -293,6 +293,7 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
     gtk_about_dialog_set_copyright((GtkAboutDialog*)about_dialog, "Copyright (C) 2010 Cristian Henzel");
     gtk_about_dialog_set_authors((GtkAboutDialog*)about_dialog, authors);
     gtk_about_dialog_set_translator_credits ((GtkAboutDialog*)about_dialog,
+                                             "Guido Tabbernuk <boamaod@gmail.com>\n"
                                              "Miloš Koutný <milos.koutny@gmail.com>\n"
                                              "Kim Jensen <reklamepost@energimail.dk>\n"
                                              "Eckhard M. Jäger <bart@neeneenee.de>\n"
@@ -349,7 +350,7 @@ static gboolean show_actions_menu(gpointer data)
   menu = gtk_menu_new();
   g_signal_connect((GObject*)menu, "selection-done", (GCallback)gtk_widget_destroy, NULL);
   /* Actions using: */
-  menu_item = gtk_image_menu_item_new_with_label("Actions using:");
+  menu_item = gtk_image_menu_item_new_with_label(_("Actions using:"));
   menu_image = gtk_image_new_from_stock(GTK_STOCK_EXECUTE, GTK_ICON_SIZE_MENU);
   gtk_image_menu_item_set_image((GtkImageMenuItem*)menu_item, menu_image);
   g_signal_connect((GObject*)menu_item, "select", (GCallback)gtk_menu_item_deselect, NULL);
@@ -358,7 +359,7 @@ static gboolean show_actions_menu(gpointer data)
   gchar* text = gtk_clipboard_wait_for_text(clipboard);
   if (text != NULL)
   {
-    menu_item = gtk_menu_item_new_with_label("None");
+    menu_item = gtk_menu_item_new_with_label(_("None"));
     /* Modify menu item label properties */
     item_label = gtk_bin_get_child((GtkBin*)menu_item);
     gtk_label_set_single_line_mode((GtkLabel*)item_label, TRUE);
@@ -375,7 +376,7 @@ static gboolean show_actions_menu(gpointer data)
   else
   {
     /* Create menu item for empty clipboard contents */
-    menu_item = gtk_menu_item_new_with_label("None");
+    menu_item = gtk_menu_item_new_with_label(_("None"));
     /* Modify menu item label properties */
     item_label = gtk_bin_get_child((GtkBin*)menu_item);
     gtk_label_set_markup((GtkLabel*)item_label, _("<b>None</b>"));
