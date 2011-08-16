@@ -476,7 +476,7 @@ static void edit_action(GtkCellRendererText *renderer, gchar *path,
   if (gtk_tree_selection_get_selected(actions_selection, NULL, &sel_iter))
   {
     /* Apply changes */
-    gtk_list_store_set(actions_list, &sel_iter, (gint64)cell, new_text, -1);
+    gtk_list_store_set(actions_list, &sel_iter, GPOINTER_TO_INT(cell), new_text, -1);
   }
 }
 
@@ -609,7 +609,7 @@ static void edit_exclude(GtkCellRendererText *renderer, gchar *path,
   if (gtk_tree_selection_get_selected(exclude_selection, NULL, &sel_iter))
   {
     /* Apply changes */
-    gtk_list_store_set(exclude_list, &sel_iter, (gint64)cell, new_text, -1);
+    gtk_list_store_set(exclude_list, &sel_iter, GPOINTER_TO_INT(cell), new_text, -1);
   }
 }
 

@@ -1,4 +1,10 @@
-ClipIt-1.4.2-20110816001 ~ 2011-08-16 12:50:54 +0300
+ClipIt-1.4.2-20110816002 ~ 2011-08-16 13:04:13 +0300
+
++ Fixed: Fixed bug where in some cases actions and excludes couldn't be
+		added. (SF: #3315622) (Thanks to Guido Tabbernuk)
+
+
+ClipIt-1.4.2-20110816001 - 2011-08-16 12:52:05 +0300
 
 + Added: Added logic to Makefile to automatically update translation files.
 + Fixed: Added some more strings to gettext and updated translations.
