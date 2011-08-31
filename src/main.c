@@ -48,7 +48,7 @@ static GtkClipboard* clipboard;
 static AppIndicator *indicator;
 static GtkWidget *indicator_menu = NULL;
 #else
-static GtkStatusIcon *status_icon; 
+static GtkStatusIcon *status_icon;
 static GtkWidget *statusicon_menu = NULL;
 static gboolean status_menu_lock = FALSE;
 #endif

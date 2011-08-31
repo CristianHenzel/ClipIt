@@ -31,9 +31,9 @@
 #include "preferences.h"
 #include "clipit-i18n.h"
 
-GtkListStore* search_list;
+GtkListStore *search_list;
 GtkWidget *search_entry;
-GtkWidget* treeview_search;
+GtkWidget *treeview_search;
 
 /* Search through the history */
 static void search_history()
@@ -207,7 +207,7 @@ static void remove_selected()
         gint remove_item;
         GtkTreeIter *iter = &g_array_index(sel, GtkTreeIter, i);
         gtk_tree_model_get((GtkTreeModel*)search_list, iter, 0, &remove_item, -1);
-        history = g_list_remove(history, g_list_nth_data(history, remove_item));
+        history = g_list_remove(history, g_list_nth_data(history, remove_item-i));
         gtk_list_store_remove(store, iter);
     }
     g_array_free(sel, TRUE);
@@ -277,8 +277,7 @@ static void search_doubleclick()
 
 static gboolean search_click(GtkWidget *widget, GdkEventButton *event, GtkWidget *search_window)
 {
-  if(event->type==GDK_2BUTTON_PRESS || event->type==GDK_3BUTTON_PRESS)
-  {
+  if(event->type==GDK_2BUTTON_PRESS || event->type==GDK_3BUTTON_PRESS) {
     search_doubleclick();
     gtk_widget_destroy(search_window);
   }
