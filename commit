@@ -1,0 +1,60 @@
+#!/bin/bash
+
+## Copyright (C) 2010-2011 by Cristian Henzel <oss@rspwn.com>
+##
+## This file is part of ClipIt.
+##
+## ClipIt is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 3 of the License, or
+## (at your option) any later version.
+##
+## ClipIt is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+COMMIT_FILE="COMMIT_MSG"
+
+CLIPIT_LAST_VSTR=$(git log -1 --pretty="format:%s" | cut -d'-' -f3 | sed s/^........//)
+CLIPIT_LAST_DSTR=$(git log -1 --pretty="format:%s" | cut -d'-' -f3 | sed s/...$//)
+CLIPIT_NEXT_DSTR=$(date +"%Y%m%d")
+CLIPIT_NEXT_DCOM=$(date +"%Y-%m-%d %X %z")
+CLIPIT_NEXT_VSTR=$(cat configure.in | grep AC_INIT | awk '{print $2}' | sed s/[][,]//g)
+if [ "$CLIPIT_LAST_DSTR" = "$CLIPIT_NEXT_DSTR" ]; then
+        CLIPIT_NEXT_ASTR="00"$(expr $CLIPIT_LAST_VSTR + 1)
+else
+        CLIPIT_NEXT_ASTR="001"
+fi
+CLIPIT_NEXT_CSTR="ClipIt-${CLIPIT_NEXT_VSTR}-${CLIPIT_NEXT_DSTR}${CLIPIT_NEXT_ASTR}"
+
+echo "$CLIPIT_NEXT_CSTR ~ ${CLIPIT_NEXT_DCOM}" > "$COMMIT_FILE"
+echo "" >> "$COMMIT_FILE"
+echo "+ " >> "$COMMIT_FILE"
+echo "" >> "$COMMIT_FILE"
+
+gedit "$COMMIT_FILE"
+
+cat "$COMMIT_FILE" | sed /^#/d > ChangeLog
+echo "" >> ChangeLog
+git log --no-merges --pretty="format:%s - %ai%n%n%b%n" >> ChangeLog
+sed -i "s/ ~ .*//" "$COMMIT_FILE"
+echo "Will now commit with:"
+cat "$COMMIT_FILE"
+
+git commit -a -F "$COMMIT_FILE"
+
+read -p "Pushing changes. Continue (yes/no)? "
+if [ "$REPLY" != "yes" -a ! -z "$REPLY" ]; then
+	exit 1;
+fi
+git push --all
+git push --all github
+
+echo "Uploading ChangeLog for clipit.rspwn.com."
+scp -q ChangeLog rspwn:~/clipit-changelog/clipit.log
+
+rm "$COMMIT_FILE"

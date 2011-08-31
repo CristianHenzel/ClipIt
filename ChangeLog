@@ -1,4 +1,9 @@
-ClipIt-1.4.2-20110831001 ~ 2011-08-31 10:20:42 +0300
+ClipIt-1.4.2-20110831002 ~ 2011-08-31 10:23:54 +0300
+
++ Added: Added commit script to git.
+
+
+ClipIt-1.4.2-20110831001 - 2011-08-31 10:21:47 +0300
 
 + Fixed: Fixed remove bug when multiple items were selected in the list.
 
