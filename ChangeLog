@@ -1,4 +1,12 @@
-ClipIt-1.4.2-20110831002 ~ 2011-08-31 10:23:54 +0300
+ClipIt-1.4.2-20110906001 ~ 2011-09-06 15:01:40 +0300
+
++ Added: Added transifex config to repository.
++ Added: Added script for automatic translation updating.
++ Added: Added Bulgarian translation.
++ Fixed: Updated translations.
+
+
+ClipIt-1.4.2-20110831002 - 2011-08-31 10:24:26 +0300
 
 + Added: Added commit script to git.
 

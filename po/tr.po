@@ -1,53 +1,58 @@
-# Turkish translation of clipit
-# Copyright (C) 2008 Xyhthyx <xyhthyx@gmail.com>
-# This file is distributed under the same license as the clipit package.
+# ClipIt translation file.
+# Copyright (C) 2010-2011 Cristian Henzel <oss@rspwn.com>
+# This file is distributed under the same license as the ClipIt package.
+# 
 # Hedef Türkçe <iletisim@hedefturkce.com>, 2008.
-#
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: clipit-tr\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-16 12:49+0300\n"
-"PO-Revision-Date: 2008-09-09 02:05+0200\n"
-"Last-Translator: Hasan Yılmaz <iletisim@hasanyilmaz.net>\n"
-"Language-Team: Turkish\n"
-"Language: \n"
+"Project-Id-Version: ClipIt\n"
+"Report-Msgid-Bugs-To: http://github.com/shantzu/ClipIt/issues\n"
+"POT-Creation-Date: 2011-09-06 09:43+0300\n"
+"PO-Revision-Date: 2011-09-06 06:37+0000\n"
+"Last-Translator: shantzu <oss@rspwn.com>\n"
+"Language-Team: Cristian Henzel <oss@rspwn.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Poedit-Language: Turkish\n"
-"X-Poedit-Country: TURKEY\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 
 #: .././src/main.c:288
 msgid "Lightweight GTK+ clipboard manager."
 msgstr "Hafif GTK+ pano yöneticisi."
 
-#: .././src/main.c:381
+#. Actions using:
+#: .././src/main.c:353
+msgid "Actions using:"
+msgstr ""
+
+#. Create menu item for empty clipboard contents
+#: .././src/main.c:362 .././src/main.c:379
+msgid "None"
+msgstr ""
+
+#: .././src/main.c:382
 msgid "<b>None</b>"
 msgstr "<b>Hiçbiri</b>"
 
 #. File contained no actions so adding empty
 #. File did not open so adding empty
 #. Nothing in history so adding empty
-#: .././src/main.c:403 .././src/main.c:432 .././src/main.c:587
+#: .././src/main.c:404 .././src/main.c:433 .././src/main.c:588
 msgid "Empty"
 msgstr "Boş"
 
 #. Edit actions
-#: .././src/main.c:439
+#: .././src/main.c:440
 msgid "_Edit actions"
 msgstr "Eylemleri _düzenle"
 
 #. Manage history
-#: .././src/main.c:668
-#, fuzzy
+#: .././src/main.c:669
 msgid "_Manage history"
-msgstr "Geçmişi _kaydet"
+msgstr ""
 
-#: .././src/main.c:808
+#: .././src/main.c:809
 msgid "Clipboard Manager"
 msgstr "Pano Yöneticisi"
 
@@ -65,19 +70,40 @@ msgid "Clear the history?"
 msgstr "Geçmiş temizlensin mi?"
 
 #: .././src/manage.c:228
-#, fuzzy
 msgid "Clear history"
-msgstr "Geçmiş temizlensin mi?"
+msgstr ""
+
+#: .././src/manage.c:343
+msgid "Manage History"
+msgstr ""
+
+#: .././src/manage.c:375
+msgid "Results"
+msgstr ""
+
+#: .././src/manage.c:380
+msgid "Edit"
+msgstr ""
+
+#: .././src/manage.c:382 .././src/preferences.c:866 .././src/preferences.c:927
+msgid "Remove"
+msgstr ""
+
+#: .././src/manage.c:384
+msgid "Remove all"
+msgstr ""
+
+#: .././src/manage.c:386
+msgid "Close"
+msgstr ""
 
 #: .././src/preferences.c:161
-#, fuzzy
 msgid "Save history"
-msgstr "Geçmişi _kaydet"
+msgstr ""
 
 #: .././src/preferences.c:193
-#, fuzzy
 msgid "Remove history file"
-msgstr "Geçmişi _ters çevir"
+msgstr ""
 
 #. Create the dialog
 #: .././src/preferences.c:628
@@ -89,9 +115,8 @@ msgid "Settings"
 msgstr ""
 
 #: .././src/preferences.c:655
-#, fuzzy
 msgid "<b>Clipboards</b>"
-msgstr "<b>Pano</b>"
+msgstr ""
 
 #: .././src/preferences.c:662
 msgid "Use _Copy (Ctrl-C)"
@@ -110,9 +135,8 @@ msgid "_Automatically paste selected item"
 msgstr ""
 
 #: .././src/preferences.c:679
-#, fuzzy
 msgid "<b>Miscellaneous</b>"
-msgstr "<b>Görüntüle</b>"
+msgstr ""
 
 #: .././src/preferences.c:686
 msgid "Show _indexes in history menu"
@@ -123,80 +147,68 @@ msgid "S_ave URIs"
 msgstr ""
 
 #: .././src/preferences.c:690
-#, fuzzy
 msgid "Capture _hyperlinks only"
-msgstr "Sadece linkleri _yakala"
+msgstr ""
 
 #: .././src/preferences.c:692
-#, fuzzy
 msgid "C_onfirm before clearing history"
-msgstr "Geçmişi silmeden önce doğrula"
+msgstr ""
 
 #: .././src/preferences.c:694
 msgid "_Use right-click menu"
 msgstr ""
 
 #: .././src/preferences.c:703
-#, fuzzy
 msgid "History"
-msgstr "<b>Geçmiş</b>"
+msgstr ""
 
 #: .././src/preferences.c:711
 msgid "<b>History</b>"
 msgstr "<b>Geçmiş</b>"
 
 #: .././src/preferences.c:718
-#, fuzzy
 msgid "Save _history"
-msgstr "Geçmişi _kaydet"
+msgstr ""
 
 #: .././src/preferences.c:719
-#, fuzzy
 msgid "Save and restore history between sessions"
-msgstr "Oturumlar arasında geçmişi sakla ve geri yükle"
+msgstr ""
 
 #: .././src/preferences.c:723
-#, fuzzy
 msgid "Items in history:"
-msgstr "Geçmişte tutulacak öğe sayısı:"
+msgstr ""
 
 #: .././src/preferences.c:732
-#, fuzzy
 msgid "Items in menu:"
-msgstr "Geçmişte tutulacak öğe sayısı:"
+msgstr ""
 
 #: .././src/preferences.c:739
 msgid "Show _static items in menu"
 msgstr ""
 
 #: .././src/preferences.c:744
-#, fuzzy
 msgid "Static items in menu:"
-msgstr "Uzun öğelerin gösterilmeyeceği yer:"
+msgstr ""
 
 #: .././src/preferences.c:757
-#, fuzzy
 msgid "<b>Items</b>"
-msgstr "<b>Geçiş Tuşları</b>"
+msgstr ""
 
 #: .././src/preferences.c:764
-#, fuzzy
 msgid "Show in a single _line"
-msgstr "Öğeleri tek satırda göster"
+msgstr ""
 
 #: .././src/preferences.c:766
-#, fuzzy
 msgid "Show in _reverse order"
-msgstr "Geçmiş öğeleri ters dizili olarak göster"
+msgstr ""
 
 #: .././src/preferences.c:770
 msgid "Character length of items:"
 msgstr ""
 
 #: .././src/preferences.c:779
-#, fuzzy
 msgid "Omit items in the:"
-msgstr "Uzun öğelerin gösterilmeyeceği yer:"
+msgstr ""
 
 #: .././src/preferences.c:783
 msgid "Beginning"
@@ -232,10 +244,6 @@ msgstr "Komut"
 msgid "Add..."
 msgstr ""
 
-#: .././src/preferences.c:866 .././src/preferences.c:927
-msgid "Remove"
-msgstr ""
-
 #: .././src/preferences.c:883
 msgid "Exclude"
 msgstr ""
@@ -243,8 +251,8 @@ msgstr ""
 #. Build the exclude label
 #: .././src/preferences.c:888
 msgid ""
-"Regex list of icons that should not be inserted into the history (passwords/"
-"sites that you don't need in history, etc)."
+"Regex list of icons that should not be inserted into the history "
+"(passwords/sites that you don't need in history, etc)."
 msgstr ""
 
 #: .././src/preferences.c:908
@@ -252,23 +260,20 @@ msgid "Regex"
 msgstr ""
 
 #: .././src/preferences.c:936
-#, fuzzy
 msgid "Hotkeys"
-msgstr "<b>Geçiş Tuşları</b>"
+msgstr ""
 
 #: .././src/preferences.c:944
 msgid "<b>Hotkeys</b>"
 msgstr "<b>Geçiş Tuşları</b>"
 
 #: .././src/preferences.c:954
-#, fuzzy
 msgid "History hotkey:"
-msgstr "Geçmiş menüsü genel geçiş tuşu:"
+msgstr ""
 
 #: .././src/preferences.c:963
-#, fuzzy
 msgid "Actions hotkey:"
-msgstr "Eylemler menüsü genel geçiş tuşu:"
+msgstr ""
 
 #: .././src/preferences.c:972
 msgid "Menu hotkey:"
@@ -296,12 +301,10 @@ msgid "Print clipboard contents"
 msgstr "Pano içeriğini yazdır"
 
 #: .././src/utils.c:142
-#, fuzzy
 msgid "Print primary contents"
-msgstr "Pano içeriğini yazdır"
+msgstr ""
 
 #: .././src/utils.c:154
-#, fuzzy
 msgid ""
 "Clipboard CLI usage examples:\n"
 "\n"
@@ -309,117 +312,11 @@ msgid ""
 "  clipit \"copied to clipboard\"\n"
 "  echo \"copied to clipboard\" | clipit -c"
 msgstr ""
-"Pano CLI kullanım örnekleme:\n"
-"\n"
-"  echo \"panoya kopyalandı\" | clipit\n"
-"  clipit \"panoya kopyalandı\"\n"
-"  echo \"panoya kopyalandı\" | clipit -o"
 
 #: .././src/utils.c:160
-#, fuzzy
 msgid ""
 "Written by Cristian Henzel.\n"
 "Report bugs to <oss@rspwn.com>."
 msgstr ""
-"Kodlayan Xyhthyx.\n"
-"Yanlışların gönderileceği adres <xyhthyx@gmail.com>."
 
-#~ msgid "Executing action..."
-#~ msgstr "Eylem yürütülüyor..."
 
-#~ msgid "Could not create thread for executed action\n"
-#~ msgstr "Çalıştırılan eylem için iş parçacıkları yaratmayın\n"
-
-#~ msgid "_Edit Clipboard"
-#~ msgstr "Panoyu _düzenle"
-
-#, fuzzy
-#~ msgid "Behavior"
-#~ msgstr "<b>Davranış</b>"
-
-#, fuzzy
-#~ msgid "Display"
-#~ msgstr "<b>Görüntüle</b>"
-
-#, fuzzy
-#~ msgid "<b>Omitting</b>"
-#~ msgstr "<b>Geçmiş</b>"
-
-#~ msgid "<b>Clipboard</b>"
-#~ msgstr "<b>Pano</b>"
-
-#~ msgid "Save changes"
-#~ msgstr "Değişiklikleri kaydet"
-
-#, fuzzy
-#~ msgid "Discard changes"
-#~ msgstr "Değişiklikleri kaydet"
-
-#, fuzzy
-#~ msgid ""
-#~ "Add a new action\n"
-#~ "\"%s\" in a command is replaced with the clipboard contents"
-#~ msgstr "\"%s\" pano içeriği ile değiştirilecek"
-
-#, fuzzy
-#~ msgid "Move selected action up"
-#~ msgstr "Seçileni yukarı taşı"
-
-#, fuzzy
-#~ msgid "Move selected action down"
-#~ msgstr "Seçileni aşağı taşı"
-
-#~ msgid "Close"
-#~ msgstr "Kapat"
-
-#~ msgid "New Action"
-#~ msgstr "Yeni eylem"
-
-#~ msgid "<b>Name:</b>"
-#~ msgstr "<b>Ad:</b>"
-
-#~ msgid "Name your action"
-#~ msgstr "Eylemi adlandır"
-
-#~ msgid "<b>Command:</b>"
-#~ msgstr "<b>Komut:</b>"
-
-#~ msgid "Edit Action"
-#~ msgstr "Eylemi Düzenle"
-
-#~ msgid "General"
-#~ msgstr "Genel"
-
-#~ msgid "Length in characters of history items:"
-#~ msgstr "Geçmişteki öğelerin karakter uzunlukları:"
-
-#, fuzzy
-#~ msgid "ClipIt menu global hotkey:"
-#~ msgstr "Geçmiş menüsü genel geçiş tuşu:"
-
-#~ msgid "C_onfirm clear"
-#~ msgstr "Silmeyi _doğrula"
-
-#~ msgid "Single _line mode"
-#~ msgstr "_Tek satır kipi"
-
-#~ msgid "Ignore all non-hyperlink text"
-#~ msgstr "Link olmayan tüm metni yok say"
-
-#~ msgid "New"
-#~ msgstr "Yeni"
-
-#~ msgid "New action"
-#~ msgstr "Yeni eylem"
-
-#~ msgid "Edit"
-#~ msgstr "Düzenle"
-
-#~ msgid "Edit selected"
-#~ msgstr "Seçileni düzenle"
-
-#~ msgid "Delete"
-#~ msgstr "Sil"
-
-#~ msgid "Delete selected"
-#~ msgstr "Seçileni sil"

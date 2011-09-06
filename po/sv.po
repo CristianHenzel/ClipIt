@@ -1,48 +1,58 @@
-# Swedish translation for clipit.
-# Copyright (C) 2009 Free Software Foundation, Inc.
-# This file is distributed under the same license as the clipit package.
+# ClipIt translation file.
+# Copyright (C) 2010-2011 Cristian Henzel <oss@rspwn.com>
+# This file is distributed under the same license as the ClipIt package.
+# 
 # Daniel Nylander <po@danielnylander.se>, 2009.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: clipit-sv\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-16 12:49+0300\n"
-"PO-Revision-Date: 2009-03-04 09:41+0100\n"
-"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
-"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
-"Language: sv\n"
+"Project-Id-Version: ClipIt\n"
+"Report-Msgid-Bugs-To: http://github.com/shantzu/ClipIt/issues\n"
+"POT-Creation-Date: 2011-09-06 09:43+0300\n"
+"PO-Revision-Date: 2011-09-06 06:37+0000\n"
+"Last-Translator: shantzu <oss@rspwn.com>\n"
+"Language-Team: Cristian Henzel <oss@rspwn.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: .././src/main.c:288
 msgid "Lightweight GTK+ clipboard manager."
 msgstr "Resurssnål GTK+-urklippshanterare."
 
-#: .././src/main.c:381
+#. Actions using:
+#: .././src/main.c:353
+msgid "Actions using:"
+msgstr ""
+
+#. Create menu item for empty clipboard contents
+#: .././src/main.c:362 .././src/main.c:379
+msgid "None"
+msgstr ""
+
+#: .././src/main.c:382
 msgid "<b>None</b>"
 msgstr "<b>Inget</b>"
 
 #. File contained no actions so adding empty
 #. File did not open so adding empty
 #. Nothing in history so adding empty
-#: .././src/main.c:403 .././src/main.c:432 .././src/main.c:587
+#: .././src/main.c:404 .././src/main.c:433 .././src/main.c:588
 msgid "Empty"
 msgstr "Tom"
 
 #. Edit actions
-#: .././src/main.c:439
+#: .././src/main.c:440
 msgid "_Edit actions"
 msgstr "R_edigera åtgärder"
 
 #. Manage history
-#: .././src/main.c:668
-#, fuzzy
+#: .././src/main.c:669
 msgid "_Manage history"
-msgstr "_Spara historik"
+msgstr ""
 
-#: .././src/main.c:808
+#: .././src/main.c:809
 msgid "Clipboard Manager"
 msgstr "Urklippshanterare"
 
@@ -60,19 +70,40 @@ msgid "Clear the history?"
 msgstr "Töm historik?"
 
 #: .././src/manage.c:228
-#, fuzzy
 msgid "Clear history"
-msgstr "Töm historik?"
+msgstr ""
+
+#: .././src/manage.c:343
+msgid "Manage History"
+msgstr ""
+
+#: .././src/manage.c:375
+msgid "Results"
+msgstr ""
+
+#: .././src/manage.c:380
+msgid "Edit"
+msgstr ""
+
+#: .././src/manage.c:382 .././src/preferences.c:866 .././src/preferences.c:927
+msgid "Remove"
+msgstr "Ta bort"
+
+#: .././src/manage.c:384
+msgid "Remove all"
+msgstr ""
+
+#: .././src/manage.c:386
+msgid "Close"
+msgstr ""
 
 #: .././src/preferences.c:161
-#, fuzzy
 msgid "Save history"
-msgstr "_Spara historik"
+msgstr ""
 
 #: .././src/preferences.c:193
-#, fuzzy
 msgid "Remove history file"
-msgstr "_Spara historik"
+msgstr ""
 
 #. Create the dialog
 #: .././src/preferences.c:628
@@ -128,18 +159,16 @@ msgid "_Use right-click menu"
 msgstr ""
 
 #: .././src/preferences.c:703
-#, fuzzy
 msgid "History"
-msgstr "<b>Historik</b>"
+msgstr ""
 
 #: .././src/preferences.c:711
 msgid "<b>History</b>"
 msgstr "<b>Historik</b>"
 
 #: .././src/preferences.c:718
-#, fuzzy
 msgid "Save _history"
-msgstr "_Spara historik"
+msgstr ""
 
 #: .././src/preferences.c:719
 msgid "Save and restore history between sessions"
@@ -150,27 +179,24 @@ msgid "Items in history:"
 msgstr "Objekt i historik:"
 
 #: .././src/preferences.c:732
-#, fuzzy
 msgid "Items in menu:"
-msgstr "Objekt i historik:"
+msgstr ""
 
 #: .././src/preferences.c:739
 msgid "Show _static items in menu"
 msgstr ""
 
 #: .././src/preferences.c:744
-#, fuzzy
 msgid "Static items in menu:"
-msgstr "Utelämna objekt i:"
+msgstr ""
 
 #: .././src/preferences.c:757
 msgid "<b>Items</b>"
 msgstr "<b>Objekt</b>"
 
 #: .././src/preferences.c:764
-#, fuzzy
 msgid "Show in a single _line"
-msgstr "Visa på en _enda rad"
+msgstr ""
 
 #: .././src/preferences.c:766
 msgid "Show in _reverse order"
@@ -217,10 +243,6 @@ msgstr "Kommando"
 msgid "Add..."
 msgstr "Lägg till..."
 
-#: .././src/preferences.c:866 .././src/preferences.c:927
-msgid "Remove"
-msgstr "Ta bort"
-
 #: .././src/preferences.c:883
 msgid "Exclude"
 msgstr ""
@@ -228,8 +250,8 @@ msgstr ""
 #. Build the exclude label
 #: .././src/preferences.c:888
 msgid ""
-"Regex list of icons that should not be inserted into the history (passwords/"
-"sites that you don't need in history, etc)."
+"Regex list of icons that should not be inserted into the history "
+"(passwords/sites that you don't need in history, etc)."
 msgstr ""
 
 #: .././src/preferences.c:908
@@ -245,14 +267,12 @@ msgid "<b>Hotkeys</b>"
 msgstr "<b>Snabbtangenter</b>"
 
 #: .././src/preferences.c:954
-#, fuzzy
 msgid "History hotkey:"
-msgstr "Tangentkombination för historik:"
+msgstr ""
 
 #: .././src/preferences.c:963
-#, fuzzy
 msgid "Actions hotkey:"
-msgstr "Åtgärder"
+msgstr ""
 
 #: .././src/preferences.c:972
 msgid "Menu hotkey:"
@@ -298,37 +318,9 @@ msgstr ""
 "  echo \"kopierad till urklipp\" | clipit -c"
 
 #: .././src/utils.c:160
-#, fuzzy
 msgid ""
 "Written by Cristian Henzel.\n"
 "Report bugs to <oss@rspwn.com>."
 msgstr ""
-"Skrivet av Gilberto \"Xyhthyx\" Miralla.\n"
-"Rapportera fel till <xyhthyx@gmail.com>."
 
-#~ msgid "ClipIt"
-#~ msgstr "ClipIt"
 
-#~ msgid "Executing action..."
-#~ msgstr "Kör åtgärd..."
-
-#~ msgid "Could not create thread for executed action\n"
-#~ msgstr "Skapa inte tråd för startad åtgärd\n"
-
-#~ msgid "_Edit Clipboard"
-#~ msgstr "R_edigera urklipp"
-
-#~ msgid "Behavior"
-#~ msgstr "Beteende"
-
-#~ msgid "Display"
-#~ msgstr "Visa"
-
-#~ msgid "<b>Omitting</b>"
-#~ msgstr "<b>Utelämna</b>"
-
-#~ msgid "Actions key combination:"
-#~ msgstr "Tangentkombination för åtgärder:"
-
-#~ msgid "Menu key combination:"
-#~ msgstr "Tangentkombination för meny:"

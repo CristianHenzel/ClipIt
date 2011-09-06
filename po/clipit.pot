@@ -1,48 +1,58 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# ClipIt translation file.
+# Copyright (C) 2010-2011 Cristian Henzel <oss@rspwn.com>
+# This file is distributed under the same license as the ClipIt package.
+# Cristian Henzel <oss@rspwn.com>, 2010.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-16 12:49+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: ClipIt\n"
+"Report-Msgid-Bugs-To: Cristian Henzel <oss@rspwn.com>\n"
+"POT-Creation-Date: 2011-09-06 09:43+0300\n"
+"PO-Revision-Date: 2011-09-06 09:43+0300\n"
+"Last-Translator: Cristian Henzel <oss@rspwn.com>\n"
+"Language-Team: Cristian Henzel <oss@rspwn.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: .././src/main.c:288
 msgid "Lightweight GTK+ clipboard manager."
 msgstr ""
 
-#: .././src/main.c:381
+#. Actions using:
+#: .././src/main.c:353
+msgid "Actions using:"
+msgstr ""
+
+#. Create menu item for empty clipboard contents
+#: .././src/main.c:362 .././src/main.c:379
+msgid "None"
+msgstr ""
+
+#: .././src/main.c:382
 msgid "<b>None</b>"
 msgstr ""
 
 #. File contained no actions so adding empty
 #. File did not open so adding empty
 #. Nothing in history so adding empty
-#: .././src/main.c:403 .././src/main.c:432 .././src/main.c:587
+#: .././src/main.c:404 .././src/main.c:433 .././src/main.c:588
 msgid "Empty"
 msgstr ""
 
 #. Edit actions
-#: .././src/main.c:439
+#: .././src/main.c:440
 msgid "_Edit actions"
 msgstr ""
 
 #. Manage history
-#: .././src/main.c:668
+#: .././src/main.c:669
 msgid "_Manage history"
 msgstr ""
 
-#: .././src/main.c:808
+#: .././src/main.c:809
 msgid "Clipboard Manager"
 msgstr ""
 
@@ -61,6 +71,30 @@ msgstr ""
 
 #: .././src/manage.c:228
 msgid "Clear history"
+msgstr ""
+
+#: .././src/manage.c:343
+msgid "Manage History"
+msgstr ""
+
+#: .././src/manage.c:375
+msgid "Results"
+msgstr ""
+
+#: .././src/manage.c:380
+msgid "Edit"
+msgstr ""
+
+#: .././src/manage.c:382 .././src/preferences.c:866 .././src/preferences.c:927
+msgid "Remove"
+msgstr ""
+
+#: .././src/manage.c:384
+msgid "Remove all"
+msgstr ""
+
+#: .././src/manage.c:386
+msgid "Close"
 msgstr ""
 
 #: .././src/preferences.c:161
@@ -207,10 +241,6 @@ msgstr ""
 
 #: .././src/preferences.c:862 .././src/preferences.c:923
 msgid "Add..."
-msgstr ""
-
-#: .././src/preferences.c:866 .././src/preferences.c:927
-msgid "Remove"
 msgstr ""
 
 #: .././src/preferences.c:883
