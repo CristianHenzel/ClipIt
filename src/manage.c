@@ -35,6 +35,13 @@ GtkListStore *search_list;
 GtkWidget *search_entry;
 GtkWidget *treeview_search;
 
+static void add_iter(GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *piter, gpointer userdata)
+{
+  GArray *sel = (GArray*)userdata;
+  GtkTreeIter iter = *piter;
+  g_array_append_val(sel, iter);
+}
+
 /* Search through the history */
 static void search_history()
 {
@@ -115,17 +122,17 @@ static void edit_selected()
   if (selected_count > 0) {
     /* Create clipboard buffer and set its text */
     gint selected_item_nr;
-    GList *selected_rows = gtk_tree_selection_get_selected_rows(search_selection, NULL);
-    GList *row_loop = g_list_first(selected_rows);
-    selected_item_nr = atoi((gchar*)gtk_tree_path_to_string(row_loop->data));
-    g_list_foreach(selected_rows, (GFunc)gtk_tree_path_free, NULL);
-    g_list_free(selected_rows);
-    GList* element = g_list_nth(history, selected_item_nr);
-    GList* elementafter = element->next;
+    GArray *sel = g_array_new(FALSE, FALSE, sizeof(GtkTreeIter));
+    gtk_tree_selection_selected_foreach(search_selection, add_iter, sel);
+    gtk_tree_selection_unselect_all(search_selection);
+    GtkTreeIter *iter = &g_array_index(sel, GtkTreeIter, 0);
+    gtk_tree_model_get((GtkTreeModel*)search_list, iter, 0, &selected_item_nr, -1);
+    g_array_free(sel, TRUE);
+    GList *element = g_list_nth(history, selected_item_nr);
     history_item *elem_data = element->data;
-    GString* s_selected_item = g_string_new((gchar*)elem_data->content);
+    GList* elementafter = element->next;
     GtkTextBuffer* clipboard_buffer = gtk_text_buffer_new(NULL);
-    gtk_text_buffer_set_text(clipboard_buffer, s_selected_item->str, -1);
+    gtk_text_buffer_set_text(clipboard_buffer, (gchar*)elem_data->content, -1);
     /* Create the dialog */
     GtkWidget* dialog = gtk_dialog_new_with_buttons(_("Editing Clipboard"), NULL,
                                                    (GTK_DIALOG_MODAL   +    GTK_DIALOG_NO_SEPARATOR),
@@ -180,16 +187,8 @@ static void edit_selected()
       }
     }
     gtk_widget_destroy(dialog);
-    g_string_free(s_selected_item, TRUE);
     search_history();
   }
-}
-
-static void add_iter(GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *piter, gpointer userdata)
-{
-  GArray *sel = (GArray*)userdata;
-  GtkTreeIter iter = *piter;
-  g_array_append_val(sel, iter);
 }
 
 /* Called when Remove is selected from Manage dialog */
