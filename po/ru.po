@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-31 16:51-0500\n"
 "PO-Revision-Date: 2009-03-16 00:53+0100\n"
-"Last-Translator: Alexander Kazancev <kazancas@mandriva.ru>\n"
+"Last-Translator: Almaz Mannanov <almazworks@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,7 +58,7 @@ msgstr "_Править действия"
 #. Edit clipboard
 #: ../src/main.c:566
 msgid "_Edit Clipboard"
-msgstr "Править буфер обмена"
+msgstr "_Править буфер обмена"
 
 #: ../src/utils.c:38 ../src/utils.c:45
 #, c-format
@@ -249,78 +249,81 @@ msgstr "ClipIt"
 #~ msgstr "Невозможно создать поток для запускаемого действия\n"
 
 #~ msgid "<b>Clipboard</b>"
-#~ msgstr "<b>Zwischenablage</b>"
+#~ msgstr "<b>Буфер обмена</b>"
 
 #~ msgid "Save changes"
-#~ msgstr "Änderungen speichern"
+#~ msgstr "Сохранить изменения"
 
 #~ msgid "Discard changes"
-#~ msgstr "Änderungen verwerfen"
+#~ msgstr "Не сохранять изменения"
 
 #~ msgid "Extras"
-#~ msgstr "Extras"
+#~ msgstr "Дополнительное"
 
+#, fuzzy
 #~ msgid ""
 #~ "Add a new action\n"
 #~ "\"%s\" in a command is replaced with the clipboard contents"
-#~ msgstr "\"%s\" wird mit dem Inhalt der Zwischenablage ersetzt"
+#~ msgstr "\"%s\" заменяется на содержимое буфера обмена"
 
+#, fuzzy
 #~ msgid "Move selected action up"
-#~ msgstr "Поднять выбранное действие вверх"
+#~ msgstr "Поднять выделенное действие"
 
+#, fuzzy
 #~ msgid "Move selected action down"
-#~ msgstr "Поднять вызванное действие вниз"
+#~ msgstr "Опустить выделенное действие"
 
 #~ msgid "Close"
-#~ msgstr "Schließen"
+#~ msgstr "Закрыть"
 
 #~ msgid "New Action"
-#~ msgstr "Neue Aktion"
+#~ msgstr "Создать действие"
 
 #~ msgid "<b>Name:</b>"
-#~ msgstr "<b>Name:</b>"
+#~ msgstr "<b>Название:</b>"
 
 #~ msgid "Name your action"
-#~ msgstr "Benennen Sie Ihre Aktion"
+#~ msgstr "Нозовите ваше действие"
 
 #~ msgid "<b>Command:</b>"
-#~ msgstr "<b>Befehl:</b>"
+#~ msgstr "<b>Команда:</b>"
 
 #~ msgid "Edit Action"
-#~ msgstr "Aktion bearbeiten"
+#~ msgstr "Править действие"
 
 #~ msgid "General"
-#~ msgstr "Allgemein"
+#~ msgstr "Главное"
 
 #~ msgid "Length in characters of history items:"
-#~ msgstr "Maximale Länge der Zeichen pro Eintrag:"
+#~ msgstr "Длина пунктов истории в символах:"
 
 #~ msgid "History menu global hotkey:"
-#~ msgstr "Globale Tastenkombination für Verlaufsmenü:"
+#~ msgstr "Глобальные горячие клавиши для вызова истории:"
 
 #~ msgid "Actions menu global hotkey:"
-#~ msgstr "Globale Tastenkombination für Aktionsmenü:"
+#~ msgstr "Глобальные горячие клавиши для вызова меню действий:"
 
 #~ msgid "Single _line mode"
-#~ msgstr "Zei_lenmodus"
+#~ msgstr "Одиночный _линейный режим"
 
 #~ msgid "Ignore all non-hyperlink text"
-#~ msgstr "Ignoriere nicht verlinkten Text"
+#~ msgstr "Игнорировать весь негиперссылковый текст"
 
 #~ msgid "New"
-#~ msgstr "Neu"
+#~ msgstr "Создать"
 
 #~ msgid "New action"
-#~ msgstr "Neue Aktion"
+#~ msgstr "Новое действие"
 
 #~ msgid "Edit"
-#~ msgstr "Bearbeiten"
+#~ msgstr "Редактировать"
 
 #~ msgid "Edit selected"
-#~ msgstr "Auswahl bearbeiten"
+#~ msgstr "Редактировать выделенное"
 
 #~ msgid "Delete"
-#~ msgstr "Löschen"
+#~ msgstr "Удалить"
 
 #~ msgid "Delete selected"
-#~ msgstr "Auswahl löschen"
+#~ msgstr "Удалить выделенное"
