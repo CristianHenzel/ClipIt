@@ -1,4 +1,11 @@
-ClipIt-1.4.2-20111015001 ~ 2011-10-15 12:29:14 +0300
+ClipIt-1.4.2-20111018001 ~ 2011-10-18 15:47:56 +0300
+
++ Fixed: Fixed a typo in preferences dialog.
++ Fixed: Updated translations.
++ Fixed: Fixed a couple of omissions in the scripts.
+
+
+ClipIt-1.4.2-20111015001 - 2011-10-15 12:30:45 +0300
 
 + Fixed: Fixed bug where wrong item was being selected for editing.
 

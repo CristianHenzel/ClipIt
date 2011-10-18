@@ -885,7 +885,7 @@ void show_preferences(gint tab)
   gtk_container_add((GtkContainer*)page_exclude, vbox_exclude);
   
   /* Build the exclude label */
-  label = gtk_label_new(_("Regex list of icons that should not be inserted into the history (passwords/sites that you don't need in history, etc)."));
+  label = gtk_label_new(_("Regex list of items that should not be inserted into the history (passwords/sites that you don't need in history, etc)."));
   gtk_label_set_line_wrap((GtkLabel*)label, TRUE);
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
   gtk_box_pack_start((GtkBox*)vbox_exclude, label, FALSE, FALSE, 0);

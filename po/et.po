@@ -2,14 +2,15 @@
 # Copyright (C) 2010-2011 Cristian Henzel <oss@rspwn.com>
 # This file is distributed under the same license as the ClipIt package.
 # 
+# Translators:
 #   <boamaod@gmail.com>, 2011.
 # Guido Tabbernuk <boamaod@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: http://github.com/shantzu/ClipIt/issues\n"
-"POT-Creation-Date: 2011-09-06 09:43+0300\n"
-"PO-Revision-Date: 2011-09-06 06:37+0000\n"
+"POT-Creation-Date: 2011-10-18 15:47+0300\n"
+"PO-Revision-Date: 2011-10-18 12:29+0000\n"
 "Last-Translator: shantzu <oss@rspwn.com>\n"
 "Language-Team: Estonian (Estonia) (http://www.transifex.net/projects/p/clipit/team/et_EE/)\n"
 "MIME-Version: 1.0\n"
@@ -25,12 +26,12 @@ msgstr "Kergekaaluline GTK+ lõikepuhvrihaldur"
 #. Actions using:
 #: .././src/main.c:353
 msgid "Actions using:"
-msgstr ""
+msgstr "Kasutades väljalõiget:"
 
 #. Create menu item for empty clipboard contents
 #: .././src/main.c:362 .././src/main.c:379
 msgid "None"
-msgstr ""
+msgstr "Puudub"
 
 #: .././src/main.c:382
 msgid "<b>None</b>"
@@ -58,45 +59,45 @@ msgid "Clipboard Manager"
 msgstr "Lõikepuhvrihaldur"
 
 #. Create the dialog
-#: .././src/manage.c:130
+#: .././src/manage.c:137
 msgid "Editing Clipboard"
 msgstr "Lõikepuhvri toimetamine"
 
-#: .././src/manage.c:150
+#: .././src/manage.c:157
 msgid "_Static item"
 msgstr "_Staatiline kirje"
 
-#: .././src/manage.c:227
+#: .././src/manage.c:226
 msgid "Clear the history?"
 msgstr "Kas tühjendada ajalugu?"
 
-#: .././src/manage.c:228
+#: .././src/manage.c:227
 msgid "Clear history"
 msgstr "Ajaloo tühjendamine"
 
-#: .././src/manage.c:343
+#: .././src/manage.c:342
 msgid "Manage History"
-msgstr ""
+msgstr "Ajaloo toimetamine"
 
-#: .././src/manage.c:375
+#: .././src/manage.c:374
 msgid "Results"
-msgstr ""
+msgstr "Tulemused"
 
-#: .././src/manage.c:380
+#: .././src/manage.c:379
 msgid "Edit"
-msgstr ""
+msgstr "Toimeta"
 
-#: .././src/manage.c:382 .././src/preferences.c:866 .././src/preferences.c:927
+#: .././src/manage.c:381 .././src/preferences.c:866 .././src/preferences.c:927
 msgid "Remove"
 msgstr "Eemalda"
 
-#: .././src/manage.c:384
+#: .././src/manage.c:383
 msgid "Remove all"
-msgstr ""
+msgstr "Eemalda kõik"
 
-#: .././src/manage.c:386
+#: .././src/manage.c:385
 msgid "Close"
-msgstr ""
+msgstr "Sulge"
 
 #: .././src/preferences.c:161
 msgid "Save history"
@@ -193,7 +194,7 @@ msgstr "Püsikirjeid menüüs:"
 
 #: .././src/preferences.c:757
 msgid "<b>Items</b>"
-msgstr "<b>Kirjed</b>"
+msgstr "<b>Väljalõiked</b>"
 
 #: .././src/preferences.c:764
 msgid "Show in a single _line"
@@ -209,7 +210,7 @@ msgstr "Kirje pikkus tärkides:"
 
 #: .././src/preferences.c:779
 msgid "Omit items in the:"
-msgstr "Kärbitakse kirjed:"
+msgstr "Väljalõiked kärbitakse:"
 
 #: .././src/preferences.c:783
 msgid "Beginning"
@@ -251,11 +252,9 @@ msgstr "Välistamine"
 #. Build the exclude label
 #: .././src/preferences.c:888
 msgid ""
-"Regex list of icons that should not be inserted into the history "
+"Regex list of items that should not be inserted into the history "
 "(passwords/sites that you don't need in history, etc)."
 msgstr ""
-"Regulaaravaldiste nimekiri, mille alusel välistada kirjeid ajaloost (nt "
-"paroolid/saidid, mida ajaloos ei tohiks olla jne)"
 
 #: .././src/preferences.c:908
 msgid "Regex"

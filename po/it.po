@@ -2,15 +2,17 @@
 # Copyright (C) 2010-2011 Cristian Henzel <oss@rspwn.com>
 # This file is distributed under the same license as the ClipIt package.
 # 
+# Translators:
 # Davide Truffa <davide@catoblepa.org>, 2008.
+#   <luca@jeckodevelopment.it>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: http://github.com/shantzu/ClipIt/issues\n"
-"POT-Creation-Date: 2011-09-06 09:43+0300\n"
-"PO-Revision-Date: 2011-09-06 06:37+0000\n"
+"POT-Creation-Date: 2011-10-18 15:47+0300\n"
+"PO-Revision-Date: 2011-10-18 12:29+0000\n"
 "Last-Translator: shantzu <oss@rspwn.com>\n"
-"Language-Team: Cristian Henzel <oss@rspwn.com>\n"
+"Language-Team: Italian (http://www.transifex.net/projects/p/clipit/team/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,17 +21,17 @@ msgstr ""
 
 #: .././src/main.c:288
 msgid "Lightweight GTK+ clipboard manager."
-msgstr "Gestore degli Appunti leggero in GTK+"
+msgstr "Leggero gestore degli Appunti in GTK+"
 
 #. Actions using:
 #: .././src/main.c:353
 msgid "Actions using:"
-msgstr ""
+msgstr "Azioni che utilizzano:"
 
 #. Create menu item for empty clipboard contents
 #: .././src/main.c:362 .././src/main.c:379
 msgid "None"
-msgstr ""
+msgstr "Nessuno"
 
 #: .././src/main.c:382
 msgid "<b>None</b>"
@@ -50,60 +52,60 @@ msgstr "_Modifica azioni"
 #. Manage history
 #: .././src/main.c:669
 msgid "_Manage history"
-msgstr ""
+msgstr "_Gestisci cronologia"
 
 #: .././src/main.c:809
 msgid "Clipboard Manager"
 msgstr "Gestore degli appunti"
 
 #. Create the dialog
-#: .././src/manage.c:130
+#: .././src/manage.c:137
 msgid "Editing Clipboard"
 msgstr "Modifica Appunti"
 
-#: .././src/manage.c:150
+#: .././src/manage.c:157
 msgid "_Static item"
-msgstr ""
+msgstr "_Elemento statico"
 
-#: .././src/manage.c:227
+#: .././src/manage.c:226
 msgid "Clear the history?"
 msgstr "Cancellare la cronologia?"
 
-#: .././src/manage.c:228
+#: .././src/manage.c:227
 msgid "Clear history"
-msgstr ""
+msgstr "Cancella cronologia"
 
-#: .././src/manage.c:343
+#: .././src/manage.c:342
 msgid "Manage History"
-msgstr ""
+msgstr "Gestisci cronologia"
 
-#: .././src/manage.c:375
+#: .././src/manage.c:374
 msgid "Results"
-msgstr ""
+msgstr "Risultati"
 
-#: .././src/manage.c:380
+#: .././src/manage.c:379
 msgid "Edit"
-msgstr ""
+msgstr "Modifica"
 
-#: .././src/manage.c:382 .././src/preferences.c:866 .././src/preferences.c:927
+#: .././src/manage.c:381 .././src/preferences.c:866 .././src/preferences.c:927
 msgid "Remove"
 msgstr "Rimuovi"
 
-#: .././src/manage.c:384
+#: .././src/manage.c:383
 msgid "Remove all"
-msgstr ""
+msgstr "Rimuovi tutto"
 
-#: .././src/manage.c:386
+#: .././src/manage.c:385
 msgid "Close"
-msgstr ""
+msgstr "Chiudi"
 
 #: .././src/preferences.c:161
 msgid "Save history"
-msgstr ""
+msgstr "Salva cronologia"
 
 #: .././src/preferences.c:193
 msgid "Remove history file"
-msgstr ""
+msgstr "Rimuovi file cronologia"
 
 #. Create the dialog
 #: .././src/preferences.c:628
@@ -112,7 +114,7 @@ msgstr "Preferenze"
 
 #: .././src/preferences.c:647
 msgid "Settings"
-msgstr ""
+msgstr "Impostazioni"
 
 #: .././src/preferences.c:655
 msgid "<b>Clipboards</b>"
@@ -132,7 +134,7 @@ msgstr "S_incronizza clipboard"
 
 #: .././src/preferences.c:670
 msgid "_Automatically paste selected item"
-msgstr ""
+msgstr "_Incolla automaticamente l'elemento selezionato"
 
 #: .././src/preferences.c:679
 msgid "<b>Miscellaneous</b>"
@@ -140,11 +142,11 @@ msgstr "<b>Varie</b>"
 
 #: .././src/preferences.c:686
 msgid "Show _indexes in history menu"
-msgstr ""
+msgstr "Mostra _indici nel menu cronologia"
 
 #: .././src/preferences.c:688
 msgid "S_ave URIs"
-msgstr ""
+msgstr "S_alva URIs"
 
 #: .././src/preferences.c:690
 msgid "Capture _hyperlinks only"
@@ -156,11 +158,11 @@ msgstr "C_onferma prima di cancellare la cronologia"
 
 #: .././src/preferences.c:694
 msgid "_Use right-click menu"
-msgstr ""
+msgstr "_Usa il menu contestuale al click destro"
 
 #: .././src/preferences.c:703
 msgid "History"
-msgstr ""
+msgstr "Cronologia"
 
 #: .././src/preferences.c:711
 msgid "<b>History</b>"
@@ -168,7 +170,7 @@ msgstr "<b>Cronologia</b>"
 
 #: .././src/preferences.c:718
 msgid "Save _history"
-msgstr ""
+msgstr "Salva _Cronologia"
 
 #: .././src/preferences.c:719
 msgid "Save and restore history between sessions"
@@ -180,15 +182,15 @@ msgstr "Elementi nella cronologia:"
 
 #: .././src/preferences.c:732
 msgid "Items in menu:"
-msgstr ""
+msgstr "Elementi nel menu:"
 
 #: .././src/preferences.c:739
 msgid "Show _static items in menu"
-msgstr ""
+msgstr "Mostra gli elementi _statici nel menu"
 
 #: .././src/preferences.c:744
 msgid "Static items in menu:"
-msgstr ""
+msgstr "Elementi statici nel menu:"
 
 #: .././src/preferences.c:757
 msgid "<b>Items</b>"
@@ -196,7 +198,7 @@ msgstr "<b>Elementi</b>"
 
 #: .././src/preferences.c:764
 msgid "Show in a single _line"
-msgstr ""
+msgstr "Mostra su una singola _riga"
 
 #: .././src/preferences.c:766
 msgid "Show in _reverse order"
@@ -245,18 +247,18 @@ msgstr "Aggiungi..."
 
 #: .././src/preferences.c:883
 msgid "Exclude"
-msgstr ""
+msgstr "Escludi"
 
 #. Build the exclude label
 #: .././src/preferences.c:888
 msgid ""
-"Regex list of icons that should not be inserted into the history "
+"Regex list of items that should not be inserted into the history "
 "(passwords/sites that you don't need in history, etc)."
 msgstr ""
 
 #: .././src/preferences.c:908
 msgid "Regex"
-msgstr ""
+msgstr "Regex"
 
 #: .././src/preferences.c:936
 msgid "Hotkeys"
@@ -268,19 +270,19 @@ msgstr "<b>Scorciatoie da tastiera</b>"
 
 #: .././src/preferences.c:954
 msgid "History hotkey:"
-msgstr ""
+msgstr "Cronologia scorciatorie:"
 
 #: .././src/preferences.c:963
 msgid "Actions hotkey:"
-msgstr ""
+msgstr "Azioni scorciatoie da tastiera:"
 
 #: .././src/preferences.c:972
 msgid "Menu hotkey:"
-msgstr ""
+msgstr "Menu scorciatoie da tastiera:"
 
 #: .././src/preferences.c:981
 msgid "Manage hotkey:"
-msgstr ""
+msgstr "Gestisci scorciatoie da tastiera:"
 
 #: .././src/utils.c:40 .././src/utils.c:47
 #, c-format
@@ -322,5 +324,7 @@ msgid ""
 "Written by Cristian Henzel.\n"
 "Report bugs to <oss@rspwn.com>."
 msgstr ""
+"Scritto da Cristian Henzel.\n"
+"Riporta gli errori a <oss@rspwn.com>."
 
 

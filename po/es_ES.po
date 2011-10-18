@@ -3,8 +3,7 @@
 # This file is distributed under the same license as the ClipIt package.
 # 
 # Translators:
-#   <c.fastnacht@googlemail.com>, 2011.
-# Cristian Henzel <oss@rspwn.com>, 2011.
+# Adolfo Jayme Barrientos <fitoschido@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
@@ -12,242 +11,243 @@ msgstr ""
 "POT-Creation-Date: 2011-10-18 15:47+0300\n"
 "PO-Revision-Date: 2011-10-18 12:29+0000\n"
 "Last-Translator: shantzu <oss@rspwn.com>\n"
-"Language-Team: German (Germany) (http://www.transifex.net/projects/p/clipit/team/de_DE/)\n"
+"Language-Team: Spanish (Spain) (http://www.transifex.net/projects/p/clipit/team/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de_DE\n"
+"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: .././src/main.c:288
 msgid "Lightweight GTK+ clipboard manager."
-msgstr "Leichtgewichtiger GTK+ Zwischenablage-Manager"
+msgstr "Gestor de portapapeles ligero, en GTK+."
 
 #. Actions using:
 #: .././src/main.c:353
 msgid "Actions using:"
-msgstr "Aktionen mit:"
+msgstr "Acciones con:"
 
 #. Create menu item for empty clipboard contents
 #: .././src/main.c:362 .././src/main.c:379
 msgid "None"
-msgstr "Nichts"
+msgstr "Ninguno"
 
 #: .././src/main.c:382
 msgid "<b>None</b>"
-msgstr "<b>Nichts</b>"
+msgstr "<b>Ninguno</b>"
 
 #. File contained no actions so adding empty
 #. File did not open so adding empty
 #. Nothing in history so adding empty
 #: .././src/main.c:404 .././src/main.c:433 .././src/main.c:588
 msgid "Empty"
-msgstr "Leer"
+msgstr "Vacío"
 
 #. Edit actions
 #: .././src/main.c:440
 msgid "_Edit actions"
-msgstr "Aktionen _bearbeiten"
+msgstr "_Editar acciones"
 
 #. Manage history
 #: .././src/main.c:669
 msgid "_Manage history"
-msgstr "_Verlauf bearbeiten"
+msgstr "_Gestionar historial"
 
 #: .././src/main.c:809
 msgid "Clipboard Manager"
-msgstr "Zwischenablage-Manager"
+msgstr "Gestor del portapapeles"
 
 #. Create the dialog
 #: .././src/manage.c:137
 msgid "Editing Clipboard"
-msgstr "Zwischenablage bearbeiten"
+msgstr "Editando el portapapeles"
 
 #: .././src/manage.c:157
 msgid "_Static item"
-msgstr "_statisches Objekt"
+msgstr "Elemento e_stático"
 
 #: .././src/manage.c:226
 msgid "Clear the history?"
-msgstr "Verauf löschen?"
+msgstr "¿Vaciar el historial?"
 
 #: .././src/manage.c:227
 msgid "Clear history"
-msgstr "Verlauf löschen"
+msgstr "Vaciar el historial"
 
 #: .././src/manage.c:342
 msgid "Manage History"
-msgstr "Verlauf verwalten"
+msgstr "Gestionar el historial"
 
 #: .././src/manage.c:374
 msgid "Results"
-msgstr "Ergebnisse"
+msgstr "Resultados"
 
 #: .././src/manage.c:379
 msgid "Edit"
-msgstr "Ändern"
+msgstr "Editar"
 
 #: .././src/manage.c:381 .././src/preferences.c:866 .././src/preferences.c:927
 msgid "Remove"
-msgstr "Entfernen"
+msgstr "Quitar"
 
 #: .././src/manage.c:383
 msgid "Remove all"
-msgstr "Alle entfernen"
+msgstr "Quitar todo"
 
 #: .././src/manage.c:385
 msgid "Close"
-msgstr "Schließen"
+msgstr "Cerrar"
 
 #: .././src/preferences.c:161
 msgid "Save history"
-msgstr "Verlauf speichern"
+msgstr "Guardar el historial"
 
 #: .././src/preferences.c:193
 msgid "Remove history file"
-msgstr "Verlaufsdatei entfernen"
+msgstr "Eliminar archivo de historial"
 
 #. Create the dialog
 #: .././src/preferences.c:628
 msgid "Preferences"
-msgstr "Einstellungen"
+msgstr "Preferencias"
 
 #: .././src/preferences.c:647
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr "Configuración"
 
 #: .././src/preferences.c:655
 msgid "<b>Clipboards</b>"
-msgstr "<b>Zwischenablagen</b>"
+msgstr "<b>Portapapeles</b>"
 
 #: .././src/preferences.c:662
 msgid "Use _Copy (Ctrl-C)"
-msgstr "_Kopieren benutzen(Strg-C)"
+msgstr "Usar _copiar (Ctrl+C)"
 
 #: .././src/preferences.c:665
 msgid "Use _Primary (Selection)"
-msgstr "_Primäre Zwischenablage benutzen(Auswahl)"
+msgstr "Usar _primario (selección)"
 
 #: .././src/preferences.c:668
 msgid "S_ynchronize clipboards"
-msgstr "Zwischenablagen s_ynchronisieren"
+msgstr "Sincroni_zar portapapeles"
 
 #: .././src/preferences.c:670
 msgid "_Automatically paste selected item"
-msgstr "Ausgewähltes Objekt _automatisch einfügen"
+msgstr "Pegar _automáticamente el elemento seleccionado"
 
 #: .././src/preferences.c:679
 msgid "<b>Miscellaneous</b>"
-msgstr "<b>Verschiedenes</b>"
+msgstr "<b>Miscelánea</b>"
 
 #: .././src/preferences.c:686
 msgid "Show _indexes in history menu"
-msgstr "_Indizes im Verlaufsmenü zeigen"
+msgstr "Mostrar índ_ices en el menú de historial"
 
 #: .././src/preferences.c:688
 msgid "S_ave URIs"
-msgstr "URLs s_peichern"
+msgstr "_Guardar URIs"
 
 #: .././src/preferences.c:690
 msgid "Capture _hyperlinks only"
-msgstr "Nur _Hyperlinks aufzeichnen"
+msgstr "Solo capturar _hiperenlaces"
 
 #: .././src/preferences.c:692
 msgid "C_onfirm before clearing history"
-msgstr "Verlauf l_öschen bestätigen"
+msgstr "C_onfirmar antes de vaciar el historial"
 
 #: .././src/preferences.c:694
 msgid "_Use right-click menu"
-msgstr "Rechts-Klick-Menü ben_utzen"
+msgstr "_Usar menú contextual"
 
 #: .././src/preferences.c:703
 msgid "History"
-msgstr "Verlauf"
+msgstr "Historial"
 
 #: .././src/preferences.c:711
 msgid "<b>History</b>"
-msgstr "<b>Verlauf</b>"
+msgstr "<b>Historial</b>"
 
 #: .././src/preferences.c:718
 msgid "Save _history"
-msgstr "_Verlauf speichern"
+msgstr "Guardar _historial"
 
 #: .././src/preferences.c:719
 msgid "Save and restore history between sessions"
-msgstr "Verlauf zwischen Sitzungen speichern und wiederherstellen"
+msgstr "Guardar y restaurar historial entre sesiones"
 
 #: .././src/preferences.c:723
 msgid "Items in history:"
-msgstr "Objekte im Verlauf:"
+msgstr "Elementos en el historial:"
 
 #: .././src/preferences.c:732
 msgid "Items in menu:"
-msgstr "Objekte im Menü:"
+msgstr "Elementos en el menú:"
 
 #: .././src/preferences.c:739
 msgid "Show _static items in menu"
-msgstr "_Statische Objekte im Menü zeigen"
+msgstr "Mostrar elementos e_státicos en el menú"
 
 #: .././src/preferences.c:744
 msgid "Static items in menu:"
-msgstr "Statische Objekte im Menü:"
+msgstr "Elementos estáticos en el menú:"
 
 #: .././src/preferences.c:757
 msgid "<b>Items</b>"
-msgstr "<b>Objekte</b>"
+msgstr "<b>Elementos</b>"
 
 #: .././src/preferences.c:764
 msgid "Show in a single _line"
-msgstr "In einzelner _Zeile zeigen"
+msgstr "Mostrar en una sola _línea"
 
 #: .././src/preferences.c:766
 msgid "Show in _reverse order"
-msgstr "In umgekehrter _Reihenfolge zeigen"
+msgstr "Mostrar en orden inve_rso"
 
 #: .././src/preferences.c:770
 msgid "Character length of items:"
-msgstr "Zeichenanzahl des Objekts:"
+msgstr "Cantidad de caracteres de los elementos:"
 
 #: .././src/preferences.c:779
 msgid "Omit items in the:"
-msgstr "Objekte auslassen in:"
+msgstr "Omitir los elementos al:"
 
 #: .././src/preferences.c:783
 msgid "Beginning"
-msgstr "Anfang"
+msgstr "Comienzo"
 
 #: .././src/preferences.c:784
 msgid "Middle"
-msgstr "Mitte"
+msgstr "Medio"
 
 #: .././src/preferences.c:785
 msgid "End"
-msgstr "Ende"
+msgstr "Final"
 
 #: .././src/preferences.c:815
 msgid "Actions"
-msgstr "Aktionen"
+msgstr "Acciones"
 
 #. Build the actions label
 #: .././src/preferences.c:820
 msgid "Control-click ClipIt's tray icon to use actions"
-msgstr "Strg+Klick auf ClipIts's Tray Icon um Aktionen zu benutzen"
+msgstr ""
+"Usar acciones con Ctrl+pulsar sobre el icono de ClipIt en área de notif."
 
 #: .././src/preferences.c:840
 msgid "Action"
-msgstr "Aktion"
+msgstr "Acción"
 
 #: .././src/preferences.c:847
 msgid "Command"
-msgstr "Kommando"
+msgstr "Orden"
 
 #: .././src/preferences.c:862 .././src/preferences.c:923
 msgid "Add..."
-msgstr "Hinzufügen..."
+msgstr "Añadir..."
 
 #: .././src/preferences.c:883
 msgid "Exclude"
-msgstr "Ausschließen"
+msgstr "Excluir"
 
 #. Build the exclude label
 #: .././src/preferences.c:888
@@ -258,52 +258,52 @@ msgstr ""
 
 #: .././src/preferences.c:908
 msgid "Regex"
-msgstr "Regex"
+msgstr "Expresiones regulares"
 
 #: .././src/preferences.c:936
 msgid "Hotkeys"
-msgstr "Hotkeys"
+msgstr "Atajos de teclado"
 
 #: .././src/preferences.c:944
 msgid "<b>Hotkeys</b>"
-msgstr "<b>Hotkeys</b>"
+msgstr "<b>Atajos de teclado</b>"
 
 #: .././src/preferences.c:954
 msgid "History hotkey:"
-msgstr "Verlaufs-Hotkey:"
+msgstr "Atajo al historial:"
 
 #: .././src/preferences.c:963
 msgid "Actions hotkey:"
-msgstr "Aktionen-Hotkey:"
+msgstr "Atajo a acciones:"
 
 #: .././src/preferences.c:972
 msgid "Menu hotkey:"
-msgstr "Menü-Hotkey:"
+msgstr "Atajo al menú:"
 
 #: .././src/preferences.c:981
 msgid "Manage hotkey:"
-msgstr "Verwalten-Hotkey:"
+msgstr "Atajo a gestión:"
 
 #: .././src/utils.c:40 .././src/utils.c:47
 #, c-format
 msgid "Couldn't create directory: %s\n"
-msgstr "Konnte Ordner nicht anlegen: %s\n"
+msgstr "No se pudo crear directorio: %s\n"
 
 #: .././src/utils.c:121
 msgid "Run as daemon"
-msgstr "Als Daemon laufen"
+msgstr "Ejecutar como demonio"
 
 #: .././src/utils.c:128
 msgid "Do not use status icon (Ctrl-Alt-P for menu)"
-msgstr "Kein Statusicon benutzen ( Strg-Alt-P für Menü)"
+msgstr "No usar icono de estado (Ctrl+Alt+P para el menú)"
 
 #: .././src/utils.c:135
 msgid "Print clipboard contents"
-msgstr "Zwischenablageninhalt drucken"
+msgstr "Imprimir el contenido del portapapeles"
 
 #: .././src/utils.c:142
 msgid "Print primary contents"
-msgstr "Primären Inhalt drucken"
+msgstr "Imprimir el contenido primario"
 
 #: .././src/utils.c:154
 msgid ""
@@ -313,18 +313,18 @@ msgid ""
 "  clipit \"copied to clipboard\"\n"
 "  echo \"copied to clipboard\" | clipit -c"
 msgstr ""
-"Zwischenablage CLI Beispiele:\n"
+"Ejemplos de uso de la línea de órdenes del portapapeles:\n"
 "\n"
-"  echo \"In Zwischenablage kopiert\" | clipit\n"
-"  clipit \"In Zwischenablage kopiert\"\n"
-"  echo \"In Zwischenablage kopiert\" | clipit -c"
+"  echo \"copiado al portapapeles\" | clipit\n"
+"  clipit \"copiado al portapapeles\"\n"
+"  echo \"copiado al portapapeles\" | clipit -c"
 
 #: .././src/utils.c:160
 msgid ""
 "Written by Cristian Henzel.\n"
 "Report bugs to <oss@rspwn.com>."
 msgstr ""
-"Geschrieben von Christian Henzel.\n"
-"Fehler berichten an: <oss@rspwn.com>."
+"Escrito por Cristian Henzel.\n"
+"Informe de errores a <oss@rspwn.com>."
 
 

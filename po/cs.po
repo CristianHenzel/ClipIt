@@ -2,13 +2,14 @@
 # Copyright (C) 2010-2011 Cristian Henzel <oss@rspwn.com>
 # This file is distributed under the same license as the ClipIt package.
 # 
+# Translators:
 # Miloš Koutný <milos.koutny@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: http://github.com/shantzu/ClipIt/issues\n"
-"POT-Creation-Date: 2011-09-06 09:43+0300\n"
-"PO-Revision-Date: 2011-09-06 06:37+0000\n"
+"POT-Creation-Date: 2011-10-18 15:47+0300\n"
+"PO-Revision-Date: 2011-10-18 12:29+0000\n"
 "Last-Translator: shantzu <oss@rspwn.com>\n"
 "Language-Team: Cristian Henzel <oss@rspwn.com>\n"
 "MIME-Version: 1.0\n"
@@ -57,43 +58,43 @@ msgid "Clipboard Manager"
 msgstr "Správce schránky"
 
 #. Create the dialog
-#: .././src/manage.c:130
+#: .././src/manage.c:137
 msgid "Editing Clipboard"
 msgstr "Upravuji schránku"
 
-#: .././src/manage.c:150
+#: .././src/manage.c:157
 msgid "_Static item"
 msgstr ""
 
-#: .././src/manage.c:227
+#: .././src/manage.c:226
 msgid "Clear the history?"
 msgstr "Vymazat historii?"
 
-#: .././src/manage.c:228
+#: .././src/manage.c:227
 msgid "Clear history"
 msgstr ""
 
-#: .././src/manage.c:343
+#: .././src/manage.c:342
 msgid "Manage History"
 msgstr ""
 
-#: .././src/manage.c:375
+#: .././src/manage.c:374
 msgid "Results"
 msgstr ""
 
-#: .././src/manage.c:380
+#: .././src/manage.c:379
 msgid "Edit"
 msgstr ""
 
-#: .././src/manage.c:382 .././src/preferences.c:866 .././src/preferences.c:927
+#: .././src/manage.c:381 .././src/preferences.c:866 .././src/preferences.c:927
 msgid "Remove"
 msgstr "Odstranit"
 
-#: .././src/manage.c:384
+#: .././src/manage.c:383
 msgid "Remove all"
 msgstr ""
 
-#: .././src/manage.c:386
+#: .././src/manage.c:385
 msgid "Close"
 msgstr ""
 
@@ -250,7 +251,7 @@ msgstr ""
 #. Build the exclude label
 #: .././src/preferences.c:888
 msgid ""
-"Regex list of icons that should not be inserted into the history "
+"Regex list of items that should not be inserted into the history "
 "(passwords/sites that you don't need in history, etc)."
 msgstr ""
 

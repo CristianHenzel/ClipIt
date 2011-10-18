@@ -17,6 +17,10 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+git clean -xdf
+./update-po
+git clean -xdf
+
 COMMIT_FILE="COMMIT_MSG"
 
 CLIPIT_LAST_VSTR=$(git log -1 --pretty="format:%s" | cut -d'-' -f3 | sed s/^........//)

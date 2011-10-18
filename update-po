@@ -21,6 +21,10 @@ CURRENTYEAR=$(date "+%Y")
 CURRENTSTAMP=$(date "+%Y-%m-%d %H:%M%z")
 
 ## Update po files with new strings
+./autogen.sh && ./configure
+cd po
+intltool-update -r
+cd ..
 make update-po
 
 ## Update po header files information
