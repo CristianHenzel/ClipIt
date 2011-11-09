@@ -116,28 +116,28 @@ gboolean parse_options(int argc, char* argv[])
 	{
 		{
 			"daemon", 'd',
-			G_OPTION_FLAG_NO_ARG,
+			0,
 			G_OPTION_ARG_NONE,
 			&daemon, _("Run as daemon"),
 			NULL
 		},
 		{
 			"no-icon", 'n',
-			G_OPTION_FLAG_NO_ARG,
+			0,
 			G_OPTION_ARG_NONE,
 			&icon, _("Do not use status icon (Ctrl-Alt-P for menu)"),
 			NULL
 		},
 		{
 			"clipboard", 'c',
-			G_OPTION_FLAG_NO_ARG,
+			0,
 			G_OPTION_ARG_NONE,
 			&clipboard, _("Print clipboard contents"),
 			NULL
 		},
 		{
 			"primary", 'p',
-			G_OPTION_FLAG_NO_ARG,
+			0,
 			G_OPTION_ARG_NONE,
 			&primary, _("Print primary contents"),
 			NULL
