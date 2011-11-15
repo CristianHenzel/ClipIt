@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: http://github.com/shantzu/ClipIt/issues\n"
-"POT-Creation-Date: 2011-11-15 11:04+0200\n"
+"POT-Creation-Date: 2011-11-15 11:45+0200\n"
 "PO-Revision-Date: 2011-11-15 09:01+0000\n"
 "Last-Translator: shantzu <oss@rspwn.com>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.net/projects/p/clipit/team/es_ES/)\n"
@@ -79,23 +79,23 @@ msgstr "Vaciar el historial"
 msgid "Manage History"
 msgstr "Gestionar el historial"
 
-#: .././src/manage.c:378
+#: .././src/manage.c:384
 msgid "Results"
 msgstr "Resultados"
 
-#: .././src/manage.c:383
+#: .././src/manage.c:389
 msgid "Edit"
 msgstr "Editar"
 
-#: .././src/manage.c:385 .././src/preferences.c:871 .././src/preferences.c:932
+#: .././src/manage.c:391 .././src/preferences.c:871 .././src/preferences.c:932
 msgid "Remove"
 msgstr "Quitar"
 
-#: .././src/manage.c:387
+#: .././src/manage.c:393
 msgid "Remove all"
 msgstr "Quitar todo"
 
-#: .././src/manage.c:389
+#: .././src/manage.c:395
 msgid "Close"
 msgstr "Cerrar"
 

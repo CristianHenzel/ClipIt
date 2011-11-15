@@ -347,9 +347,15 @@ gboolean show_search()
   gtk_window_set_resizable((GtkWindow*)search_dialog, TRUE);
   gtk_window_set_position((GtkWindow*)search_dialog, GTK_WIN_POS_CENTER);
 
+  GdkScreen* screen = gtk_window_get_screen(GTK_WINDOW(search_dialog));
+  gint screen_height = gdk_screen_get_height(screen)-120;
+  gint win_height = 600;
+  if (win_height > screen_height)
+    win_height = screen_height;
+
   GtkWidget* vbox_search = gtk_vbox_new(FALSE, 10);
   gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area (GTK_DIALOG(search_dialog))), vbox_search, TRUE, TRUE, 2);
-  gtk_widget_set_size_request((GtkWidget*)vbox_search, 400, 600);
+  gtk_widget_set_size_request((GtkWidget*)vbox_search, 400, win_height);
 
   hbox = gtk_hbox_new(TRUE, 4);
   gtk_box_pack_start((GtkBox*)vbox_search, hbox, FALSE, FALSE, 0);

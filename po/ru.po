@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: http://github.com/shantzu/ClipIt/issues\n"
-"POT-Creation-Date: 2011-11-15 11:04+0200\n"
+"POT-Creation-Date: 2011-11-15 11:45+0200\n"
 "PO-Revision-Date: 2011-10-18 12:29+0000\n"
 "Last-Translator: shantzu <oss@rspwn.com>\n"
 "Language-Team: Cristian Henzel <oss@rspwn.com>\n"
@@ -77,23 +77,23 @@ msgstr ""
 msgid "Manage History"
 msgstr ""
 
-#: .././src/manage.c:378
+#: .././src/manage.c:384
 msgid "Results"
 msgstr ""
 
-#: .././src/manage.c:383
+#: .././src/manage.c:389
 msgid "Edit"
 msgstr ""
 
-#: .././src/manage.c:385 .././src/preferences.c:871 .././src/preferences.c:932
+#: .././src/manage.c:391 .././src/preferences.c:871 .././src/preferences.c:932
 msgid "Remove"
 msgstr "Удалить"
 
-#: .././src/manage.c:387
+#: .././src/manage.c:393
 msgid "Remove all"
 msgstr ""
 
-#: .././src/manage.c:389
+#: .././src/manage.c:395
 msgid "Close"
 msgstr ""
 

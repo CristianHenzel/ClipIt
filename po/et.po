@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: http://github.com/shantzu/ClipIt/issues\n"
-"POT-Creation-Date: 2011-11-15 11:04+0200\n"
+"POT-Creation-Date: 2011-11-15 11:45+0200\n"
 "PO-Revision-Date: 2011-10-21 11:05+0000\n"
 "Last-Translator: boamaod <boamaod@gmail.com>\n"
 "Language-Team: Estonian (Estonia) (http://www.transifex.net/projects/p/clipit/team/et_EE/)\n"
@@ -79,23 +79,23 @@ msgstr "Ajaloo tühjendamine"
 msgid "Manage History"
 msgstr "Ajaloo toimetamine"
 
-#: .././src/manage.c:378
+#: .././src/manage.c:384
 msgid "Results"
 msgstr "Tulemused"
 
-#: .././src/manage.c:383
+#: .././src/manage.c:389
 msgid "Edit"
 msgstr "Toimeta"
 
-#: .././src/manage.c:385 .././src/preferences.c:871 .././src/preferences.c:932
+#: .././src/manage.c:391 .././src/preferences.c:871 .././src/preferences.c:932
 msgid "Remove"
 msgstr "Eemalda"
 
-#: .././src/manage.c:387
+#: .././src/manage.c:393
 msgid "Remove all"
 msgstr "Eemalda kõik"
 
-#: .././src/manage.c:389
+#: .././src/manage.c:395
 msgid "Close"
 msgstr "Sulge"
 

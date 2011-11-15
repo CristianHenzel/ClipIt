@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: http://github.com/shantzu/ClipIt/issues\n"
-"POT-Creation-Date: 2011-11-15 11:04+0200\n"
+"POT-Creation-Date: 2011-11-15 11:45+0200\n"
 "PO-Revision-Date: 2011-10-31 11:58+0000\n"
 "Last-Translator: kawaji <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.net/projects/p/clipit/team/ja/)\n"
@@ -79,23 +79,23 @@ msgstr "履歴の消去"
 msgid "Manage History"
 msgstr "履歴管理"
 
-#: .././src/manage.c:378
+#: .././src/manage.c:384
 msgid "Results"
 msgstr "検索結果"
 
-#: .././src/manage.c:383
+#: .././src/manage.c:389
 msgid "Edit"
 msgstr "編集"
 
-#: .././src/manage.c:385 .././src/preferences.c:871 .././src/preferences.c:932
+#: .././src/manage.c:391 .././src/preferences.c:871 .././src/preferences.c:932
 msgid "Remove"
 msgstr "削除"
 
-#: .././src/manage.c:387
+#: .././src/manage.c:393
 msgid "Remove all"
 msgstr "全て削除"
 
-#: .././src/manage.c:389
+#: .././src/manage.c:395
 msgid "Close"
 msgstr "閉じる"
 
