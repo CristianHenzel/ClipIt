@@ -1,4 +1,9 @@
-ClipIt-1.4.2-20111115005 ~ 2011-11-15 11:46:13 +0200
+ClipIt-1.4.2-20111115006 ~ 2011-11-15 12:34:00 +0200
+
++ Fixed: Use the shipped icon instead of gtk-paste.
+
+
+ClipIt-1.4.2-20111115005 - 2011-11-15 11:46:35 +0200
 
 + Fixed: Fix max height of Manage history window.
 
