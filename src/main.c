@@ -228,6 +228,7 @@ static void item_selected(GtkMenuItem *menu_item, gpointer user_data)
   history_item *elem_data = history->data;
   gtk_clipboard_set_text(clipboard, (gchar*)elem_data->content, -1);
   gtk_clipboard_set_text(primary, (gchar*)elem_data->content, -1);
+  save_history();
   /* Paste the clipboard contents automatically if enabled */
   if (prefs.automatic_paste) {
     gchar* cmd = g_strconcat("/bin/sh -c 'xdotool key ctrl+v'", NULL);
