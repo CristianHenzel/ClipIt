@@ -1,4 +1,15 @@
-ClipIt-1.4.2-20111115001 ~ 2011-11-15 08:27:14 +0200
+ClipIt-1.4.2-20111115001 ~ 2011-11-15 08:40:17 +0200
+
++ Fixed: Added Unity to autostart.
+
+
+Silence glib warnings regarding GOptionFlags. - 2011-11-09 20:51:51 +0200
+
+These warnings:
+GLib-WARNING **: goption.c:2168: ignoring no-arg, optional-arg or filename flags (8) on option of type 0
+
+
+ClipIt-1.4.2-20111115001 - 2011-11-15 08:27:37 +0200
 
 + Fixed: Added dirty workaround for Debian multiarch build.
 
