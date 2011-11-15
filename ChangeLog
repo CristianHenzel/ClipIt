@@ -1,6 +1,12 @@
-ClipIt-1.4.2-20111115003 ~ 2011-11-15 10:48:36 +0200
+ClipIt-1.4.2-20111115004 ~ 2011-11-15 11:05:10 +0200
 
-+ 
++ Fixed: Updated translations.
+
+
+ClipIt-1.4.2-20111115003 - 2011-11-15 10:48:36 +0200
+
++ Fixed: Present the user with the existing dialog, if he tries to
+		open one while another one is active.
 
 
 ClipIt-1.4.2-20111115002 - 2011-11-15 08:59:45 +0200

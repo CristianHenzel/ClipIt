@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: http://github.com/shantzu/ClipIt/issues\n"
-"POT-Creation-Date: 2011-10-24 10:07+0300\n"
+"POT-Creation-Date: 2011-11-15 11:04+0200\n"
 "PO-Revision-Date: 2011-10-18 12:29+0000\n"
 "Last-Translator: shantzu <oss@rspwn.com>\n"
 "Language-Team: Cristian Henzel <oss@rspwn.com>\n"
@@ -18,42 +18,42 @@ msgstr ""
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
-#: .././src/main.c:288
+#: .././src/main.c:280
 msgid "Lightweight GTK+ clipboard manager."
 msgstr "Gerenciador de Área de Transferência em GTK+ leve."
 
 #. Actions using:
-#: .././src/main.c:353
+#: .././src/main.c:349
 msgid "Actions using:"
 msgstr ""
 
 #. Create menu item for empty clipboard contents
-#: .././src/main.c:362 .././src/main.c:379
+#: .././src/main.c:358 .././src/main.c:375
 msgid "None"
 msgstr ""
 
-#: .././src/main.c:382
+#: .././src/main.c:378
 msgid "<b>None</b>"
 msgstr "<b>Nenhum</b>"
 
 #. File contained no actions so adding empty
 #. File did not open so adding empty
 #. Nothing in history so adding empty
-#: .././src/main.c:404 .././src/main.c:433 .././src/main.c:588
+#: .././src/main.c:400 .././src/main.c:429 .././src/main.c:582
 msgid "Empty"
 msgstr "Vazio"
 
 #. Edit actions
-#: .././src/main.c:440
+#: .././src/main.c:436
 msgid "_Edit actions"
 msgstr "_Editar ações"
 
 #. Manage history
-#: .././src/main.c:669
+#: .././src/main.c:661
 msgid "_Manage history"
 msgstr ""
 
-#: .././src/main.c:809
+#: .././src/main.c:793
 msgid "Clipboard Manager"
 msgstr "Gerenciador de Área de Transferência"
 
@@ -74,27 +74,27 @@ msgstr "Limpar o histórico?"
 msgid "Clear history"
 msgstr ""
 
-#: .././src/manage.c:342
+#: .././src/manage.c:346
 msgid "Manage History"
 msgstr ""
 
-#: .././src/manage.c:374
+#: .././src/manage.c:378
 msgid "Results"
 msgstr ""
 
-#: .././src/manage.c:379
+#: .././src/manage.c:383
 msgid "Edit"
 msgstr ""
 
-#: .././src/manage.c:381 .././src/preferences.c:866 .././src/preferences.c:927
+#: .././src/manage.c:385 .././src/preferences.c:871 .././src/preferences.c:932
 msgid "Remove"
 msgstr "Remover"
 
-#: .././src/manage.c:383
+#: .././src/manage.c:387
 msgid "Remove all"
 msgstr ""
 
-#: .././src/manage.c:385
+#: .././src/manage.c:389
 msgid "Close"
 msgstr ""
 
@@ -107,179 +107,179 @@ msgid "Remove history file"
 msgstr ""
 
 #. Create the dialog
-#: .././src/preferences.c:628
+#: .././src/preferences.c:633
 msgid "Preferences"
 msgstr "Preferências"
 
-#: .././src/preferences.c:647
+#: .././src/preferences.c:652
 msgid "Settings"
 msgstr ""
 
-#: .././src/preferences.c:655
+#: .././src/preferences.c:660
 msgid "<b>Clipboards</b>"
 msgstr "<b>Áreas de Transferência</b>"
 
-#: .././src/preferences.c:662
+#: .././src/preferences.c:667
 msgid "Use _Copy (Ctrl-C)"
 msgstr "Usar _Cópia (Ctrl-C)"
 
-#: .././src/preferences.c:665
+#: .././src/preferences.c:670
 msgid "Use _Primary (Selection)"
 msgstr "Usar Seleção _Primária"
 
-#: .././src/preferences.c:668
+#: .././src/preferences.c:673
 msgid "S_ynchronize clipboards"
 msgstr "S_incronizar áreas de transferência"
 
-#: .././src/preferences.c:670
+#: .././src/preferences.c:675
 msgid "_Automatically paste selected item"
 msgstr ""
 
-#: .././src/preferences.c:679
+#: .././src/preferences.c:684
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Vários</b>"
 
-#: .././src/preferences.c:686
+#: .././src/preferences.c:691
 msgid "Show _indexes in history menu"
 msgstr ""
 
-#: .././src/preferences.c:688
+#: .././src/preferences.c:693
 msgid "S_ave URIs"
 msgstr ""
 
-#: .././src/preferences.c:690
+#: .././src/preferences.c:695
 msgid "Capture _hyperlinks only"
 msgstr "Capturar somente _hyperlinks"
 
-#: .././src/preferences.c:692
+#: .././src/preferences.c:697
 msgid "C_onfirm before clearing history"
 msgstr "C_onfirmar antes de limpar o histórico"
 
-#: .././src/preferences.c:694
+#: .././src/preferences.c:699
 msgid "_Use right-click menu"
 msgstr ""
 
-#: .././src/preferences.c:703
+#: .././src/preferences.c:708
 msgid "History"
 msgstr ""
 
-#: .././src/preferences.c:711
+#: .././src/preferences.c:716
 msgid "<b>History</b>"
 msgstr "<b>Histórico</b>"
 
-#: .././src/preferences.c:718
+#: .././src/preferences.c:723
 msgid "Save _history"
 msgstr ""
 
-#: .././src/preferences.c:719
+#: .././src/preferences.c:724
 msgid "Save and restore history between sessions"
 msgstr "Salvar e restaurar histórico entre as sessões"
 
-#: .././src/preferences.c:723
+#: .././src/preferences.c:728
 msgid "Items in history:"
 msgstr "Itens no histórico:"
 
-#: .././src/preferences.c:732
+#: .././src/preferences.c:737
 msgid "Items in menu:"
 msgstr ""
 
-#: .././src/preferences.c:739
+#: .././src/preferences.c:744
 msgid "Show _static items in menu"
 msgstr ""
 
-#: .././src/preferences.c:744
+#: .././src/preferences.c:749
 msgid "Static items in menu:"
 msgstr ""
 
-#: .././src/preferences.c:757
+#: .././src/preferences.c:762
 msgid "<b>Items</b>"
 msgstr "<b>Itens</b>"
 
-#: .././src/preferences.c:764
+#: .././src/preferences.c:769
 msgid "Show in a single _line"
 msgstr ""
 
-#: .././src/preferences.c:766
+#: .././src/preferences.c:771
 msgid "Show in _reverse order"
 msgstr "Exibir em ordem _reversa"
 
-#: .././src/preferences.c:770
+#: .././src/preferences.c:775
 msgid "Character length of items:"
 msgstr "Quantidade de caracteres dos itens:"
 
-#: .././src/preferences.c:779
+#: .././src/preferences.c:784
 msgid "Omit items in the:"
 msgstr "Omitir itens no:"
 
-#: .././src/preferences.c:783
+#: .././src/preferences.c:788
 msgid "Beginning"
 msgstr "Início"
 
-#: .././src/preferences.c:784
+#: .././src/preferences.c:789
 msgid "Middle"
 msgstr "Centro"
 
-#: .././src/preferences.c:785
+#: .././src/preferences.c:790
 msgid "End"
 msgstr "Fim"
 
-#: .././src/preferences.c:815
+#: .././src/preferences.c:820
 msgid "Actions"
 msgstr "Ações"
 
 #. Build the actions label
-#: .././src/preferences.c:820
+#: .././src/preferences.c:825
 msgid "Control-click ClipIt's tray icon to use actions"
 msgstr "Control-clique no ícone da bandeja do ClipIt para usar ações"
 
-#: .././src/preferences.c:840
+#: .././src/preferences.c:845
 msgid "Action"
 msgstr "Ação"
 
-#: .././src/preferences.c:847
+#: .././src/preferences.c:852
 msgid "Command"
 msgstr "Comando"
 
-#: .././src/preferences.c:862 .././src/preferences.c:923
+#: .././src/preferences.c:867 .././src/preferences.c:928
 msgid "Add..."
 msgstr "Adicionar..."
 
-#: .././src/preferences.c:883
+#: .././src/preferences.c:888
 msgid "Exclude"
 msgstr ""
 
 #. Build the exclude label
-#: .././src/preferences.c:888
+#: .././src/preferences.c:893
 msgid ""
 "Regex list of items that should not be inserted into the history "
 "(passwords/sites that you don't need in history, etc)."
 msgstr ""
 
-#: .././src/preferences.c:908
+#: .././src/preferences.c:913
 msgid "Regex"
 msgstr ""
 
-#: .././src/preferences.c:936
+#: .././src/preferences.c:941
 msgid "Hotkeys"
 msgstr "Atalhos"
 
-#: .././src/preferences.c:944
+#: .././src/preferences.c:949
 msgid "<b>Hotkeys</b>"
 msgstr "<b>Atalhos</b>"
 
-#: .././src/preferences.c:954
+#: .././src/preferences.c:959
 msgid "History hotkey:"
 msgstr ""
 
-#: .././src/preferences.c:963
+#: .././src/preferences.c:968
 msgid "Actions hotkey:"
 msgstr ""
 
-#: .././src/preferences.c:972
+#: .././src/preferences.c:977
 msgid "Menu hotkey:"
 msgstr ""
 
-#: .././src/preferences.c:981
+#: .././src/preferences.c:986
 msgid "Manage hotkey:"
 msgstr ""
 

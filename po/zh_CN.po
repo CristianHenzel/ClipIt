@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: http://github.com/shantzu/ClipIt/issues\n"
-"POT-Creation-Date: 2011-10-24 10:07+0300\n"
+"POT-Creation-Date: 2011-11-15 11:04+0200\n"
 "PO-Revision-Date: 2011-10-18 12:29+0000\n"
 "Last-Translator: shantzu <oss@rspwn.com>\n"
 "Language-Team: Cristian Henzel <oss@rspwn.com>\n"
@@ -18,42 +18,42 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: .././src/main.c:288
+#: .././src/main.c:280
 msgid "Lightweight GTK+ clipboard manager."
 msgstr "小巧的 GTK+ 剪切板管理器。"
 
 #. Actions using:
-#: .././src/main.c:353
+#: .././src/main.c:349
 msgid "Actions using:"
 msgstr ""
 
 #. Create menu item for empty clipboard contents
-#: .././src/main.c:362 .././src/main.c:379
+#: .././src/main.c:358 .././src/main.c:375
 msgid "None"
 msgstr ""
 
-#: .././src/main.c:382
+#: .././src/main.c:378
 msgid "<b>None</b>"
 msgstr "<b>无</b>"
 
 #. File contained no actions so adding empty
 #. File did not open so adding empty
 #. Nothing in history so adding empty
-#: .././src/main.c:404 .././src/main.c:433 .././src/main.c:588
+#: .././src/main.c:400 .././src/main.c:429 .././src/main.c:582
 msgid "Empty"
 msgstr "空"
 
 #. Edit actions
-#: .././src/main.c:440
+#: .././src/main.c:436
 msgid "_Edit actions"
 msgstr "编辑动作(_E)"
 
 #. Manage history
-#: .././src/main.c:669
+#: .././src/main.c:661
 msgid "_Manage history"
 msgstr "管理历史记录(_M)"
 
-#: .././src/main.c:809
+#: .././src/main.c:793
 msgid "Clipboard Manager"
 msgstr "剪切板管理器"
 
@@ -74,27 +74,27 @@ msgstr "清除历史记录？"
 msgid "Clear history"
 msgstr "清除历史记录"
 
-#: .././src/manage.c:342
+#: .././src/manage.c:346
 msgid "Manage History"
 msgstr ""
 
-#: .././src/manage.c:374
+#: .././src/manage.c:378
 msgid "Results"
 msgstr ""
 
-#: .././src/manage.c:379
+#: .././src/manage.c:383
 msgid "Edit"
 msgstr ""
 
-#: .././src/manage.c:381 .././src/preferences.c:866 .././src/preferences.c:927
+#: .././src/manage.c:385 .././src/preferences.c:871 .././src/preferences.c:932
 msgid "Remove"
 msgstr "删除"
 
-#: .././src/manage.c:383
+#: .././src/manage.c:387
 msgid "Remove all"
 msgstr ""
 
-#: .././src/manage.c:385
+#: .././src/manage.c:389
 msgid "Close"
 msgstr ""
 
@@ -107,179 +107,179 @@ msgid "Remove history file"
 msgstr "删除历史记录文件"
 
 #. Create the dialog
-#: .././src/preferences.c:628
+#: .././src/preferences.c:633
 msgid "Preferences"
 msgstr "首选项"
 
-#: .././src/preferences.c:647
+#: .././src/preferences.c:652
 msgid "Settings"
 msgstr "设定"
 
-#: .././src/preferences.c:655
+#: .././src/preferences.c:660
 msgid "<b>Clipboards</b>"
 msgstr "<b>剪切板</b>"
 
-#: .././src/preferences.c:662
+#: .././src/preferences.c:667
 msgid "Use _Copy (Ctrl-C)"
 msgstr "记录 _Copy (复制部分)"
 
-#: .././src/preferences.c:665
+#: .././src/preferences.c:670
 msgid "Use _Primary (Selection)"
 msgstr "记录 _Primary (选中部分)"
 
-#: .././src/preferences.c:668
+#: .././src/preferences.c:673
 msgid "S_ynchronize clipboards"
 msgstr "同步剪切板(_Y)"
 
-#: .././src/preferences.c:670
+#: .././src/preferences.c:675
 msgid "_Automatically paste selected item"
 msgstr ""
 
-#: .././src/preferences.c:679
+#: .././src/preferences.c:684
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>其他</b>"
 
-#: .././src/preferences.c:686
+#: .././src/preferences.c:691
 msgid "Show _indexes in history menu"
 msgstr ""
 
-#: .././src/preferences.c:688
+#: .././src/preferences.c:693
 msgid "S_ave URIs"
 msgstr "保存URI(_A)"
 
-#: .././src/preferences.c:690
+#: .././src/preferences.c:695
 msgid "Capture _hyperlinks only"
 msgstr "仅捕获超级链接(_H)"
 
-#: .././src/preferences.c:692
+#: .././src/preferences.c:697
 msgid "C_onfirm before clearing history"
 msgstr "清除历史纪录时确认(_C)"
 
-#: .././src/preferences.c:694
+#: .././src/preferences.c:699
 msgid "_Use right-click menu"
 msgstr ""
 
-#: .././src/preferences.c:703
+#: .././src/preferences.c:708
 msgid "History"
 msgstr "历史记录"
 
-#: .././src/preferences.c:711
+#: .././src/preferences.c:716
 msgid "<b>History</b>"
 msgstr "<b>历史记录</b>"
 
-#: .././src/preferences.c:718
+#: .././src/preferences.c:723
 msgid "Save _history"
 msgstr ""
 
-#: .././src/preferences.c:719
+#: .././src/preferences.c:724
 msgid "Save and restore history between sessions"
 msgstr "保存历史记录并在下次启动后恢复"
 
-#: .././src/preferences.c:723
+#: .././src/preferences.c:728
 msgid "Items in history:"
 msgstr "历史记录条数:"
 
-#: .././src/preferences.c:732
+#: .././src/preferences.c:737
 msgid "Items in menu:"
 msgstr ""
 
-#: .././src/preferences.c:739
+#: .././src/preferences.c:744
 msgid "Show _static items in menu"
 msgstr ""
 
-#: .././src/preferences.c:744
+#: .././src/preferences.c:749
 msgid "Static items in menu:"
 msgstr ""
 
-#: .././src/preferences.c:757
+#: .././src/preferences.c:762
 msgid "<b>Items</b>"
 msgstr "<b>条目</b>"
 
-#: .././src/preferences.c:764
+#: .././src/preferences.c:769
 msgid "Show in a single _line"
 msgstr ""
 
-#: .././src/preferences.c:766
+#: .././src/preferences.c:771
 msgid "Show in _reverse order"
 msgstr "逆序显示(_R)"
 
-#: .././src/preferences.c:770
+#: .././src/preferences.c:775
 msgid "Character length of items:"
 msgstr "条目显示的文字长度:"
 
-#: .././src/preferences.c:779
+#: .././src/preferences.c:784
 msgid "Omit items in the:"
 msgstr "省略显示条目的:"
 
-#: .././src/preferences.c:783
+#: .././src/preferences.c:788
 msgid "Beginning"
 msgstr "起始"
 
-#: .././src/preferences.c:784
+#: .././src/preferences.c:789
 msgid "Middle"
 msgstr "中间"
 
-#: .././src/preferences.c:785
+#: .././src/preferences.c:790
 msgid "End"
 msgstr "结尾"
 
-#: .././src/preferences.c:815
+#: .././src/preferences.c:820
 msgid "Actions"
 msgstr "动作"
 
 #. Build the actions label
-#: .././src/preferences.c:820
+#: .././src/preferences.c:825
 msgid "Control-click ClipIt's tray icon to use actions"
 msgstr "按住 Ctrl 并点击 ClipIt 的任务栏图标使用动作"
 
-#: .././src/preferences.c:840
+#: .././src/preferences.c:845
 msgid "Action"
 msgstr "动作"
 
-#: .././src/preferences.c:847
+#: .././src/preferences.c:852
 msgid "Command"
 msgstr "命令"
 
-#: .././src/preferences.c:862 .././src/preferences.c:923
+#: .././src/preferences.c:867 .././src/preferences.c:928
 msgid "Add..."
 msgstr "添加..."
 
-#: .././src/preferences.c:883
+#: .././src/preferences.c:888
 msgid "Exclude"
 msgstr "排除"
 
 #. Build the exclude label
-#: .././src/preferences.c:888
+#: .././src/preferences.c:893
 msgid ""
 "Regex list of items that should not be inserted into the history "
 "(passwords/sites that you don't need in history, etc)."
 msgstr ""
 
-#: .././src/preferences.c:908
+#: .././src/preferences.c:913
 msgid "Regex"
 msgstr "正则表达式"
 
-#: .././src/preferences.c:936
+#: .././src/preferences.c:941
 msgid "Hotkeys"
 msgstr "快捷键"
 
-#: .././src/preferences.c:944
+#: .././src/preferences.c:949
 msgid "<b>Hotkeys</b>"
 msgstr "<b>快捷键</b>"
 
-#: .././src/preferences.c:954
+#: .././src/preferences.c:959
 msgid "History hotkey:"
 msgstr ""
 
-#: .././src/preferences.c:963
+#: .././src/preferences.c:968
 msgid "Actions hotkey:"
 msgstr ""
 
-#: .././src/preferences.c:972
+#: .././src/preferences.c:977
 msgid "Menu hotkey:"
 msgstr ""
 
-#: .././src/preferences.c:981
+#: .././src/preferences.c:986
 msgid "Manage hotkey:"
 msgstr ""
 
