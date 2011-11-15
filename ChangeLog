@@ -1,4 +1,9 @@
-ClipIt-1.4.2-20111018001 ~ 2011-10-18 15:47:56 +0300
+ClipIt-1.4.2-20111115001 ~ 2011-11-15 08:27:14 +0200
+
++ Fixed: Added dirty workaround for Debian multiarch build.
+
+
+ClipIt-1.4.2-20111018001 - 2011-10-18 15:48:40 +0300
 
 + Fixed: Fixed a typo in preferences dialog.
 + Fixed: Updated translations.
