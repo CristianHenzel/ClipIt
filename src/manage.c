@@ -328,8 +328,12 @@ void search_window_response(GtkDialog *dialog, gint response_id, gpointer user_d
 gboolean show_search()
 {
   /* Prevent multiple instances */
-  if(gtk_grab_get_current())
+  if(gtk_grab_get_current()) {
+    /* A window is already open, so we present it to the user */
+    GtkWidget *toplevel = gtk_widget_get_toplevel(gtk_grab_get_current());
+    gtk_window_present((GtkWindow*)toplevel);
     return FALSE;
+  }
   /* Declare some variables */
   GtkWidget *hbox;
 

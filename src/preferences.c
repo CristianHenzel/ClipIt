@@ -614,8 +614,13 @@ static void edit_exclude(GtkCellRendererText *renderer, gchar *path,
 }
 
 /* Shows the preferences dialog on the given tab */
-void show_preferences(gint tab)
-{
+void show_preferences(gint tab) {
+  if(gtk_grab_get_current()) {
+    /* A window is already open, so we present it to the user */
+    GtkWidget *toplevel = gtk_widget_get_toplevel(gtk_grab_get_current());
+    gtk_window_present((GtkWindow*)toplevel);
+    return;
+  }
   /* Declare some variables */
   GtkWidget *frame,     *label,
             *alignment, *hbox,
