@@ -1,4 +1,5 @@
 /* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
+ * Copyright (C) 2011 by Eugene Nikolsky <pluton.od@gmail.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -28,6 +29,7 @@ G_BEGIN_DECLS
 #define INIT_ACTIONS_KEY      NULL
 #define INIT_MENU_KEY         NULL
 #define INIT_SEARCH_KEY       NULL
+#define INIT_OFFLINE_KEY      NULL
 
 #define DEF_USE_COPY          TRUE
 #define DEF_USE_PRIMARY       FALSE
@@ -51,7 +53,9 @@ G_BEGIN_DECLS
 #define DEF_ACTIONS_KEY       "<Ctrl><Alt>A"
 #define DEF_MENU_KEY          "<Ctrl><Alt>P"
 #define DEF_SEARCH_KEY        "<Ctrl><Alt>F"
+#define DEF_OFFLINE_KEY       "<Ctrl><Alt>O"
 #define DEF_NO_ICON           FALSE
+#define DEF_OFFLINE_MODE      FALSE
 
 #define ACTIONS_FILE          "clipit/actions"
 #define EXCLUDES_FILE         "clipit/excludes"
@@ -66,6 +70,8 @@ security risk. Do you want to enable history saving?"
 file still exists though. Do you want to empty the current history file?"
 
 void read_preferences();
+
+void save_preferences();
 
 void show_preferences(gint tab);
 

@@ -1,4 +1,5 @@
 /* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
+ * Copyright (C) 2011 by Eugene Nikolsky <pluton.od@gmail.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -63,10 +64,15 @@ prefs_t prefs = {DEF_USE_COPY,         DEF_USE_PRIMARY,      DEF_SYNCHRONIZE,
                  DEF_HYPERLINKS_ONLY,  DEF_CONFIRM_CLEAR,    DEF_SINGLE_LINE,
                  DEF_REVERSE_HISTORY,  DEF_ITEM_LENGTH,      DEF_ELLIPSIZE,
                  INIT_HISTORY_KEY,     INIT_ACTIONS_KEY,     INIT_MENU_KEY,
-                 INIT_SEARCH_KEY,      DEF_NO_ICON};
+                 INIT_SEARCH_KEY,      INIT_OFFLINE_KEY,     DEF_NO_ICON,
+                 DEF_OFFLINE_MODE};
 
 /* Called every CHECK_INTERVAL seconds to check for new items */
 static gboolean item_check(gpointer data) {
+  /* Immediately return in offline mode */
+  if (prefs.offline_mode)
+    return TRUE;
+
   /* Grab the current primary and clipboard text */
   gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
   gchar* clipboard_temp = gtk_clipboard_wait_for_text(clipboard);
@@ -252,7 +258,8 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data) {
   /* This helps prevent multiple instances */
   if (!gtk_grab_get_current()) {
     const gchar* authors[] = {"Cristian Henzel <oss@rspwn.com>\n"
-				"Gilberto \"Xyhthyx\" Miralla <xyhthyx@gmail.com>", NULL};
+				"Gilberto \"Xyhthyx\" Miralla <xyhthyx@gmail.com>\n"
+				"Eugene Nikolsky <pluton.od@gmail.com>", NULL};
     const gchar* license =
       "This program is free software; you can redistribute it and/or modify\n"
       "it under the terms of the GNU General Public License as published by\n"
@@ -501,6 +508,17 @@ static gboolean menu_key_pressed(GtkWidget *history_menu, GdkEventKey *event, gp
   return FALSE;
 }
 
+static void toggle_offline_mode() {
+	if (prefs.offline_mode) {
+		/* Restore clipboard contents before turning offline mode off */
+		gtk_clipboard_set_text(clipboard, clipboard_text != NULL ? clipboard_text : "", -1);
+	}
+
+	prefs.offline_mode = !prefs.offline_mode;
+	/* Save the change */
+	save_preferences();
+}
+
 static GtkWidget *create_history_menu(GtkWidget *history_menu) {
 	GtkWidget *menu_item, *item_label;
 	history_menu = gtk_menu_new();
@@ -620,6 +638,17 @@ static GtkWidget *create_history_menu(GtkWidget *history_menu) {
 			elem = elem->next;
 		}
 	}
+	/* Show a notice in offline mode */
+	if (prefs.offline_mode) {
+		gtk_menu_shell_append((GtkMenuShell*)history_menu, gtk_separator_menu_item_new());
+
+		menu_item = gtk_menu_item_new_with_label("");
+		item_label = gtk_bin_get_child((GtkBin*)menu_item);
+		gtk_label_set_markup((GtkLabel*)item_label, "<b>Offline mode is ON</b>");
+		gtk_label_set_single_line_mode((GtkLabel*)item_label, TRUE);
+		gtk_widget_set_sensitive(item_label, FALSE);
+		gtk_menu_shell_append((GtkMenuShell*)history_menu, menu_item);
+	}
 	return history_menu;
 }
 
@@ -653,6 +682,11 @@ static GtkWidget *create_tray_menu(GtkWidget *tray_menu, int menu_type) {
 	 * - use_rmb_menu is active and menu_type is right-click, OR
 	 * - use_rmb_menu is inactive and menu_type is left-click */
 	if ((prefs.use_rmb_menu && (menu_type == 3)) || (!prefs.use_rmb_menu) || (menu_type == 2)) {
+		/* Offline mode checkbox */
+		menu_item = gtk_check_menu_item_new_with_mnemonic(_("_Offline mode"));
+		gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_item, prefs.offline_mode);
+		g_signal_connect((GObject*)menu_item, "activate", (GCallback)toggle_offline_mode, NULL);
+		gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
 		/* About */
 		menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_ABOUT, NULL);
 		g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_about_dialog, NULL);
@@ -762,6 +796,11 @@ void search_hotkey(char *keystring, gpointer user_data) {
 	g_timeout_add(POPUP_DELAY, show_search, NULL);
 }
 
+/* Called when offline mode global hotkey is pressed */
+void offline_hotkey(char *keystring, gpointer user_data) {
+	toggle_offline_mode();
+}
+
 /* Startup calls and initializations */
 static void clipit_init() {
 	/* Create clipboard */
@@ -782,6 +821,7 @@ static void clipit_init() {
 	keybinder_bind(prefs.actions_key, actions_hotkey, NULL);
 	keybinder_bind(prefs.menu_key, menu_hotkey, NULL);
 	keybinder_bind(prefs.search_key, search_hotkey, NULL);
+	keybinder_bind(prefs.offline_key, offline_hotkey, NULL);
 
 	/* Create status icon */
 	if (!prefs.no_icon)
@@ -857,11 +897,13 @@ int main(int argc, char **argv) {
 	keybinder_unbind(prefs.actions_key, actions_hotkey);
 	keybinder_unbind(prefs.menu_key, menu_hotkey);
 	keybinder_unbind(prefs.search_key, search_hotkey);
+	keybinder_unbind(prefs.offline_key, offline_hotkey);
 	/* Cleanup */
 	g_free(prefs.history_key);
 	g_free(prefs.actions_key);
 	g_free(prefs.menu_key);
 	g_free(prefs.search_key);
+	g_free(prefs.offline_key);
 	g_list_foreach(history, (GFunc)g_free, NULL);
 	g_list_free(history);
 	g_free(primary_text);

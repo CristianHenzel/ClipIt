@@ -1,4 +1,5 @@
 /* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
+ * Copyright (C) 2011 by Eugene Nikolsky <pluton.od@gmail.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -46,6 +47,7 @@ GtkWidget *copy_check,
           *actions_key_entry,
           *menu_key_entry,
           *search_key_entry,
+          *offline_key_entry,
           *save_check,
           *confirm_check,
           *reverse_check,
@@ -73,6 +75,9 @@ static void apply_preferences()
   keybinder_unbind(prefs.search_key, search_hotkey);
   g_free(prefs.search_key);
   prefs.search_key = NULL;
+  keybinder_unbind(prefs.offline_key, offline_hotkey);
+  g_free(prefs.offline_key);
+  prefs.offline_key = NULL;
   
   /* Get the new preferences */
   prefs.use_copy = gtk_toggle_button_get_active((GtkToggleButton*)copy_check);
@@ -97,17 +102,19 @@ static void apply_preferences()
   prefs.actions_key = g_strdup(gtk_entry_get_text((GtkEntry*)actions_key_entry));
   prefs.menu_key = g_strdup(gtk_entry_get_text((GtkEntry*)menu_key_entry));
   prefs.search_key = g_strdup(gtk_entry_get_text((GtkEntry*)search_key_entry));
+  prefs.offline_key = g_strdup(gtk_entry_get_text((GtkEntry*)offline_key_entry));
   
   /* Bind keys and apply the new history limit */
   keybinder_bind(prefs.history_key, history_hotkey, NULL);
   keybinder_bind(prefs.actions_key, actions_hotkey, NULL);
   keybinder_bind(prefs.menu_key, menu_hotkey, NULL);
   keybinder_bind(prefs.search_key, search_hotkey, NULL);
+  keybinder_bind(prefs.offline_key, offline_hotkey, NULL);
   truncate_history();
 }
 
 /* Save preferences to CONFIGDIR/clipit/clipitrc */
-static void save_preferences()
+void save_preferences()
 {
   /* Create key */
   GKeyFile* rc_key = g_key_file_new();
@@ -135,6 +142,8 @@ static void save_preferences()
   g_key_file_set_string(rc_key, "rc", "actions_key", prefs.actions_key);
   g_key_file_set_string(rc_key, "rc", "menu_key", prefs.menu_key);
   g_key_file_set_string(rc_key, "rc", "search_key", prefs.search_key);
+  g_key_file_set_string(rc_key, "rc", "offline_key", prefs.offline_key);
+  g_key_file_set_boolean(rc_key, "rc", "offline_mode", prefs.offline_mode);
   
   /* Check config and data directories */
   check_dirs();
@@ -172,6 +181,7 @@ static void first_run_check()
     prefs.actions_key = DEF_ACTIONS_KEY;
     prefs.menu_key = DEF_MENU_KEY;
     prefs.search_key = DEF_SEARCH_KEY;
+    prefs.offline_key = DEF_OFFLINE_KEY;
     save_preferences();
   }
   g_free(rc_file);
@@ -242,6 +252,8 @@ void read_preferences()
     prefs.actions_key = g_key_file_get_string(rc_key, "rc", "actions_key", NULL);
     prefs.menu_key = g_key_file_get_string(rc_key, "rc", "menu_key", NULL);
     prefs.search_key = g_key_file_get_string(rc_key, "rc", "search_key", NULL);
+    prefs.offline_key = g_key_file_get_string(rc_key, "rc", "offline_key", NULL);
+    prefs.offline_mode = g_key_file_get_boolean(rc_key, "rc", "offline_mode", NULL);
     
     /* Check for errors and set default values if any */
     if ((!prefs.history_limit) || (prefs.history_limit > 1000) || (prefs.history_limit < 0))
@@ -260,6 +272,8 @@ void read_preferences()
       prefs.menu_key = g_strdup(DEF_MENU_KEY);
     if (!prefs.search_key)
       prefs.search_key = g_strdup(DEF_SEARCH_KEY);
+    if (!prefs.offline_key)
+      prefs.offline_key = g_strdup(DEF_OFFLINE_KEY);
   }
   else
   {
@@ -268,6 +282,7 @@ void read_preferences()
     prefs.actions_key = g_strdup(DEF_ACTIONS_KEY);
     prefs.menu_key = g_strdup(DEF_MENU_KEY);
     prefs.search_key = g_strdup(DEF_SEARCH_KEY);
+    prefs.offline_key = g_strdup(DEF_OFFLINE_KEY);
   }
   g_key_file_free(rc_key);
   g_free(rc_file);
@@ -989,6 +1004,15 @@ void show_preferences(gint tab) {
   search_key_entry = gtk_entry_new();
   gtk_entry_set_width_chars((GtkEntry*)search_key_entry, 10);
   gtk_box_pack_end((GtkBox*)hbox, search_key_entry, TRUE, TRUE, 0);
+  /* Offline mode key combination */
+  hbox = gtk_hbox_new(TRUE, 4);
+  gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
+  label = gtk_label_new(_("Offline mode hotkey:"));
+  gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
+  gtk_box_pack_start((GtkBox*)hbox, label, TRUE, TRUE, 0);
+  offline_key_entry = gtk_entry_new();
+  gtk_entry_set_width_chars((GtkEntry*)offline_key_entry, 10);
+  gtk_box_pack_end((GtkBox*)hbox, offline_key_entry, TRUE, TRUE, 0);
   gtk_box_pack_start((GtkBox*)vbox_extras, frame, FALSE, FALSE, 0);
   
   /* Make widgets reflect current preferences */
@@ -1014,6 +1038,7 @@ void show_preferences(gint tab) {
   gtk_entry_set_text((GtkEntry*)actions_key_entry, prefs.actions_key);
   gtk_entry_set_text((GtkEntry*)menu_key_entry, prefs.menu_key);
   gtk_entry_set_text((GtkEntry*)search_key_entry, prefs.search_key);
+  gtk_entry_set_text((GtkEntry*)offline_key_entry, prefs.offline_key);
   
   /* Read actions */
   read_actions();
