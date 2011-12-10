@@ -322,3 +322,13 @@ void delete_duplicate(gchar *item)
 		}
 	}
 }
+
+/* Deletes the most recent item in history */
+void delete_latest_item()
+{
+	if (history) {
+		GList *element = history;
+		history = g_list_delete_link(history, element);
+		save_history();
+	}
+}

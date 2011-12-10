@@ -129,11 +129,13 @@ static gboolean item_check(gpointer data)
     GdkAtom *targets;
     gboolean contents = gtk_clipboard_wait_for_targets(clipboard, &targets, &count);
     g_free(targets);
-    /* Only recover lost contents if there isn't any other type of content in the clipboard */
     if (!contents)
     {
-      g_print("Clipboard is null, recovering ...\n");
-      gtk_clipboard_set_text(clipboard, clipboard_text, -1);
+      g_print("Clipboard is null\n");
+      gtk_clipboard_set_text(clipboard, "", -1);
+
+      /* Remove the most recent item from history */
+      delete_latest_item();
     }
   }
   else
