@@ -28,6 +28,7 @@ G_BEGIN_DECLS
 #define INIT_ACTIONS_KEY      NULL
 #define INIT_MENU_KEY         NULL
 #define INIT_SEARCH_KEY       NULL
+#define INIT_OFFLINE_KEY      NULL
 
 #define DEF_USE_COPY          TRUE
 #define DEF_USE_PRIMARY       FALSE
@@ -51,6 +52,7 @@ G_BEGIN_DECLS
 #define DEF_ACTIONS_KEY       "<Ctrl><Alt>A"
 #define DEF_MENU_KEY          "<Ctrl><Alt>P"
 #define DEF_SEARCH_KEY        "<Ctrl><Alt>F"
+#define DEF_OFFLINE_KEY       "<Ctrl><Alt>O"
 #define DEF_NO_ICON           FALSE
 
 #define ACTIONS_FILE          "clipit/actions"

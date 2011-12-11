@@ -63,7 +63,7 @@ prefs_t prefs = {DEF_USE_COPY,         DEF_USE_PRIMARY,      DEF_SYNCHRONIZE,
                  DEF_HYPERLINKS_ONLY,  DEF_CONFIRM_CLEAR,    DEF_SINGLE_LINE,
                  DEF_REVERSE_HISTORY,  DEF_ITEM_LENGTH,      DEF_ELLIPSIZE,
                  INIT_HISTORY_KEY,     INIT_ACTIONS_KEY,     INIT_MENU_KEY,
-                 INIT_SEARCH_KEY,      DEF_NO_ICON};
+                 INIT_SEARCH_KEY,      INIT_OFFLINE_KEY,     DEF_NO_ICON};
 
 /* Called every CHECK_INTERVAL seconds to check for new items */
 static gboolean item_check(gpointer data)
@@ -776,6 +776,12 @@ void search_hotkey(char *keystring, gpointer user_data)
 	g_timeout_add(POPUP_DELAY, show_search, NULL);
 }
 
+/* Called when offline mode global hotkey is pressed */
+void offline_hotkey(char *keystring, gpointer user_data)
+{
+  g_print("Switching offline mode\n");
+}
+
 /* Startup calls and initializations */
 static void clipit_init()
 {
@@ -797,6 +803,7 @@ static void clipit_init()
 	keybinder_bind(prefs.actions_key, actions_hotkey, NULL);
 	keybinder_bind(prefs.menu_key, menu_hotkey, NULL);
 	keybinder_bind(prefs.search_key, search_hotkey, NULL);
+  keybinder_bind(prefs.offline_key, offline_hotkey, NULL);
 
 	/* Create status icon */
 	if (!prefs.no_icon)
@@ -873,11 +880,13 @@ int main(int argc, char **argv)
 	keybinder_unbind(prefs.actions_key, actions_hotkey);
 	keybinder_unbind(prefs.menu_key, menu_hotkey);
 	keybinder_unbind(prefs.search_key, search_hotkey);
+  keybinder_unbind(prefs.offline_key, offline_hotkey);
 	/* Cleanup */
 	g_free(prefs.history_key);
 	g_free(prefs.actions_key);
 	g_free(prefs.menu_key);
 	g_free(prefs.search_key);
+  g_free(prefs.offline_key);
 	g_list_foreach(history, (GFunc)g_free, NULL);
 	g_list_free(history);
 	g_free(primary_text);

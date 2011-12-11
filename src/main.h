@@ -59,6 +59,7 @@ typedef struct {
   gchar*    actions_key;      /* Actions menu hotkey */
   gchar*    menu_key;         /* ClipIt menu hotkey */
   gchar*    search_key;       /* ClipIt search hotkey */
+  gchar*    offline_key;      /* ClipIt offline mode hotkey */
 
   gboolean  no_icon;          /* No icon */
 } prefs_t;
@@ -72,6 +73,8 @@ void actions_hotkey(char *keystring, gpointer user_data);
 void menu_hotkey(char *keystring, gpointer user_data);
 
 void search_hotkey(char *keystring, gpointer user_data);
+
+void offline_hotkey(char *keystring, gpointer user_data);
 
 void clear_main_data();
 
