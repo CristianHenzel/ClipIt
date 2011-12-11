@@ -781,7 +781,6 @@ void search_hotkey(char *keystring, gpointer user_data)
 /* Called when offline mode global hotkey is pressed */
 void offline_hotkey(char *keystring, gpointer user_data)
 {
-  g_print("Switching offline mode\n");
   if (timer_source != 0)
   {
     /* Stop the timer */
