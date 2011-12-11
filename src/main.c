@@ -790,8 +790,8 @@ void offline_hotkey(char *keystring, gpointer user_data)
   }
   else
   {
-    /* Or clear clipboard and start the timer */
-    gtk_clipboard_set_text(clipboard, "", -1);
+    /* Or restore clipboard contents and start the timer */
+    gtk_clipboard_set_text(clipboard, clipboard_text != NULL ? clipboard_text : "", -1);
 
     timer_source = g_timeout_add(CHECK_INTERVAL, item_check, NULL);
   }
