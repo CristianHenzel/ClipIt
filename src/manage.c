@@ -342,7 +342,14 @@ gboolean show_search()
   GtkWidget* search_dialog = gtk_dialog_new();
 
   gtk_window_set_icon((GtkWindow*)search_dialog, gtk_widget_render_icon(search_dialog, GTK_STOCK_FIND, GTK_ICON_SIZE_MENU, NULL));
-  gtk_window_set_title((GtkWindow*)search_dialog, "Manage History");
+  gchar *orig_title = "Manage History";
+  gchar *title = 0;
+  if (is_offline_mode())
+    title = g_strconcat(orig_title, " (Offline mode)", NULL);
+  else
+    title = g_strdup(orig_title);
+  gtk_window_set_title((GtkWindow*)search_dialog, title);
+  g_free(title);
   gtk_window_set_resizable((GtkWindow*)search_dialog, TRUE);
   gtk_window_set_position((GtkWindow*)search_dialog, GTK_WIN_POS_CENTER);
 

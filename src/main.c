@@ -781,7 +781,7 @@ void search_hotkey(char *keystring, gpointer user_data)
 /* Called when offline mode global hotkey is pressed */
 void offline_hotkey(char *keystring, gpointer user_data)
 {
-  if (timer_source != 0)
+  if (!is_offline_mode())
   {
     /* Stop the timer */
     g_source_remove(timer_source);
@@ -794,6 +794,12 @@ void offline_hotkey(char *keystring, gpointer user_data)
 
     timer_source = g_timeout_add(CHECK_INTERVAL, item_check, NULL);
   }
+}
+
+/* Returns a bool that shows if ClipIt is in offline mode now */
+gboolean is_offline_mode()
+{
+  return timer_source == 0;
 }
 
 /* Startup calls and initializations */
