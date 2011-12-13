@@ -1,4 +1,5 @@
 /* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
+ * Copyright (C) 2011 by Eugene Nikolsky <pluton.od@gmail.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -265,7 +266,8 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
   if (!gtk_grab_get_current())
   {
     const gchar* authors[] = {"Cristian Henzel <oss@rspwn.com>\n"
-				"Gilberto \"Xyhthyx\" Miralla <xyhthyx@gmail.com>", NULL};
+				"Gilberto \"Xyhthyx\" Miralla <xyhthyx@gmail.com>\n"
+				"Eugene Nikolsky <pluton.od@gmail.com>", NULL};
     const gchar* license =
       "This program is free software; you can redistribute it and/or modify\n"
       "it under the terms of the GNU General Public License as published by\n"
