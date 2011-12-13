@@ -67,6 +67,9 @@ prefs_t prefs = {DEF_USE_COPY,         DEF_USE_PRIMARY,      DEF_SYNCHRONIZE,
 
 static guint timer_source = 0;
 
+static void toggle_offline_mode();
+
+
 /* Called every CHECK_INTERVAL seconds to check for new items */
 static gboolean item_check(gpointer data)
 {
@@ -673,6 +676,11 @@ static GtkWidget *create_tray_menu(GtkWidget *tray_menu, int menu_type)
 	 * - use_rmb_menu is active and menu_type is right-click, OR
 	 * - use_rmb_menu is inactive and menu_type is left-click */
 	if ((prefs.use_rmb_menu && (menu_type == 3)) || (!prefs.use_rmb_menu) || (menu_type == 2)) {
+    /* Offline mode checkbox */
+    menu_item = gtk_check_menu_item_new_with_mnemonic(_("_Offline mode"));
+    gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_item, is_offline_mode());
+    g_signal_connect((GObject*)menu_item, "activate", (GCallback)toggle_offline_mode, NULL);
+    gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
 		/* About */
 		menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_ABOUT, NULL);
 		g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_about_dialog, NULL);
@@ -791,6 +799,11 @@ void search_hotkey(char *keystring, gpointer user_data)
 
 /* Called when offline mode global hotkey is pressed */
 void offline_hotkey(char *keystring, gpointer user_data)
+{
+  toggle_offline_mode();
+}
+
+static void toggle_offline_mode()
 {
   if (!is_offline_mode())
   {
