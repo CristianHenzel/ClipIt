@@ -627,6 +627,16 @@ static GtkWidget *create_history_menu(GtkWidget *history_menu)
 			elem = elem->next;
 		}
 	}
+  /* Show a notice in offline mode */
+  if (is_offline_mode()) {
+    gtk_menu_shell_append((GtkMenuShell*)history_menu, gtk_separator_menu_item_new());
+
+    menu_item = gtk_menu_item_new_with_label("Offline mode is ON");
+    item_label = gtk_bin_get_child((GtkBin*)menu_item);
+    gtk_label_set_single_line_mode((GtkLabel*)item_label, TRUE);
+    gtk_widget_set_sensitive(item_label, FALSE);
+    gtk_menu_shell_append((GtkMenuShell*)history_menu, menu_item);
+  }
 	return history_menu;
 }
 
