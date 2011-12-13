@@ -1,4 +1,5 @@
 /* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
+ * Copyright (C) 2011 by Eugene Nikolsky <pluton.od@gmail.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -305,6 +306,7 @@ static gboolean treeview_key_pressed(GtkWidget *widget, GdkEventKey *event, GtkW
     case XK_Shift_R:
     case XK_Control_L:
     case XK_Control_R:
+    case XK_Tab:      // allow to switch focus by the Tab key
       return FALSE;
     case XK_Return:
       search_doubleclick();
