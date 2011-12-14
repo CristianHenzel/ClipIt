@@ -143,6 +143,7 @@ static void save_preferences()
   g_key_file_set_string(rc_key, "rc", "menu_key", prefs.menu_key);
   g_key_file_set_string(rc_key, "rc", "search_key", prefs.search_key);
   g_key_file_set_string(rc_key, "rc", "offline_key", prefs.offline_key);
+  g_key_file_set_boolean(rc_key, "rc", "offline_mode", prefs.offline_mode);
   
   /* Check config and data directories */
   check_dirs();
@@ -252,6 +253,7 @@ void read_preferences()
     prefs.menu_key = g_key_file_get_string(rc_key, "rc", "menu_key", NULL);
     prefs.search_key = g_key_file_get_string(rc_key, "rc", "search_key", NULL);
     prefs.offline_key = g_key_file_get_string(rc_key, "rc", "offline_key", NULL);
+    prefs.offline_mode = g_key_file_get_boolean(rc_key, "rc", "offline_mode", NULL);
     
     /* Check for errors and set default values if any */
     if ((!prefs.history_limit) || (prefs.history_limit > 1000) || (prefs.history_limit < 0))

@@ -64,7 +64,8 @@ prefs_t prefs = {DEF_USE_COPY,         DEF_USE_PRIMARY,      DEF_SYNCHRONIZE,
                  DEF_HYPERLINKS_ONLY,  DEF_CONFIRM_CLEAR,    DEF_SINGLE_LINE,
                  DEF_REVERSE_HISTORY,  DEF_ITEM_LENGTH,      DEF_ELLIPSIZE,
                  INIT_HISTORY_KEY,     INIT_ACTIONS_KEY,     INIT_MENU_KEY,
-                 INIT_SEARCH_KEY,      INIT_OFFLINE_KEY,     DEF_NO_ICON};
+                 INIT_SEARCH_KEY,      INIT_OFFLINE_KEY,     DEF_NO_ICON,
+                 DEF_OFFLINE_MODE};
 
 static guint timer_source = 0;
 

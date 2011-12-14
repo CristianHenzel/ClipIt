@@ -63,6 +63,8 @@ typedef struct {
   gchar*    offline_key;      /* ClipIt offline mode hotkey */
 
   gboolean  no_icon;          /* No icon */
+
+  gboolean  offline_mode;     /* Offline mode */
 } prefs_t;
 
 extern prefs_t prefs;
