@@ -114,7 +114,7 @@ static void apply_preferences()
 }
 
 /* Save preferences to CONFIGDIR/clipit/clipitrc */
-static void save_preferences()
+void save_preferences()
 {
   /* Create key */
   GKeyFile* rc_key = g_key_file_new();

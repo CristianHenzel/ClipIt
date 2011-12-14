@@ -71,6 +71,8 @@ file still exists though. Do you want to empty the current history file?"
 
 void read_preferences();
 
+void save_preferences();
+
 void show_preferences(gint tab);
 
 G_END_DECLS
