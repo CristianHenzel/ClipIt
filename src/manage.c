@@ -345,7 +345,7 @@ gboolean show_search()
   gtk_window_set_icon((GtkWindow*)search_dialog, gtk_widget_render_icon(search_dialog, GTK_STOCK_FIND, GTK_ICON_SIZE_MENU, NULL));
   gchar *orig_title = "Manage History";
   gchar *title = 0;
-  if (is_offline_mode())
+  if (prefs.offline_mode)
     title = g_strconcat(orig_title, " (Offline mode)", NULL);
   else
     title = g_strdup(orig_title);

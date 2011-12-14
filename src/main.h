@@ -81,8 +81,6 @@ void offline_hotkey(char *keystring, gpointer user_data);
 
 void clear_main_data();
 
-gboolean is_offline_mode();
-
 #ifdef HAVE_APPINDICATOR
 void create_app_indicator(gint create);
 #endif

@@ -634,7 +634,7 @@ static GtkWidget *create_history_menu(GtkWidget *history_menu)
 		}
 	}
   /* Show a notice in offline mode */
-  if (is_offline_mode()) {
+  if (prefs.offline_mode) {
     gtk_menu_shell_append((GtkMenuShell*)history_menu, gtk_separator_menu_item_new());
 
     menu_item = gtk_menu_item_new_with_label("");
@@ -681,7 +681,7 @@ static GtkWidget *create_tray_menu(GtkWidget *tray_menu, int menu_type)
 	if ((prefs.use_rmb_menu && (menu_type == 3)) || (!prefs.use_rmb_menu) || (menu_type == 2)) {
     /* Offline mode checkbox */
     menu_item = gtk_check_menu_item_new_with_mnemonic(_("_Offline mode"));
-    gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_item, is_offline_mode());
+    gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_item, prefs.offline_mode);
     g_signal_connect((GObject*)menu_item, "activate", (GCallback)toggle_offline_mode, NULL);
     gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
 		/* About */
@@ -808,7 +808,7 @@ void offline_hotkey(char *keystring, gpointer user_data)
 
 static void toggle_offline_mode()
 {
-  if (!is_offline_mode())
+  if (!prefs.offline_mode)
   {
     /* Stop the timer */
     g_source_remove(timer_source);
@@ -821,12 +821,8 @@ static void toggle_offline_mode()
 
     timer_source = g_timeout_add(CHECK_INTERVAL, item_check, NULL);
   }
-}
 
-/* Returns a bool that shows if ClipIt is in offline mode now */
-gboolean is_offline_mode()
-{
-  return timer_source == 0;
+  prefs.offline_mode = !prefs.offline_mode;
 }
 
 /* Startup calls and initializations */
