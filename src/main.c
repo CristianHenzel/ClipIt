@@ -833,10 +833,11 @@ static void clipit_init()
 	/* Create clipboard */
 	primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
 	clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
-	timer_source = g_timeout_add(CHECK_INTERVAL, item_check, NULL);
 
 	/* Read preferences */
 	read_preferences();
+
+	timer_source = prefs.offline_mode ? 0 : g_timeout_add(CHECK_INTERVAL, item_check, NULL);
 
 	/* Read history */
 	if (prefs.save_history)
