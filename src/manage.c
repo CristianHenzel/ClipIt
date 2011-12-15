@@ -1,4 +1,5 @@
 /* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
+ * Copyright (C) 2011 by Eugene Nikolsky <pluton.od@gmail.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -305,6 +306,7 @@ static gboolean treeview_key_pressed(GtkWidget *widget, GdkEventKey *event, GtkW
     case XK_Shift_R:
     case XK_Control_L:
     case XK_Control_R:
+    case XK_Tab:      // allow to switch focus by the Tab key
       return FALSE;
     case XK_Return:
       search_doubleclick();
@@ -341,7 +343,14 @@ gboolean show_search()
   GtkWidget* search_dialog = gtk_dialog_new();
 
   gtk_window_set_icon((GtkWindow*)search_dialog, gtk_widget_render_icon(search_dialog, GTK_STOCK_FIND, GTK_ICON_SIZE_MENU, NULL));
-  gtk_window_set_title((GtkWindow*)search_dialog, "Manage History");
+  gchar *orig_title = "Manage History";
+  gchar *title = 0;
+  if (prefs.offline_mode)
+    title = g_strconcat(orig_title, " (Offline mode)", NULL);
+  else
+    title = g_strdup(orig_title);
+  gtk_window_set_title((GtkWindow*)search_dialog, title);
+  g_free(title);
   gtk_window_set_resizable((GtkWindow*)search_dialog, TRUE);
   gtk_window_set_position((GtkWindow*)search_dialog, GTK_WIN_POS_CENTER);
 
