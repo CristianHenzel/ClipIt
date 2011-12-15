@@ -67,14 +67,16 @@ prefs_t prefs = {DEF_USE_COPY,         DEF_USE_PRIMARY,      DEF_SYNCHRONIZE,
                  INIT_SEARCH_KEY,      INIT_OFFLINE_KEY,     DEF_NO_ICON,
                  DEF_OFFLINE_MODE};
 
-static guint timer_source = 0;
-
 static void toggle_offline_mode();
 
 
 /* Called every CHECK_INTERVAL seconds to check for new items */
 static gboolean item_check(gpointer data)
 {
+  /* Immediately return in offline mode */
+  if (prefs.offline_mode)
+    return TRUE;
+
   /* Grab the current primary and clipboard text */
   gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
   gchar* clipboard_temp = gtk_clipboard_wait_for_text(clipboard);
@@ -808,18 +810,10 @@ void offline_hotkey(char *keystring, gpointer user_data)
 
 static void toggle_offline_mode()
 {
-  if (!prefs.offline_mode)
+  if (prefs.offline_mode)
   {
-    /* Stop the timer */
-    g_source_remove(timer_source);
-    timer_source = 0;
-  }
-  else
-  {
-    /* Or restore clipboard contents and start the timer */
+    /* Restore clipboard contents before turning offline mode off */
     gtk_clipboard_set_text(clipboard, clipboard_text != NULL ? clipboard_text : "", -1);
-
-    timer_source = g_timeout_add(CHECK_INTERVAL, item_check, NULL);
   }
 
   prefs.offline_mode = !prefs.offline_mode;
@@ -833,11 +827,10 @@ static void clipit_init()
 	/* Create clipboard */
 	primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
 	clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
+	g_timeout_add(CHECK_INTERVAL, item_check, NULL);
 
 	/* Read preferences */
 	read_preferences();
-
-	timer_source = prefs.offline_mode ? 0 : g_timeout_add(CHECK_INTERVAL, item_check, NULL);
 
 	/* Read history */
 	if (prefs.save_history)
