@@ -329,9 +329,13 @@ void search_window_response(GtkDialog *dialog, gint response_id, gpointer user_d
 /* Shows the search dialog */
 gboolean show_search()
 {
-  /* Prevent multiple instances */
-  if(gtk_grab_get_current())
+  /* If already shown, close it */
+  GtkWidget *current = gtk_grab_get_current();
+  if(current)
+  {
+    gtk_widget_destroy(current);
     return FALSE;
+  }
   /* Declare some variables */
   GtkWidget *hbox;
 
