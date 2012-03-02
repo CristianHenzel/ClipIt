@@ -1,4 +1,9 @@
-ClipIt-1.4.2-20120302001 ~ 2012-03-02 21:56:31 +0200
+ClipIt-1.4.2-20120302002 ~ 2012-03-02 22:20:44 +0200
+
++ Fixed: Updated copyright information.
+
+
+ClipIt-1.4.2-20120302001 - 2012-03-02 21:56:42 +0200
 
 + Fixed: Fixed a GTK include error with gtypes.h.
 

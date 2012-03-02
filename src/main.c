@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
+/* Copyright (C) 2010-2012 by Cristian Henzel <oss@rspwn.com>
  * Copyright (C) 2011 by Eugene Nikolsky <pluton.od@gmail.com>
  *
  * forked from parcellite, which is
@@ -289,7 +289,7 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data) {
     gtk_about_dialog_set_website((GtkAboutDialog*)about_dialog,
                                  "http://clipit.rspwn.com/");
 
-    gtk_about_dialog_set_copyright((GtkAboutDialog*)about_dialog, "Copyright (C) 2010 Cristian Henzel");
+    gtk_about_dialog_set_copyright((GtkAboutDialog*)about_dialog, "Copyright (C) 2010-2012 Cristian Henzel");
     gtk_about_dialog_set_authors((GtkAboutDialog*)about_dialog, authors);
     gtk_about_dialog_set_translator_credits ((GtkAboutDialog*)about_dialog,
                                              "Guido Tabbernuk <boamaod@gmail.com>\n"
