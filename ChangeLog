@@ -1,4 +1,16 @@
-ClipIt-1.4.2-20111115006 ~ 2011-11-15 12:34:00 +0200
+ClipIt-1.4.2-20120302001 ~ 2012-03-02 21:56:31 +0200
+
++ Fixed: Fixed a GTK include error with gtypes.h.
+
+
+ClipIt-1.4.2-20111222001 - 2011-12-04 22:42:57 +0200
+
++ Added: Merged "Offline mode" feature, by Eugene Nikolsky
++ Added: Allow to switch focus by Tab key in "Manage History"
+	dialog, by Eugene Nikolsky
+
+
+ClipIt-1.4.2-20111115006 - 2011-11-15 12:34:18 +0200
 
 + Fixed: Use the shipped icon instead of gtk-paste.
 
