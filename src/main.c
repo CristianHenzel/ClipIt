@@ -1,4 +1,5 @@
-/* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
+/* Copyright (C) 2010-2012 by Cristian Henzel <oss@rspwn.com>
+ * Copyright (C) 2011 by Eugene Nikolsky <pluton.od@gmail.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -48,7 +49,7 @@ static GtkClipboard* clipboard;
 static AppIndicator *indicator;
 static GtkWidget *indicator_menu = NULL;
 #else
-static GtkStatusIcon *status_icon; 
+static GtkStatusIcon *status_icon;
 static GtkWidget *statusicon_menu = NULL;
 static gboolean status_menu_lock = FALSE;
 #endif
@@ -63,11 +64,15 @@ prefs_t prefs = {DEF_USE_COPY,         DEF_USE_PRIMARY,      DEF_SYNCHRONIZE,
                  DEF_HYPERLINKS_ONLY,  DEF_CONFIRM_CLEAR,    DEF_SINGLE_LINE,
                  DEF_REVERSE_HISTORY,  DEF_ITEM_LENGTH,      DEF_ELLIPSIZE,
                  INIT_HISTORY_KEY,     INIT_ACTIONS_KEY,     INIT_MENU_KEY,
-                 INIT_SEARCH_KEY,      DEF_NO_ICON};
+                 INIT_SEARCH_KEY,      INIT_OFFLINE_KEY,     DEF_NO_ICON,
+                 DEF_OFFLINE_MODE};
 
 /* Called every CHECK_INTERVAL seconds to check for new items */
-static gboolean item_check(gpointer data)
-{
+static gboolean item_check(gpointer data) {
+  /* Immediately return in offline mode */
+  if (prefs.offline_mode)
+    return TRUE;
+
   /* Grab the current primary and clipboard text */
   gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
   gchar* clipboard_temp = gtk_clipboard_wait_for_text(clipboard);
@@ -177,15 +182,13 @@ static gboolean item_check(gpointer data)
 }
 
 /* Called when execution action exits */
-static void action_exit(GPid pid, gint status, gpointer data)
-{
+static void action_exit(GPid pid, gint status, gpointer data) {
   g_spawn_close_pid(pid);
   actions_lock = FALSE;
 }
 
 /* Called when an action is selected from actions menu */
-static void action_selected(GtkButton *button, gpointer user_data)
-{
+static void action_selected(GtkButton *button, gpointer user_data) {
   /* Enable lock */
   actions_lock = TRUE;
 
@@ -210,17 +213,13 @@ static void action_selected(GtkButton *button, gpointer user_data)
 }
 
 /* Called when Edit Actions is selected from actions menu */
-static void edit_actions_selected(GtkButton *button, gpointer user_data)
-{
-  /* This helps prevent multiple instances */
-  if (!gtk_grab_get_current())
-    /* Show the preferences dialog on the actions tab */
-    show_preferences(ACTIONS_TAB);
+static void edit_actions_selected(GtkButton *button, gpointer user_data) {
+  /* Show the preferences dialog on the actions tab */
+  show_preferences(ACTIONS_TAB);
 }
 
 /* Called when an item is selected from history menu */
-static void item_selected(GtkMenuItem *menu_item, gpointer user_data)
-{
+static void item_selected(GtkMenuItem *menu_item, gpointer user_data) {
   /* Get the text from the right element and set as clipboard */
   GList* element = g_list_nth(history, GPOINTER_TO_INT(user_data));
   history = g_list_remove_link(history, element);
@@ -228,6 +227,7 @@ static void item_selected(GtkMenuItem *menu_item, gpointer user_data)
   history_item *elem_data = history->data;
   gtk_clipboard_set_text(clipboard, (gchar*)elem_data->content, -1);
   gtk_clipboard_set_text(primary, (gchar*)elem_data->content, -1);
+  save_history();
   /* Paste the clipboard contents automatically if enabled */
   if (prefs.automatic_paste) {
     gchar* cmd = g_strconcat("/bin/sh -c 'xdotool key ctrl+v'", NULL);
@@ -254,13 +254,12 @@ void clear_main_data() {
 }
 
 /* Called when About is selected from right-click menu */
-static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
-{
+static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data) {
   /* This helps prevent multiple instances */
-  if (!gtk_grab_get_current())
-  {
+  if (!gtk_grab_get_current()) {
     const gchar* authors[] = {"Cristian Henzel <oss@rspwn.com>\n"
-				"Gilberto \"Xyhthyx\" Miralla <xyhthyx@gmail.com>", NULL};
+				"Gilberto \"Xyhthyx\" Miralla <xyhthyx@gmail.com>\n"
+				"Eugene Nikolsky <pluton.od@gmail.com>", NULL};
     const gchar* license =
       "This program is free software; you can redistribute it and/or modify\n"
       "it under the terms of the GNU General Public License as published by\n"
@@ -290,9 +289,10 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
     gtk_about_dialog_set_website((GtkAboutDialog*)about_dialog,
                                  "http://clipit.rspwn.com/");
 
-    gtk_about_dialog_set_copyright((GtkAboutDialog*)about_dialog, "Copyright (C) 2010 Cristian Henzel");
+    gtk_about_dialog_set_copyright((GtkAboutDialog*)about_dialog, "Copyright (C) 2010-2012 Cristian Henzel");
     gtk_about_dialog_set_authors((GtkAboutDialog*)about_dialog, authors);
     gtk_about_dialog_set_translator_credits ((GtkAboutDialog*)about_dialog,
+                                             "Guido Tabbernuk <boamaod@gmail.com>\n"
                                              "Miloš Koutný <milos.koutny@gmail.com>\n"
                                              "Kim Jensen <reklamepost@energimail.dk>\n"
                                              "Eckhard M. Jäger <bart@neeneenee.de>\n"
@@ -317,30 +317,34 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
     /* Run the about dialog */
     gtk_dialog_run((GtkDialog*)about_dialog);
     gtk_widget_destroy(about_dialog);
+  } else {
+    /* A window is already open, so we present it to the user */
+    GtkWidget *toplevel = gtk_widget_get_toplevel(gtk_grab_get_current());
+    gtk_window_present((GtkWindow*)toplevel);
   }
 }
 
 /* Called when Preferences is selected from right-click menu */
-static void preferences_selected(GtkMenuItem *menu_item, gpointer user_data)
-{
-  /* This helps prevent multiple instances */
-  if (!gtk_grab_get_current())
-    /* Show the preferences dialog */
-    show_preferences(0);
+static void preferences_selected(GtkMenuItem *menu_item, gpointer user_data) {
+  /* Show the preferences dialog */
+  show_preferences(0);
 }
 
 /* Called when Quit is selected from right-click menu */
-static void quit_selected(GtkMenuItem *menu_item, gpointer user_data)
-{
+static void quit_selected(GtkMenuItem *menu_item, gpointer user_data) {
   /* Prevent quit with dialogs open */
-  if (!gtk_grab_get_current())
+  if (!gtk_grab_get_current()) {
     /* Quit the program */
     gtk_main_quit();
+  } else {
+    /* A window is already open, so we present it to the user */
+    GtkWidget *toplevel = gtk_widget_get_toplevel(gtk_grab_get_current());
+    gtk_window_present((GtkWindow*)toplevel);
+  }
 }
 
 /* Called when status icon is control-clicked */
-static gboolean show_actions_menu(gpointer data)
-{
+static gboolean show_actions_menu(gpointer data) {
   /* Declare some variables */
   GtkWidget *menu,       *menu_item,
             *menu_image, *item_label;
@@ -349,7 +353,7 @@ static gboolean show_actions_menu(gpointer data)
   menu = gtk_menu_new();
   g_signal_connect((GObject*)menu, "selection-done", (GCallback)gtk_widget_destroy, NULL);
   /* Actions using: */
-  menu_item = gtk_image_menu_item_new_with_label("Actions using:");
+  menu_item = gtk_image_menu_item_new_with_label(_("Actions using:"));
   menu_image = gtk_image_new_from_stock(GTK_STOCK_EXECUTE, GTK_ICON_SIZE_MENU);
   gtk_image_menu_item_set_image((GtkImageMenuItem*)menu_item, menu_image);
   g_signal_connect((GObject*)menu_item, "select", (GCallback)gtk_menu_item_deselect, NULL);
@@ -358,7 +362,7 @@ static gboolean show_actions_menu(gpointer data)
   gchar* text = gtk_clipboard_wait_for_text(clipboard);
   if (text != NULL)
   {
-    menu_item = gtk_menu_item_new_with_label("None");
+    menu_item = gtk_menu_item_new_with_label(_("None"));
     /* Modify menu item label properties */
     item_label = gtk_bin_get_child((GtkBin*)menu_item);
     gtk_label_set_single_line_mode((GtkLabel*)item_label, TRUE);
@@ -375,7 +379,7 @@ static gboolean show_actions_menu(gpointer data)
   else
   {
     /* Create menu item for empty clipboard contents */
-    menu_item = gtk_menu_item_new_with_label("None");
+    menu_item = gtk_menu_item_new_with_label(_("None"));
     /* Modify menu item label properties */
     item_label = gtk_bin_get_child((GtkBin*)menu_item);
     gtk_label_set_markup((GtkLabel*)item_label, _("<b>None</b>"));
@@ -448,8 +452,7 @@ static gboolean show_actions_menu(gpointer data)
   return FALSE;
 }
 
-static gboolean menu_key_pressed(GtkWidget *history_menu, GdkEventKey *event, gpointer user_data)
-{
+static gboolean menu_key_pressed(GtkWidget *history_menu, GdkEventKey *event, gpointer user_data) {
   switch (event->keyval) {
     case XK_1:
     case XK_KP_1:
@@ -505,8 +508,18 @@ static gboolean menu_key_pressed(GtkWidget *history_menu, GdkEventKey *event, gp
   return FALSE;
 }
 
-static GtkWidget *create_history_menu(GtkWidget *history_menu)
-{
+static void toggle_offline_mode() {
+	if (prefs.offline_mode) {
+		/* Restore clipboard contents before turning offline mode off */
+		gtk_clipboard_set_text(clipboard, clipboard_text != NULL ? clipboard_text : "", -1);
+	}
+
+	prefs.offline_mode = !prefs.offline_mode;
+	/* Save the change */
+	save_preferences();
+}
+
+static GtkWidget *create_history_menu(GtkWidget *history_menu) {
 	GtkWidget *menu_item, *item_label;
 	history_menu = gtk_menu_new();
 	g_signal_connect((GObject*)history_menu, "key-press-event", (GCallback)menu_key_pressed, NULL);
@@ -625,12 +638,22 @@ static GtkWidget *create_history_menu(GtkWidget *history_menu)
 			elem = elem->next;
 		}
 	}
+	/* Show a notice in offline mode */
+	if (prefs.offline_mode) {
+		gtk_menu_shell_append((GtkMenuShell*)history_menu, gtk_separator_menu_item_new());
+
+		menu_item = gtk_menu_item_new_with_label("");
+		item_label = gtk_bin_get_child((GtkBin*)menu_item);
+		gtk_label_set_markup((GtkLabel*)item_label, "<b>Offline mode is ON</b>");
+		gtk_label_set_single_line_mode((GtkLabel*)item_label, TRUE);
+		gtk_widget_set_sensitive(item_label, FALSE);
+		gtk_menu_shell_append((GtkMenuShell*)history_menu, menu_item);
+	}
 	return history_menu;
 }
 
 /* Generates the history menu */
-static gboolean show_history_menu(gpointer data)
-{
+static gboolean show_history_menu(gpointer data) {
   /* Declare some variables */
   GtkWidget *menu = gtk_menu_new();
   menu = create_history_menu(menu);
@@ -643,8 +666,7 @@ static gboolean show_history_menu(gpointer data)
   return FALSE;
 }
 
-static GtkWidget *create_tray_menu(GtkWidget *tray_menu, int menu_type)
-{
+static GtkWidget *create_tray_menu(GtkWidget *tray_menu, int menu_type) {
 	GtkWidget *menu_item, *menu_image;
 
 	if ((menu_type == 1) || (menu_type == 2)) {
@@ -660,6 +682,11 @@ static GtkWidget *create_tray_menu(GtkWidget *tray_menu, int menu_type)
 	 * - use_rmb_menu is active and menu_type is right-click, OR
 	 * - use_rmb_menu is inactive and menu_type is left-click */
 	if ((prefs.use_rmb_menu && (menu_type == 3)) || (!prefs.use_rmb_menu) || (menu_type == 2)) {
+		/* Offline mode checkbox */
+		menu_item = gtk_check_menu_item_new_with_mnemonic(_("_Offline mode"));
+		gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_item, prefs.offline_mode);
+		g_signal_connect((GObject*)menu_item, "activate", (GCallback)toggle_offline_mode, NULL);
+		gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
 		/* About */
 		menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_ABOUT, NULL);
 		g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_about_dialog, NULL);
@@ -686,8 +713,7 @@ static GtkWidget *create_tray_menu(GtkWidget *tray_menu, int menu_type)
 
 #ifdef HAVE_APPINDICATOR
 
-void create_app_indicator(gint create)
-{
+void create_app_indicator(gint create) {
 	/* Create the menu */
 	indicator_menu = create_tray_menu(indicator_menu, 2);
 	/* check if we need to create the indicator or just refresh the menu */
@@ -702,8 +728,7 @@ void create_app_indicator(gint create)
 #else
 
 /* Called when status icon is clicked */
-static void show_clipit_menu(int menu_type)
-{
+static void show_clipit_menu(int menu_type) {
 	/* If the menu is visible, we don't do anything, so that it gets hidden */
 	if((statusicon_menu != NULL) && gtk_widget_get_visible((GtkWidget *)statusicon_menu))
 		return;
@@ -723,8 +748,7 @@ static void show_clipit_menu(int menu_type)
 
 /* Called when status icon is clicked */
 /* (checks type of click and calls correct function) */
-static void status_icon_clicked(GtkStatusIcon *status_icon, GdkEventButton *event )
-{
+static void status_icon_clicked(GtkStatusIcon *status_icon, GdkEventButton *event ) {
 	/* Check what type of click was recieved */
 	GdkModifierType state;
 	gtk_get_current_event_state(&state);
@@ -751,34 +775,34 @@ static void status_icon_clicked(GtkStatusIcon *status_icon, GdkEventButton *even
 #endif
 
 /* Called when history global hotkey is pressed */
-void history_hotkey(char *keystring, gpointer user_data)
-{
+void history_hotkey(char *keystring, gpointer user_data) {
 	g_timeout_add(POPUP_DELAY, show_history_menu, NULL);
 }
 
 /* Called when actions global hotkey is pressed */
-void actions_hotkey(char *keystring, gpointer user_data)
-{
+void actions_hotkey(char *keystring, gpointer user_data) {
 	g_timeout_add(POPUP_DELAY, show_actions_menu, NULL);
 }
 
 /* Called when actions global hotkey is pressed */
-void menu_hotkey(char *keystring, gpointer user_data)
-{
+void menu_hotkey(char *keystring, gpointer user_data) {
 #ifndef HAVE_APPINDICATOR
 	show_clipit_menu(1);
 #endif
 }
 
 /* Called when search global hotkey is pressed */
-void search_hotkey(char *keystring, gpointer user_data)
-{
+void search_hotkey(char *keystring, gpointer user_data) {
 	g_timeout_add(POPUP_DELAY, show_search, NULL);
 }
 
+/* Called when offline mode global hotkey is pressed */
+void offline_hotkey(char *keystring, gpointer user_data) {
+	toggle_offline_mode();
+}
+
 /* Startup calls and initializations */
-static void clipit_init()
-{
+static void clipit_init() {
 	/* Create clipboard */
 	primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
 	clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
@@ -797,6 +821,7 @@ static void clipit_init()
 	keybinder_bind(prefs.actions_key, actions_hotkey, NULL);
 	keybinder_bind(prefs.menu_key, menu_hotkey, NULL);
 	keybinder_bind(prefs.search_key, search_hotkey, NULL);
+	keybinder_bind(prefs.offline_key, offline_hotkey, NULL);
 
 	/* Create status icon */
 	if (!prefs.no_icon)
@@ -812,8 +837,7 @@ static void clipit_init()
 }
 
 /* This is Sparta! */
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
 	bindtextdomain(GETTEXT_PACKAGE, CLIPITLOCALEDIR);
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
@@ -873,11 +897,13 @@ int main(int argc, char **argv)
 	keybinder_unbind(prefs.actions_key, actions_hotkey);
 	keybinder_unbind(prefs.menu_key, menu_hotkey);
 	keybinder_unbind(prefs.search_key, search_hotkey);
+	keybinder_unbind(prefs.offline_key, offline_hotkey);
 	/* Cleanup */
 	g_free(prefs.history_key);
 	g_free(prefs.actions_key);
 	g_free(prefs.menu_key);
 	g_free(prefs.search_key);
+	g_free(prefs.offline_key);
 	g_list_foreach(history, (GFunc)g_free, NULL);
 	g_list_free(history);
 	g_free(primary_text);

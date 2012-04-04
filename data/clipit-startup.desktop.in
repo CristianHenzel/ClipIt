@@ -1,9 +1,9 @@
 [Desktop Entry]
 _Name=ClipIt
 _Comment=Clipboard Manager
-Icon=gtk-paste
+Icon=clipit-trayicon
 Exec=clipit
 Terminal=false
 Type=Application
-OnlyShowIn=GNOME;XFCE;LXDE;
+OnlyShowIn=GNOME;XFCE;LXDE;Unity;
 X-GNOME-Autostart-enabled=true

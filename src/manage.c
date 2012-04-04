@@ -1,4 +1,5 @@
-/* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
+/* Copyright (C) 2010-2012 by Cristian Henzel <oss@rspwn.com>
+ * Copyright (C) 2011 by Eugene Nikolsky <pluton.od@gmail.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -31,9 +32,16 @@
 #include "preferences.h"
 #include "clipit-i18n.h"
 
-GtkListStore* search_list;
+GtkListStore *search_list;
 GtkWidget *search_entry;
-GtkWidget* treeview_search;
+GtkWidget *treeview_search;
+
+static void add_iter(GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *piter, gpointer userdata)
+{
+  GArray *sel = (GArray*)userdata;
+  GtkTreeIter iter = *piter;
+  g_array_append_val(sel, iter);
+}
 
 /* Search through the history */
 static void search_history()
@@ -115,17 +123,17 @@ static void edit_selected()
   if (selected_count > 0) {
     /* Create clipboard buffer and set its text */
     gint selected_item_nr;
-    GList *selected_rows = gtk_tree_selection_get_selected_rows(search_selection, NULL);
-    GList *row_loop = g_list_first(selected_rows);
-    selected_item_nr = atoi((gchar*)gtk_tree_path_to_string(row_loop->data));
-    g_list_foreach(selected_rows, (GFunc)gtk_tree_path_free, NULL);
-    g_list_free(selected_rows);
-    GList* element = g_list_nth(history, selected_item_nr);
-    GList* elementafter = element->next;
+    GArray *sel = g_array_new(FALSE, FALSE, sizeof(GtkTreeIter));
+    gtk_tree_selection_selected_foreach(search_selection, add_iter, sel);
+    gtk_tree_selection_unselect_all(search_selection);
+    GtkTreeIter *iter = &g_array_index(sel, GtkTreeIter, 0);
+    gtk_tree_model_get((GtkTreeModel*)search_list, iter, 0, &selected_item_nr, -1);
+    g_array_free(sel, TRUE);
+    GList *element = g_list_nth(history, selected_item_nr);
     history_item *elem_data = element->data;
-    GString* s_selected_item = g_string_new((gchar*)elem_data->content);
+    GList* elementafter = element->next;
     GtkTextBuffer* clipboard_buffer = gtk_text_buffer_new(NULL);
-    gtk_text_buffer_set_text(clipboard_buffer, s_selected_item->str, -1);
+    gtk_text_buffer_set_text(clipboard_buffer, (gchar*)elem_data->content, -1);
     /* Create the dialog */
     GtkWidget* dialog = gtk_dialog_new_with_buttons(_("Editing Clipboard"), NULL,
                                                    (GTK_DIALOG_MODAL   +    GTK_DIALOG_NO_SEPARATOR),
@@ -180,16 +188,8 @@ static void edit_selected()
       }
     }
     gtk_widget_destroy(dialog);
-    g_string_free(s_selected_item, TRUE);
     search_history();
   }
-}
-
-static void add_iter(GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *piter, gpointer userdata)
-{
-  GArray *sel = (GArray*)userdata;
-  GtkTreeIter iter = *piter;
-  g_array_append_val(sel, iter);
 }
 
 /* Called when Remove is selected from Manage dialog */
@@ -207,7 +207,7 @@ static void remove_selected()
         gint remove_item;
         GtkTreeIter *iter = &g_array_index(sel, GtkTreeIter, i);
         gtk_tree_model_get((GtkTreeModel*)search_list, iter, 0, &remove_item, -1);
-        history = g_list_remove(history, g_list_nth_data(history, remove_item));
+        history = g_list_remove(history, g_list_nth_data(history, remove_item-i));
         gtk_list_store_remove(store, iter);
     }
     g_array_free(sel, TRUE);
@@ -277,8 +277,7 @@ static void search_doubleclick()
 
 static gboolean search_click(GtkWidget *widget, GdkEventButton *event, GtkWidget *search_window)
 {
-  if(event->type==GDK_2BUTTON_PRESS || event->type==GDK_3BUTTON_PRESS)
-  {
+  if(event->type==GDK_2BUTTON_PRESS || event->type==GDK_3BUTTON_PRESS) {
     search_doubleclick();
     gtk_widget_destroy(search_window);
   }
@@ -305,6 +304,7 @@ static gboolean treeview_key_pressed(GtkWidget *widget, GdkEventKey *event, GtkW
     case XK_Shift_R:
     case XK_Control_L:
     case XK_Control_R:
+    case XK_Tab:      // allow to switch focus by the Tab key
       return FALSE;
     case XK_Return:
       search_doubleclick();
@@ -330,8 +330,12 @@ void search_window_response(GtkDialog *dialog, gint response_id, gpointer user_d
 gboolean show_search()
 {
   /* Prevent multiple instances */
-  if(gtk_grab_get_current())
+  if(gtk_grab_get_current()) {
+    /* A window is already open, so we present it to the user */
+    GtkWidget *toplevel = gtk_widget_get_toplevel(gtk_grab_get_current());
+    gtk_window_present((GtkWindow*)toplevel);
     return FALSE;
+  }
   /* Declare some variables */
   GtkWidget *hbox;
 
@@ -341,13 +345,26 @@ gboolean show_search()
   GtkWidget* search_dialog = gtk_dialog_new();
 
   gtk_window_set_icon((GtkWindow*)search_dialog, gtk_widget_render_icon(search_dialog, GTK_STOCK_FIND, GTK_ICON_SIZE_MENU, NULL));
-  gtk_window_set_title((GtkWindow*)search_dialog, "Manage History");
+  gchar *orig_title = _("Manage History");
+  gchar *title = 0;
+  if (prefs.offline_mode)
+    title = g_strconcat(orig_title, _(" (Offline mode)"), NULL);
+  else
+    title = g_strdup(orig_title);
+  gtk_window_set_title((GtkWindow*)search_dialog, title);
+  g_free(title);
   gtk_window_set_resizable((GtkWindow*)search_dialog, TRUE);
   gtk_window_set_position((GtkWindow*)search_dialog, GTK_WIN_POS_CENTER);
 
+  GdkScreen* screen = gtk_window_get_screen(GTK_WINDOW(search_dialog));
+  gint screen_height = gdk_screen_get_height(screen)-120;
+  gint win_height = 600;
+  if (win_height > screen_height)
+    win_height = screen_height;
+
   GtkWidget* vbox_search = gtk_vbox_new(FALSE, 10);
   gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area (GTK_DIALOG(search_dialog))), vbox_search, TRUE, TRUE, 2);
-  gtk_widget_set_size_request((GtkWidget*)vbox_search, 400, 600);
+  gtk_widget_set_size_request((GtkWidget*)vbox_search, 400, win_height);
 
   hbox = gtk_hbox_new(TRUE, 4);
   gtk_box_pack_start((GtkBox*)vbox_search, hbox, FALSE, FALSE, 0);
@@ -373,18 +390,18 @@ gboolean show_search()
   cell_renderer = gtk_cell_renderer_text_new();
   g_object_set(cell_renderer, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
   g_object_set(cell_renderer, "single-paragraph-mode", TRUE, NULL);
-  tree_column = gtk_tree_view_column_new_with_attributes("Results", cell_renderer, "text", 1, NULL);
+  tree_column = gtk_tree_view_column_new_with_attributes(_("Results"), cell_renderer, "text", 1, NULL);
   gtk_tree_view_append_column((GtkTreeView*)treeview_search, tree_column);
   gtk_container_add((GtkContainer*)scrolled_window_search, treeview_search);
   gtk_box_pack_start((GtkBox*)vbox_search, scrolled_window_search, TRUE, TRUE, 0);
 
-  GtkWidget* edit_button = gtk_dialog_add_button((GtkDialog*)search_dialog, "Edit", 1);
+  GtkWidget* edit_button = gtk_dialog_add_button((GtkDialog*)search_dialog, _("Edit"), 1);
   g_signal_connect((GObject*)edit_button, "clicked", (GCallback)edit_selected, NULL);
-  GtkWidget* remove_button = gtk_dialog_add_button((GtkDialog*)search_dialog, "Remove", 1);
+  GtkWidget* remove_button = gtk_dialog_add_button((GtkDialog*)search_dialog, _("Remove"), 1);
   g_signal_connect((GObject*)remove_button, "clicked", (GCallback)remove_selected, NULL);
-  GtkWidget* remove_all_button = gtk_dialog_add_button((GtkDialog*)search_dialog, "Remove all", 1);
+  GtkWidget* remove_all_button = gtk_dialog_add_button((GtkDialog*)search_dialog, _("Remove all"), 1);
   g_signal_connect((GObject*)remove_all_button, "clicked", (GCallback)remove_all_selected, NULL);
-  GtkWidget* close_button = gtk_dialog_add_button((GtkDialog*)search_dialog, "Close", GTK_RESPONSE_OK);
+  GtkWidget* close_button = gtk_dialog_add_button((GtkDialog*)search_dialog, _("Close"), GTK_RESPONSE_OK);
   g_signal_connect((GObject*)close_button, "clicked", (GCallback)search_history, NULL);
 
   GtkTreeSelection* search_selection = gtk_tree_view_get_selection((GtkTreeView*)treeview_search);

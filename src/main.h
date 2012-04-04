@@ -1,4 +1,5 @@
-/* Copyright (C) 2010 by Cristian Henzel <oss@rspwn.com>
+/* Copyright (C) 2010-2012 by Cristian Henzel <oss@rspwn.com>
+ * Copyright (C) 2011 by Eugene Nikolsky <pluton.od@gmail.com>
  *
  * forked from parcellite, which is
  * Copyright (C) 2007-2008 by Xyhthyx <xyhthyx@gmail.com>
@@ -59,8 +60,11 @@ typedef struct {
   gchar*    actions_key;      /* Actions menu hotkey */
   gchar*    menu_key;         /* ClipIt menu hotkey */
   gchar*    search_key;       /* ClipIt search hotkey */
+  gchar*    offline_key;      /* ClipIt offline mode hotkey */
 
   gboolean  no_icon;          /* No icon */
+
+  gboolean  offline_mode;     /* Offline mode */
 } prefs_t;
 
 extern prefs_t prefs;
@@ -72,6 +76,8 @@ void actions_hotkey(char *keystring, gpointer user_data);
 void menu_hotkey(char *keystring, gpointer user_data);
 
 void search_hotkey(char *keystring, gpointer user_data);
+
+void offline_hotkey(char *keystring, gpointer user_data);
 
 void clear_main_data();
 

@@ -1,6 +1,9 @@
+data/clipit-startup.desktop.in
+data/clipit.desktop.in
+src/daemon.c
+src/history.c
+src/keybinder.c
 src/main.c
-src/utils.c
 src/manage.c
 src/preferences.c
-data/clipit.desktop.in
-data/clipit-startup.desktop.in
+src/utils.c

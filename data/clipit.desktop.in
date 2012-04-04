@@ -1,7 +1,7 @@
 [Desktop Entry]
 _Name=ClipIt
 _Comment=Clipboard Manager
-Icon=gtk-paste
+Icon=clipit-trayicon
 Exec=clipit
 Terminal=false
 Type=Application

@@ -18,7 +18,7 @@ GETTEXT_PACKAGE=clipit
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [gettext package])
 
-ALL_LINGUAS="cs da de es fr hu it ja nb pl pl_PL pt_BR ro ru sv tr zh_CN"
+ALL_LINGUAS="cs da de es es_ES et fr hu it ja nb pl pl pt_BR ro ru sv tr zh_CN"
 AM_GLIB_GNU_GETTEXT()
 AC_PROG_INTLTOOL([0.23])
 

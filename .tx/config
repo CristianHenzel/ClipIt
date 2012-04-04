@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.net
+lang_map = bg_BG:bg, de_DE:de, et_EE:et
+
+[clipit.clipitpot]
+file_filter = po/<lang>.po
+source_file = po/clipit.pot
+source_lang = en
