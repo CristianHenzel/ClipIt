@@ -31,7 +31,7 @@ check-gettext:
 	"'checking whether to use NLS... yes'!" ; exit 1 ; fi
 
 update-po: check-gettext
-	@find $(srcdir)/ -name '*.c' -o -name '*.desktop.in' | sed "s/^.\///" | grep -v "eggaccelerators" | sort > $(srcdir)/po/POTFILES.in.2 ; \
+	@find $(srcdir)/ -name '*.c' -o -name '*.desktop.in' | sed "s/^.\///" | grep -v "eggaccelerators" | grep -v "^clipit-" | sort > $(srcdir)/po/POTFILES.in.2 ; \
 	cat $(srcdir)/po/POTFILES.in.2 ; \
 	if diff $(srcdir)/po/POTFILES.in $(srcdir)/po/POTFILES.in.2 >/dev/null 2>&1 ; then \
 		rm -f $(srcdir)/po/POTFILES.in.2 ; \

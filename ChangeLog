@@ -1,4 +1,9 @@
-ClipIt-1.4.2-20120404001 ~ 2012-04-04 10:21:23 +0300
+ClipIt-1.4.2-20120404002 ~ 2012-04-04 10:34:43 +0300
+
++ Fixed: Bug in previous POTFILES.in generation code.
+
+
+ClipIt-1.4.2-20120404001 - 2012-04-04 10:21:55 +0300
 
 + Fixed: Updated translations and fixed POTFILES generation script.
 
