@@ -1,4 +1,10 @@
-ClipIt-1.4.2-20120404003 ~ 2012-04-04 10:39:47 +0300
+ClipIt-1.4.3-20120408001 ~ 2012-04-08 00:47:27 +0300
+
++ Bumped version to 1.4.3.
++ Fixed: Added mate to autostart (closes gh-11).
+
+
+ClipIt-1.4.2-20120404003 - 2012-04-04 10:40:07 +0300
 
 + Added: Added new translations.
 
@@ -11,6 +17,39 @@ ClipIt-1.4.2-20120404002 - 2012-04-04 10:35:04 +0300
 ClipIt-1.4.2-20120404001 - 2012-04-04 10:21:55 +0300
 
 + Fixed: Updated translations and fixed POTFILES generation script.
+
+
+Silence glib warnings regarding GOptionFlags. - 2011-11-09 20:51:51 +0200
+
+These warnings:
+GLib-WARNING **: goption.c:2168: ignoring no-arg, optional-arg or filename flags (8) on option of type 0
+
+
+ClipIt-1.4.2-20110623001 - 2011-06-23 13:46:10 +0300
+
++ Fixed: Bumped version to 1.4.2.
++ Fixed: Changed layout of the ChangeLog file.
+
+
+ClipIt-1.4.1-20110604001 - 2011-06-04 17:49:05 +0300
+
++ Fixed: Removed some more files from git.
+
+
+ClipIt-1.4.1-20110527004 - 2011-05-27 10:29:37 +0300
+
++ Fixed: Typo in src/Makefile.am.
+
+
+ClipIt-1.4.1-20110527003 - 2011-05-27 10:24:50 +0300
+
++ Fixed: Removed some files from git. Again.
+
+
+Silence glib warnings regarding GOptionFlags. - 2011-11-09 20:51:51 +0200
+
+These warnings:
+GLib-WARNING **: goption.c:2168: ignoring no-arg, optional-arg or filename flags (8) on option of type 0
 
 
 ClipIt-1.4.2-20120302002 - 2012-03-02 22:21:05 +0200
