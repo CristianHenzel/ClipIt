@@ -219,22 +219,6 @@ void save_history()
 #endif
 }
 
-/* Clear all history */
-void clear_history()
-{
-    history = NULL;
-
-    GtkClipboard *primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
-    gtk_clipboard_clear(primary);
-    gtk_clipboard_set_text(primary, "", 0);
-
-    GtkClipboard *clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
-    gtk_clipboard_clear(clipboard);
-    gtk_clipboard_set_text(clipboard, "", 0);
-
-    save_history();
-}
-
 /* Checks if item should be included in history and calls append */
 void check_and_append(gchar *item)
 {
