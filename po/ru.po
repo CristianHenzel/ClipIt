@@ -52,6 +52,11 @@ msgstr "<b>Нет</b>"
 msgid "Empty"
 msgstr "Пусто"
 
+#. Clear
+#: ../src/main.c:439 ../src/main.c:635
+msgid "Clear"
+msgstr "Очистить"
+
 #. Edit actions
 #: ../src/main.c:443
 msgid "_Edit actions"
