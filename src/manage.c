@@ -199,7 +199,8 @@ static void remove_selected()
   gint selected_count = gtk_tree_selection_count_selected_rows(search_selection);
   if (selected_count > 0) {
     gint i;
-    GtkListStore *store = GTK_LIST_STORE(gtk_tree_view_get_model((GtkTreeView*)treeview_search));
+    GtkTreeModel *model = gtk_tree_view_get_model((GtkTreeView*)treeview_search);
+    GtkListStore *store = GTK_LIST_STORE(model);
     GArray *sel = g_array_new(FALSE, FALSE, sizeof(GtkTreeIter));
     gtk_tree_selection_selected_foreach(search_selection, add_iter, sel);
     gtk_tree_selection_unselect_all(search_selection);
@@ -207,8 +208,15 @@ static void remove_selected()
         gint remove_item;
         GtkTreeIter *iter = &g_array_index(sel, GtkTreeIter, i);
         gtk_tree_model_get((GtkTreeModel*)search_list, iter, 0, &remove_item, -1);
-        history = g_list_remove(history, g_list_nth_data(history, remove_item-i));
-        gtk_list_store_remove(store, iter);
+        history = g_list_remove(history, g_list_nth_data(history, remove_item));
+        if (!gtk_list_store_remove(store, iter))
+          continue;
+
+        do {
+          gint item;
+          gtk_tree_model_get(model, iter, 0, &item, -1);
+          gtk_list_store_set(store, iter, 0, item - 1, -1);
+        } while (gtk_tree_model_iter_next(model, iter));
     }
     g_array_free(sel, TRUE);
   }
