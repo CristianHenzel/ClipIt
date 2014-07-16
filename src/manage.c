@@ -208,6 +208,11 @@ static void remove_selected()
         gint remove_item;
         GtkTreeIter *iter = &g_array_index(sel, GtkTreeIter, i);
         gtk_tree_model_get((GtkTreeModel*)search_list, iter, 0, &remove_item, -1);
+        if ((i == 0) && (remove_item == 0)) {
+          gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_PRIMARY), "", -1);
+          gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), "", -1);
+        }
+
         history = g_list_remove(history, g_list_nth_data(history, remove_item));
         if (!gtk_list_store_remove(store, iter))
           continue;
