@@ -641,7 +641,7 @@ void show_preferences(gint tab) {
             *alignment, *hbox,
             *vbox;
 
-  GtkObject *adjustment, *adjustment_small, *adjustment_statics;
+  GtkWidget *adjustment, *adjustment_small, *adjustment_statics;
   GtkTreeViewColumn *tree_column;
 
   /* Create the dialog */
@@ -799,10 +799,10 @@ void show_preferences(gint tab) {
   label = gtk_label_new(_("Omit items in the:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
   gtk_box_pack_start((GtkBox*)hbox, label, FALSE, FALSE, 0);
-  ellipsize_combo = gtk_combo_box_new_text();
-  gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("Beginning"));
-  gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("Middle"));
-  gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("End"));
+  ellipsize_combo = gtk_combo_box_text_new();
+  gtk_combo_box_text_append_text((GtkComboBox*)ellipsize_combo, _("Beginning"));
+  gtk_combo_box_text_append_text((GtkComboBox*)ellipsize_combo, _("Middle"));
+  gtk_combo_box_text_append_text((GtkComboBox*)ellipsize_combo, _("End"));
   gtk_box_pack_start((GtkBox*)hbox, ellipsize_combo, FALSE, FALSE, 0);
   gtk_box_pack_start((GtkBox*)vbox_history, frame, FALSE, FALSE, 0);
 
@@ -823,9 +823,9 @@ void show_preferences(gint tab) {
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
   gtk_box_pack_start((GtkBox*)hbox, label, FALSE, FALSE, 0);
   ellipsize_combo = gtk_combo_box_new_text();
-  gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("Beginning"));
-  gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("Middle"));
-  gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("End"));
+  gtk_combo_box_text_append_text((GtkComboBox*)ellipsize_combo, _("Beginning"));
+  gtk_combo_box_text_append_text((GtkComboBox*)ellipsize_combo, _("Middle"));
+  gtk_combo_box_text_append_text((GtkComboBox*)ellipsize_combo, _("End"));
   gtk_box_pack_start((GtkBox*)hbox, ellipsize_combo, FALSE, FALSE, 0);
   gtk_box_pack_start((GtkBox*)vbox_history, frame, FALSE, FALSE, 0); */
 

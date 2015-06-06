@@ -150,14 +150,14 @@ static void edit_selected()
     gtk_scrolled_window_set_policy((GtkScrolledWindow*)scrolled_window,
                                    GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), scrolled_window, TRUE, TRUE, 2);
+    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog))), scrolled_window, TRUE, TRUE, 2);
     GtkWidget* text_view = gtk_text_view_new_with_buffer(clipboard_buffer);
     gtk_text_view_set_left_margin((GtkTextView*)text_view, 2);
     gtk_text_view_set_right_margin((GtkTextView*)text_view, 2);
     gtk_container_add((GtkContainer*)scrolled_window, text_view);
     GtkWidget *static_check = gtk_check_button_new_with_mnemonic(_("_Static item"));
     gtk_toggle_button_set_active((GtkToggleButton*)static_check, elem_data->is_static);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), static_check, FALSE, FALSE, 2);
+    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog))), static_check, FALSE, FALSE, 2);
 
     /* Run the dialog */
     gtk_widget_show_all(dialog);

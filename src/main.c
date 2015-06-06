@@ -279,7 +279,7 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data) {
     gtk_window_set_icon((GtkWindow*)about_dialog,
                         gtk_widget_render_icon(about_dialog, GTK_STOCK_ABOUT, GTK_ICON_SIZE_MENU, NULL));
 
-    gtk_about_dialog_set_name((GtkAboutDialog*)about_dialog, "ClipIt");
+    gtk_about_dialog_set_program_name((GtkAboutDialog*)about_dialog, "ClipIt");
     #ifdef HAVE_CONFIG_H
     gtk_about_dialog_set_version((GtkAboutDialog*)about_dialog, VERSION);
     #endif
@@ -831,7 +831,7 @@ static void clipit_init() {
 	create_app_indicator(1);
 #else
 	status_icon = gtk_status_icon_new_from_icon_name("clipit-trayicon");
-	gtk_status_icon_set_tooltip((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
+	gtk_status_icon_set_tooltip_text((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
 	g_signal_connect((GObject*)status_icon, "button_press_event", (GCallback)status_icon_clicked, NULL);
 #endif
 	}
