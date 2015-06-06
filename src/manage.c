@@ -106,7 +106,7 @@ static void search_history()
         string = remove_newlines_string(string);
         int row_num = g_list_position(history, element);
         gtk_list_store_set(search_list, &row_iter, 0, row_num, 1, string->str, -1);
-        
+
         /* Prepare for next item */
         g_string_free(string, TRUE);
       }
@@ -139,26 +139,26 @@ static void edit_selected()
                                                    (GTK_DIALOG_MODAL   +    GTK_DIALOG_NO_SEPARATOR),
                                                     GTK_STOCK_CANCEL,       GTK_RESPONSE_REJECT,
                                                     GTK_STOCK_OK,           GTK_RESPONSE_ACCEPT, NULL);
-    
+
     gtk_window_set_default_size((GtkWindow*)dialog, 450, 300);
     gtk_window_set_icon((GtkWindow*)dialog, gtk_widget_render_icon(dialog, GTK_STOCK_EDIT, GTK_ICON_SIZE_MENU, NULL));
-    
+
     /* Build the scrolled window with the text view */
     GtkWidget* scrolled_window = gtk_scrolled_window_new((GtkAdjustment*) gtk_adjustment_new(0, 0, 0, 0, 0, 0),
                                                          (GtkAdjustment*) gtk_adjustment_new(0, 0, 0, 0, 0, 0));
-    
+
     gtk_scrolled_window_set_policy((GtkScrolledWindow*)scrolled_window,
                                    GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-    
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), scrolled_window, TRUE, TRUE, 2);
+
+    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog))), scrolled_window, TRUE, TRUE, 2);
     GtkWidget* text_view = gtk_text_view_new_with_buffer(clipboard_buffer);
     gtk_text_view_set_left_margin((GtkTextView*)text_view, 2);
     gtk_text_view_set_right_margin((GtkTextView*)text_view, 2);
     gtk_container_add((GtkContainer*)scrolled_window, text_view);
     GtkWidget *static_check = gtk_check_button_new_with_mnemonic(_("_Static item"));
     gtk_toggle_button_set_active((GtkToggleButton*)static_check, elem_data->is_static);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), static_check, FALSE, FALSE, 2);
-    
+    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog))), static_check, FALSE, FALSE, 2);
+
     /* Run the dialog */
     gtk_widget_show_all(dialog);
     if (gtk_dialog_run((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT)
@@ -226,7 +226,7 @@ static void remove_all_selected(gpointer user_data)
                                                        GTK_BUTTONS_OK_CANCEL,
                                                        _("Clear the history?"));
     gtk_window_set_title((GtkWindow*)confirm_dialog, _("Clear history"));
-    
+
     if (gtk_dialog_run((GtkDialog*)confirm_dialog) == GTK_RESPONSE_OK)
     {
       /* Clear history and free history-related variables */
@@ -340,7 +340,7 @@ gboolean show_search()
   GtkWidget *hbox;
 
   GtkTreeViewColumn *tree_column;
-  
+
   /* Create the dialog */
   GtkWidget* search_dialog = gtk_dialog_new();
 
@@ -376,7 +376,7 @@ gboolean show_search()
   GtkWidget* scrolled_window_search = gtk_scrolled_window_new(
                                (GtkAdjustment*)gtk_adjustment_new(0, 0, 0, 0, 0, 0),
                                (GtkAdjustment*)gtk_adjustment_new(0, 0, 0, 0, 0, 0));
-  
+
   gtk_scrolled_window_set_policy((GtkScrolledWindow*)scrolled_window_search, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type((GtkScrolledWindow*)scrolled_window_search, GTK_SHADOW_ETCHED_OUT);
   treeview_search = gtk_tree_view_new();

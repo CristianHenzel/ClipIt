@@ -31,6 +31,10 @@ G_BEGIN_DECLS
 #define POPUP_DELAY    30
 #define CHECK_INTERVAL 500
 
+#if GTK_MAJOR_VERSION == 3
+#define GTK_DIALOG_NO_SEPARATOR 0
+#endif
+
 typedef struct {
   gboolean  use_copy;         /* Use copy */
   gboolean  use_primary;      /* Use primary */
