@@ -695,20 +695,36 @@ static GtkWidget *create_tray_menu(GtkWidget *tray_menu, int menu_type) {
    * - use_rmb_menu is active and menu_type is right-click, OR
    * - use_rmb_menu is inactive and menu_type is left-click */
   if ((prefs.use_rmb_menu && (menu_type == 3)) || (!prefs.use_rmb_menu) || (menu_type == 2)) {
-    /* Offline mode checkbox */
-    menu_item = gtk_check_menu_item_new_with_mnemonic(_("_Offline mode"));
-    gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_item, prefs.offline_mode);
-    g_signal_connect((GObject*)menu_item, "activate", (GCallback)toggle_offline_mode, NULL);
-    gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
-    /* About */
-    menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_ABOUT, NULL);
-    g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_about_dialog, NULL);
+    /* Clean history */
+    menu_item = gtk_image_menu_item_new_with_mnemonic(_("_Clear history"));
+    menu_image = gtk_image_new_from_stock(GTK_STOCK_CLEAR, GTK_ICON_SIZE_MENU);
+    gtk_image_menu_item_set_image((GtkImageMenuItem*)menu_item, menu_image);
+    g_signal_connect((GObject*)menu_item, "activate", (GCallback)clear_history_selected, NULL);
     gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
     /* Manage history */
     menu_item = gtk_image_menu_item_new_with_mnemonic(_("_Manage history"));
     menu_image = gtk_image_new_from_stock(GTK_STOCK_FIND, GTK_ICON_SIZE_MENU);
     gtk_image_menu_item_set_image((GtkImageMenuItem*)menu_item, menu_image);
     g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_search, NULL);
+    gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
+
+    menu_item = gtk_separator_menu_item_new();
+    gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
+
+    /* Offline mode checkbox */
+    menu_item = gtk_check_menu_item_new_with_mnemonic(_("_Offline mode"));
+    menu_image = gtk_image_new_from_stock(GTK_STOCK_DISCONNECT, GTK_ICON_SIZE_MENU);
+    gtk_image_menu_item_set_image((GtkImageMenuItem*)menu_item, menu_image);
+    gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_item, prefs.offline_mode);
+    g_signal_connect((GObject*)menu_item, "activate", (GCallback)toggle_offline_mode, NULL);
+    gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
+
+    menu_item = gtk_separator_menu_item_new();
+    gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
+
+    /* About */
+    menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_ABOUT, NULL);
+    g_signal_connect((GObject*)menu_item, "activate", (GCallback)show_about_dialog, NULL);
     gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
     /* Preferences */
     menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_PREFERENCES, NULL);
