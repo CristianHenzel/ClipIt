@@ -713,8 +713,6 @@ static GtkWidget *create_tray_menu(GtkWidget *tray_menu, int menu_type) {
 
     /* Offline mode checkbox */
     menu_item = gtk_check_menu_item_new_with_mnemonic(_("_Offline mode"));
-    menu_image = gtk_image_new_from_stock(GTK_STOCK_DISCONNECT, GTK_ICON_SIZE_MENU);
-    gtk_image_menu_item_set_image((GtkImageMenuItem*)menu_item, menu_image);
     gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_item, prefs.offline_mode);
     g_signal_connect((GObject*)menu_item, "activate", (GCallback)toggle_offline_mode, NULL);
     gtk_menu_shell_append((GtkMenuShell*)tray_menu, menu_item);
