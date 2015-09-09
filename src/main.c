@@ -253,6 +253,14 @@ void clear_main_data() {
   gtk_clipboard_set_text(clipboard, "", -1);
 }
 
+/* Clear history and free history-related variables */
+void clear_main_history() {
+  g_list_free(history);
+  history = NULL;
+  save_history();
+  clear_main_data();
+}
+
 /* Called when About is selected from right-click menu */
 static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data) {
   /* This helps prevent multiple instances */
@@ -322,6 +330,11 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data) {
     GtkWidget *toplevel = gtk_widget_get_toplevel(gtk_grab_get_current());
     gtk_window_present((GtkWindow*)toplevel);
   }
+}
+
+/* Called when "Clear history" is selected */
+static void clear_history_selected(GtkMenuItem *menu_item, gpointer user_data) {
+    clear_main_history();
 }
 
 /* Called when Preferences is selected from right-click menu */
