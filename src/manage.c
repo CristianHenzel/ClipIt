@@ -229,11 +229,7 @@ static void remove_all_selected(gpointer user_data)
     
     if (gtk_dialog_run((GtkDialog*)confirm_dialog) == GTK_RESPONSE_OK)
     {
-      /* Clear history and free history-related variables */
-      g_list_free(history);
-      history = NULL;
-      save_history();
-      clear_main_data();
+      clear_main_history();
       GtkTreeIter search_iter;
       while(gtk_tree_model_get_iter_first((GtkTreeModel*)search_list, &search_iter))
         gtk_list_store_remove(search_list, &search_iter);
@@ -242,11 +238,7 @@ static void remove_all_selected(gpointer user_data)
   }
   else
   {
-    /* Clear history and free history-related variables */
-    g_list_free(history);
-    history = NULL;
-    save_history();
-    clear_main_data();
+    clear_main_history();
     GtkTreeIter search_iter;
     while(gtk_tree_model_get_iter_first((GtkTreeModel*)search_list, &search_iter))
       gtk_list_store_remove(search_list, &search_iter);
