@@ -68,25 +68,52 @@ gboolean is_hyperlink(gchar *text)
 /* Ellipsize a string according to the settings */
 GString *ellipsize_string(GString *string)
 {
-	if (string->len > prefs.item_length)
-	{
-		switch (prefs.ellipsize)
-		{
-			case PANGO_ELLIPSIZE_START:
-				string = g_string_erase(string, 0, string->len-(prefs.item_length));
-				string = g_string_prepend(string, "...");
-				break;
-			case PANGO_ELLIPSIZE_MIDDLE:
-				string = g_string_erase(string, (prefs.item_length/2), string->len-(prefs.item_length));
-				string = g_string_insert(string, (string->len/2), "...");
-				break;
-			case PANGO_ELLIPSIZE_END:
-				string = g_string_truncate(string, prefs.item_length);
-				string = g_string_append(string, "...");
-				break;
-		}
-	}
-	return string;
+    gboolean is_utf8 = g_utf8_validate(string->str, -1, NULL);
+    gint str_len = is_utf8 ? g_utf8_strlen(string->str, -1) : string->len;
+    if (string->len > prefs.item_length)
+    {
+        switch (prefs.ellipsize)
+        {
+            case PANGO_ELLIPSIZE_START:
+                if (is_utf8)
+                {
+                    gchar *end = g_utf8_substring(string->str, str_len - prefs.item_length, str_len);
+                    g_string_printf(string, "...%s", end);
+                }
+                else
+                {
+                    string = g_string_erase(string, 0, str_len - (prefs.item_length));
+                    string = g_string_prepend(string, "...");
+                }
+                break;
+            case PANGO_ELLIPSIZE_MIDDLE:
+                if (is_utf8)
+                {
+                    gchar *start = g_utf8_substring(string->str, 0, prefs.item_length/2);
+                    gchar *end = g_utf8_substring(string->str, str_len - prefs.item_length/2, str_len);
+                    g_string_printf(string, "%s...%s", start, end);
+                }
+                else
+                {
+                    string = g_string_erase(string, (prefs.item_length/2), str_len - (prefs.item_length));
+                    string = g_string_insert(string, (string->len/2), "...");
+                }
+                break;
+            case PANGO_ELLIPSIZE_END:
+                if (is_utf8)
+                {
+                    gchar *buff = g_utf8_substring(string->str, 0, prefs.item_length);
+                    g_string_assign(string, buff);
+                }
+                else
+                {
+                    string = g_string_truncate(string, prefs.item_length);
+                }
+                string = g_string_append(string, "...");
+                break;
+        }
+    }
+    return string;
 }
 
 /* Remove newlines from string */
