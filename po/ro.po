@@ -1,23 +1,25 @@
 # ClipIt translation file.
 # Copyright (C) 2010-2012 Cristian Henzel <oss@rspwn.com>
 # This file is distributed under the same license as the ClipIt package.
-# 
+#
 # Translators:
 # Cristian Henzel <oss@rspwn.com>, 2011.
 # Mihai Coman <mihai@m1x.ro>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
-"Report-Msgid-Bugs-To: http://github.com/shantzu/ClipIt/issues\n"
-"POT-Creation-Date: 2012-04-04 10:39+0300\n"
+"Report-Msgid-Bugs-To: Cristian Henzel <oss@rspwn.com>\n"
+"POT-Creation-Date: 2015-11-10 13:55+0200\n"
 "PO-Revision-Date: 2012-04-04 06:30+0000\n"
 "Last-Translator: Cristian Henzel <oss@rspwn.com>\n"
-"Language-Team: Romanian (http://www.transifex.net/projects/p/clipit/language/ro/)\n"
+"Language-Team: Romanian (http://www.transifex.net/projects/p/clipit/language/"
+"ro/)\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1))\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1))\n"
 
 #: ../data/clipit-startup.desktop.in.h:1 ../data/clipit.desktop.in.h:1
 msgid "ClipIt"
@@ -245,7 +247,9 @@ msgstr "Acțiuni"
 #. Build the actions label
 #: ../src/preferences.c:840
 msgid "Control-click ClipIt's tray icon to use actions"
-msgstr "Apăsați pe Control și faceți clic pe pictograma ClipIt pentru a utiliza acțiunile"
+msgstr ""
+"Apăsați pe Control și faceți clic pe pictograma ClipIt pentru a utiliza "
+"acțiunile"
 
 #: ../src/preferences.c:860
 msgid "Action"
@@ -266,9 +270,11 @@ msgstr "Exclude"
 #. Build the exclude label
 #: ../src/preferences.c:908
 msgid ""
-"Regex list of items that should not be inserted into the history "
-"(passwords/sites that you don't need in history, etc)."
-msgstr "Listă de expresii regulate pentru elemente ce nu trebuie introduse în istoric (parole, saituri de care nu ai nevoie în istoric, etc.)."
+"Regex list of items that should not be inserted into the history (passwords/"
+"sites that you don't need in history, etc)."
+msgstr ""
+"Listă de expresii regulate pentru elemente ce nu trebuie introduse în "
+"istoric (parole, saituri de care nu ai nevoie în istoric, etc.)."
 
 #: ../src/preferences.c:928
 msgid "Regex"
@@ -307,33 +313,40 @@ msgstr ""
 msgid "Couldn't create directory: %s\n"
 msgstr "Nu s-a putut creea directorul: %s\n"
 
-#: ../src/utils.c:121
+#: ../src/utils.c:148
 msgid "Run as daemon"
 msgstr "Rulare ca serviciu"
 
-#: ../src/utils.c:128
+#: ../src/utils.c:155
 msgid "Do not use status icon (Ctrl-Alt-P for menu)"
 msgstr "Nu afișa pictograma de status (apăsați Ctrl-Alt-P pentru meniu)"
 
-#: ../src/utils.c:135
+#: ../src/utils.c:162
 msgid "Print clipboard contents"
 msgstr "Imprimare conținut clipboard"
 
-#: ../src/utils.c:142
+#: ../src/utils.c:169
 msgid "Print primary contents"
 msgstr "Imprimare conținut principal"
 
-#: ../src/utils.c:154
+#: ../src/utils.c:181
 msgid ""
 "Clipboard CLI usage examples:\n"
 "\n"
 "  echo \"copied to clipboard\" | clipit\n"
 "  clipit \"copied to clipboard\"\n"
 "  echo \"copied to clipboard\" | clipit -c"
-msgstr "Exemple de utilizare în linie de comandă:\n\n  echo \"copiat în clipboard\" | clipit\n  clipit \"copiat în clipboard\"\n  echo \"copiat în clipboard\" | clipit -c"
+msgstr ""
+"Exemple de utilizare în linie de comandă:\n"
+"\n"
+"  echo \"copiat în clipboard\" | clipit\n"
+"  clipit \"copiat în clipboard\"\n"
+"  echo \"copiat în clipboard\" | clipit -c"
 
-#: ../src/utils.c:160
+#: ../src/utils.c:187
 msgid ""
 "Written by Cristian Henzel.\n"
 "Report bugs to <oss@rspwn.com>."
-msgstr "Scris de Cristian Henzel.\nRaportează bug-uri la <oss@rspwn.com>."
+msgstr ""
+"Scris de Cristian Henzel.\n"
+"Raportează bug-uri la <oss@rspwn.com>."

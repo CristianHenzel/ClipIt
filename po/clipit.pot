@@ -1,5 +1,5 @@
 # ClipIt translation file.
-# Copyright (C) 2010-2012 Cristian Henzel <oss@rspwn.com>
+# Copyright (C) 2010-2015 Cristian Henzel <oss@rspwn.com>
 # This file is distributed under the same license as the ClipIt package.
 # Cristian Henzel <oss@rspwn.com>, 2010.
 #
@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: Cristian Henzel <oss@rspwn.com>\n"
-"POT-Creation-Date: 2012-04-04 10:39+0300\n"
-"PO-Revision-Date: 2012-04-04 10:39+0300\n"
+"POT-Creation-Date: 2015-11-10 13:55+0200\n"
+"PO-Revision-Date: 2015-11-10 13:55+0200\n"
 "Last-Translator: Cristian Henzel <oss@rspwn.com>\n"
 "Language-Team: Cristian Henzel <oss@rspwn.com>\n"
 "Language: \n"
@@ -305,23 +305,23 @@ msgstr ""
 msgid "Couldn't create directory: %s\n"
 msgstr ""
 
-#: ../src/utils.c:121
+#: ../src/utils.c:148
 msgid "Run as daemon"
 msgstr ""
 
-#: ../src/utils.c:128
+#: ../src/utils.c:155
 msgid "Do not use status icon (Ctrl-Alt-P for menu)"
 msgstr ""
 
-#: ../src/utils.c:135
+#: ../src/utils.c:162
 msgid "Print clipboard contents"
 msgstr ""
 
-#: ../src/utils.c:142
+#: ../src/utils.c:169
 msgid "Print primary contents"
 msgstr ""
 
-#: ../src/utils.c:154
+#: ../src/utils.c:181
 msgid ""
 "Clipboard CLI usage examples:\n"
 "\n"
@@ -330,7 +330,7 @@ msgid ""
 "  echo \"copied to clipboard\" | clipit -c"
 msgstr ""
 
-#: ../src/utils.c:160
+#: ../src/utils.c:187
 msgid ""
 "Written by Cristian Henzel.\n"
 "Report bugs to <oss@rspwn.com>."
