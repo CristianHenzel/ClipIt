@@ -58,7 +58,4 @@ fi
 git push --all
 git push --all github
 
-echo "Uploading ChangeLog for clipit.rspwn.com."
-scp -q ChangeLog rspwn:~/clipit-changelog/clipit.log
-
 rm "$COMMIT_FILE"
