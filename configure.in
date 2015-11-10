@@ -11,6 +11,15 @@ AC_CONFIG_SRCDIR([src/main.c])
 AM_CONFIG_HEADER([config.h])
 
 # -------------------------------------------------------------------------------
+# pkg-config.
+# -------------------------------------------------------------------------------
+
+AC_CHECK_PROG(HAVE_PKG_CONFIG, pkg-config, yes, no)
+if test x$HAVE_PKG_CONFIG = xno ; then
+  AC_MSG_ERROR([Requirement not met: pkg-config not installed])
+fi
+
+# -------------------------------------------------------------------------------
 # Gettext.
 # -------------------------------------------------------------------------------
 
