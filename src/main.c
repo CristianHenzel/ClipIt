@@ -439,6 +439,11 @@ static gboolean show_actions_menu(gpointer data) {
   }
   /* -------------------- */
   gtk_menu_shell_append((GtkMenuShell*)menu, gtk_separator_menu_item_new());
+  /* Append "Remove all" item */
+  menu_item = gtk_menu_item_new_with_label(_("Remove all"));
+  gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
+  g_signal_connect((GObject*)menu_item, "activate",
+                   (GCallback)remove_all_selected, NULL);
   /* Edit actions */
   menu_item = gtk_image_menu_item_new_with_mnemonic(_("_Edit actions"));
   menu_image = gtk_image_new_from_stock(GTK_STOCK_EDIT, GTK_ICON_SIZE_MENU);
@@ -649,6 +654,12 @@ static GtkWidget *create_history_menu(GtkWidget *history_menu) {
 		gtk_widget_set_sensitive(item_label, FALSE);
 		gtk_menu_shell_append((GtkMenuShell*)history_menu, menu_item);
 	}
+    /* Append "Remove all" item */
+    menu_item = gtk_menu_item_new_with_label(_("Remove all"));
+    gtk_menu_shell_append((GtkMenuShell*)history_menu, menu_item);
+    g_signal_connect((GObject*)menu_item, "activate",
+                     (GCallback)remove_all_selected, NULL);
+
 	return history_menu;
 }
 
