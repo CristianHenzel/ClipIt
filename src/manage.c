@@ -243,9 +243,6 @@ void remove_all_selected(gpointer user_data)
   clear_main_data();
   if (GTK_IS_LIST_STORE(search_list))
       gtk_list_store_clear(search_list);
-  // GtkTreeIter search_iter;
-  // while(gtk_tree_model_get_iter_first((GtkTreeModel*)search_list, &search_iter))
-  //  gtk_list_store_remove(search_list, &search_iter);
 }
 
 static void search_doubleclick()
