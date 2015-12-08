@@ -26,7 +26,7 @@ G_BEGIN_DECLS
 
 #define HISTORY_FILE "clipit/history"
 
-/* Set maximum size of one clipboard entry to 1024KB (1MB) 
+/* Set maximum size of one clipboard entry to 1024KB (1MB)
  * 1024 pages × 2000 characters per page - should be more than enough.
  * WARNING: if you use all 1000 history items, clipit could use up to
  * 1 GB of RAM. If you don't want that, set this lower.      */
