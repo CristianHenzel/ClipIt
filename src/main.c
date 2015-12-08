@@ -76,9 +76,9 @@ static gboolean item_check(gpointer data) {
   /* Grab the current primary and clipboard text */
   gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
   gchar* clipboard_temp = gtk_clipboard_wait_for_text(clipboard);
-  
+
   /* What follows is an extremely confusing system of tests and crap... */
-  
+
   /* Check if primary contents were lost */
   if ((primary_temp == NULL) && (primary_text != NULL))
   {
@@ -279,7 +279,7 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data) {
     gtk_window_set_icon((GtkWindow*)about_dialog,
                         gtk_widget_render_icon(about_dialog, GTK_STOCK_ABOUT, GTK_ICON_SIZE_MENU, NULL));
 
-    gtk_about_dialog_set_name((GtkAboutDialog*)about_dialog, "ClipIt");
+    gtk_about_dialog_set_program_name((GtkAboutDialog*)about_dialog, "ClipIt");
     #ifdef HAVE_CONFIG_H
     gtk_about_dialog_set_version((GtkAboutDialog*)about_dialog, VERSION);
     #endif
@@ -386,7 +386,7 @@ static gboolean show_actions_menu(gpointer data) {
     gtk_label_set_markup((GtkLabel*)item_label, _("<b>None</b>"));
     /* Append menu item */
     g_signal_connect((GObject*)menu_item, "select", (GCallback)gtk_menu_item_deselect, NULL);
-    
+
     gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
   }
   /* -------------------- */
@@ -427,7 +427,7 @@ static gboolean show_actions_menu(gpointer data) {
       /* Append the action */
       gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
       g_signal_connect((GObject*)menu_item,        "activate",
-                       (GCallback)action_selected, (gpointer)command);      
+                       (GCallback)action_selected, (gpointer)command);
     }
     fclose(actions_file);
   }
@@ -831,7 +831,7 @@ static void clipit_init() {
 	create_app_indicator(1);
 #else
 	status_icon = gtk_status_icon_new_from_icon_name("clipit-trayicon");
-	gtk_status_icon_set_tooltip((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
+	gtk_status_icon_set_tooltip_text((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
 	g_signal_connect((GObject*)status_icon, "button_press_event", (GCallback)status_icon_clicked, NULL);
 #endif
 	}
@@ -842,10 +842,10 @@ int main(int argc, char **argv) {
 	bindtextdomain(GETTEXT_PACKAGE, CLIPITLOCALEDIR);
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
-	
+
 	/* Initiate GTK+ */
 	gtk_init(&argc, &argv);
-	
+
 	/* Parse options and exit if returns TRUE */
 	if (argc > 1)
 	{
@@ -892,7 +892,7 @@ int main(int argc, char **argv) {
 
 	/* Run GTK+ loop */
 	gtk_main();
-	
+
 	/* Unbind keys */
 	keybinder_unbind(prefs.history_key, history_hotkey);
 	keybinder_unbind(prefs.actions_key, actions_hotkey);
