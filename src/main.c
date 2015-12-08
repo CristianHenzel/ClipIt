@@ -310,7 +310,8 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data) {
                                              "Daniel Nylander <po@danielnylander.se>\n"
                                              "Hedef Türkçe <iletisim@hedefturkce.com>\n"
                                              "Lyman Li <lymanrb@gmail.com>\n"
-                                             "Gilberto \"Xyhthyx\" Miralla <xyhthyx@gmail.com>");
+                                             "Gilberto \"Xyhthyx\" Miralla <xyhthyx@gmail.com>\n"
+                                             "Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>");
 
     gtk_about_dialog_set_license((GtkAboutDialog*)about_dialog, license);
     gtk_about_dialog_set_logo_icon_name((GtkAboutDialog*)about_dialog, GTK_STOCK_PASTE);
