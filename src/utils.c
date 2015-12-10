@@ -122,7 +122,7 @@ gboolean parse_options(int argc, char* argv[])
 		clipboard = FALSE, primary = FALSE,
 		exit = FALSE;
 
-	GOptionEntry main_entries[] = 
+	GOptionEntry main_entries[] =
 	{
 		{
 			"daemon", 'd',
@@ -223,7 +223,7 @@ gboolean parse_options(int argc, char* argv[])
 		if (clip_text)
 			g_print("%s", clip_text);
 		g_free(clip_text);
-		
+
 		/* Return true so program exits when finished parsing */
 		exit = TRUE;
 	}

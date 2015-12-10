@@ -36,7 +36,7 @@ typedef enum
   EGG_VIRTUAL_CONTROL_MASK  = 1 << 2,
 
   EGG_VIRTUAL_ALT_MASK      = 1 << 3, /* fixed as Mod1 */
-  
+
   EGG_VIRTUAL_MOD2_MASK	    = 1 << 4,
   EGG_VIRTUAL_MOD3_MASK	    = 1 << 5,
   EGG_VIRTUAL_MOD4_MASK	    = 1 << 6,
@@ -50,11 +50,11 @@ typedef enum
   GDK_BUTTON5_MASK  = 1 << 12,
   /* 13, 14 are used by Xkb for the keyboard group */
 #endif
-  
+
   EGG_VIRTUAL_META_MASK = 1 << 24,
   EGG_VIRTUAL_SUPER_MASK = 1 << 25,
   EGG_VIRTUAL_HYPER_MASK = 1 << 26,
-  EGG_VIRTUAL_MODE_SWITCH_MASK = 1 << 27, 
+  EGG_VIRTUAL_MODE_SWITCH_MASK = 1 << 27,
   EGG_VIRTUAL_NUM_LOCK_MASK = 1 << 28,
   EGG_VIRTUAL_SCROLL_LOCK_MASK = 1 << 29,
 
@@ -63,7 +63,7 @@ typedef enum
 
   /*     28-31 24-27 20-23 16-19 12-15 8-11 4-7 0-3
    *       7     f     0     0     0    0    f   f
-   */  
+   */
   EGG_VIRTUAL_MODIFIER_MASK = 0x7f0000ff
 
 } EggVirtualModifierType;
