@@ -76,9 +76,9 @@ static gboolean item_check(gpointer data) {
   /* Grab the current primary and clipboard text */
   gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
   gchar* clipboard_temp = gtk_clipboard_wait_for_text(clipboard);
-  
+
   /* What follows is an extremely confusing system of tests and crap... */
-  
+
   /* Check if primary contents were lost */
   if ((primary_temp == NULL) && (primary_text != NULL))
   {
@@ -310,7 +310,8 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data) {
                                              "Daniel Nylander <po@danielnylander.se>\n"
                                              "Hedef Türkçe <iletisim@hedefturkce.com>\n"
                                              "Lyman Li <lymanrb@gmail.com>\n"
-                                             "Gilberto \"Xyhthyx\" Miralla <xyhthyx@gmail.com>");
+                                             "Gilberto \"Xyhthyx\" Miralla <xyhthyx@gmail.com>\n"
+                                             "Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>");
 
     gtk_about_dialog_set_license((GtkAboutDialog*)about_dialog, license);
     gtk_about_dialog_set_logo_icon_name((GtkAboutDialog*)about_dialog, GTK_STOCK_PASTE);
@@ -385,7 +386,7 @@ static gboolean show_actions_menu(gpointer data) {
     gtk_label_set_markup((GtkLabel*)item_label, _("<b>None</b>"));
     /* Append menu item */
     g_signal_connect((GObject*)menu_item, "select", (GCallback)gtk_menu_item_deselect, NULL);
-    
+
     gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
   }
   /* -------------------- */
@@ -426,7 +427,7 @@ static gboolean show_actions_menu(gpointer data) {
       /* Append the action */
       gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
       g_signal_connect((GObject*)menu_item,        "activate",
-                       (GCallback)action_selected, (gpointer)command);      
+                       (GCallback)action_selected, (gpointer)command);
     }
     fclose(actions_file);
   }
@@ -852,10 +853,10 @@ int main(int argc, char **argv) {
 	bindtextdomain(GETTEXT_PACKAGE, CLIPITLOCALEDIR);
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
-	
+
 	/* Initiate GTK+ */
 	gtk_init(&argc, &argv);
-	
+
 	/* Parse options and exit if returns TRUE */
 	if (argc > 1)
 	{
@@ -902,7 +903,7 @@ int main(int argc, char **argv) {
 
 	/* Run GTK+ loop */
 	gtk_main();
-	
+
 	/* Unbind keys */
 	keybinder_unbind(prefs.history_key, history_hotkey);
 	keybinder_unbind(prefs.actions_key, actions_hotkey);

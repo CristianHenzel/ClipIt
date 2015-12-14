@@ -269,7 +269,7 @@ void truncate_history()
 			if (elem_data->is_static == 0)
 				history = g_list_remove(history, elem_data);
 		}
-		
+
 		last_element = g_list_nth (history, prefs.history_limit - 1);
 		/* last_element->next checks if the list is longer than the user
 		 * wants it; last_element->prev checks if this isn't the first

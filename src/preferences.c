@@ -78,7 +78,7 @@ static void apply_preferences()
   keybinder_unbind(prefs.offline_key, offline_hotkey);
   g_free(prefs.offline_key);
   prefs.offline_key = NULL;
-  
+
   /* Get the new preferences */
   prefs.use_copy = gtk_toggle_button_get_active((GtkToggleButton*)copy_check);
   prefs.use_primary = gtk_toggle_button_get_active((GtkToggleButton*)primary_check);
@@ -103,7 +103,7 @@ static void apply_preferences()
   prefs.menu_key = g_strdup(gtk_entry_get_text((GtkEntry*)menu_key_entry));
   prefs.search_key = g_strdup(gtk_entry_get_text((GtkEntry*)search_key_entry));
   prefs.offline_key = g_strdup(gtk_entry_get_text((GtkEntry*)offline_key_entry));
-  
+
   /* Bind keys and apply the new history limit */
   keybinder_bind(prefs.history_key, history_hotkey, NULL);
   keybinder_bind(prefs.actions_key, actions_hotkey, NULL);
@@ -118,7 +118,7 @@ void save_preferences()
 {
   /* Create key */
   GKeyFile* rc_key = g_key_file_new();
-  
+
   /* Add values */
   g_key_file_set_boolean(rc_key, "rc", "use_copy", prefs.use_copy);
   g_key_file_set_boolean(rc_key, "rc", "use_primary", prefs.use_primary);
@@ -144,7 +144,7 @@ void save_preferences()
   g_key_file_set_string(rc_key, "rc", "search_key", prefs.search_key);
   g_key_file_set_string(rc_key, "rc", "offline_key", prefs.offline_key);
   g_key_file_set_boolean(rc_key, "rc", "offline_mode", prefs.offline_mode);
-  
+
   /* Check config and data directories */
   check_dirs();
   /* Save key to file */
@@ -168,7 +168,7 @@ static void first_run_check()
                                                        GTK_BUTTONS_YES_NO,
                                                        SAVE_HIST_MESSAGE);
     gtk_window_set_title((GtkWindow*)confirm_dialog, _("Save history"));
-    
+
     if (gtk_dialog_run((GtkDialog*)confirm_dialog) == GTK_RESPONSE_YES)
     {
       prefs.save_history = TRUE;
@@ -201,7 +201,7 @@ static void check_saved_hist_file()
                                                        GTK_BUTTONS_YES_NO,
                                                        CHECK_HIST_MESSAGE);
     gtk_window_set_title((GtkWindow*)confirm_dialog, _("Remove history file"));
-    
+
     if (gtk_dialog_run((GtkDialog*)confirm_dialog) == GTK_RESPONSE_YES)
     {
       /* Open the file for writing */
@@ -254,7 +254,7 @@ void read_preferences()
     prefs.search_key = g_key_file_get_string(rc_key, "rc", "search_key", NULL);
     prefs.offline_key = g_key_file_get_string(rc_key, "rc", "offline_key", NULL);
     prefs.offline_mode = g_key_file_get_boolean(rc_key, "rc", "offline_mode", NULL);
-    
+
     /* Check for errors and set default values if any */
     if ((!prefs.history_limit) || (prefs.history_limit > 1000) || (prefs.history_limit < 0))
       prefs.history_limit = DEF_HISTORY_LIMIT;
@@ -640,19 +640,19 @@ void show_preferences(gint tab) {
   GtkWidget *frame,     *label,
             *alignment, *hbox,
             *vbox;
-  
+
   GtkObject *adjustment, *adjustment_small, *adjustment_statics;
   GtkTreeViewColumn *tree_column;
-  
+
   /* Create the dialog */
   GtkWidget* dialog = gtk_dialog_new_with_buttons(_("Preferences"),     NULL,
                                                    (GTK_DIALOG_MODAL  + GTK_DIALOG_NO_SEPARATOR),
                                                     GTK_STOCK_CANCEL,   GTK_RESPONSE_REJECT,
                                                     GTK_STOCK_OK,       GTK_RESPONSE_ACCEPT, NULL);
-  
+
   gtk_window_set_icon((GtkWindow*)dialog, gtk_widget_render_icon(dialog, GTK_STOCK_PREFERENCES, GTK_ICON_SIZE_MENU, NULL));
   gtk_window_set_resizable((GtkWindow*)dialog, FALSE);
-  
+
   /* Create notebook */
   GtkWidget* notebook = gtk_notebook_new();
 #if GTK_CHECK_VERSION (2,14,0)
@@ -660,14 +660,14 @@ void show_preferences(gint tab) {
 #else
   gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), notebook, TRUE, TRUE, 2);
 #endif
-  
-  /* Build the settings page */  
+
+  /* Build the settings page */
   GtkWidget* page_settings = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)page_settings, 12, 6, 12, 6);
   gtk_notebook_append_page((GtkNotebook*)notebook, page_settings, gtk_label_new(_("Settings")));
   GtkWidget* vbox_settings = gtk_vbox_new(FALSE, 12);
   gtk_container_add((GtkContainer*)page_settings, vbox_settings);
-  
+
   /* Build the clipboards frame */
   frame = gtk_frame_new(NULL);
   gtk_frame_set_shadow_type((GtkFrame*)frame, GTK_SHADOW_NONE);
@@ -805,8 +805,8 @@ void show_preferences(gint tab) {
   gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("End"));
   gtk_box_pack_start((GtkBox*)hbox, ellipsize_combo, FALSE, FALSE, 0);
   gtk_box_pack_start((GtkBox*)vbox_history, frame, FALSE, FALSE, 0);
-  
-  /* Build the omitting frame 
+
+  /* Build the omitting frame
   frame = gtk_frame_new(NULL);
   gtk_frame_set_shadow_type((GtkFrame*)frame, GTK_SHADOW_NONE);
   label = gtk_label_new(NULL);
@@ -828,25 +828,25 @@ void show_preferences(gint tab) {
   gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("End"));
   gtk_box_pack_start((GtkBox*)hbox, ellipsize_combo, FALSE, FALSE, 0);
   gtk_box_pack_start((GtkBox*)vbox_history, frame, FALSE, FALSE, 0); */
-  
+
   /* Build the actions page */
   GtkWidget* page_actions = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)page_actions, 6, 6, 6, 6);
   gtk_notebook_append_page((GtkNotebook*)notebook, page_actions, gtk_label_new(_("Actions")));
   GtkWidget* vbox_actions = gtk_vbox_new(FALSE, 6);
   gtk_container_add((GtkContainer*)page_actions, vbox_actions);
-  
+
   /* Build the actions label */
   label = gtk_label_new(_("Control-click ClipIt\'s tray icon to use actions"));
   gtk_label_set_line_wrap((GtkLabel*)label, TRUE);
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
   gtk_box_pack_start((GtkBox*)vbox_actions, label, FALSE, FALSE, 0);
-  
+
   /* Build the actions treeview */
   GtkWidget* scrolled_window = gtk_scrolled_window_new(
                                (GtkAdjustment*)gtk_adjustment_new(0, 0, 0, 0, 0, 0),
                                (GtkAdjustment*)gtk_adjustment_new(0, 0, 0, 0, 0, 0));
-  
+
   gtk_scrolled_window_set_policy((GtkScrolledWindow*)scrolled_window, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type((GtkScrolledWindow*)scrolled_window, GTK_SHADOW_ETCHED_OUT);
   GtkWidget* treeview = gtk_tree_view_new();
@@ -869,12 +869,12 @@ void show_preferences(gint tab) {
   gtk_tree_view_append_column((GtkTreeView*)treeview, tree_column);
   gtk_container_add((GtkContainer*)scrolled_window, treeview);
   gtk_box_pack_start((GtkBox*)vbox_actions, scrolled_window, TRUE, TRUE, 0);
-  
+
   /* Edit selection and connect treeview related signals */
   actions_selection = gtk_tree_view_get_selection((GtkTreeView*)treeview);
   gtk_tree_selection_set_mode(actions_selection, GTK_SELECTION_BROWSE);
   g_signal_connect((GObject*)treeview, "key-press-event", (GCallback)delete_key_pressed, NULL);
-  
+
   /* Build the buttons */
   GtkWidget* hbbox = gtk_hbutton_box_new();
   gtk_box_set_spacing((GtkBox*)hbbox, 6);
@@ -903,18 +903,18 @@ void show_preferences(gint tab) {
   gtk_notebook_append_page((GtkNotebook*)notebook, page_exclude, gtk_label_new(_("Exclude")));
   GtkWidget* vbox_exclude = gtk_vbox_new(FALSE, 6);
   gtk_container_add((GtkContainer*)page_exclude, vbox_exclude);
-  
+
   /* Build the exclude label */
   label = gtk_label_new(_("Regex list of items that should not be inserted into the history (passwords/sites that you don't need in history, etc)."));
   gtk_label_set_line_wrap((GtkLabel*)label, TRUE);
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
   gtk_box_pack_start((GtkBox*)vbox_exclude, label, FALSE, FALSE, 0);
-  
+
   /* Build the exclude treeview */
   GtkWidget* scrolled_window_exclude = gtk_scrolled_window_new(
                                (GtkAdjustment*)gtk_adjustment_new(0, 0, 0, 0, 0, 0),
                                (GtkAdjustment*)gtk_adjustment_new(0, 0, 0, 0, 0, 0));
-  
+
   gtk_scrolled_window_set_policy((GtkScrolledWindow*)scrolled_window_exclude, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type((GtkScrolledWindow*)scrolled_window_exclude, GTK_SHADOW_ETCHED_OUT);
   GtkWidget* treeview_exclude = gtk_tree_view_new();
@@ -930,12 +930,12 @@ void show_preferences(gint tab) {
   gtk_tree_view_append_column((GtkTreeView*)treeview_exclude, tree_column);
   gtk_container_add((GtkContainer*)scrolled_window_exclude, treeview_exclude);
   gtk_box_pack_start((GtkBox*)vbox_exclude, scrolled_window_exclude, TRUE, TRUE, 0);
-  
+
   /* Edit selection and connect treeview related signals */
   exclude_selection = gtk_tree_view_get_selection((GtkTreeView*)treeview_exclude);
   gtk_tree_selection_set_mode(exclude_selection, GTK_SELECTION_BROWSE);
   g_signal_connect((GObject*)treeview_exclude, "key-press-event", (GCallback)delete_key_pressed, NULL);
-  
+
   /* Build the buttons */
   GtkWidget* hbbox_exclude = gtk_hbutton_box_new();
   gtk_box_set_spacing((GtkBox*)hbbox_exclude, 6);
@@ -949,14 +949,14 @@ void show_preferences(gint tab) {
   g_signal_connect((GObject*)remove_button_exclude, "clicked", (GCallback)remove_exclude, NULL);
   gtk_box_pack_start((GtkBox*)hbbox_exclude, remove_button_exclude, FALSE, TRUE, 0);
   gtk_box_pack_start((GtkBox*)vbox_exclude, hbbox_exclude, FALSE, FALSE, 0);
-  
+
   /* Build the hotkeys page */
   GtkWidget* page_extras = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)page_extras, 12, 6, 12, 6);
   gtk_notebook_append_page((GtkNotebook*)notebook, page_extras, gtk_label_new(_("Hotkeys")));
   GtkWidget* vbox_extras = gtk_vbox_new(FALSE, 12);
   gtk_container_add((GtkContainer*)page_extras, vbox_extras);
-  
+
   /* Build the hotkeys frame */
   frame = gtk_frame_new(NULL);
   gtk_frame_set_shadow_type((GtkFrame*)frame, GTK_SHADOW_NONE);
@@ -1014,7 +1014,7 @@ void show_preferences(gint tab) {
   gtk_entry_set_width_chars((GtkEntry*)offline_key_entry, 10);
   gtk_box_pack_end((GtkBox*)hbox, offline_key_entry, TRUE, TRUE, 0);
   gtk_box_pack_start((GtkBox*)vbox_extras, frame, FALSE, FALSE, 0);
-  
+
   /* Make widgets reflect current preferences */
   gtk_toggle_button_set_active((GtkToggleButton*)copy_check, prefs.use_copy);
   gtk_toggle_button_set_active((GtkToggleButton*)primary_check, prefs.use_primary);
@@ -1039,11 +1039,11 @@ void show_preferences(gint tab) {
   gtk_entry_set_text((GtkEntry*)menu_key_entry, prefs.menu_key);
   gtk_entry_set_text((GtkEntry*)search_key_entry, prefs.search_key);
   gtk_entry_set_text((GtkEntry*)offline_key_entry, prefs.offline_key);
-  
+
   /* Read actions */
   read_actions();
   read_excludes();
-  
+
   /* Run the dialog */
   gtk_widget_show_all(dialog);
 #ifdef HAVE_APPINDICATOR

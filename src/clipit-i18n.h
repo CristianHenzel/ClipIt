@@ -18,7 +18,7 @@
 		#define gettext(String) (String)
 		#define dgettext(Domain,String) (String)
 		#define dcgettext(Domain,String,Type) (String)
-		#define bindtextdomain(Domain,Directory) (Domain) 
-		#define bind_textdomain_codeset(Domain,Codeset) (Codeset) 
+		#define bindtextdomain(Domain,Directory) (Domain)
+		#define bind_textdomain_codeset(Domain,Codeset) (Codeset)
 	#endif /* ENABLE_NLS */
 #endif /* __CLIPIT_INTL_H__ */
