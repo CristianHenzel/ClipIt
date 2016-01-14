@@ -88,7 +88,14 @@ AC_PROG_MAKE_SET()
 # -------------------------------------------------------------------------------
 # Checks for libraries.
 # -------------------------------------------------------------------------------
-AM_PATH_GTK_2_0(2.10.0, [], AC_MSG_ERROR(Requirement not met: gtk >= 2.10.0))
+AC_ARG_WITH([gtk3], AS_HELP_STRING([--with-gtk3], [Build with the GTK+ 3 interface]))
+
+if test "x$with_gtk3" = "xyes"; then
+  PKG_CHECK_MODULES([GTK], [gtk+-3.0])
+else
+  PKG_CHECK_MODULES([GTK], [gtk+-2.0 >= 2.10])
+fi
+
 AM_PATH_GLIB_2_0(2.14.0, [], AC_MSG_ERROR(Requirement not met: glib >= 2.14.0))
 
 # -------------------------------------------------------------------------------
