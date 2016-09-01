@@ -3,7 +3,7 @@
 # -------------------------------------------------------------------------------
 AC_PREREQ([2.5])
 AC_INIT([clipit], [1.4.3], [oss@rspwn.com])
-AM_INIT_AUTOMAKE([AC_PACKAGE_TARNAME()], [AC_PACKAGE_VERSION()])
+AM_INIT_AUTOMAKE
 
 AC_CONFIG_MACRO_DIR([m4])
 
@@ -36,7 +36,7 @@ clipitlocaledir='${prefix}/${DATADIRNAME}/locale'
 AC_SUBST(clipitlocaledir)
 
 AM_GNU_GETTEXT([external])
-AM_GNU_GETTEXT_VERSION(0.18.1)
+AM_GNU_GETTEXT_VERSION(0.19)
 
 # -------------------------------------------------------------------------------
 # Application indicator.
