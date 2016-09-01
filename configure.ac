@@ -18,6 +18,7 @@ AC_CHECK_PROG(HAVE_PKG_CONFIG, pkg-config, yes, no)
 if test x$HAVE_PKG_CONFIG = xno ; then
   AC_MSG_ERROR([Requirement not met: pkg-config not installed])
 fi
+PKG_PROG_PKG_CONFIG
 
 # -------------------------------------------------------------------------------
 # Gettext.
