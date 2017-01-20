@@ -43,6 +43,8 @@ void read_history();
 
 void save_history();
 
+void clear_history();
+
 void check_and_append(gchar *item);
 
 void append_item(gchar *item);
