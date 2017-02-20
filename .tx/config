@@ -1,5 +1,5 @@
 [main]
-host = https://www.transifex.net
+host = https://www.transifex.com
 lang_map = bg_BG:bg, de_DE:de, et_EE:et
 
 [clipit.clipitpot]
