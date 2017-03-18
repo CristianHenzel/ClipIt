@@ -228,7 +228,7 @@ static void remove_selected()
 }
 
 /* Called when Remove all is selected from Manage dialog */
-static void remove_all_selected(gpointer user_data)
+void remove_all_selected(gpointer user_data)
 {
   /* Check for confirm clear option */
   if (prefs.confirm_clear)
@@ -240,30 +240,22 @@ static void remove_all_selected(gpointer user_data)
                                                        _("Clear the history?"));
     gtk_window_set_title((GtkWindow*)confirm_dialog, _("Clear history"));
 
-    if (gtk_dialog_run((GtkDialog*)confirm_dialog) == GTK_RESPONSE_OK)
+    if (gtk_dialog_run((GtkDialog*)confirm_dialog) != GTK_RESPONSE_OK)
     {
-      /* Clear history and free history-related variables */
-      g_list_free(history);
-      history = NULL;
-      save_history();
-      clear_main_data();
-      GtkTreeIter search_iter;
-      while(gtk_tree_model_get_iter_first((GtkTreeModel*)search_list, &search_iter))
-        gtk_list_store_remove(search_list, &search_iter);
+        gtk_widget_destroy(confirm_dialog);
+        return;
     }
+
     gtk_widget_destroy(confirm_dialog);
   }
-  else
-  {
-    /* Clear history and free history-related variables */
-    g_list_free(history);
-    history = NULL;
-    save_history();
-    clear_main_data();
-    GtkTreeIter search_iter;
-    while(gtk_tree_model_get_iter_first((GtkTreeModel*)search_list, &search_iter))
-      gtk_list_store_remove(search_list, &search_iter);
-  }
+
+  /* Clear history and free history-related variables */
+  g_list_free(history);
+  history = NULL;
+  save_history();
+  clear_main_data();
+  if (GTK_IS_LIST_STORE(search_list))
+      gtk_list_store_clear(search_list);
 }
 
 static void search_doubleclick()
