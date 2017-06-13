@@ -41,7 +41,7 @@ G_BEGIN_DECLS
 #define DEF_USE_RMB_MENU              FALSE
 #define DEF_HISTORY_LIMIT             50
 #define DEF_HISTORY_TIMEOUT           FALSE
-#define DEF_HISTORY_TIMEOUT_SECONDS   10
+#define DEF_HISTORY_TIMEOUT_SECONDS   30
 #define DEF_ITEMS_MENU                20
 #define DEF_STATICS_SHOW              TRUE
 #define DEF_STATICS_ITEMS             10
@@ -76,6 +76,8 @@ void read_preferences();
 void save_preferences();
 
 void show_preferences(gint tab);
+
+void init_purge_timer();
 
 G_END_DECLS
 
