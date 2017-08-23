@@ -244,7 +244,9 @@ static void item_selected(GtkMenuItem *menu_item, gpointer user_data) {
   history = g_list_concat(element, history);
   history_item *elem_data = history->data;
   gtk_clipboard_set_text(clipboard, (gchar*)elem_data->content, -1);
-  gtk_clipboard_set_text(primary, (gchar*)elem_data->content, -1);
+  if (prefs.use_primary) {
+    gtk_clipboard_set_text(primary, (gchar*)elem_data->content, -1);
+  }
   save_history();
   /* Paste the clipboard contents automatically if enabled */
   if (prefs.automatic_paste) {
