@@ -531,15 +531,18 @@ void underline_match(char* match, GtkMenuItem* menu_item, const gchar* menu_labe
 
 /*
  * As the user types, attempt to match input with the values in the menu. The matched text will be
- * underlined and non matching entries greyed out. When a single match remains it will be activated.
+ * underlined and non matching entries greyed out.
 */
 gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *event) {
-  gboolean descending = FALSE;
   if (event->keyval == GDK_KEY_Delete || event->keyval == GDK_KEY_BackSpace) {
     remove_from_input_buffer();
-    descending = TRUE;
   } else if (event->keyval == GDK_KEY_KP_Enter || event->keyval == GDK_KEY_Return || event->keyval == GDK_KEY_Escape) {
     clear_input_buffer();
+    return FALSE;
+  }
+
+  if (event->keyval == GDK_Down || event->keyval == GDK_Up) {
+    return FALSE;
   }
 
   if (isprint(*event->string))
@@ -556,9 +559,9 @@ gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *eve
   while (element->next != NULL && count < prefs.items_menu) {
     menu_item = (GtkMenuItem *) element->data;
     menu_label = gtk_menu_item_get_label(menu_item);
-    /* When removing characters from the input_buffer we want to retain the selected item. */
-    if (!descending)
-      gtk_menu_item_deselect(menu_item);
+
+    gtk_menu_item_deselect(menu_item);
+
     match = strcasestr(menu_label, input_buffer);
     if (match) {
       if (!first_match)
@@ -572,7 +575,8 @@ gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *eve
     element = element->next;
     count++;
   }
-  if (match_count == 1) {
+
+  if (first_match && match_count != prefs.items_menu) {
     gtk_menu_item_select(first_match);
     menu->active_menu_item = (GtkWidget *) first_match;
     return TRUE;
