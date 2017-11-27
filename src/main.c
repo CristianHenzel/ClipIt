@@ -90,6 +90,10 @@ static gboolean item_check(gpointer data) {
   /* Immediately return in offline mode */
   if (prefs.offline_mode)
     return TRUE;
+	
+  /*Get the state of mouse buttons and modifiers*/	
+  GdkModifierType button_state;
+  gdk_window_get_pointer(NULL, NULL, NULL, &button_state);
 
   /* Grab the current primary and clipboard text */
   gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
@@ -124,8 +128,9 @@ static gboolean item_check(gpointer data) {
   }
   else
   {
-    GdkModifierType button_state;
-    gdk_window_get_pointer(NULL, NULL, NULL, &button_state);
+    //GdkModifierType button_state;
+    //gdk_window_get_pointer(NULL, NULL, NULL, &button_state);
+	  
     /* Proceed if mouse button not being held */
     if ((primary_temp != NULL) && !(button_state & GDK_BUTTON1_MASK))
     {
@@ -178,7 +183,8 @@ static gboolean item_check(gpointer data) {
   /* Synchronization */
   if (prefs.synchronize)
   {
-    if (g_strcmp0(synchronized_text, primary_text) != 0)
+    //Don't sync to clipboard if ctrl is pressed
+    if (!(button_state & GDK_CONTROL_MASK) && g_strcmp0(synchronized_text, primary_text) != 0)
     {
       g_free(synchronized_text);
       synchronized_text = g_strdup(primary_text);
@@ -434,7 +440,7 @@ static gboolean show_actions_menu(gpointer data) {
       gchar* name = (gchar*)g_malloc(size + 1);
       fread_return = fread(name, size, 1, actions_file);
       name[size] = '\0';
-      menu_item = gtk_menu_item_new_with_label(name);
+      menu_item = gtk_menu_item_new_with_label(name);luton.od@g
       g_free(name);
       fread_return = fread(&size, 4, 1, actions_file);
       /* Read command */
