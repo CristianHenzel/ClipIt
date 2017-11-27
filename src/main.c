@@ -440,7 +440,7 @@ static gboolean show_actions_menu(gpointer data) {
       gchar* name = (gchar*)g_malloc(size + 1);
       fread_return = fread(name, size, 1, actions_file);
       name[size] = '\0';
-      menu_item = gtk_menu_item_new_with_label(name);luton.od@g
+      menu_item = gtk_menu_item_new_with_label(name);
       g_free(name);
       fread_return = fread(&size, 4, 1, actions_file);
       /* Read command */
