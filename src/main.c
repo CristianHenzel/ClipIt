@@ -482,7 +482,7 @@ static bool any_menu_label_starts_with_prefix(GtkMenuShell *menu, gchar *prefix,
   GtkMenuItem *menu_item;
   const gchar *menu_label;
   int i;
-  for (i = 0, element = menu->children; element != NULL && i < max_items; element = element->next, i++) {
+  for (i = 0, element = gtk_container_get_children(menu); element != NULL && i < max_items; element = element->next, i++) {
     menu_item = (GtkMenuItem *) element->data;
     menu_label = gtk_menu_item_get_label(menu_item);
     if (strncmp(prefix, menu_label, strlen(prefix)) == 0) {
@@ -546,7 +546,7 @@ gboolean selected_by_prefix(const GtkWidget *history_menu, const GdkEventKey *ev
 
     if (any_menu_label_starts_with_prefix(menu, prefix_buffer, prefs.items_menu)) {
       bool should_select = TRUE;
-      element = menu->children;
+      element = gtk_container_get_children(menu);
       int count = 0;
       while (element != NULL && count < prefs.items_menu) {
         menu_item = (GtkMenuItem *) element->data;
@@ -555,7 +555,7 @@ gboolean selected_by_prefix(const GtkWidget *history_menu, const GdkEventKey *ev
         if (strncmp(prefix_buffer, menu_label, strlen(prefix_buffer)) == 0) {
           if (should_select) {
             gtk_menu_item_select(menu_item);
-            menu->active_menu_item = (GtkWidget *) menu_item;
+            gtk_menu_shell_activate_item (menu, (GtkWidget *) menu_item, FALSE);
             should_select = FALSE;
           }
         }
