@@ -21,12 +21,12 @@ msgstr ""
 
 #: ../data/clipit-startup.desktop.in.h:1 ../data/clipit.desktop.in.h:1
 msgid "ClipIt"
-msgstr ""
+msgstr "ClipIt"
 
 #: ../data/clipit-startup.desktop.in.h:2 ../data/clipit.desktop.in.h:2
 #: ../src/main.c:833
 msgid "Clipboard Manager"
-msgstr "Gestionnaire de Presse-Papier"
+msgstr "Gestionnaire de presse-papier"
 
 #: ../src/main.c:287
 msgid "Lightweight GTK+ clipboard manager."
@@ -35,7 +35,7 @@ msgstr "Gestionnaire de Presse-Papier Léger en GTK +."
 #. Actions using:
 #: ../src/main.c:356
 msgid "Actions using:"
-msgstr "Scripts utilisant:"
+msgstr "Scripts utilisant :"
 
 #. Create menu item for empty clipboard contents
 #: ../src/main.c:365 ../src/main.c:382
@@ -66,24 +66,24 @@ msgstr "M_ode hors connexion"
 #. Manage history
 #: ../src/main.c:695
 msgid "_Manage history"
-msgstr "_Gérer historique"
+msgstr "_Gérer l'historique"
 
 #. Create the dialog
 #: ../src/manage.c:138
 msgid "Editing Clipboard"
-msgstr "Éditer le Presse-Papier "
+msgstr "Éditer le presse-papier"
 
 #: ../src/manage.c:158
 msgid "_Static item"
-msgstr "Elément _Statique"
+msgstr "Elément _statique"
 
 #: ../src/manage.c:227
 msgid "Clear the history?"
-msgstr "Effacer l'historique?"
+msgstr "Effacer l'historique ?"
 
 #: ../src/manage.c:228
 msgid "Clear history"
-msgstr "Effacer historique"
+msgstr "Effacer l'historique"
 
 #: ../src/manage.c:348
 msgid "Manage History"
@@ -99,15 +99,15 @@ msgstr "Résultats"
 
 #: ../src/manage.c:398
 msgid "Edit"
-msgstr "Modifier"
+msgstr "Éditer"
 
 #: ../src/manage.c:400 ../src/preferences.c:886 ../src/preferences.c:947
 msgid "Remove"
-msgstr "Enlever"
+msgstr "Supprimer"
 
 #: ../src/manage.c:402
 msgid "Remove all"
-msgstr "Tout effacer"
+msgstr "Tout supprimer"
 
 #: ../src/manage.c:404
 msgid "Close"
@@ -119,7 +119,7 @@ msgstr "Enregistrer l'historique"
 
 #: ../src/preferences.c:203
 msgid "Remove history file"
-msgstr "Effacer le fichier historique"
+msgstr "Supprimer le fichier de l'historique"
 
 #. Create the dialog
 #: ../src/preferences.c:648
@@ -128,27 +128,27 @@ msgstr "Préférences"
 
 #: ../src/preferences.c:667
 msgid "Settings"
-msgstr "Réglages"
+msgstr "Paramètres"
 
 #: ../src/preferences.c:675
 msgid "<b>Clipboards</b>"
-msgstr "<b>Presse-Papier</b>"
+msgstr "<b>Presse-papiers</b>"
 
 #: ../src/preferences.c:682
 msgid "Use _Copy (Ctrl-C)"
-msgstr "Utiliser _Copier (Ctrl-C)"
+msgstr "Utiliser _copier (Ctrl+C)"
 
 #: ../src/preferences.c:685
 msgid "Use _Primary (Selection)"
-msgstr "Utiliser _Première(Sélection)"
+msgstr "Utiliser la _sélection du curseur"
 
 #: ../src/preferences.c:688
 msgid "S_ynchronize clipboards"
-msgstr "S_ynchroniser les presses-papiers"
+msgstr "S_ynchroniser les presse-papiers"
 
 #: ../src/preferences.c:690
 msgid "_Automatically paste selected item"
-msgstr "Coller _Automatiquement l'élément sélectionné"
+msgstr "Coller _automatiquement l'élément sélectionné"
 
 #: ../src/preferences.c:699
 msgid "<b>Miscellaneous</b>"
@@ -156,19 +156,19 @@ msgstr "<b>Divers</b>"
 
 #: ../src/preferences.c:706
 msgid "Show _indexes in history menu"
-msgstr "Montrer _index dans le menu historique"
+msgstr "Montrer les _index dans le menu historique"
 
 #: ../src/preferences.c:708
 msgid "S_ave URIs"
-msgstr "S_auver les URIs"
+msgstr "Enreg_istrer les URIs"
 
 #: ../src/preferences.c:710
 msgid "Capture _hyperlinks only"
-msgstr "Capturer seulement les _hyperliens"
+msgstr "Capturer uniquement les _hyperliens"
 
 #: ../src/preferences.c:712
 msgid "C_onfirm before clearing history"
-msgstr "C_onfirmer avant de vider l'historique"
+msgstr "Demander _confirmation avant d'effacer l'historique"
 
 #: ../src/preferences.c:714
 msgid "_Use right-click menu"
@@ -184,27 +184,27 @@ msgstr "<b>Historique</b>"
 
 #: ../src/preferences.c:738
 msgid "Save _history"
-msgstr "Enregistrer _historique"
+msgstr "Enregistrer l'_historique"
 
 #: ../src/preferences.c:739
 msgid "Save and restore history between sessions"
-msgstr "Enregistrer et restaurer l'historique entre sessions"
+msgstr "Enregistrer et restaurer l'historique entre les sessions"
 
 #: ../src/preferences.c:743
 msgid "Items in history:"
-msgstr "Éléments dans l'historique:"
+msgstr "Nombre de lignes dans l'historique :"
 
 #: ../src/preferences.c:752
 msgid "Items in menu:"
-msgstr "Éléments dans le menu:"
+msgstr "Nombre de lignes dans le menu :"
 
 #: ../src/preferences.c:759
 msgid "Show _static items in menu"
-msgstr "Montrer les éléments _statiques dans le menu"
+msgstr "Afficher les éléments _statiques dans le menu"
 
 #: ../src/preferences.c:764
 msgid "Static items in menu:"
-msgstr "Éléments statiques dans le menu:"
+msgstr "Éléments statiques dans le menu :"
 
 #: ../src/preferences.c:777
 msgid "<b>Items</b>"
@@ -212,19 +212,19 @@ msgstr "<b>Éléments</b>"
 
 #: ../src/preferences.c:784
 msgid "Show in a single _line"
-msgstr "Montrer sur une ligne"
+msgstr "Afficher sur une seule _ligne"
 
 #: ../src/preferences.c:786
 msgid "Show in _reverse order"
-msgstr "Montrer dans l'ordre inverse"
+msgstr "Afficher dans l'o_rdre inverse"
 
 #: ../src/preferences.c:790
 msgid "Character length of items:"
-msgstr "Longueur des éléments:"
+msgstr "Nombre de caractères par élément :"
 
 #: ../src/preferences.c:799
 msgid "Omit items in the:"
-msgstr "Omettre des éléments dans le : "
+msgstr "Omettre des éléments dans le :"
 
 #: ../src/preferences.c:803
 msgid "Beginning"
@@ -245,7 +245,7 @@ msgstr "Actions"
 #. Build the actions label
 #: ../src/preferences.c:840
 msgid "Control-click ClipIt's tray icon to use actions"
-msgstr "Control-clic sur icône ClipIt pour utiliser les scripts"
+msgstr "Maintenir la touche Ctrl et cliquer sur l'icône de notification de ClipIt pour utiliser les actions"
 
 #: ../src/preferences.c:860
 msgid "Action"
@@ -257,7 +257,7 @@ msgstr "Commande"
 
 #: ../src/preferences.c:882 ../src/preferences.c:943
 msgid "Add..."
-msgstr "Ajouter..."
+msgstr "Ajouter…"
 
 #: ../src/preferences.c:903
 msgid "Exclude"
@@ -278,44 +278,44 @@ msgstr "Regex"
 
 #: ../src/preferences.c:956
 msgid "Hotkeys"
-msgstr "Hotkeys"
+msgstr "Raccourcis clavier"
 
 #: ../src/preferences.c:964
 msgid "<b>Hotkeys</b>"
-msgstr "<b>raccourcis</b>"
+msgstr "<b>Raccourcis claviers</b>"
 
 #: ../src/preferences.c:974
 msgid "History hotkey:"
-msgstr "Raccourci historique:"
+msgstr "Raccourci pour l'historique :"
 
 #: ../src/preferences.c:983
 msgid "Actions hotkey:"
-msgstr "Raccourci actions:"
+msgstr "Raccourci pour les actions :"
 
 #: ../src/preferences.c:992
 msgid "Menu hotkey:"
-msgstr "Raccourcu menu:"
+msgstr "Raccourci pour le menu :"
 
 #: ../src/preferences.c:1001
 msgid "Manage hotkey:"
-msgstr "Gérer raccourci:"
+msgstr "Gérer les raccourcis :"
 
 #: ../src/preferences.c:1010
 msgid "Offline mode hotkey:"
-msgstr "Touche mode hors connexion:"
+msgstr "Raccourci pour le mode hors connexion :"
 
 #: ../src/utils.c:40 ../src/utils.c:47
 #, c-format
 msgid "Couldn't create directory: %s\n"
-msgstr "Impossible de créer le répertoire:%s\n"
+msgstr "Impossible de créer le répertoire : %s\n"
 
 #: ../src/utils.c:148
 msgid "Run as daemon"
-msgstr "Exécuter en tant que démon"
+msgstr "Démarrer en tant que service"
 
 #: ../src/utils.c:155
 msgid "Do not use status icon (Ctrl-Alt-P for menu)"
-msgstr "Ne pas utiliser l'icône d'état (Ctrl-Alt-P pour le menu)"
+msgstr "Ne pas utiliser l'icône de notification (Ctrl+Alt+P pour le menu)"
 
 #: ../src/utils.c:162
 msgid "Print clipboard contents"
@@ -323,7 +323,7 @@ msgstr "Imprimer le contenu du presse-papier"
 
 #: ../src/utils.c:169
 msgid "Print primary contents"
-msgstr "Imprimer le contenu principal"
+msgstr "Imprimer le contenu de la sélection"
 
 #: ../src/utils.c:181
 msgid ""
@@ -333,11 +333,11 @@ msgid ""
 "  clipit \"copied to clipboard\"\n"
 "  echo \"copied to clipboard\" | clipit -c"
 msgstr ""
-"Clipboard exemples d'utilisation CLI:\n"
+"Exemples d'utilisation de commandes interprétées pour le presse-papier :\n"
 "\n"
-"echo \"copié dans le presse papier\" | clipit\n"
-"clipit \"copié dans le presse papier\"\n"
-"echo \"copié dans le presse papier\" | clipit-c"
+"  echo \"copié dans le presse-papier\" | clipit\n"
+"  clipit \"copié dans le presse-papier\"\n"
+"  echo \"copié dans le presse-papier\" | clipit -c"
 
 #: ../src/utils.c:187
 msgid ""
