@@ -24,3 +24,4 @@ po/Makevars.template
 *~
 Makefile
 Makefile.in
+compile
