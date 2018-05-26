@@ -305,7 +305,7 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data) {
                                 _("Lightweight GTK+ clipboard manager."));
 
     gtk_about_dialog_set_website((GtkAboutDialog*)about_dialog,
-                                 "https://github.com/shantzu/ClipIt");
+                                 "https://github.com/CristianHenzel/ClipIt");
 
     gtk_about_dialog_set_copyright((GtkAboutDialog*)about_dialog, "Copyright (C) 2010-2012 Cristian Henzel");
     gtk_about_dialog_set_authors((GtkAboutDialog*)about_dialog, authors);
