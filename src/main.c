@@ -70,10 +70,10 @@ prefs_t prefs = {DEF_USE_COPY,         DEF_USE_PRIMARY,      DEF_SYNCHRONIZE,
                  INIT_SEARCH_KEY,      INIT_OFFLINE_KEY,     DEF_NO_ICON,
                  DEF_OFFLINE_MODE};
 
-/* Variables for prefix buffer used for matching input to menu items */
-#define MAX_PREFIX_BUF_SIZE 100
-gchar prefix_buffer[MAX_PREFIX_BUF_SIZE];
-int prefix_index;
+/* Variables for input buffer used for matching input to menu items */
+#define MAX_INPUT_BUF_SIZE 100
+gchar input_buffer[MAX_INPUT_BUF_SIZE];
+int input_index;
 
 
 /* If the user pressed a number key go directly to that item in the menu */
@@ -83,7 +83,7 @@ gboolean selected_by_digit(const GtkWidget *history_menu, const GdkEventKey *eve
  * As the user types, attempt to match input with the values in the menu.
  * Only the first match will be activated.
  * */
-gboolean selected_by_prefix(const GtkWidget *history_menu, const GdkEventKey *event) ;
+gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *event) ;
 
 /* Called every CHECK_INTERVAL seconds to check for new items */
 static gboolean item_check(gpointer data) {
@@ -476,96 +476,112 @@ static gboolean show_actions_menu(gpointer data) {
   return FALSE;
 }
 
-/* Returns true if any menu label starts with prefix */
-static bool any_menu_label_starts_with_prefix(GtkMenuShell *menu, gchar *prefix, int max_items) {
-  GList *element;
-  GtkMenuItem *menu_item;
-  const gchar *menu_label;
-  int i;
-  for (i = 0, element = gtk_container_get_children(menu); element != NULL && i < max_items; element = element->next, i++) {
-    menu_item = (GtkMenuItem *) element->data;
-    menu_label = gtk_menu_item_get_label(menu_item);
-    if (strncmp(prefix, menu_label, strlen(prefix)) == 0) {
-      return TRUE;
-    }
-  }
-  return FALSE;
-}
-
-/* Append a character to the prefix buffer */
-static void append_to_prefix_buffer(gchar *character) {
-  if (prefix_index < MAX_PREFIX_BUF_SIZE) {
-    prefix_buffer[prefix_index++] = *character;
-    prefix_buffer[prefix_index] = '\0';
+/* Append a character to the input buffer */
+static void append_to_input_buffer(gchar *character) {
+  if (input_index < MAX_INPUT_BUF_SIZE) {
+    input_buffer[input_index++] = *character;
+    input_buffer[input_index] = '\0';
   }
 
 }
 
-/* Remove the last character from the prefix buffer */
-static void remove_from_prefix_buffer() {
-  if (prefix_index > 0) {
-    prefix_buffer[--prefix_index] = '\0';
+/* Remove the last character from the input buffer */
+static void remove_from_input_buffer() {
+  if (input_index > 0) {
+    input_buffer[--input_index] = '\0';
   }
 }
 
-/* Completley wipe the prefix buffer */
-static void clear_prefix_buffer() {
-  prefix_index = 0;
-  prefix_buffer[prefix_index] = '\0';
+/* Completely wipe the input buffer */
+static void clear_input_buffer() {
+  input_index = 0;
+  input_buffer[input_index] = '\0';
 }
 
 /* Handle user input while the menu is open */
 static gboolean menu_key_pressed(GtkWidget *history_menu, GdkEventKey *event, gpointer user_data) {
   gboolean handled = selected_by_digit(history_menu, event);
   if (!handled) {
-    handled = selected_by_prefix(history_menu, event);
+    handled = selected_by_input(history_menu, event);
   }
   return handled;
 }
 
+
+/* Draw an underline under the matched portion of text.
+ * match should be a pointer to the first character of the matched text.
+ */
+void underline_match(char* match, GtkMenuItem* menu_item, const gchar* menu_label) {
+  if (!match)
+    return;
+
+  int start = match - menu_label;
+  int end = start + strlen(input_buffer);
+
+  PangoAttribute* underline = pango_attr_underline_new (PANGO_UNDERLINE_SINGLE);
+  underline->start_index = start;
+  underline->end_index = end;
+
+  PangoAttrList* attr_list = pango_attr_list_new();
+  pango_attr_list_insert (attr_list, underline);
+
+  GtkWidget* gtk_label = gtk_bin_get_child (GTK_BIN (menu_item));
+  gtk_label_set_attributes (gtk_label, attr_list);
+}
+
 /*
- * As the user types, attempt to match input with the values in the menu.
- * Only the first match will be activated.
- * */
-gboolean selected_by_prefix(const GtkWidget *history_menu, const GdkEventKey *event) {
-  gboolean event_was_handled = FALSE;
+ * As the user types, attempt to match input with the values in the menu. The matched text will be
+ * underlined and non matching entries greyed out.
+*/
+gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *event) {
   if (event->keyval == GDK_KEY_Delete || event->keyval == GDK_KEY_BackSpace) {
-    remove_from_prefix_buffer();
-    event_was_handled = TRUE;
-
+    remove_from_input_buffer();
   } else if (event->keyval == GDK_KEY_KP_Enter || event->keyval == GDK_KEY_Return || event->keyval == GDK_KEY_Escape) {
-    clear_prefix_buffer();
-
-  } else if (isprint(*event->string)) {
-    append_to_prefix_buffer(event->string);
-
-    GtkMenuShell *menu = (GtkMenuShell *) history_menu;
-    GList *element;
-    GtkMenuItem *menu_item;
-    const gchar *menu_label;
-
-    if (any_menu_label_starts_with_prefix(menu, prefix_buffer, prefs.items_menu)) {
-      bool should_select = TRUE;
-      element = gtk_container_get_children(menu);
-      int count = 0;
-      while (element != NULL && count < prefs.items_menu) {
-        menu_item = (GtkMenuItem *) element->data;
-        menu_label = gtk_menu_item_get_label(menu_item);
-        gtk_menu_item_deselect(menu_item);
-        if (strncmp(prefix_buffer, menu_label, strlen(prefix_buffer)) == 0) {
-          if (should_select) {
-            gtk_menu_item_select(menu_item);
-            gtk_menu_shell_activate_item (menu, (GtkWidget *) menu_item, FALSE);
-            should_select = FALSE;
-          }
-        }
-        element = element->next;
-        count++;
-      }
-      event_was_handled = TRUE;
-    }
+    clear_input_buffer();
+    return FALSE;
   }
-  return event_was_handled;
+
+  if (event->keyval == GDK_Down || event->keyval == GDK_Up) {
+    return FALSE;
+  }
+
+  if (isprint(*event->string))
+    append_to_input_buffer(event->string);
+
+  GtkMenuShell* menu = (GtkMenuShell *) history_menu;
+  GList* element = menu->children;
+  GtkMenuItem *menu_item, *first_match = 0;
+
+  const gchar* menu_label;
+  int count, match_count = 0;
+  char* match;
+
+  while (element->next != NULL && count < prefs.items_menu) {
+    menu_item = (GtkMenuItem *) element->data;
+    menu_label = gtk_menu_item_get_label(menu_item);
+
+    gtk_menu_item_deselect(menu_item);
+
+    match = strcasestr(menu_label, input_buffer);
+    if (match) {
+      if (!first_match)
+        first_match = menu_item;
+      match_count++;
+      underline_match(match, menu_item, menu_label);
+      gtk_widget_set_sensitive(menu_item, true);
+    } else {
+      gtk_widget_set_sensitive(menu_item, false);
+    }
+    element = element->next;
+    count++;
+  }
+
+  if (first_match && match_count != prefs.items_menu) {
+    gtk_menu_item_select(first_match);
+    menu->active_menu_item = (GtkWidget *) first_match;
+    return TRUE;
+  }
+  return FALSE;
 }
 
 gboolean selected_by_digit(const GtkWidget *history_menu, const GdkEventKey *event) {
@@ -638,10 +654,17 @@ static void toggle_offline_mode() {
 	save_preferences();
 }
 
+/* When the menu is closed, clear the input buffer */
+gboolean menu_destroyed(const GtkWidget *history_menu, const GdkEventKey *event) {
+  clear_input_buffer();
+  return FALSE;
+}
+
 static GtkWidget *create_history_menu(GtkWidget *history_menu) {
 	GtkWidget *menu_item, *item_label;
 	history_menu = gtk_menu_new();
 	g_signal_connect((GObject*)history_menu, "key-press-event", (GCallback)menu_key_pressed, NULL);
+	g_signal_connect((GObject*)history_menu, "destroy", (GCallback)menu_destroyed, NULL);
 
 	/* Items */
 	if ((history != NULL) && (history->data != NULL))
@@ -967,8 +990,8 @@ int main(int argc, char **argv) {
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
 
-    prefix_buffer[0] = '\0';
-    prefix_index = 0;
+  input_buffer[0] = '\0';
+  input_index = 0;
 
 	/* Initiate GTK+ */
 	gtk_init(&argc, &argv);
