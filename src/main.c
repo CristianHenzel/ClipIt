@@ -1029,7 +1029,6 @@ int main(int argc, char **argv) {
 				return 0;
 			}
 			g_string_free(piped_string, TRUE);
-			return -1;
 		}
 	}
 

@@ -118,7 +118,7 @@ GString *remove_newlines_string(GString *string)
 gboolean parse_options(int argc, char* argv[])
 {
 	/* Declare argument options and argument variables */
-	gboolean icon = FALSE, daemon = FALSE,
+	gboolean no_icon = FALSE, daemon = FALSE,
 		clipboard = FALSE, primary = FALSE,
 		exit = FALSE;
 
@@ -135,7 +135,7 @@ gboolean parse_options(int argc, char* argv[])
 			"no-icon", 'n',
 			0,
 			G_OPTION_ARG_NONE,
-			&icon, _("Do not use status icon (Ctrl-Alt-P for menu)"),
+			&no_icon, _("Do not use status icon (Ctrl-Alt-P for menu)"),
 			NULL
 		},
 		{
@@ -177,7 +177,7 @@ gboolean parse_options(int argc, char* argv[])
 	/* Check which options were parseed */
 
 	/* Do not display icon option */
-	if (icon)
+	if (no_icon)
 	{
 		prefs.no_icon = TRUE;
 	}
