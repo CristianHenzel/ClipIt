@@ -1041,6 +1041,9 @@ int main(int argc, char **argv) {
 	/* Init ClipIt */
 	clipit_init();
 
+  /* Create the history_timeout_timer if applicable */
+  init_history_timeout_timer();
+
 	/* Run GTK+ loop */
 	gtk_main();
 

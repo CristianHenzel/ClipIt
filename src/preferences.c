@@ -38,6 +38,8 @@ GtkWidget *copy_check,
           *save_uris_check,
           *use_rmb_menu_check,
           *history_spin,
+          *history_timeout_check,
+          *history_timeout_spin,
           *items_menu,
           *statics_show_check,
           *statics_items_spin,
@@ -58,6 +60,9 @@ GtkListStore* actions_list;
 GtkTreeSelection* actions_selection;
 GtkListStore* exclude_list;
 GtkTreeSelection* exclude_selection;
+
+/* Reference to the current history_timeout_timer */
+guint history_timeout_timer;
 
 /* Apply the new preferences */
 static void apply_preferences()
@@ -89,6 +94,8 @@ static void apply_preferences()
   prefs.use_rmb_menu = gtk_toggle_button_get_active((GtkToggleButton*)use_rmb_menu_check);
   prefs.save_history = gtk_toggle_button_get_active((GtkToggleButton*)save_check);
   prefs.history_limit = gtk_spin_button_get_value_as_int((GtkSpinButton*)history_spin);
+  prefs.history_timeout_seconds = gtk_spin_button_get_value_as_int((GtkSpinButton*)history_timeout_spin);
+  prefs.history_timeout = gtk_toggle_button_get_active((GtkToggleButton*)history_timeout_check);
   prefs.items_menu = gtk_spin_button_get_value_as_int((GtkSpinButton*)items_menu);
   prefs.statics_show = gtk_toggle_button_get_active((GtkToggleButton*)statics_show_check);
   prefs.statics_items = gtk_spin_button_get_value_as_int((GtkSpinButton*)statics_items_spin);
@@ -129,6 +136,8 @@ void save_preferences()
   g_key_file_set_boolean(rc_key, "rc", "use_rmb_menu", prefs.use_rmb_menu);
   g_key_file_set_boolean(rc_key, "rc", "save_history", prefs.save_history);
   g_key_file_set_integer(rc_key, "rc", "history_limit", prefs.history_limit);
+  g_key_file_set_integer(rc_key, "rc", "history_timeout_seconds", prefs.history_timeout_seconds);
+  g_key_file_set_boolean(rc_key, "rc", "history_timeout", prefs.history_timeout);
   g_key_file_set_integer(rc_key, "rc", "items_menu", prefs.items_menu);
   g_key_file_set_boolean(rc_key, "rc", "statics_show", prefs.statics_show);
   g_key_file_set_integer(rc_key, "rc", "statics_items", prefs.statics_items);
@@ -239,6 +248,8 @@ void read_preferences()
     prefs.use_rmb_menu = g_key_file_get_boolean(rc_key, "rc", "use_rmb_menu", NULL);
     prefs.save_history = g_key_file_get_boolean(rc_key, "rc", "save_history", NULL);
     prefs.history_limit = g_key_file_get_integer(rc_key, "rc", "history_limit", NULL);
+    prefs.history_timeout = g_key_file_get_boolean(rc_key, "rc", "history_timeout", NULL);
+    prefs.history_timeout_seconds = g_key_file_get_integer(rc_key, "rc", "history_timeout_seconds", NULL);
     prefs.items_menu = g_key_file_get_integer(rc_key, "rc", "items_menu", NULL);
     prefs.statics_show = g_key_file_get_boolean(rc_key, "rc", "statics_show", NULL);
     prefs.statics_items = g_key_file_get_integer(rc_key, "rc", "statics_items", NULL);
@@ -258,6 +269,10 @@ void read_preferences()
     /* Check for errors and set default values if any */
     if ((!prefs.history_limit) || (prefs.history_limit > 1000) || (prefs.history_limit < 0))
       prefs.history_limit = DEF_HISTORY_LIMIT;
+    if (!prefs.history_timeout)
+      prefs.history_timeout = DEF_HISTORY_TIMEOUT;
+    if (!prefs.history_timeout_seconds)
+      prefs.history_timeout_seconds = DEF_HISTORY_TIMEOUT_SECONDS;
     if ((!prefs.items_menu) || (prefs.items_menu > 1000) || (prefs.items_menu < 0))
       prefs.items_menu = DEF_ITEMS_MENU;
     if ((!prefs.item_length) || (prefs.item_length > 75) || (prefs.item_length < 0))
@@ -397,6 +412,69 @@ static void check_toggled(GtkToggleButton *togglebutton, gpointer user_data)
     gtk_widget_set_sensitive((GtkWidget*)statics_items_spin, TRUE);
   } else {
     gtk_widget_set_sensitive((GtkWidget*)statics_items_spin, FALSE);
+  }
+  /* If history_timeout is disabled, prevent interaction with the history_timeout_spinner */
+  if (gtk_toggle_button_get_active((GtkToggleButton*)history_timeout_check)) {
+    gtk_widget_set_sensitive((GtkWidget*)history_timeout_spin, TRUE);
+  } else {
+    gtk_widget_set_sensitive((GtkWidget*)history_timeout_spin, FALSE);
+  }
+}
+
+
+static void start_purge_timer(gint timeout_seconds);
+static void stop_purge_timer();
+
+/* Purge history if history_timeout is enabled. This function is called every prefs.history_timeout_seconds */
+static gboolean purge_history() {
+    if (prefs.history_timeout) {
+      g_list_free(history);
+      history = NULL;
+      save_history();
+      clear_main_data();
+      return TRUE;
+    }
+  stop_purge_timer();
+  return FALSE;
+}
+
+/* Start the history_purge_timer. If another timer exists, it will be replaced */
+void start_purge_timer(gint timeout_seconds) {
+  if (history_timeout_timer)
+    g_source_remove(history_timeout_timer);
+  history_timeout_timer = g_timeout_add_seconds(timeout_seconds, purge_history, NULL);
+}
+
+/* Stop the history_purge_timer. If no timer exists, nothing is done */
+static void stop_purge_timer() {
+  if (history_timeout_timer) {
+    g_source_remove(history_timeout_timer);
+    history_timeout_timer = 0;
+  }
+}
+
+/* When the history_timeout_spin's value changes, create a new history_timeout_timer with the updated value */
+static void handle_history_spinner(GtkSpinButton *spinbutton, gpointer user_data) {
+  gint spinner_value = gtk_spin_button_get_value_as_int((GtkSpinButton*)history_timeout_spin);
+  if (gtk_toggle_button_get_active((GtkToggleButton*)history_timeout_check))
+    start_purge_timer(spinner_value);
+}
+
+/* When the history_timeout_check button is toggled, either start or stop the history_timeout_timer */
+static void handle_history_purge_toggle(GtkWidget *togglebutton, gpointer user_data) {
+  if (gtk_toggle_button_get_active((GtkToggleButton*)history_timeout_check)) {
+    gint spinner_value = gtk_spin_button_get_value_as_int((GtkSpinButton*)history_timeout_spin);
+    save_preferences();
+    start_purge_timer(spinner_value);
+  } else {
+    stop_purge_timer();
+  }
+}
+
+/* Initialize the history_timeout_timer on startup */
+void init_history_timeout_timer() {
+  if (prefs.history_timeout) {
+    start_purge_timer(prefs.history_timeout_seconds);
   }
 }
 
@@ -769,6 +847,22 @@ void show_preferences(gint tab) {
   gtk_spin_button_set_update_policy((GtkSpinButton*)statics_items_spin, GTK_UPDATE_IF_VALID);
   gtk_box_pack_start((GtkBox*)hbox, statics_items_spin, FALSE, FALSE, 0);
   gtk_box_pack_start((GtkBox*)vbox_history, frame, FALSE, FALSE, 0);
+  history_timeout_check = gtk_check_button_new_with_mnemonic(_("Purge history after _timeout"));
+  g_signal_connect((GObject*)history_timeout_check, "toggled", (GCallback)check_toggled, NULL);
+  g_signal_connect((GObject*)history_timeout_check, "toggled", (GCallback)handle_history_purge_toggle, NULL);
+  gtk_box_pack_start((GtkBox*)vbox, history_timeout_check, FALSE, FALSE, 0);
+  hbox = gtk_hbox_new(FALSE, 4);
+  gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
+  label = gtk_label_new(_("Timeout seconds"));
+  gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
+  gtk_box_pack_start((GtkBox*)hbox, label, FALSE, FALSE, 0);
+  adjustment_small = gtk_adjustment_new(0, 1, 100, 1, 10, 0);
+  history_timeout_spin = gtk_spin_button_new((GtkAdjustment*)adjustment_small, 0.0, 0);
+  g_signal_connect((GObject*)history_timeout_spin, "value-changed", (GCallback)handle_history_spinner, NULL);
+  gtk_spin_button_set_update_policy((GtkSpinButton*)history_timeout_spin, GTK_UPDATE_IF_VALID);
+  gtk_box_pack_start((GtkBox*)hbox, history_timeout_spin, FALSE, FALSE, 0);
+
+
 
   /* Build the items frame */
   frame = gtk_frame_new(NULL);
@@ -1024,7 +1118,9 @@ void show_preferences(gint tab) {
   gtk_toggle_button_set_active((GtkToggleButton*)save_uris_check, prefs.save_uris);
   gtk_toggle_button_set_active((GtkToggleButton*)use_rmb_menu_check, prefs.use_rmb_menu);
   gtk_toggle_button_set_active((GtkToggleButton*)save_check, prefs.save_history);
+  gtk_toggle_button_set_active((GtkToggleButton*)history_timeout_check, prefs.history_timeout);
   gtk_spin_button_set_value((GtkSpinButton*)history_spin, (gdouble)prefs.history_limit);
+  gtk_spin_button_set_value((GtkSpinButton*)history_timeout_spin, (gdouble)prefs.history_timeout_seconds);
   gtk_spin_button_set_value((GtkSpinButton*)items_menu, (gdouble)prefs.items_menu);
   gtk_toggle_button_set_active((GtkToggleButton*)statics_show_check, prefs.statics_show);
   gtk_spin_button_set_value((GtkSpinButton*)statics_items_spin, (gdouble)prefs.statics_items);
