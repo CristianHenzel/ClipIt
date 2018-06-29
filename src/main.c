@@ -755,7 +755,7 @@ static GtkWidget *create_history_menu(GtkWidget *history_menu) {
 				element_number--;
 			else
 				element_number++;
-				element_number_small++;
+			element_number_small++;
 		}
 		/* Cleanup */
 		g_free(primary_temp);
