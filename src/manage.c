@@ -141,7 +141,7 @@ static void edit_selected()
                                                     GTK_STOCK_OK,           GTK_RESPONSE_ACCEPT, NULL);
 
     gtk_window_set_default_size((GtkWindow*)dialog, 450, 300);
-    gtk_window_set_icon((GtkWindow*)dialog, gtk_widget_render_icon(dialog, GTK_STOCK_EDIT, GTK_ICON_SIZE_MENU, NULL));
+    gtk_window_set_icon((GtkWindow*)dialog, gtk_widget_render_icon_pixbuf(dialog, GTK_STOCK_EDIT, GTK_ICON_SIZE_MENU));
 
     /* Build the scrolled window with the text view */
     GtkWidget* scrolled_window = gtk_scrolled_window_new((GtkAdjustment*) gtk_adjustment_new(0, 0, 0, 0, 0, 0),
@@ -349,7 +349,7 @@ gboolean show_search()
   /* Create the dialog */
   GtkWidget* search_dialog = gtk_dialog_new();
 
-  gtk_window_set_icon((GtkWindow*)search_dialog, gtk_widget_render_icon(search_dialog, GTK_STOCK_FIND, GTK_ICON_SIZE_MENU, NULL));
+  gtk_window_set_icon((GtkWindow*)search_dialog, gtk_widget_render_icon_pixbuf(search_dialog, GTK_STOCK_FIND, GTK_ICON_SIZE_MENU));
   gchar *orig_title = _("Manage History");
   gchar *title = 0;
   if (prefs.offline_mode)
