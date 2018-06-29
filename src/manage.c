@@ -371,7 +371,7 @@ gboolean show_search()
   gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area (GTK_DIALOG(search_dialog))), vbox_search, TRUE, TRUE, 2);
   gtk_widget_set_size_request((GtkWidget*)vbox_search, 400, win_height);
 
-  hbox = gtk_hbox_new(TRUE, 4);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start((GtkBox*)vbox_search, hbox, FALSE, FALSE, 0);
   search_entry = gtk_entry_new();
   gtk_box_pack_end((GtkBox*)hbox, search_entry, TRUE, TRUE, 0);
