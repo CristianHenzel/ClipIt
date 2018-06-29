@@ -571,7 +571,7 @@ gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *eve
   GtkMenuItem *menu_item, *first_match = 0;
 
   const gchar* menu_label;
-  int count, match_count = 0;
+  int count = 0, match_count = 0;
   char* match;
 
   while (element->next != NULL && count < prefs.items_menu) {
