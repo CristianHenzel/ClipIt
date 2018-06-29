@@ -367,7 +367,7 @@ gboolean show_search()
   if (win_height > screen_height)
     win_height = screen_height;
 
-  GtkWidget* vbox_search = gtk_vbox_new(FALSE, 10);
+  GtkWidget* vbox_search = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
   gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area (GTK_DIALOG(search_dialog))), vbox_search, TRUE, TRUE, 2);
   gtk_widget_set_size_request((GtkWidget*)vbox_search, 400, win_height);
 
