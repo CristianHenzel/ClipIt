@@ -323,7 +323,7 @@ static void show_about_dialog(GtkMenuItem *menu_item, gpointer user_data) {
     /* Create the about dialog */
     GtkWidget* about_dialog = gtk_about_dialog_new();
     gtk_window_set_icon((GtkWindow*)about_dialog,
-                        gtk_widget_render_icon(about_dialog, GTK_STOCK_ABOUT, GTK_ICON_SIZE_MENU, NULL));
+                        gtk_widget_render_icon_pixbuf(about_dialog, GTK_STOCK_ABOUT, GTK_ICON_SIZE_MENU));
 
     gtk_about_dialog_set_program_name((GtkAboutDialog*)about_dialog, "ClipIt");
     #ifdef HAVE_CONFIG_H
