@@ -743,7 +743,7 @@ void show_preferences(gint tab) {
   GtkWidget* page_settings = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)page_settings, 12, 6, 12, 6);
   gtk_notebook_append_page((GtkNotebook*)notebook, page_settings, gtk_label_new(_("Settings")));
-  GtkWidget* vbox_settings = gtk_vbox_new(FALSE, 12);
+  GtkWidget* vbox_settings = gtk_box_new(GTK_ORIENTATION_VERTICAL, 12);
   gtk_container_add((GtkContainer*)page_settings, vbox_settings);
 
   /* Build the clipboards frame */
@@ -755,7 +755,7 @@ void show_preferences(gint tab) {
   alignment = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)alignment, 12, 0, 12, 0);
   gtk_container_add((GtkContainer*)frame, alignment);
-  vbox = gtk_vbox_new(FALSE, 2);
+  vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 2);
   gtk_container_add((GtkContainer*)alignment, vbox);
   copy_check = gtk_check_button_new_with_mnemonic(_("Use _Copy (Ctrl-C)"));
   g_signal_connect((GObject*)copy_check, "toggled", (GCallback)check_toggled, NULL);
@@ -779,7 +779,7 @@ void show_preferences(gint tab) {
   alignment = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)alignment, 12, 0, 12, 0);
   gtk_container_add((GtkContainer*)frame, alignment);
-  vbox = gtk_vbox_new(FALSE, 2);
+  vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 2);
   gtk_container_add((GtkContainer*)alignment, vbox);
   show_indexes_check = gtk_check_button_new_with_mnemonic(_("Show _indexes in history menu"));
   gtk_box_pack_start((GtkBox*)vbox, show_indexes_check, FALSE, FALSE, 0);
@@ -791,7 +791,7 @@ void show_preferences(gint tab) {
   gtk_box_pack_start((GtkBox*)vbox, confirm_check, FALSE, FALSE, 0);
   use_rmb_menu_check = gtk_check_button_new_with_mnemonic(_("_Use right-click menu"));
   gtk_box_pack_start((GtkBox*)vbox, use_rmb_menu_check, FALSE, FALSE, 0);
-  hbox = gtk_hbox_new(FALSE, 4);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
   gtk_box_pack_start((GtkBox*)vbox_settings, frame, FALSE, FALSE, 0);
 
@@ -799,7 +799,7 @@ void show_preferences(gint tab) {
   GtkWidget* page_history = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)page_history, 12, 6, 12, 6);
   gtk_notebook_append_page((GtkNotebook*)notebook, page_history, gtk_label_new(_("History")));
-  GtkWidget* vbox_history = gtk_vbox_new(FALSE, 12);
+  GtkWidget* vbox_history = gtk_box_new(GTK_ORIENTATION_VERTICAL, 12);
   gtk_container_add((GtkContainer*)page_history, vbox_history);
 
   /* Build the history frame */
@@ -811,12 +811,12 @@ void show_preferences(gint tab) {
   alignment = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)alignment, 12, 0, 12, 0);
   gtk_container_add((GtkContainer*)frame, alignment);
-  vbox = gtk_vbox_new(FALSE, 2);
+  vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 2);
   gtk_container_add((GtkContainer*)alignment, vbox);
   save_check = gtk_check_button_new_with_mnemonic(_("Save _history"));
   gtk_widget_set_tooltip_text(save_check, _("Save and restore history between sessions"));
   gtk_box_pack_start((GtkBox*)vbox, save_check, FALSE, FALSE, 0);
-  hbox = gtk_hbox_new(FALSE, 4);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
   label = gtk_label_new(_("Items in history:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
@@ -825,7 +825,7 @@ void show_preferences(gint tab) {
   history_spin = gtk_spin_button_new((GtkAdjustment*)adjustment, 0.0, 0);
   gtk_spin_button_set_update_policy((GtkSpinButton*)history_spin, GTK_UPDATE_IF_VALID);
   gtk_box_pack_start((GtkBox*)hbox, history_spin, FALSE, FALSE, 0);
-  hbox = gtk_hbox_new(FALSE, 4);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
   label = gtk_label_new(_("Items in menu:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
@@ -837,7 +837,7 @@ void show_preferences(gint tab) {
   statics_show_check = gtk_check_button_new_with_mnemonic(_("Show _static items in menu"));
   g_signal_connect((GObject*)statics_show_check, "toggled", (GCallback)check_toggled, NULL);
   gtk_box_pack_start((GtkBox*)vbox, statics_show_check, FALSE, FALSE, 0);
-  hbox = gtk_hbox_new(FALSE, 4);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
   label = gtk_label_new(_("Static items in menu:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
@@ -851,7 +851,7 @@ void show_preferences(gint tab) {
   g_signal_connect((GObject*)history_timeout_check, "toggled", (GCallback)check_toggled, NULL);
   g_signal_connect((GObject*)history_timeout_check, "toggled", (GCallback)handle_history_purge_toggle, NULL);
   gtk_box_pack_start((GtkBox*)vbox, history_timeout_check, FALSE, FALSE, 0);
-  hbox = gtk_hbox_new(FALSE, 4);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
   label = gtk_label_new(_("Timeout seconds"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
@@ -873,13 +873,13 @@ void show_preferences(gint tab) {
   alignment = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)alignment, 12, 0, 12, 0);
   gtk_container_add((GtkContainer*)frame, alignment);
-  vbox = gtk_vbox_new(FALSE, 2);
+  vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 2);
   gtk_container_add((GtkContainer*)alignment, vbox);
   linemode_check = gtk_check_button_new_with_mnemonic(_("Show in a single _line"));
   gtk_box_pack_start((GtkBox*)vbox, linemode_check, FALSE, FALSE, 0);
   reverse_check = gtk_check_button_new_with_mnemonic(_("Show in _reverse order"));
   gtk_box_pack_start((GtkBox*)vbox, reverse_check, FALSE, FALSE, 0);
-  hbox = gtk_hbox_new(FALSE, 4);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
   label = gtk_label_new(_("Character length of items:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
@@ -888,7 +888,7 @@ void show_preferences(gint tab) {
   charlength_spin = gtk_spin_button_new((GtkAdjustment*)adjustment, 0.0, 0);
   gtk_spin_button_set_update_policy((GtkSpinButton*)charlength_spin, GTK_UPDATE_IF_VALID);
   gtk_box_pack_start((GtkBox*)hbox, charlength_spin, FALSE, FALSE, 0);
-  hbox = gtk_hbox_new(FALSE, 4);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
   label = gtk_label_new(_("Omit items in the:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
@@ -909,9 +909,9 @@ void show_preferences(gint tab) {
   alignment = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)alignment, 12, 0, 12, 0);
   gtk_container_add((GtkContainer*)frame, alignment);
-  vbox = gtk_vbox_new(FALSE, 2);
+  vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 2);
   gtk_container_add((GtkContainer*)alignment, vbox);
-  hbox = gtk_hbox_new(FALSE, 4);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
   label = gtk_label_new(_("Omit items in the:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
@@ -927,7 +927,7 @@ void show_preferences(gint tab) {
   GtkWidget* page_actions = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)page_actions, 6, 6, 6, 6);
   gtk_notebook_append_page((GtkNotebook*)notebook, page_actions, gtk_label_new(_("Actions")));
-  GtkWidget* vbox_actions = gtk_vbox_new(FALSE, 6);
+  GtkWidget* vbox_actions = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
   gtk_container_add((GtkContainer*)page_actions, vbox_actions);
 
   /* Build the actions label */
@@ -995,7 +995,7 @@ void show_preferences(gint tab) {
   GtkWidget* page_exclude = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)page_exclude, 6, 6, 6, 6);
   gtk_notebook_append_page((GtkNotebook*)notebook, page_exclude, gtk_label_new(_("Exclude")));
-  GtkWidget* vbox_exclude = gtk_vbox_new(FALSE, 6);
+  GtkWidget* vbox_exclude = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
   gtk_container_add((GtkContainer*)page_exclude, vbox_exclude);
 
   /* Build the exclude label */
@@ -1048,7 +1048,7 @@ void show_preferences(gint tab) {
   GtkWidget* page_extras = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)page_extras, 12, 6, 12, 6);
   gtk_notebook_append_page((GtkNotebook*)notebook, page_extras, gtk_label_new(_("Hotkeys")));
-  GtkWidget* vbox_extras = gtk_vbox_new(FALSE, 12);
+  GtkWidget* vbox_extras = gtk_box_new(GTK_ORIENTATION_VERTICAL, 12);
   gtk_container_add((GtkContainer*)page_extras, vbox_extras);
 
   /* Build the hotkeys frame */
@@ -1060,7 +1060,7 @@ void show_preferences(gint tab) {
   alignment = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)alignment, 12, 0, 12, 0);
   gtk_container_add((GtkContainer*)frame, alignment);
-  vbox = gtk_vbox_new(FALSE, 2);
+  vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 2);
   gtk_container_add((GtkContainer*)alignment, vbox);
   /* History key combination */
   hbox = gtk_hbox_new(TRUE, 4);
