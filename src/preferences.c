@@ -728,7 +728,7 @@ void show_preferences(gint tab) {
                                                     GTK_STOCK_CANCEL,   GTK_RESPONSE_REJECT,
                                                     GTK_STOCK_OK,       GTK_RESPONSE_ACCEPT, NULL);
 
-  gtk_window_set_icon((GtkWindow*)dialog, gtk_widget_render_icon(dialog, GTK_STOCK_PREFERENCES, GTK_ICON_SIZE_MENU, NULL));
+  gtk_window_set_icon((GtkWindow*)dialog, gtk_widget_render_icon_pixbuf(dialog, GTK_STOCK_PREFERENCES, GTK_ICON_SIZE_MENU));
   gtk_window_set_resizable((GtkWindow*)dialog, FALSE);
 
   /* Create notebook */
