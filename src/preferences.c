@@ -1063,7 +1063,7 @@ void show_preferences(gint tab) {
   vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 2);
   gtk_container_add((GtkContainer*)alignment, vbox);
   /* History key combination */
-  hbox = gtk_hbox_new(TRUE, 4);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
   label = gtk_label_new(_("History hotkey:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
@@ -1072,7 +1072,7 @@ void show_preferences(gint tab) {
   gtk_entry_set_width_chars((GtkEntry*)history_key_entry, 10);
   gtk_box_pack_end((GtkBox*)hbox, history_key_entry, TRUE, TRUE, 0);
   /* Actions key combination */
-  hbox = gtk_hbox_new(TRUE, 4);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
   label = gtk_label_new(_("Actions hotkey:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
@@ -1081,7 +1081,7 @@ void show_preferences(gint tab) {
   gtk_entry_set_width_chars((GtkEntry*)actions_key_entry, 10);
   gtk_box_pack_end((GtkBox*)hbox, actions_key_entry, TRUE, TRUE, 0);
   /* Menu key combination */
-  hbox = gtk_hbox_new(TRUE, 4);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
   label = gtk_label_new(_("Menu hotkey:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
@@ -1090,7 +1090,7 @@ void show_preferences(gint tab) {
   gtk_entry_set_width_chars((GtkEntry*)menu_key_entry, 10);
   gtk_box_pack_end((GtkBox*)hbox, menu_key_entry, TRUE, TRUE, 0);
   /* Search key combination */
-  hbox = gtk_hbox_new(TRUE, 4);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
   label = gtk_label_new(_("Manage hotkey:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
@@ -1099,7 +1099,7 @@ void show_preferences(gint tab) {
   gtk_entry_set_width_chars((GtkEntry*)search_key_entry, 10);
   gtk_box_pack_end((GtkBox*)hbox, search_key_entry, TRUE, TRUE, 0);
   /* Offline mode key combination */
-  hbox = gtk_hbox_new(TRUE, 4);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start((GtkBox*)vbox, hbox, FALSE, FALSE, 0);
   label = gtk_label_new(_("Offline mode hotkey:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
