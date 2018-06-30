@@ -53,7 +53,17 @@ static void daemon_check()
 	{
 		/* Get the button state to check if the mouse button is being held */
 		GdkModifierType button_state;
-		gdk_window_get_pointer(NULL, NULL, NULL, &button_state);
+		GdkScreen *screen = gdk_screen_get_default();
+		if (screen)
+		{
+			GdkDisplay *display = gdk_screen_get_display(screen);
+			GdkWindow *window = gdk_screen_get_root_window(screen);
+			GdkSeat *seat = gdk_display_get_default_seat(display);
+
+			gdk_window_get_device_position(window, gdk_seat_get_pointer(seat), NULL,
+				NULL, &button_state);
+		}
+
 		if ((primary_temp != NULL) && !(button_state & GDK_BUTTON1_MASK))
 		{
 			g_free(primary_text);
