@@ -24,7 +24,6 @@
 #include "daemon.h"
 
 
-static gint timeout_id;
 static gchar *primary_text;
 static gchar *clipboard_text;
 static GtkClipboard *primary;
@@ -92,19 +91,6 @@ static void daemon_check()
 	g_free(clipboard_temp);
 }
 
-/* Called if timeout was destroyed */
-static void reset_daemon(gpointer data)
-{
-	if (timeout_id != 0)
-		g_source_remove(timeout_id);
-	/* Add the daemon loop */
-	timeout_id = g_timeout_add_full(G_PRIORITY_LOW,
-					DAEMON_INTERVAL,
-					(GSourceFunc)daemon_check,
-					NULL,
-					(GDestroyNotify)reset_daemon);
-}
-
 /* Initializes daemon mode */
 void init_daemon_mode()
 {
@@ -112,11 +98,9 @@ void init_daemon_mode()
 	primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
 	clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
 	/* Add the daemon loop */
-	timeout_id = g_timeout_add_full(G_PRIORITY_LOW,
-					DAEMON_INTERVAL,
-					(GSourceFunc)daemon_check,
-					NULL,
-					(GDestroyNotify)reset_daemon);
+	/* Register for clipboard change events */
+	g_signal_connect(primary, "owner-change", G_CALLBACK(daemon_check), NULL);
+	g_signal_connect(clipboard, "owner-change", G_CALLBACK(daemon_check), NULL);
 
 	/* Start daemon loop */
 	gtk_main();

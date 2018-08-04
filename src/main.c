@@ -982,7 +982,8 @@ static void clipit_init() {
 	/* Create clipboard */
 	primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
 	clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
-	g_timeout_add(CHECK_INTERVAL, item_check, NULL);
+	g_signal_connect(primary, "owner-change", G_CALLBACK(item_check), NULL);
+	g_signal_connect(clipboard, "owner-change", G_CALLBACK(item_check), NULL);
 
 	/* Read preferences */
 	read_preferences();
