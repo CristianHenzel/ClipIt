@@ -68,6 +68,8 @@ typedef struct {
   gchar*    search_key;               /* ClipIt search hotkey */
   gchar*    offline_key;              /* ClipIt offline mode hotkey */
 
+  gchar*    exclude_windows;          /* Exclude clipboard content from windows, whose name matches this regexp */
+
   gboolean  no_icon;                  /* No icon */
 
   gboolean  offline_mode;             /* Offline mode */

@@ -27,6 +27,7 @@
 #include <glib.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
+#include <X11/Xlib.h>
 #include <X11/keysym.h>
 #ifdef HAVE_APPINDICATOR
 #include <libappindicator/app-indicator.h>
@@ -43,6 +44,9 @@
 #include <stdbool.h>
 #include <string.h>
 
+#define s_PRIMARY   "PRIMARY"
+#define s_CLIPBOARD "CLIPBOARD"
+
 static gchar* primary_text;
 static gchar* clipboard_text;
 static gchar* synchronized_text;
@@ -58,6 +62,10 @@ static gboolean status_menu_lock = FALSE;
 #endif
 
 static gboolean actions_lock = FALSE;
+
+static Atom a_Primary = None;
+static Atom a_Clipboard = None;
+static Display *display = NULL;
 
 /* Init preferences structure */
 prefs_t prefs = {DEF_USE_COPY,
@@ -102,6 +110,33 @@ gboolean selected_by_digit(const GtkWidget *history_menu, const GdkEventKey *eve
  * Only the first match will be activated.
  * */
 gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *event) ;
+
+/* Determine, if given selection comes from excluded window. */
+static gboolean is_selection_from_excluded_window(Atom selection_type) {
+  gboolean excluded = FALSE;
+
+  char* window_name = NULL;
+  Window window = XGetSelectionOwner(display, selection_type);
+
+  if (window != None)
+  {
+    XFetchName(display, window, &window_name);
+  }
+
+  if (window_name) {
+    GRegex *regexp = NULL;
+    if (prefs.exclude_windows && strlen(prefs.exclude_windows) > 0) {
+      regexp = g_regex_new(prefs.exclude_windows, G_REGEX_CASELESS, 0, NULL);
+      if (regexp) {
+        excluded = g_regex_match(regexp, window_name, 0, NULL);
+        g_regex_unref(regexp);
+      }
+    }
+    XFree(window_name);
+  }
+
+  return excluded;
+}
 
 /* Called every CHECK_INTERVAL seconds to check for new items */
 static gboolean item_check(gpointer data) {
@@ -155,7 +190,8 @@ static gboolean item_check(gpointer data) {
     }
 
     /* Proceed if mouse button not being held */
-    if ((primary_temp != NULL) && !(button_state & GDK_BUTTON1_MASK))
+    if ((primary_temp != NULL) && !(button_state & GDK_BUTTON1_MASK) &&
+      !is_selection_from_excluded_window(a_Primary))
     {
       /* Check if primary is the same as the last entry */
       if (g_strcmp0(primary_temp, primary_text) != 0)
@@ -190,7 +226,8 @@ static gboolean item_check(gpointer data) {
   else
   {
     /* Check if clipboard is the same as the last entry */
-    if (g_strcmp0(clipboard_temp, clipboard_text) != 0)
+    if (g_strcmp0(clipboard_temp, clipboard_text) != 0 &&
+      !is_selection_from_excluded_window(a_Clipboard))
     {
       /* New clipboard entry */
       g_free(clipboard_text);
@@ -984,6 +1021,10 @@ static void clipit_init() {
 	clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
 	g_timeout_add(CHECK_INTERVAL, item_check, NULL);
 
+  display = XOpenDisplay(NULL);
+  a_Primary = XInternAtom(display, s_PRIMARY, True);
+  a_Clipboard = XInternAtom(display, s_CLIPBOARD, True);
+
 	/* Read preferences */
 	read_preferences();
 
@@ -1092,6 +1133,8 @@ int main(int argc, char **argv) {
 	g_free(primary_text);
 	g_free(clipboard_text);
 	g_free(synchronized_text);
+
+  XCloseDisplay(display);
 
 	/* Exit */
 	return 0;
