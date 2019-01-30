@@ -32,7 +32,7 @@
 #include "preferences.h"
 #include "clipit-i18n.h"
 
-GtkListStore *search_list;
+GtkListStore *search_list = NULL;
 GtkWidget *search_entry;
 GtkWidget *treeview_search;
 
@@ -46,6 +46,8 @@ static void add_iter(GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *piter,
 /* Search through the history */
 static void search_history()
 {
+  gtk_list_store_clear(search_list);
+
   guint16 search_len = gtk_entry_get_text_length((GtkEntry*)search_entry);
   /* Test if there is text in the search box */
   if(search_len > 0)
@@ -53,9 +55,7 @@ static void search_history()
     if ((history != NULL) && (history->data != NULL))
     {
       char* search_input = (char *)g_strdup(gtk_entry_get_text((GtkEntry*)search_entry));
-      GtkTreeIter search_iter;
-      while(gtk_tree_model_get_iter_first((GtkTreeModel*)search_list, &search_iter))
-        gtk_list_store_remove(search_list, &search_iter);
+      gchar* strn_find = g_utf8_strdown(search_input, search_len);
 
       /* Declare some variables */
       GList* element;
@@ -66,7 +66,6 @@ static void search_history()
         history_item *elem_data = element->data;
         GString* string = g_string_new((gchar*)elem_data->content);
         gchar* strn_cmp_to = g_utf8_strdown(string->str, string->len);
-        gchar* strn_find = g_utf8_strdown(search_input, search_len);
         char* result = strstr(strn_cmp_to, strn_find);
         if(result)
         {
@@ -77,10 +76,15 @@ static void search_history()
           int row_num = g_list_position(history, element);
           gtk_list_store_set(search_list, &row_iter, 0, row_num, 1, string->str, -1);
         }
+        g_free(strn_cmp_to);
+
         /* Prepare for next item */
         g_string_free(string, TRUE);
         element_number++;
       }
+
+      g_free(strn_find);
+      g_free(search_input);
     }
   }
   else
@@ -88,11 +92,6 @@ static void search_history()
     /* If nothing is searched for, we show all items */
     if ((history != NULL) && (history->data != NULL))
     {
-      GtkTreeIter search_iter;
-      /* First, we remove all items */
-      while(gtk_tree_model_get_iter_first((GtkTreeModel*)search_list, &search_iter))
-        gtk_list_store_remove(search_list, &search_iter);
-
       /* Declare some variables */
       GList *element;
       /* Go through each element and adding each */
@@ -386,7 +385,9 @@ gboolean show_search()
   gtk_scrolled_window_set_shadow_type((GtkScrolledWindow*)scrolled_window_search, GTK_SHADOW_ETCHED_OUT);
   treeview_search = gtk_tree_view_new();
   gtk_tree_view_set_rules_hint((GtkTreeView*)treeview_search, TRUE);
-  search_list = gtk_list_store_new(2, G_TYPE_UINT, G_TYPE_STRING);
+  if (!search_list) {
+    search_list = gtk_list_store_new(2, G_TYPE_UINT, G_TYPE_STRING);
+  }
   gtk_tree_view_set_model((GtkTreeView*)treeview_search, (GtkTreeModel*)search_list);
   GtkCellRenderer* cell_renderer = gtk_cell_renderer_text_new();
   tree_column = gtk_tree_view_column_new_with_attributes("ID", cell_renderer, NULL);
