@@ -45,9 +45,6 @@
 #include <stdbool.h>
 #include <string.h>
 
-#define s_PRIMARY   "PRIMARY"
-#define s_CLIPBOARD "CLIPBOARD"
-
 static gchar* primary_text;
 static gchar* clipboard_text;
 static gchar* synchronized_text;
