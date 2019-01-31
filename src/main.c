@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include <X11/Xlib.h>
+#include <X11/Xutil.h>
 #include <X11/keysym.h>
 #ifdef HAVE_APPINDICATOR
 #include <libappindicator/app-indicator.h>
@@ -65,6 +66,7 @@ static gboolean actions_lock = FALSE;
 
 static Atom a_Primary = None;
 static Atom a_Clipboard = None;
+static Atom a_netWmName = None;
 static Display *display = NULL;
 
 /* Init preferences structure */
@@ -94,7 +96,8 @@ prefs_t prefs = {DEF_USE_COPY,
                  INIT_SEARCH_KEY,
                  INIT_OFFLINE_KEY,
                  DEF_NO_ICON,
-                 DEF_OFFLINE_MODE};
+                 DEF_OFFLINE_MODE,
+                 DEF_EXCLUDE_WINDOWS};
 
 /* Variables for input buffer used for matching input to menu items */
 #define MAX_INPUT_BUF_SIZE 100
@@ -109,30 +112,50 @@ gboolean selected_by_digit(const GtkWidget *history_menu, const GdkEventKey *eve
  * As the user types, attempt to match input with the values in the menu.
  * Only the first match will be activated.
  * */
-gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *event) ;
+gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *event);
 
-/* Determine, if given selection comes from excluded window. */
+/* Determine, if selection comes from excluded window. */
 static gboolean is_selection_from_excluded_window(Atom selection_type) {
   gboolean excluded = FALSE;
+  Window window;
+  XTextProperty text_prop_return;
+  gchar* window_name = NULL;
+  int tmp;
 
-  char* window_name = NULL;
-  Window window = XGetSelectionOwner(display, selection_type);
+  window = XGetSelectionOwner(display, selection_type);
 
   if (window != None)
   {
-    XFetchName(display, window, &window_name);
+    // Using _NET_WM_NAME property instead of WM_NAME/XFetchName, because it is guaranted to be UTF-8 encoded.
+    if (XGetTextProperty(display, window, &text_prop_return, a_netWmName))
+    {
+      window_name = (gchar*) text_prop_return.value;
+    }
   }
 
-  if (window_name) {
+  // XGetSelectionOwner doesn't work well for Qt apps. It returns unnamed window outside real app window hierarchy.
+  // Try focused window instead.
+  if (!window_name)
+  {
+    XGetInputFocus(display, &window, &tmp);
+
+    if (XGetTextProperty(display, window, &text_prop_return, a_netWmName))
+    {
+      window_name = (gchar*) text_prop_return.value;
+    }
+  }
+
+  if (window_name)
+  {
     GRegex *regexp = NULL;
-    if (prefs.exclude_windows && strlen(prefs.exclude_windows) > 0) {
+    if (prefs.exclude_windows && strlen(prefs.exclude_windows) > 0)
+    {
       regexp = g_regex_new(prefs.exclude_windows, G_REGEX_CASELESS, 0, NULL);
       if (regexp) {
         excluded = g_regex_match(regexp, window_name, 0, NULL);
         g_regex_unref(regexp);
       }
     }
-    XFree(window_name);
   }
 
   return excluded;
@@ -1022,8 +1045,9 @@ static void clipit_init() {
 	g_timeout_add(CHECK_INTERVAL, item_check, NULL);
 
   display = XOpenDisplay(NULL);
-  a_Primary = XInternAtom(display, s_PRIMARY, True);
-  a_Clipboard = XInternAtom(display, s_CLIPBOARD, True);
+  a_Primary = XInternAtom(display, "PRIMARY", True);
+  a_Clipboard = XInternAtom(display, "CLIPBOARD", True);
+  a_netWmName = XInternAtom(display, "_NET_WM_NAME", True);
 
 	/* Read preferences */
 	read_preferences();

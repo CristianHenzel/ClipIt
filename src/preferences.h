@@ -58,6 +58,7 @@ G_BEGIN_DECLS
 #define DEF_OFFLINE_KEY               "<Ctrl><Alt>O"
 #define DEF_NO_ICON                   FALSE
 #define DEF_OFFLINE_MODE              FALSE
+#define DEF_EXCLUDE_WINDOWS           NULL
 
 #define ACTIONS_FILE          "clipit/actions"
 #define EXCLUDES_FILE         "clipit/excludes"
