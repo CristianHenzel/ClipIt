@@ -3,7 +3,9 @@
 # This file is distributed under the same license as the ClipIt package.
 # 
 # Translators:
-# Richard <ric_m_98@yahoo.fr>, 2011, 2012
+# GenghisKhan <genghiskhan@gmx.ca>, 2013
+# GenghisKhan <genghiskhan@gmx.ca>, 2012
+# GenghisKhan <genghiskhan@gmx.ca>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
@@ -11,12 +13,12 @@ msgstr ""
 "POT-Creation-Date: 2019-02-02 04:12+0200\n"
 "PO-Revision-Date: 2019-02-02 02:14+0000\n"
 "Last-Translator: Cristian Henzel <oss@rspwn.com>\n"
-"Language-Team: French (France) (http://www.transifex.com/shantzu/clipit/language/fr_FR/)\n"
+"Language-Team: Hebrew (http://www.transifex.com/shantzu/clipit/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr_FR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: he\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
 #: ../data/clipit-startup.desktop.in.h:1 ../data/clipit.desktop.in.h:1
 msgid "ClipIt"
@@ -25,186 +27,186 @@ msgstr "ClipIt"
 #: ../data/clipit-startup.desktop.in.h:2 ../data/clipit.desktop.in.h:2
 #: ../src/main.c:1077
 msgid "Clipboard Manager"
-msgstr "Gestionnaire de Presse-Papier"
+msgstr "מנהל לוח גזירה"
 
 #: ../src/main.c:395
 msgid "Lightweight GTK+ clipboard manager."
-msgstr "Gestionnaire de Presse-Papier Léger en GTK +."
+msgstr "מנהל לוח גזירים קל משקל מבוסס ‭GTK+‬."
 
 #. Actions using:
 #: ../src/main.c:465
 msgid "Actions using:"
-msgstr "Scripts utilisant:"
+msgstr "פעולות שבשימוש:"
 
 #. Create menu item for empty clipboard contents
 #: ../src/main.c:474 ../src/main.c:491
 msgid "None"
-msgstr "Aucun"
+msgstr "כלום"
 
 #: ../src/main.c:494
 msgid "<b>None</b>"
-msgstr "<b>Aucun</b>"
+msgstr "<b>כלום</b>"
 
 #. File contained no actions so adding empty
 #. File did not open so adding empty
 #. Nothing in history so adding empty
 #: ../src/main.c:516 ../src/main.c:545 ../src/main.c:832
 msgid "Empty"
-msgstr "Vide"
+msgstr "ריק"
 
 #. Append "Remove all" item
 #: ../src/main.c:552 ../src/main.c:885 ../src/manage.c:407
 msgid "Remove all"
-msgstr "Tout effacer"
+msgstr "טיהור"
 
 #. Edit actions
 #: ../src/main.c:557
 msgid "_Edit actions"
-msgstr "_Editer les actions"
+msgstr "_ערוך פעולות"
 
 #. Offline mode checkbox
 #: ../src/main.c:924
 msgid "_Offline mode"
-msgstr "M_ode hors connexion"
+msgstr "מצב לא _מקוון"
 
 #. Manage history
 #: ../src/main.c:933
 msgid "_Manage history"
-msgstr "_Gérer historique"
+msgstr "_נהל היסטוריה"
 
 #. Create the dialog
 #: ../src/manage.c:138
 msgid "Editing Clipboard"
-msgstr "Éditer le Presse-Papier "
+msgstr "עריכת לוח גזירה"
 
 #: ../src/manage.c:158
 msgid "_Static item"
-msgstr "Elément _Statique"
+msgstr "פריט _נייח"
 
 #: ../src/manage.c:240
 msgid "Clear the history?"
-msgstr "Effacer l'historique?"
+msgstr "לטהר היסטוריה?"
 
 #: ../src/manage.c:241
 msgid "Clear history"
-msgstr "Effacer historique"
+msgstr "טהר היסטוריה"
 
 #: ../src/manage.c:353
 msgid "Manage History"
-msgstr "Gérer l'historique"
+msgstr "ניהול היסטוריה"
 
 #: ../src/manage.c:356
 msgid " (Offline mode)"
-msgstr "(Mode hors connexion)"
+msgstr " (מצב לא מקוון)"
 
 #: ../src/manage.c:398
 msgid "Results"
-msgstr "Résultats"
+msgstr "תוצאות"
 
 #: ../src/manage.c:403
 msgid "Edit"
-msgstr "Modifier"
+msgstr "עריכה"
 
 #: ../src/manage.c:405 ../src/preferences.c:984 ../src/preferences.c:1045
 msgid "Remove"
-msgstr "Enlever"
+msgstr "הסרה"
 
 #: ../src/manage.c:409
 msgid "Close"
-msgstr "Fermer"
+msgstr "סגירה"
 
 #: ../src/preferences.c:182
 msgid "Save history"
-msgstr "Enregistrer l'historique"
+msgstr "שמור היסטוריה"
 
 #: ../src/preferences.c:215
 msgid "Remove history file"
-msgstr "Effacer le fichier historique"
+msgstr "הסר קובץ היסטוריה"
 
 #. Create the dialog
 #: ../src/preferences.c:730
 msgid "Preferences"
-msgstr "Préférences"
+msgstr "העדפות"
 
 #: ../src/preferences.c:749
 msgid "Settings"
-msgstr "Réglages"
+msgstr "הגדרות"
 
 #: ../src/preferences.c:757
 msgid "<b>Clipboards</b>"
-msgstr "<b>Presse-Papier</b>"
+msgstr "<b>לוחות גזירה</b>"
 
 #: ../src/preferences.c:764
 msgid "Use _Copy (Ctrl-C)"
-msgstr "Utiliser _Copier (Ctrl-C)"
+msgstr "השתמש בה_עתקה (Ctrl-C)"
 
 #: ../src/preferences.c:767
 msgid "Use _Primary (Selection)"
-msgstr "Utiliser _Première(Sélection)"
+msgstr "השתמש בעיק_רי (תמליל נבחר)"
 
 #: ../src/preferences.c:770
 msgid "S_ynchronize clipboards"
-msgstr "S_ynchroniser les presses-papiers"
+msgstr "_סנכרן לוחות גזירה"
 
 #: ../src/preferences.c:772
 msgid "_Automatically paste selected item"
-msgstr "Coller _Automatiquement l'élément sélectionné"
+msgstr "הדבק _אוטומטית של פריט נבחר"
 
 #: ../src/preferences.c:781
 msgid "<b>Miscellaneous</b>"
-msgstr "<b>Divers</b>"
+msgstr "<b>שונות</b>"
 
 #: ../src/preferences.c:788
 msgid "Show _indexes in history menu"
-msgstr "Montrer _index dans le menu historique"
+msgstr "הצג _מספרים בתפריט היסטוריה"
 
 #: ../src/preferences.c:790
 msgid "S_ave URIs"
-msgstr "S_auver les URIs"
+msgstr "שמור מחרוזות _URI"
 
 #: ../src/preferences.c:792
 msgid "Capture _hyperlinks only"
-msgstr "Capturer seulement les _hyperliens"
+msgstr "לכד _קישוריות בלבד"
 
 #: ../src/preferences.c:794
 msgid "C_onfirm before clearing history"
-msgstr "C_onfirmer avant de vider l'historique"
+msgstr "בצע וידוא לפני טיהור _היסטוריה"
 
 #: ../src/preferences.c:796
 msgid "_Use right-click menu"
-msgstr "_Utiliser le menu clic droit"
+msgstr "_השתמש בתפריט קליק-ימני"
 
 #: ../src/preferences.c:805
 msgid "History"
-msgstr "Historique"
+msgstr "היסטוריה"
 
 #: ../src/preferences.c:813
 msgid "<b>History</b>"
-msgstr "<b>Historique</b>"
+msgstr "<b>היסטוריה</b>"
 
 #: ../src/preferences.c:820
 msgid "Save _history"
-msgstr "Enregistrer _historique"
+msgstr "שמור _היסטוריה"
 
 #: ../src/preferences.c:821
 msgid "Save and restore history between sessions"
-msgstr "Enregistrer et restaurer l'historique entre sessions"
+msgstr "שמור ושחזר היסטוריה בין סשן אחד לאחר"
 
 #: ../src/preferences.c:825
 msgid "Items in history:"
-msgstr "Éléments dans l'historique:"
+msgstr "פריטים בהיסטוריה:"
 
 #: ../src/preferences.c:834
 msgid "Items in menu:"
-msgstr "Éléments dans le menu:"
+msgstr "פריטים בתפריט:"
 
 #: ../src/preferences.c:841
 msgid "Show _static items in menu"
-msgstr "Montrer les éléments _statiques dans le menu"
+msgstr "הצג פריטים _נייחים בתפריט"
 
 #: ../src/preferences.c:846
 msgid "Static items in menu:"
-msgstr "Éléments statiques dans le menu:"
+msgstr "פריטים נייחים בתפריט:"
 
 #: ../src/preferences.c:854
 msgid "Purge history after _timeout"
@@ -216,67 +218,67 @@ msgstr ""
 
 #: ../src/preferences.c:875
 msgid "<b>Items</b>"
-msgstr "<b>Éléments</b>"
+msgstr "<b>פריטים</b>"
 
 #: ../src/preferences.c:882
 msgid "Show in a single _line"
-msgstr "Montrer sur une ligne"
+msgstr "הצג בשורה _בודדת"
 
 #: ../src/preferences.c:884
 msgid "Show in _reverse order"
-msgstr "Montrer dans l'ordre inverse"
+msgstr "הצג בסדר מהו_פך"
 
 #: ../src/preferences.c:888
 msgid "Character length of items:"
-msgstr "Longueur des éléments:"
+msgstr "אורך התווים של פריטים:"
 
 #: ../src/preferences.c:897
 msgid "Omit items in the:"
-msgstr "Omettre des éléments dans le : "
+msgstr "השמט פריטים:"
 
 #: ../src/preferences.c:901
 msgid "Beginning"
-msgstr "Début"
+msgstr "בתחילה"
 
 #: ../src/preferences.c:902
 msgid "Middle"
-msgstr "Milieu"
+msgstr "באמצע"
 
 #: ../src/preferences.c:903
 msgid "End"
-msgstr "Fin"
+msgstr "בסוף"
 
 #: ../src/preferences.c:933
 msgid "Actions"
-msgstr "Actions"
+msgstr "פעולות"
 
 #. Build the actions label
 #: ../src/preferences.c:938
 msgid "Control-click ClipIt's tray icon to use actions"
-msgstr "Control-clic sur icône ClipIt pour utiliser les scripts"
+msgstr "לחץ על צלמית המגש של ClipIt בשילוב עם המקש Ctrl בכדי להשתמש בפעולות"
 
 #: ../src/preferences.c:958
 msgid "Action"
-msgstr "Action"
+msgstr "פעולה"
 
 #: ../src/preferences.c:965
 msgid "Command"
-msgstr "Commande"
+msgstr "פקודה"
 
 #: ../src/preferences.c:980 ../src/preferences.c:1041
 msgid "Add..."
-msgstr "Ajouter..."
+msgstr "הוספה..."
 
 #: ../src/preferences.c:1001
 msgid "Exclude"
-msgstr "Exclure"
+msgstr "הוצאה"
 
 #. Build the exclude label
 #: ../src/preferences.c:1006
 msgid ""
 "Regex list of items that should not be inserted into the history "
 "(passwords/sites that you don't need in history, etc)."
-msgstr "Liste d'éléments qui ne devraient pas être insérés dans l'historique (les mots de passe/sites dont vous n'avez pas besoin dans l'historique, etc)."
+msgstr "רשימת ביטויים רגולריים (RegEx) שלא צריכים להשתבץ אל תוך ההיסטוריה (סיסמאות/אתרים שאין לך צורך בהם בהיסטוריה וכו')"
 
 #: ../src/preferences.c:1026
 msgid "Regex"
@@ -297,52 +299,52 @@ msgstr ""
 
 #: ../src/preferences.c:1067
 msgid "Hotkeys"
-msgstr "Hotkeys"
+msgstr "מקשים חמים"
 
 #: ../src/preferences.c:1075
 msgid "<b>Hotkeys</b>"
-msgstr "<b>raccourcis</b>"
+msgstr "<b>מקשים חמים</b>"
 
 #: ../src/preferences.c:1085
 msgid "History hotkey:"
-msgstr "Raccourci historique:"
+msgstr "מקשי היסטוריה:"
 
 #: ../src/preferences.c:1094
 msgid "Actions hotkey:"
-msgstr "Raccourci actions:"
+msgstr "מקשי פעולות:"
 
 #: ../src/preferences.c:1103
 msgid "Menu hotkey:"
-msgstr "Raccourcu menu:"
+msgstr "מקשי תפריט:"
 
 #: ../src/preferences.c:1112
 msgid "Manage hotkey:"
-msgstr "Gérer raccourci:"
+msgstr "מקשי ניהול:"
 
 #: ../src/preferences.c:1121
 msgid "Offline mode hotkey:"
-msgstr "Touche mode hors connexion:"
+msgstr "מקשים חמים של מצב לא מקוון:"
 
 #: ../src/utils.c:40 ../src/utils.c:47
 #, c-format
 msgid "Couldn't create directory: %s\n"
-msgstr "Impossible de créer le répertoire:%s\n"
+msgstr "לא היה ניתן ליצור מדור: %s\n"
 
 #: ../src/utils.c:131
 msgid "Run as daemon"
-msgstr "Exécuter en tant que démon"
+msgstr "הרץ כשדון"
 
 #: ../src/utils.c:138
 msgid "Do not use status icon (Ctrl-Alt-P for menu)"
-msgstr "Ne pas utiliser l'icône d'état (Ctrl-Alt-P pour le menu)"
+msgstr "אל תעשה שימוש בצלמית מצב (Ctrl-Alt-P עבור תפריט)"
 
 #: ../src/utils.c:145
 msgid "Print clipboard contents"
-msgstr "Imprimer le contenu du presse-papier"
+msgstr "הדפס תכולות לוח גזירה"
 
 #: ../src/utils.c:152
 msgid "Print primary contents"
-msgstr "Imprimer le contenu principal"
+msgstr "הדפס תכולות עיקריות"
 
 #: ../src/utils.c:164
 msgid ""
@@ -351,10 +353,10 @@ msgid ""
 "  echo \"copied to clipboard\" | clipit\n"
 "  clipit \"copied to clipboard\"\n"
 "  echo \"copied to clipboard\" | clipit -c"
-msgstr "Clipboard exemples d'utilisation CLI:\n\necho \"copié dans le presse papier\" | clipit\nclipit \"copié dans le presse papier\"\necho \"copié dans le presse papier\" | clipit-c"
+msgstr "Clipboard CLI usage examples:\n\n  echo \"copied to clipboard\" | clipit\n  clipit \"copied to clipboard\"\n  echo \"copied to clipboard\" | clipit -c"
 
 #: ../src/utils.c:170
 msgid ""
 "Written by Cristian Henzel.\n"
 "Report bugs to <oss@rspwn.com>."
-msgstr "Écrit par Cristian Henzel.\nSignaler un bogue à <oss@rspwn.com> ."
+msgstr "נכתב על ידי Cristian Henzel.\nלדיווח על בעיות נא לפנות אל <oss@rspwn.com>."

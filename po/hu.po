@@ -1,71 +1,75 @@
 # ClipIt translation file.
-# Copyright (C) 2010-2012 Cristian Henzel <oss@rspwn.com>
+# Copyright (C) 2010-2019 Cristian Henzel <oss@rspwn.com>
 # This file is distributed under the same license as the ClipIt package.
-#
+# 
 # Translators:
-# László Gyaraki <gyarakilaszlo@freemail.hu>, 2011, 2012.
-# Németh Tamás <ntomasz@vipmail.hu>, 2008, 2009.
+# László Gyaraki <gyarakilaszlo@freemail.hu>, 2011, 2012
+# Németh Tamás <ntomasz@vipmail.hu>, 2008, 2009
 msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: Cristian Henzel <oss@rspwn.com>\n"
-"POT-Creation-Date: 2015-11-10 16:39+0200\n"
-"PO-Revision-Date: 2012-04-04 06:30+0000\n"
+"POT-Creation-Date: 2019-02-02 04:12+0200\n"
+"PO-Revision-Date: 2019-02-02 02:14+0000\n"
 "Last-Translator: Cristian Henzel <oss@rspwn.com>\n"
-"Language-Team: Hungarian (http://www.transifex.net/projects/p/clipit/"
-"language/hu/)\n"
-"Language: hu\n"
+"Language-Team: Hungarian (http://www.transifex.com/shantzu/clipit/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/clipit-startup.desktop.in.h:1 ../data/clipit.desktop.in.h:1
 msgid "ClipIt"
-msgstr ""
+msgstr "ClipIt"
 
 #: ../data/clipit-startup.desktop.in.h:2 ../data/clipit.desktop.in.h:2
-#: ../src/main.c:833
+#: ../src/main.c:1077
 msgid "Clipboard Manager"
 msgstr "Vágólapkezelő"
 
-#: ../src/main.c:287
+#: ../src/main.c:395
 msgid "Lightweight GTK+ clipboard manager."
 msgstr "GTK+ alapú, könnyen kezelhető vágólapkezelő."
 
 #. Actions using:
-#: ../src/main.c:356
+#: ../src/main.c:465
 msgid "Actions using:"
 msgstr "Műveletek használata:"
 
 #. Create menu item for empty clipboard contents
-#: ../src/main.c:365 ../src/main.c:382
+#: ../src/main.c:474 ../src/main.c:491
 msgid "None"
 msgstr "Nincs"
 
-#: ../src/main.c:385
+#: ../src/main.c:494
 msgid "<b>None</b>"
 msgstr "<b>Nincs</b>"
 
 #. File contained no actions so adding empty
 #. File did not open so adding empty
 #. Nothing in history so adding empty
-#: ../src/main.c:407 ../src/main.c:436 ../src/main.c:600
+#: ../src/main.c:516 ../src/main.c:545 ../src/main.c:832
 msgid "Empty"
 msgstr "Üres"
 
+#. Append "Remove all" item
+#: ../src/main.c:552 ../src/main.c:885 ../src/manage.c:407
+msgid "Remove all"
+msgstr "Összes törlése"
+
 #. Edit actions
-#: ../src/main.c:443
+#: ../src/main.c:557
 msgid "_Edit actions"
 msgstr "_Műveletek szerkesztése"
 
 #. Offline mode checkbox
-#: ../src/main.c:686
+#: ../src/main.c:924
 msgid "_Offline mode"
 msgstr "_Kapcsolat nélküli munka"
 
 #. Manage history
-#: ../src/main.c:695
+#: ../src/main.c:933
 msgid "_Manage history"
 msgstr "_Előzmények kezelése"
 
@@ -78,230 +82,245 @@ msgstr "Vágólap szerkesztése"
 msgid "_Static item"
 msgstr "Állandó elem"
 
-#: ../src/manage.c:227
+#: ../src/manage.c:240
 msgid "Clear the history?"
 msgstr "Törli az előzményeket?"
 
-#: ../src/manage.c:228
+#: ../src/manage.c:241
 msgid "Clear history"
 msgstr "Előzmények törlése"
 
-#: ../src/manage.c:348
+#: ../src/manage.c:353
 msgid "Manage History"
 msgstr "Előzmények kezelése"
 
-#: ../src/manage.c:351
+#: ../src/manage.c:356
 msgid " (Offline mode)"
 msgstr " (Kapcsolat nélküli munka)"
 
-#: ../src/manage.c:393
+#: ../src/manage.c:398
 msgid "Results"
 msgstr "Eredmények"
 
-#: ../src/manage.c:398
+#: ../src/manage.c:403
 msgid "Edit"
 msgstr "Szerkesztés"
 
-#: ../src/manage.c:400 ../src/preferences.c:886 ../src/preferences.c:947
+#: ../src/manage.c:405 ../src/preferences.c:984 ../src/preferences.c:1045
 msgid "Remove"
 msgstr "Eltávolít"
 
-#: ../src/manage.c:402
-msgid "Remove all"
-msgstr "Összes törlése"
-
-#: ../src/manage.c:404
+#: ../src/manage.c:409
 msgid "Close"
 msgstr "Bezár"
 
-#: ../src/preferences.c:170
+#: ../src/preferences.c:182
 msgid "Save history"
 msgstr "Előzmények mentése"
 
-#: ../src/preferences.c:203
+#: ../src/preferences.c:215
 msgid "Remove history file"
 msgstr "Mentett előzmények törlése"
 
 #. Create the dialog
-#: ../src/preferences.c:648
+#: ../src/preferences.c:730
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: ../src/preferences.c:667
+#: ../src/preferences.c:749
 msgid "Settings"
 msgstr "Beállítások"
 
-#: ../src/preferences.c:675
+#: ../src/preferences.c:757
 msgid "<b>Clipboards</b>"
 msgstr "<b>Vágólapok</b>"
 
-#: ../src/preferences.c:682
+#: ../src/preferences.c:764
 msgid "Use _Copy (Ctrl-C)"
 msgstr "_Másol használata (Ctrl+C)"
 
-#: ../src/preferences.c:685
+#: ../src/preferences.c:767
 msgid "Use _Primary (Selection)"
 msgstr "_Eredeti használata (kijelölés)"
 
-#: ../src/preferences.c:688
+#: ../src/preferences.c:770
 msgid "S_ynchronize clipboards"
 msgstr "Vágólapok s_zinkronizálása"
 
-#: ../src/preferences.c:690
+#: ../src/preferences.c:772
 msgid "_Automatically paste selected item"
 msgstr "Kijelölés _automatikus beillesztése"
 
-#: ../src/preferences.c:699
+#: ../src/preferences.c:781
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Egyebek</b>"
 
-#: ../src/preferences.c:706
+#: ../src/preferences.c:788
 msgid "Show _indexes in history menu"
 msgstr "_Indexek mutatása az előzményekben"
 
-#: ../src/preferences.c:708
+#: ../src/preferences.c:790
 msgid "S_ave URIs"
 msgstr "URI _mentése"
 
-#: ../src/preferences.c:710
+#: ../src/preferences.c:792
 msgid "Capture _hyperlinks only"
 msgstr "Csak a _hivatkozások elkapása"
 
-#: ../src/preferences.c:712
+#: ../src/preferences.c:794
 msgid "C_onfirm before clearing history"
 msgstr "E_lőzmény törlésének megerősítése"
 
-#: ../src/preferences.c:714
+#: ../src/preferences.c:796
 msgid "_Use right-click menu"
 msgstr "_Helyi menü használata"
 
-#: ../src/preferences.c:723
+#: ../src/preferences.c:805
 msgid "History"
 msgstr "Előzmények"
 
-#: ../src/preferences.c:731
+#: ../src/preferences.c:813
 msgid "<b>History</b>"
 msgstr "<b>Előzmények</b>"
 
-#: ../src/preferences.c:738
+#: ../src/preferences.c:820
 msgid "Save _history"
 msgstr "_Előzmények mentése"
 
-#: ../src/preferences.c:739
+#: ../src/preferences.c:821
 msgid "Save and restore history between sessions"
 msgstr "Előzmények mentése és visszaállítása a munkamenetek között"
 
-#: ../src/preferences.c:743
+#: ../src/preferences.c:825
 msgid "Items in history:"
 msgstr "Előzmény elemei:"
 
-#: ../src/preferences.c:752
+#: ../src/preferences.c:834
 msgid "Items in menu:"
 msgstr "Elemek a menüben:"
 
-#: ../src/preferences.c:759
+#: ../src/preferences.c:841
 msgid "Show _static items in menu"
 msgstr "Állandó elemek megjelenítése a menüben"
 
-#: ../src/preferences.c:764
+#: ../src/preferences.c:846
 msgid "Static items in menu:"
 msgstr "Állandó elemek a menüben:"
 
-#: ../src/preferences.c:777
+#: ../src/preferences.c:854
+msgid "Purge history after _timeout"
+msgstr ""
+
+#: ../src/preferences.c:860
+msgid "Timeout seconds"
+msgstr ""
+
+#: ../src/preferences.c:875
 msgid "<b>Items</b>"
 msgstr "<b>Elemek</b>"
 
-#: ../src/preferences.c:784
+#: ../src/preferences.c:882
 msgid "Show in a single _line"
 msgstr "Megjelenítés egy _sorban"
 
-#: ../src/preferences.c:786
+#: ../src/preferences.c:884
 msgid "Show in _reverse order"
 msgstr "_Fordított sorrend"
 
-#: ../src/preferences.c:790
+#: ../src/preferences.c:888
 msgid "Character length of items:"
 msgstr "Elemek karaktereinek száma:"
 
-#: ../src/preferences.c:799
+#: ../src/preferences.c:897
 msgid "Omit items in the:"
 msgstr "Elemek kihagyása itt:"
 
-#: ../src/preferences.c:803
+#: ../src/preferences.c:901
 msgid "Beginning"
 msgstr "Elején"
 
-#: ../src/preferences.c:804
+#: ../src/preferences.c:902
 msgid "Middle"
 msgstr "Középen"
 
-#: ../src/preferences.c:805
+#: ../src/preferences.c:903
 msgid "End"
 msgstr "Végén"
 
-#: ../src/preferences.c:835
+#: ../src/preferences.c:933
 msgid "Actions"
 msgstr "Műveletek"
 
 #. Build the actions label
-#: ../src/preferences.c:840
+#: ../src/preferences.c:938
 msgid "Control-click ClipIt's tray icon to use actions"
 msgstr "Műveletek használatához Ctrl+kattintás a ClipIt állapotikonjára"
 
-#: ../src/preferences.c:860
+#: ../src/preferences.c:958
 msgid "Action"
 msgstr "Művelet"
 
-#: ../src/preferences.c:867
+#: ../src/preferences.c:965
 msgid "Command"
 msgstr "Parancs"
 
-#: ../src/preferences.c:882 ../src/preferences.c:943
+#: ../src/preferences.c:980 ../src/preferences.c:1041
 msgid "Add..."
 msgstr "Hozzáadás..."
 
-#: ../src/preferences.c:903
+#: ../src/preferences.c:1001
 msgid "Exclude"
 msgstr "Kizárás"
 
 #. Build the exclude label
-#: ../src/preferences.c:908
+#: ../src/preferences.c:1006
 msgid ""
-"Regex list of items that should not be inserted into the history (passwords/"
-"sites that you don't need in history, etc)."
-msgstr ""
-"A Regex azon reguláris kifejezések listája, melyeket nem kíván közzétenni az "
-"előzményekben (például egy jelszó/weboldal, amit nem szükséges naplózni)."
+"Regex list of items that should not be inserted into the history "
+"(passwords/sites that you don't need in history, etc)."
+msgstr "A Regex azon reguláris kifejezések listája, melyeket nem kíván közzétenni az előzményekben (például egy jelszó/weboldal, amit nem szükséges naplózni)."
 
-#: ../src/preferences.c:928
+#: ../src/preferences.c:1026
 msgid "Regex"
 msgstr "Regex"
 
-#: ../src/preferences.c:956
+#. Build the exclude windows section
+#: ../src/preferences.c:1052
+msgid "Exclude clipboard content from windows:"
+msgstr ""
+
+#: ../src/preferences.c:1059
+msgid ""
+"Regular expression to match against window name. For example\n"
+"^(keepass)|(lastpass)\n"
+"Will cause all windows starting with either 'keepass' or 'lastpass' to be ignored.\n"
+"The match is case insensitive."
+msgstr ""
+
+#: ../src/preferences.c:1067
 msgid "Hotkeys"
 msgstr "Gyorsbillentyűk"
 
-#: ../src/preferences.c:964
+#: ../src/preferences.c:1075
 msgid "<b>Hotkeys</b>"
 msgstr "<b>Gyorsbillentyűk</b>"
 
-#: ../src/preferences.c:974
+#: ../src/preferences.c:1085
 msgid "History hotkey:"
 msgstr "Előzmények:"
 
-#: ../src/preferences.c:983
+#: ../src/preferences.c:1094
 msgid "Actions hotkey:"
 msgstr "Műveletek:"
 
-#: ../src/preferences.c:992
+#: ../src/preferences.c:1103
 msgid "Menu hotkey:"
 msgstr "Menü:"
 
-#: ../src/preferences.c:1001
+#: ../src/preferences.c:1112
 msgid "Manage hotkey:"
 msgstr "Előzmények kezelése:"
 
-#: ../src/preferences.c:1010
+#: ../src/preferences.c:1121
 msgid "Offline mode hotkey:"
 msgstr "Kapcsolat nélküli munka gyorsbillentyűje:"
 
@@ -310,40 +329,33 @@ msgstr "Kapcsolat nélküli munka gyorsbillentyűje:"
 msgid "Couldn't create directory: %s\n"
 msgstr "A könyvtár nem hozható létre: %s\n"
 
-#: ../src/utils.c:148
+#: ../src/utils.c:131
 msgid "Run as daemon"
 msgstr "Futtatás démonként"
 
-#: ../src/utils.c:155
+#: ../src/utils.c:138
 msgid "Do not use status icon (Ctrl-Alt-P for menu)"
 msgstr "Ne használjon állapotikont (Ctrl+Alt+P)"
 
-#: ../src/utils.c:162
+#: ../src/utils.c:145
 msgid "Print clipboard contents"
 msgstr "Vágólap tartalmak nyomtatása"
 
-#: ../src/utils.c:169
+#: ../src/utils.c:152
 msgid "Print primary contents"
 msgstr "Eredeti tartalmak nyomtatása"
 
-#: ../src/utils.c:181
+#: ../src/utils.c:164
 msgid ""
 "Clipboard CLI usage examples:\n"
 "\n"
 "  echo \"copied to clipboard\" | clipit\n"
 "  clipit \"copied to clipboard\"\n"
 "  echo \"copied to clipboard\" | clipit -c"
-msgstr ""
-"A vágólapkezelő CLI (konzolos) használatára példák:\n"
-"\n"
-"  echo \"másolás a vágólapra\" | clipit\n"
-"  clipit \"másolás a vágólapra\"\n"
-"  echo \"másolás a vágólapra\" | clipit -c"
+msgstr "A vágólapkezelő CLI (konzolos) használatára példák:\n\n  echo \"másolás a vágólapra\" | clipit\n  clipit \"másolás a vágólapra\"\n  echo \"másolás a vágólapra\" | clipit -c"
 
-#: ../src/utils.c:187
+#: ../src/utils.c:170
 msgid ""
 "Written by Cristian Henzel.\n"
 "Report bugs to <oss@rspwn.com>."
-msgstr ""
-"Készítette: Cristian Henzel.\n"
-"Hibajelentés <oss@rspwn.com>."
+msgstr "Készítette: Cristian Henzel.\nHibajelentés <oss@rspwn.com>."

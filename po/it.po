@@ -1,72 +1,76 @@
 # ClipIt translation file.
-# Copyright (C) 2010-2012 Cristian Henzel <oss@rspwn.com>
+# Copyright (C) 2010-2019 Cristian Henzel <oss@rspwn.com>
 # This file is distributed under the same license as the ClipIt package.
-#
+# 
 # Translators:
-# Davide Truffa <davide@catoblepa.org>, 2008.
-#   <luca@jeckodevelopment.it>, 2011.
-# Luca  <luca@jeckodevelopment.it>, 2011, 2012.
+# Davide Truffa <davide@catoblepa.org>, 2008
+# Luca Marzo <luca@jeckodevelopment.it>, 2011
+# Luca Marzo <luca@jeckodevelopment.it>, 2011, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: Cristian Henzel <oss@rspwn.com>\n"
-"POT-Creation-Date: 2015-11-10 16:39+0200\n"
-"PO-Revision-Date: 2012-04-04 06:30+0000\n"
+"POT-Creation-Date: 2019-02-02 04:12+0200\n"
+"PO-Revision-Date: 2019-02-02 02:14+0000\n"
 "Last-Translator: Cristian Henzel <oss@rspwn.com>\n"
-"Language-Team: Italian (http://www.transifex.net/projects/p/clipit/language/"
-"it/)\n"
-"Language: it\n"
+"Language-Team: Italian (http://www.transifex.com/shantzu/clipit/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/clipit-startup.desktop.in.h:1 ../data/clipit.desktop.in.h:1
 msgid "ClipIt"
 msgstr ""
 
 #: ../data/clipit-startup.desktop.in.h:2 ../data/clipit.desktop.in.h:2
-#: ../src/main.c:833
+#: ../src/main.c:1077
 msgid "Clipboard Manager"
 msgstr "Gestore degli appunti"
 
-#: ../src/main.c:287
+#: ../src/main.c:395
 msgid "Lightweight GTK+ clipboard manager."
 msgstr "Leggero gestore degli Appunti in GTK+"
 
 #. Actions using:
-#: ../src/main.c:356
+#: ../src/main.c:465
 msgid "Actions using:"
 msgstr "Azioni che utilizzano:"
 
 #. Create menu item for empty clipboard contents
-#: ../src/main.c:365 ../src/main.c:382
+#: ../src/main.c:474 ../src/main.c:491
 msgid "None"
 msgstr "Nessuno"
 
-#: ../src/main.c:385
+#: ../src/main.c:494
 msgid "<b>None</b>"
 msgstr "<b>Nessuno</b>"
 
 #. File contained no actions so adding empty
 #. File did not open so adding empty
 #. Nothing in history so adding empty
-#: ../src/main.c:407 ../src/main.c:436 ../src/main.c:600
+#: ../src/main.c:516 ../src/main.c:545 ../src/main.c:832
 msgid "Empty"
 msgstr "Vuoto"
 
+#. Append "Remove all" item
+#: ../src/main.c:552 ../src/main.c:885 ../src/manage.c:407
+msgid "Remove all"
+msgstr "Rimuovi tutto"
+
 #. Edit actions
-#: ../src/main.c:443
+#: ../src/main.c:557
 msgid "_Edit actions"
 msgstr "_Modifica azioni"
 
 #. Offline mode checkbox
-#: ../src/main.c:686
+#: ../src/main.c:924
 msgid "_Offline mode"
 msgstr "_Offline mode"
 
 #. Manage history
-#: ../src/main.c:695
+#: ../src/main.c:933
 msgid "_Manage history"
 msgstr "_Gestisci cronologia"
 
@@ -79,230 +83,245 @@ msgstr "Modifica Appunti"
 msgid "_Static item"
 msgstr "_Elemento statico"
 
-#: ../src/manage.c:227
+#: ../src/manage.c:240
 msgid "Clear the history?"
 msgstr "Cancellare la cronologia?"
 
-#: ../src/manage.c:228
+#: ../src/manage.c:241
 msgid "Clear history"
 msgstr "Cancella cronologia"
 
-#: ../src/manage.c:348
+#: ../src/manage.c:353
 msgid "Manage History"
 msgstr "Gestisci cronologia"
 
-#: ../src/manage.c:351
+#: ../src/manage.c:356
 msgid " (Offline mode)"
 msgstr " (Modalità Offline)"
 
-#: ../src/manage.c:393
+#: ../src/manage.c:398
 msgid "Results"
 msgstr "Risultati"
 
-#: ../src/manage.c:398
+#: ../src/manage.c:403
 msgid "Edit"
 msgstr "Modifica"
 
-#: ../src/manage.c:400 ../src/preferences.c:886 ../src/preferences.c:947
+#: ../src/manage.c:405 ../src/preferences.c:984 ../src/preferences.c:1045
 msgid "Remove"
 msgstr "Rimuovi"
 
-#: ../src/manage.c:402
-msgid "Remove all"
-msgstr "Rimuovi tutto"
-
-#: ../src/manage.c:404
+#: ../src/manage.c:409
 msgid "Close"
 msgstr "Chiudi"
 
-#: ../src/preferences.c:170
+#: ../src/preferences.c:182
 msgid "Save history"
 msgstr "Salva cronologia"
 
-#: ../src/preferences.c:203
+#: ../src/preferences.c:215
 msgid "Remove history file"
 msgstr "Rimuovi file cronologia"
 
 #. Create the dialog
-#: ../src/preferences.c:648
+#: ../src/preferences.c:730
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: ../src/preferences.c:667
+#: ../src/preferences.c:749
 msgid "Settings"
 msgstr "Impostazioni"
 
-#: ../src/preferences.c:675
+#: ../src/preferences.c:757
 msgid "<b>Clipboards</b>"
 msgstr "<b>Appunti</b>"
 
-#: ../src/preferences.c:682
+#: ../src/preferences.c:764
 msgid "Use _Copy (Ctrl-C)"
 msgstr "Usa _Copia (Ctrl-C)"
 
-#: ../src/preferences.c:685
+#: ../src/preferences.c:767
 msgid "Use _Primary (Selection)"
 msgstr "Usa Selezione _Primaria"
 
-#: ../src/preferences.c:688
+#: ../src/preferences.c:770
 msgid "S_ynchronize clipboards"
 msgstr "S_incronizza clipboard"
 
-#: ../src/preferences.c:690
+#: ../src/preferences.c:772
 msgid "_Automatically paste selected item"
 msgstr "_Incolla automaticamente l'elemento selezionato"
 
-#: ../src/preferences.c:699
+#: ../src/preferences.c:781
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Varie</b>"
 
-#: ../src/preferences.c:706
+#: ../src/preferences.c:788
 msgid "Show _indexes in history menu"
 msgstr "Mostra _indici nel menu cronologia"
 
-#: ../src/preferences.c:708
+#: ../src/preferences.c:790
 msgid "S_ave URIs"
 msgstr "S_alva URIs"
 
-#: ../src/preferences.c:710
+#: ../src/preferences.c:792
 msgid "Capture _hyperlinks only"
 msgstr "Cattura solo _Hyperlink"
 
-#: ../src/preferences.c:712
+#: ../src/preferences.c:794
 msgid "C_onfirm before clearing history"
 msgstr "C_onferma prima di cancellare la cronologia"
 
-#: ../src/preferences.c:714
+#: ../src/preferences.c:796
 msgid "_Use right-click menu"
 msgstr "_Usa il menu contestuale al click destro"
 
-#: ../src/preferences.c:723
+#: ../src/preferences.c:805
 msgid "History"
 msgstr "Cronologia"
 
-#: ../src/preferences.c:731
+#: ../src/preferences.c:813
 msgid "<b>History</b>"
 msgstr "<b>Cronologia</b>"
 
-#: ../src/preferences.c:738
+#: ../src/preferences.c:820
 msgid "Save _history"
 msgstr "Salva _Cronologia"
 
-#: ../src/preferences.c:739
+#: ../src/preferences.c:821
 msgid "Save and restore history between sessions"
 msgstr "Salva e ripristina cronologia fra le sessioni"
 
-#: ../src/preferences.c:743
+#: ../src/preferences.c:825
 msgid "Items in history:"
 msgstr "Elementi nella cronologia:"
 
-#: ../src/preferences.c:752
+#: ../src/preferences.c:834
 msgid "Items in menu:"
 msgstr "Elementi nel menu:"
 
-#: ../src/preferences.c:759
+#: ../src/preferences.c:841
 msgid "Show _static items in menu"
 msgstr "Mostra gli elementi _statici nel menu"
 
-#: ../src/preferences.c:764
+#: ../src/preferences.c:846
 msgid "Static items in menu:"
 msgstr "Elementi statici nel menu:"
 
-#: ../src/preferences.c:777
+#: ../src/preferences.c:854
+msgid "Purge history after _timeout"
+msgstr ""
+
+#: ../src/preferences.c:860
+msgid "Timeout seconds"
+msgstr ""
+
+#: ../src/preferences.c:875
 msgid "<b>Items</b>"
 msgstr "<b>Elementi</b>"
 
-#: ../src/preferences.c:784
+#: ../src/preferences.c:882
 msgid "Show in a single _line"
 msgstr "Mostra su una singola _riga"
 
-#: ../src/preferences.c:786
+#: ../src/preferences.c:884
 msgid "Show in _reverse order"
 msgstr "Mostra in ordine _inverso"
 
-#: ../src/preferences.c:790
+#: ../src/preferences.c:888
 msgid "Character length of items:"
 msgstr "Lunghezza degli elementi (caratteri):"
 
-#: ../src/preferences.c:799
+#: ../src/preferences.c:897
 msgid "Omit items in the:"
 msgstr "Ometti elementi nella seguente posizione:"
 
-#: ../src/preferences.c:803
+#: ../src/preferences.c:901
 msgid "Beginning"
 msgstr "Inizio"
 
-#: ../src/preferences.c:804
+#: ../src/preferences.c:902
 msgid "Middle"
 msgstr "Centro"
 
-#: ../src/preferences.c:805
+#: ../src/preferences.c:903
 msgid "End"
 msgstr "Fine"
 
-#: ../src/preferences.c:835
+#: ../src/preferences.c:933
 msgid "Actions"
 msgstr "Azioni"
 
 #. Build the actions label
-#: ../src/preferences.c:840
+#: ../src/preferences.c:938
 msgid "Control-click ClipIt's tray icon to use actions"
 msgstr "Control-click sull'icona della tray per usare le azioni"
 
-#: ../src/preferences.c:860
+#: ../src/preferences.c:958
 msgid "Action"
 msgstr "Azione"
 
-#: ../src/preferences.c:867
+#: ../src/preferences.c:965
 msgid "Command"
 msgstr "Comando"
 
-#: ../src/preferences.c:882 ../src/preferences.c:943
+#: ../src/preferences.c:980 ../src/preferences.c:1041
 msgid "Add..."
 msgstr "Aggiungi..."
 
-#: ../src/preferences.c:903
+#: ../src/preferences.c:1001
 msgid "Exclude"
 msgstr "Escludi"
 
 #. Build the exclude label
-#: ../src/preferences.c:908
+#: ../src/preferences.c:1006
 msgid ""
-"Regex list of items that should not be inserted into the history (passwords/"
-"sites that you don't need in history, etc)."
-msgstr ""
-"Lista Regex degli elementi che non dovranno essere inseriti nella cronologia "
-"(password/siti di cui non necessiti nella cronologia, ecc.)"
+"Regex list of items that should not be inserted into the history "
+"(passwords/sites that you don't need in history, etc)."
+msgstr "Lista Regex degli elementi che non dovranno essere inseriti nella cronologia (password/siti di cui non necessiti nella cronologia, ecc.)"
 
-#: ../src/preferences.c:928
+#: ../src/preferences.c:1026
 msgid "Regex"
 msgstr "Regex"
 
-#: ../src/preferences.c:956
+#. Build the exclude windows section
+#: ../src/preferences.c:1052
+msgid "Exclude clipboard content from windows:"
+msgstr ""
+
+#: ../src/preferences.c:1059
+msgid ""
+"Regular expression to match against window name. For example\n"
+"^(keepass)|(lastpass)\n"
+"Will cause all windows starting with either 'keepass' or 'lastpass' to be ignored.\n"
+"The match is case insensitive."
+msgstr ""
+
+#: ../src/preferences.c:1067
 msgid "Hotkeys"
 msgstr "Scorciatoie da tastiera"
 
-#: ../src/preferences.c:964
+#: ../src/preferences.c:1075
 msgid "<b>Hotkeys</b>"
 msgstr "<b>Scorciatoie da tastiera</b>"
 
-#: ../src/preferences.c:974
+#: ../src/preferences.c:1085
 msgid "History hotkey:"
 msgstr "Cronologia scorciatorie:"
 
-#: ../src/preferences.c:983
+#: ../src/preferences.c:1094
 msgid "Actions hotkey:"
 msgstr "Azioni scorciatoie da tastiera:"
 
-#: ../src/preferences.c:992
+#: ../src/preferences.c:1103
 msgid "Menu hotkey:"
 msgstr "Menu scorciatoie da tastiera:"
 
-#: ../src/preferences.c:1001
+#: ../src/preferences.c:1112
 msgid "Manage hotkey:"
 msgstr "Gestisci scorciatoie da tastiera:"
 
-#: ../src/preferences.c:1010
+#: ../src/preferences.c:1121
 msgid "Offline mode hotkey:"
 msgstr "Tasto attivazione modalità offline"
 
@@ -311,40 +330,33 @@ msgstr "Tasto attivazione modalità offline"
 msgid "Couldn't create directory: %s\n"
 msgstr "Impossibile creare la directory: %s\n"
 
-#: ../src/utils.c:148
+#: ../src/utils.c:131
 msgid "Run as daemon"
 msgstr "Esegui come demone"
 
-#: ../src/utils.c:155
+#: ../src/utils.c:138
 msgid "Do not use status icon (Ctrl-Alt-P for menu)"
 msgstr "Non usare l'icona di stato (Ctrl-Alt-P per il menù)"
 
-#: ../src/utils.c:162
+#: ../src/utils.c:145
 msgid "Print clipboard contents"
 msgstr "Stampa contenuto degli appunti"
 
-#: ../src/utils.c:169
+#: ../src/utils.c:152
 msgid "Print primary contents"
 msgstr "Stampa contenuto della selezione primaria"
 
-#: ../src/utils.c:181
+#: ../src/utils.c:164
 msgid ""
 "Clipboard CLI usage examples:\n"
 "\n"
 "  echo \"copied to clipboard\" | clipit\n"
 "  clipit \"copied to clipboard\"\n"
 "  echo \"copied to clipboard\" | clipit -c"
-msgstr ""
-"Esempi d'uso degli Appunti da terminale:\n"
-"\n"
-"  echo \"copiato negli appunti\" | clipit\n"
-"  clipit \"copiato negli appunti\"\n"
-"  echo \"copiato negli appunti\" | clipit -o"
+msgstr "Esempi d'uso degli Appunti da terminale:\n\n  echo \"copiato negli appunti\" | clipit\n  clipit \"copiato negli appunti\"\n  echo \"copiato negli appunti\" | clipit -o"
 
-#: ../src/utils.c:187
+#: ../src/utils.c:170
 msgid ""
 "Written by Cristian Henzel.\n"
 "Report bugs to <oss@rspwn.com>."
-msgstr ""
-"Scritto da Cristian Henzel.\n"
-"Riporta gli errori a <oss@rspwn.com>."
+msgstr "Scritto da Cristian Henzel.\nRiporta gli errori a <oss@rspwn.com>."
