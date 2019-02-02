@@ -2,7 +2,7 @@
 # Autoconf/automake.
 # -------------------------------------------------------------------------------
 AC_PREREQ([2.5])
-AC_INIT([clipit], [1.4.3], [oss@rspwn.com])
+AC_INIT([clipit], [1.4.5], [oss@rspwn.com])
 AM_INIT_AUTOMAKE
 
 AC_CONFIG_MACRO_DIR([m4])
