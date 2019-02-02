@@ -47,6 +47,9 @@
 #include <stdbool.h>
 #include <string.h>
 
+#define ICON "clipit-trayicon"
+#define ICON_OFFLINE "clipit-trayicon-offline"
+
 static gchar* primary_text;
 static gchar* clipboard_text;
 static gchar* synchronized_text;
@@ -730,6 +733,13 @@ static void toggle_offline_mode() {
 	}
 
 	prefs.offline_mode = !prefs.offline_mode;
+
+#ifdef HAVE_APPINDICATOR
+  app_indicator_set_icon(indicator, prefs.offline_mode ? ICON_OFFLINE : ICON);
+#else
+  gtk_status_icon_set_from_icon_name(status_icon, prefs.offline_mode ? ICON_OFFLINE : ICON);
+#endif
+
 	/* Save the change */
 	save_preferences();
 }
@@ -946,9 +956,9 @@ void create_app_indicator(gint create) {
 	indicator_menu = create_tray_menu(indicator_menu, 2);
 	/* check if we need to create the indicator or just refresh the menu */
 	if(create == 1) {
-		indicator = app_indicator_new("clipit", "clipit-trayicon", APP_INDICATOR_CATEGORY_APPLICATION_STATUS);
+		indicator = app_indicator_new("clipit", ICON, APP_INDICATOR_CATEGORY_APPLICATION_STATUS);
 		app_indicator_set_status (indicator, APP_INDICATOR_STATUS_ACTIVE);
-		app_indicator_set_attention_icon (indicator, "clipit-trayicon");
+		app_indicator_set_attention_icon (indicator, ICON);
 	}
 	app_indicator_set_menu (indicator, GTK_MENU (indicator_menu));
 }
@@ -1063,7 +1073,7 @@ static void clipit_init() {
 #ifdef HAVE_APPINDICATOR
 	create_app_indicator(1);
 #else
-	status_icon = gtk_status_icon_new_from_icon_name("clipit-trayicon");
+	status_icon = gtk_status_icon_new_from_icon_name(ICON);
 	gtk_status_icon_set_tooltip_text((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
 	g_signal_connect((GObject*)status_icon, "button_press_event", (GCallback)status_icon_clicked, NULL);
 #endif
