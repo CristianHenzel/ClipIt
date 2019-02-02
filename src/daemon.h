@@ -24,8 +24,6 @@
 
 G_BEGIN_DECLS
 
-#define DAEMON_INTERVAL 500
-
 void init_daemon_mode();
 
 G_END_DECLS

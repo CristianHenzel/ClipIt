@@ -24,12 +24,14 @@
 #include <config.h>
 #endif
 
+#define _GNU_SOURCE
+
 #include <glib.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include <X11/keysym.h>
 #ifdef HAVE_APPINDICATOR
-#include <libappindicator/app-indicator.h>
+#include <libayatana-appindicator/app-indicator.h>
 #endif
 #include "main.h"
 #include "utils.h"
@@ -569,7 +571,7 @@ gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *eve
     return FALSE;
   }
 
-  if (event->keyval == GDK_Down || event->keyval == GDK_Up) {
+  if (event->keyval == GDK_KEY_Down || event->keyval == GDK_KEY_Up) {
     return FALSE;
   }
 
@@ -577,7 +579,7 @@ gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *eve
     append_to_input_buffer(event->string);
 
   GtkMenuShell* menu = (GtkMenuShell *) history_menu;
-  GList* element = menu->children;
+  GList* element = gtk_container_get_children(menu);
   GtkMenuItem *menu_item, *first_match = 0;
 
   const gchar* menu_label;
@@ -606,69 +608,62 @@ gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *eve
 
   if (first_match && match_count != prefs.items_menu) {
     gtk_menu_item_select(first_match);
-    menu->active_menu_item = (GtkWidget *) first_match;
+	gtk_menu_shell_select_item(menu, first_match);
     return TRUE;
   }
   return FALSE;
 }
 
 gboolean selected_by_digit(const GtkWidget *history_menu, const GdkEventKey *event) {
+  int selection = -1;
   switch (event->keyval) {
     case XK_1:
     case XK_KP_1:
-      item_selected((GtkMenuItem*)history_menu, GINT_TO_POINTER(0));
-      gtk_widget_destroy(history_menu);
+	  selection = 1;
       break;
     case XK_2:
     case XK_KP_2:
-      item_selected((GtkMenuItem*)history_menu, GINT_TO_POINTER(1));
-      gtk_widget_destroy(history_menu);
+	  selection = 2;
       break;
     case XK_3:
     case XK_KP_3:
-      item_selected((GtkMenuItem*)history_menu, GINT_TO_POINTER(2));
-      gtk_widget_destroy(history_menu);
+	  selection = 3;
       break;
     case XK_4:
     case XK_KP_4:
-      item_selected((GtkMenuItem*)history_menu, GINT_TO_POINTER(3));
-      gtk_widget_destroy(history_menu);
+	  selection = 4;
       break;
     case XK_5:
     case XK_KP_5:
-      item_selected((GtkMenuItem*)history_menu, GINT_TO_POINTER(4));
-      gtk_widget_destroy(history_menu);
+	  selection = 5;
       break;
     case XK_6:
     case XK_KP_6:
-      item_selected((GtkMenuItem*)history_menu, GINT_TO_POINTER(5));
-      gtk_widget_destroy(history_menu);
+	  selection = 6;
       break;
     case XK_7:
     case XK_KP_7:
-      item_selected((GtkMenuItem*)history_menu, GINT_TO_POINTER(6));
-      gtk_widget_destroy(history_menu);
+	  selection = 7;
       break;
     case XK_8:
     case XK_KP_8:
-      item_selected((GtkMenuItem*)history_menu, GINT_TO_POINTER(7));
-      gtk_widget_destroy(history_menu);
+	  selection = 8;
       break;
     case XK_9:
     case XK_KP_9:
-      item_selected((GtkMenuItem*)history_menu, GINT_TO_POINTER(8));
-      gtk_widget_destroy(history_menu);
+	  selection = 9;
       break;
     case XK_0:
     case XK_KP_0:
-      item_selected((GtkMenuItem*)history_menu, GINT_TO_POINTER(9));
-      gtk_widget_destroy(history_menu);
+	  selection = 0;
       break;
-
-    default:
-      return FALSE;
   }
-  return TRUE;
+  if (selection >= 0) {
+	item_selected((GtkMenuItem*)history_menu, GINT_TO_POINTER(selection));
+	gtk_widget_destroy(history_menu);
+	return TRUE;
+  }
+  return FALSE;
 }
 
 static void toggle_offline_mode() {
@@ -982,7 +977,8 @@ static void clipit_init() {
 	/* Create clipboard */
 	primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
 	clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
-	g_timeout_add(CHECK_INTERVAL, item_check, NULL);
+	g_signal_connect(primary, "owner-change", G_CALLBACK(item_check), NULL);
+	g_signal_connect(clipboard, "owner-change", G_CALLBACK(item_check), NULL);
 
 	/* Read preferences */
 	read_preferences();
@@ -1062,7 +1058,6 @@ int main(int argc, char **argv) {
 				return 0;
 			}
 			g_string_free(piped_string, TRUE);
-			return -1;
 		}
 	}
 

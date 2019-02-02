@@ -63,10 +63,10 @@ AC_ARG_WITH([gtk3], AS_HELP_STRING([--with-gtk3], [Build with the GTK+ 3 interfa
 
 if test "x$with_gtk3" = "xyes"; then
   PKG_CHECK_MODULES([GTK], [gtk+-3.0])
-  APPINDICATOR_MODULE="appindicator3-0.1"
+  APPINDICATOR_MODULE="ayatana-appindicator3-0.1"
 else
   PKG_CHECK_MODULES([GTK], [gtk+-2.0 >= 2.10])
-  APPINDICATOR_MODULE="appindicator-0.1"
+  APPINDICATOR_MODULE="ayatana-appindicator-0.1"
 fi
 
 # -------------------------------------------------------------------------------
