@@ -29,6 +29,8 @@
 #include <glib.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
 #include <X11/keysym.h>
 #ifdef HAVE_APPINDICATOR
 #include <libayatana-appindicator/app-indicator.h>
@@ -61,6 +63,11 @@ static gboolean status_menu_lock = FALSE;
 
 static gboolean actions_lock = FALSE;
 
+static Atom a_Primary = None;
+static Atom a_Clipboard = None;
+static Atom a_netWmName = None;
+static Display *display = NULL;
+
 /* Init preferences structure */
 prefs_t prefs = {DEF_USE_COPY,
                  DEF_USE_PRIMARY,
@@ -88,7 +95,8 @@ prefs_t prefs = {DEF_USE_COPY,
                  INIT_SEARCH_KEY,
                  INIT_OFFLINE_KEY,
                  DEF_NO_ICON,
-                 DEF_OFFLINE_MODE};
+                 DEF_OFFLINE_MODE,
+                 DEF_EXCLUDE_WINDOWS};
 
 /* Variables for input buffer used for matching input to menu items */
 #define MAX_INPUT_BUF_SIZE 100
@@ -103,7 +111,54 @@ gboolean selected_by_digit(const GtkWidget *history_menu, const GdkEventKey *eve
  * As the user types, attempt to match input with the values in the menu.
  * Only the first match will be activated.
  * */
-gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *event) ;
+gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *event);
+
+/* Determine, if selection comes from excluded window. */
+static gboolean is_selection_from_excluded_window(Atom selection_type) {
+  gboolean excluded = FALSE;
+  Window window;
+  XTextProperty text_prop_return;
+  gchar* window_name = NULL;
+  int tmp;
+
+  window = XGetSelectionOwner(display, selection_type);
+
+  if (window != None)
+  {
+    // Using _NET_WM_NAME property instead of WM_NAME/XFetchName, because it is guaranted to be UTF-8 encoded.
+    if (XGetTextProperty(display, window, &text_prop_return, a_netWmName))
+    {
+      window_name = (gchar*) text_prop_return.value;
+    }
+  }
+
+  // XGetSelectionOwner doesn't work well for Qt apps. It returns unnamed window outside real app window hierarchy.
+  // Try focused window instead.
+  if (!window_name)
+  {
+    XGetInputFocus(display, &window, &tmp);
+
+    if (XGetTextProperty(display, window, &text_prop_return, a_netWmName))
+    {
+      window_name = (gchar*) text_prop_return.value;
+    }
+  }
+
+  if (window_name)
+  {
+    GRegex *regexp = NULL;
+    if (prefs.exclude_windows && strlen(prefs.exclude_windows) > 0)
+    {
+      regexp = g_regex_new(prefs.exclude_windows, G_REGEX_CASELESS, 0, NULL);
+      if (regexp) {
+        excluded = g_regex_match(regexp, window_name, 0, NULL);
+        g_regex_unref(regexp);
+      }
+    }
+  }
+
+  return excluded;
+}
 
 /* Called every CHECK_INTERVAL seconds to check for new items */
 static gboolean item_check(gpointer data) {
@@ -157,7 +212,8 @@ static gboolean item_check(gpointer data) {
     }
 
     /* Proceed if mouse button not being held */
-    if ((primary_temp != NULL) && !(button_state & GDK_BUTTON1_MASK))
+    if ((primary_temp != NULL) && !(button_state & GDK_BUTTON1_MASK) &&
+      !is_selection_from_excluded_window(a_Primary))
     {
       /* Check if primary is the same as the last entry */
       if (g_strcmp0(primary_temp, primary_text) != 0)
@@ -192,7 +248,8 @@ static gboolean item_check(gpointer data) {
   else
   {
     /* Check if clipboard is the same as the last entry */
-    if (g_strcmp0(clipboard_temp, clipboard_text) != 0)
+    if (g_strcmp0(clipboard_temp, clipboard_text) != 0 &&
+      !is_selection_from_excluded_window(a_Clipboard))
     {
       /* New clipboard entry */
       g_free(clipboard_text);
@@ -980,6 +1037,11 @@ static void clipit_init() {
 	g_signal_connect(primary, "owner-change", G_CALLBACK(item_check), NULL);
 	g_signal_connect(clipboard, "owner-change", G_CALLBACK(item_check), NULL);
 
+  display = XOpenDisplay(NULL);
+  a_Primary = XInternAtom(display, "PRIMARY", True);
+  a_Clipboard = XInternAtom(display, "CLIPBOARD", True);
+  a_netWmName = XInternAtom(display, "_NET_WM_NAME", True);
+
 	/* Read preferences */
 	read_preferences();
 
@@ -1087,6 +1149,8 @@ int main(int argc, char **argv) {
 	g_free(primary_text);
 	g_free(clipboard_text);
 	g_free(synchronized_text);
+
+  XCloseDisplay(display);
 
 	/* Exit */
 	return 0;

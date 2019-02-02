@@ -70,6 +70,8 @@ typedef struct {
   gboolean  no_icon;                  /* No icon */
 
   gboolean  offline_mode;             /* Offline mode */
+
+  gchar*    exclude_windows;          /* Exclude clipboard content from windows, whose name matches this regexp */
 } prefs_t;
 
 extern prefs_t prefs;

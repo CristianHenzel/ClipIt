@@ -54,7 +54,8 @@ GtkWidget *copy_check,
           *confirm_check,
           *reverse_check,
           *linemode_check,
-          *hyperlinks_check;
+          *hyperlinks_check,
+          *exclude_windows_entry;
 
 GtkListStore* actions_list;
 GtkTreeSelection* actions_selection;
@@ -110,6 +111,7 @@ static void apply_preferences()
   prefs.menu_key = g_strdup(gtk_entry_get_text((GtkEntry*)menu_key_entry));
   prefs.search_key = g_strdup(gtk_entry_get_text((GtkEntry*)search_key_entry));
   prefs.offline_key = g_strdup(gtk_entry_get_text((GtkEntry*)offline_key_entry));
+  prefs.exclude_windows = g_strdup(gtk_entry_get_text((GtkEntry*)exclude_windows_entry));
 
   /* Bind keys and apply the new history limit */
   keybinder_bind(prefs.history_key, history_hotkey, NULL);
@@ -153,6 +155,7 @@ void save_preferences()
   g_key_file_set_string(rc_key, "rc", "search_key", prefs.search_key);
   g_key_file_set_string(rc_key, "rc", "offline_key", prefs.offline_key);
   g_key_file_set_boolean(rc_key, "rc", "offline_mode", prefs.offline_mode);
+  g_key_file_set_string(rc_key, "rc", "exclude_windows", prefs.exclude_windows);
 
   /* Check config and data directories */
   check_dirs();
@@ -265,6 +268,7 @@ void read_preferences()
     prefs.search_key = g_key_file_get_string(rc_key, "rc", "search_key", NULL);
     prefs.offline_key = g_key_file_get_string(rc_key, "rc", "offline_key", NULL);
     prefs.offline_mode = g_key_file_get_boolean(rc_key, "rc", "offline_mode", NULL);
+    prefs.exclude_windows = g_key_file_get_string(rc_key, "rc", "exclude_windows", NULL);
 
     /* Check for errors and set default values if any */
     if ((!prefs.history_limit) || (prefs.history_limit > 1000) || (prefs.history_limit < 0))
@@ -1044,6 +1048,19 @@ void show_preferences(gint tab) {
   gtk_box_pack_start((GtkBox*)hbbox_exclude, remove_button_exclude, FALSE, TRUE, 0);
   gtk_box_pack_start((GtkBox*)vbox_exclude, hbbox_exclude, FALSE, FALSE, 0);
 
+  /* Build the exclude windows section */
+  label = gtk_label_new(_("Exclude clipboard content from windows:"));
+  gtk_label_set_line_wrap((GtkLabel*)label, TRUE);
+  gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.0);
+  gtk_box_pack_start((GtkBox*)vbox_exclude, label, FALSE, FALSE, 0);
+
+  exclude_windows_entry = gtk_entry_new();
+  gtk_box_pack_start((GtkBox*)vbox_exclude, exclude_windows_entry, FALSE, FALSE, 0);
+  gtk_widget_set_tooltip_text(exclude_windows_entry, _("Regular expression to match against window name. For example\n"
+                                                     "^(keepass)|(lastpass)\nWill cause all windows starting with "
+                                                     "either 'keepass' or 'lastpass' to be ignored.\n"
+                                                     "The match is case insensitive."));
+
   /* Build the hotkeys page */
   GtkWidget* page_extras = gtk_alignment_new(0.50, 0.50, 1.0, 1.0);
   gtk_alignment_set_padding((GtkAlignment*)page_extras, 12, 6, 12, 6);
@@ -1135,6 +1152,7 @@ void show_preferences(gint tab) {
   gtk_entry_set_text((GtkEntry*)menu_key_entry, prefs.menu_key);
   gtk_entry_set_text((GtkEntry*)search_key_entry, prefs.search_key);
   gtk_entry_set_text((GtkEntry*)offline_key_entry, prefs.offline_key);
+  gtk_entry_set_text((GtkEntry*)exclude_windows_entry, prefs.exclude_windows);
 
   /* Read actions */
   read_actions();
