@@ -1047,10 +1047,10 @@ static void clipit_init() {
 	g_signal_connect(primary, "owner-change", G_CALLBACK(item_check), NULL);
 	g_signal_connect(clipboard, "owner-change", G_CALLBACK(item_check), NULL);
 
-  display = XOpenDisplay(NULL);
-  a_Primary = XInternAtom(display, "PRIMARY", True);
-  a_Clipboard = XInternAtom(display, "CLIPBOARD", True);
-  a_netWmName = XInternAtom(display, "_NET_WM_NAME", True);
+	display = XOpenDisplay(NULL);
+	a_Primary = XInternAtom(display, "PRIMARY", True);
+	a_Clipboard = XInternAtom(display, "CLIPBOARD", True);
+	a_netWmName = XInternAtom(display, "_NET_WM_NAME", True);
 
 	/* Read preferences */
 	read_preferences();
@@ -1086,8 +1086,8 @@ int main(int argc, char **argv) {
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
 
-  input_buffer[0] = '\0';
-  input_index = 0;
+	input_buffer[0] = '\0';
+	input_index = 0;
 
 	/* Initiate GTK+ */
 	gtk_init(&argc, &argv);
@@ -1136,8 +1136,8 @@ int main(int argc, char **argv) {
 	/* Init ClipIt */
 	clipit_init();
 
-  /* Create the history_timeout_timer if applicable */
-  init_history_timeout_timer();
+	/* Create the history_timeout_timer if applicable */
+	init_history_timeout_timer();
 
 	/* Run GTK+ loop */
 	gtk_main();
@@ -1160,7 +1160,7 @@ int main(int argc, char **argv) {
 	g_free(clipboard_text);
 	g_free(synchronized_text);
 
-  XCloseDisplay(display);
+	XCloseDisplay(display);
 
 	/* Exit */
 	return 0;
