@@ -116,9 +116,9 @@ AC_C_CONST()
 # -------------------------------------------------------------------------------
 AC_TYPE_SIGNAL()
 
-AC_CONFIG_FILES([Makefile m4/Makefile
-			doc/Makefile
-			src/Makefile
-			data/Makefile])
+AC_CONFIG_FILES([Makefile
+		doc/Makefile
+		src/Makefile
+		data/Makefile])
 
 AC_OUTPUT([po/Makefile.in])

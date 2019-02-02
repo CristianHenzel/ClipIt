@@ -20,6 +20,8 @@
 CURRENTYEAR=$(date "+%Y")
 CURRENTSTAMP=$(date "+%Y-%m-%d %H:%M%z")
 
+# TODO: Update copyright and version
+
 ## Update po files with new strings
 ./autogen.sh && ./configure
 cd po
