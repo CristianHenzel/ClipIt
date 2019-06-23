@@ -208,11 +208,11 @@ msgstr "Éléments statiques dans le menu:"
 
 #: ../src/preferences.c:854
 msgid "Purge history after _timeout"
-msgstr ""
+msgstr "Effacer l'historique après _délais d'attente"
 
 #: ../src/preferences.c:860
 msgid "Timeout seconds"
-msgstr ""
+msgstr "Délai d'attente en secondes"
 
 #: ../src/preferences.c:875
 msgid "<b>Items</b>"
@@ -276,16 +276,18 @@ msgstr "Exclure"
 msgid ""
 "Regex list of items that should not be inserted into the history "
 "(passwords/sites that you don't need in history, etc)."
-msgstr "Liste d'éléments qui ne devraient pas être insérés dans l'historique (les mots de passe/sites dont vous n'avez pas besoin dans l'historique, etc)."
+msgstr ""
+"Liste des expressions qui ne devraient pas être insérés dans l'historique "
+"(mots de passe/sites dont vous n'avez pas besoin dans l'historique, etc)."
 
 #: ../src/preferences.c:1026
 msgid "Regex"
-msgstr "Regex"
+msgstr "Expressions"
 
 #. Build the exclude windows section
 #: ../src/preferences.c:1052
 msgid "Exclude clipboard content from windows:"
-msgstr ""
+msgstr "Exclure le contenu du presse-papiers en provenance des fenêtres :"
 
 #: ../src/preferences.c:1059
 msgid ""
@@ -294,30 +296,34 @@ msgid ""
 "Will cause all windows starting with either 'keepass' or 'lastpass' to be ignored.\n"
 "The match is case insensitive."
 msgstr ""
+"Expression régulière à faire correspondre au nom de la fenêtre. Par exemple,\n"
+"^(keepass)|(lastpass)\n"
+"Toutes les fenêtres commençant par 'keepass' ou 'lastpass' seront ignorées.\n"
+"La correspondance est sensible à la casse."
 
 #: ../src/preferences.c:1067
 msgid "Hotkeys"
-msgstr "Hotkeys"
+msgstr "Raccourcis claviers"
 
 #: ../src/preferences.c:1075
 msgid "<b>Hotkeys</b>"
-msgstr "<b>raccourcis</b>"
+msgstr "<b>Raccourcis</b>"
 
 #: ../src/preferences.c:1085
 msgid "History hotkey:"
-msgstr "Raccourci historique:"
+msgstr "Historique des raccourcis clavier :"
 
 #: ../src/preferences.c:1094
 msgid "Actions hotkey:"
-msgstr "Raccourci actions:"
+msgstr "Actions des raccourcis clavier :"
 
 #: ../src/preferences.c:1103
 msgid "Menu hotkey:"
-msgstr "Raccourcu menu:"
+msgstr "Menu des raccourcis clavier :"
 
 #: ../src/preferences.c:1112
 msgid "Manage hotkey:"
-msgstr "Gérer raccourci:"
+msgstr "Gérer les raccourcis clavier :"
 
 #: ../src/preferences.c:1121
 msgid "Offline mode hotkey:"
