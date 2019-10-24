@@ -28,7 +28,7 @@
 G_BEGIN_DECLS
 
 #define ACTIONS_TAB    2
-#define POPUP_DELAY    30
+#define POPUP_DELAY    100
 
 #if GTK_MAJOR_VERSION == 3
 #define GTK_DIALOG_NO_SEPARATOR 0
