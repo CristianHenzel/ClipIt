@@ -1,25 +1,23 @@
 # ClipIt translation file.
-# Copyright (C) 2010-2015 Cristian Henzel <oss@rspwn.com>
+# Copyright (C) 2010-2019 Cristian Henzel <oss@rspwn.com>
 # This file is distributed under the same license as the ClipIt package.
-#
+# 
 # Translators:
-# gogo <trebelnik2@gmail.com>, 2012
-# gogo <trebelnik2@gmail.com>, 2013
+# gogo <trebelnik2@gmail.com>, 2012-2013,2020
+# gogo <trebelnik2@gmail.com>, 2013,2020
 msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: Cristian Henzel <oss@rspwn.com>\n"
-"POT-Creation-Date: 2019-02-02 04:12+0200\n"
-"PO-Revision-Date: 2017-09-23 18:11+0000\n"
+"POT-Creation-Date: 2019-02-02 11:27+0200\n"
+"PO-Revision-Date: 2020-03-11 14:04+0000\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
-"Language-Team: Croatian (http://www.transifex.com/shantzu/clipit/language/"
-"hr/)\n"
-"Language: hr\n"
+"Language-Team: Croatian (http://www.transifex.com/shantzu/clipit/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: ../data/clipit-startup.desktop.in.h:1 ../data/clipit.desktop.in.h:1
 msgid "ClipIt"
@@ -32,7 +30,7 @@ msgstr "Upravitelj međuspremnika"
 
 #: ../src/main.c:395
 msgid "Lightweight GTK+ clipboard manager."
-msgstr "Lagan GTK+ upravitelj međuspremnika."
+msgstr "Jednostavan GTK+ upravitelj međuspremnika."
 
 #. Actions using:
 #: ../src/main.c:465
@@ -68,12 +66,12 @@ msgstr "_Uredi radnje"
 #. Offline mode checkbox
 #: ../src/main.c:924
 msgid "_Offline mode"
-msgstr "_Nepovezani način"
+msgstr "_Izvanmrežni način rada"
 
 #. Manage history
 #: ../src/main.c:933
 msgid "_Manage history"
-msgstr "_Povijest upravljanja"
+msgstr "_Povijest međuspremnika"
 
 #. Create the dialog
 #: ../src/manage.c:138
@@ -94,11 +92,11 @@ msgstr "Obriši povijest"
 
 #: ../src/manage.c:353
 msgid "Manage History"
-msgstr "Povijest upravljanja"
+msgstr "Povijest međuspremnika"
 
 #: ../src/manage.c:356
 msgid " (Offline mode)"
-msgstr "(Nepovezani način)"
+msgstr " (Izvanmrežni način rada)"
 
 #: ../src/manage.c:398
 msgid "Results"
@@ -143,7 +141,7 @@ msgstr "Koristi _kopiranje (Ctrl-C)"
 
 #: ../src/preferences.c:767
 msgid "Use _Primary (Selection)"
-msgstr "Koristi _osnovno (odabir)"
+msgstr "Koristi _osnovni (odabir)"
 
 #: ../src/preferences.c:770
 msgid "S_ynchronize clipboards"
@@ -159,7 +157,7 @@ msgstr "<b>Ostalo</b>"
 
 #: ../src/preferences.c:788
 msgid "Show _indexes in history menu"
-msgstr "Prikaži _indekse u izborniku povijesti"
+msgstr "Prikaži _redne brojeve u izborniku povijesti"
 
 #: ../src/preferences.c:790
 msgid "S_ave URIs"
@@ -167,7 +165,7 @@ msgstr "S_premi URI-e"
 
 #: ../src/preferences.c:792
 msgid "Capture _hyperlinks only"
-msgstr "Spremi _samo hiperpoveznice"
+msgstr "Obuhvati _samo hiperpoveznice"
 
 #: ../src/preferences.c:794
 msgid "C_onfirm before clearing history"
@@ -211,11 +209,11 @@ msgstr "Nepromjenjive stavke u izborniku:"
 
 #: ../src/preferences.c:854
 msgid "Purge history after _timeout"
-msgstr ""
+msgstr "Ukloni povijest nakon isteka _vremena"
 
 #: ../src/preferences.c:860
 msgid "Timeout seconds"
-msgstr ""
+msgstr "Istek vremena u sekundama"
 
 #: ../src/preferences.c:875
 msgid "<b>Items</b>"
@@ -231,11 +229,11 @@ msgstr "Prikaži u _obrnutom redosljedu"
 
 #: ../src/preferences.c:888
 msgid "Character length of items:"
-msgstr "Duljina znaka stavki:"
+msgstr "Duljina stavki u znakovima:"
 
 #: ../src/preferences.c:897
 msgid "Omit items in the:"
-msgstr "Izostavi stavke u:"
+msgstr "Izostavi stavke na:"
 
 #: ../src/preferences.c:901
 msgid "Beginning"
@@ -256,7 +254,7 @@ msgstr "Radnje"
 #. Build the actions label
 #: ../src/preferences.c:938
 msgid "Control-click ClipIt's tray icon to use actions"
-msgstr "Control-klik na ClipIt-ovu ikonu trake sustava za korištenje radnje"
+msgstr "Control-klik na ClipItovu ikonu obavjesnog područja za korištenje radnje"
 
 #: ../src/preferences.c:958
 msgid "Action"
@@ -272,63 +270,59 @@ msgstr "Dodaj..."
 
 #: ../src/preferences.c:1001
 msgid "Exclude"
-msgstr "Izostavi"
+msgstr "Izostavljanje"
 
 #. Build the exclude label
 #: ../src/preferences.c:1006
 msgid ""
-"Regex list of items that should not be inserted into the history (passwords/"
-"sites that you don't need in history, etc)."
-msgstr ""
-"Regex popis stavki koje ne bi trebale biti uključene u povijest (lozinke/"
-"stranice koje ne trebate u povijesti, itd.)"
+"Regex list of items that should not be inserted into the history "
+"(passwords/sites that you don't need in history, etc)."
+msgstr "Popis izostavljenih stavki koje ne bi trebale biti uključene u povijest (lozinke/stranice koje ne trebate u povijesti, itd.)"
 
 #: ../src/preferences.c:1026
 msgid "Regex"
-msgstr "Regex"
+msgstr "Izostavljene stavke"
 
 #. Build the exclude windows section
 #: ../src/preferences.c:1052
-#, fuzzy
 msgid "Exclude clipboard content from windows:"
-msgstr "Ispiši sadržaj međuspremnika"
+msgstr "Izostavi sadržaj međuspremnika iz prozora:"
 
 #: ../src/preferences.c:1059
 msgid ""
 "Regular expression to match against window name. For example\n"
 "^(keepass)|(lastpass)\n"
-"Will cause all windows starting with either 'keepass' or 'lastpass' to be "
-"ignored.\n"
+"Will cause all windows starting with either 'keepass' or 'lastpass' to be ignored.\n"
 "The match is case insensitive."
-msgstr ""
+msgstr "Izostavljena stavka koja se podudara s nazivom prozora. Na primjer\n^(prvalozinka)|(posljednjalozinka)\nOmogućuje da svi prozori koji započinju s 'prvalozinka' ili 'posljednjalozinka' budu zanemareni.\nPodudaranje je osjetljivo na mala i velika slova."
 
 #: ../src/preferences.c:1067
 msgid "Hotkeys"
-msgstr "Tipke prečeca"
+msgstr "Prečaci tipkovnice"
 
 #: ../src/preferences.c:1075
 msgid "<b>Hotkeys</b>"
-msgstr "<b>Tipke prečeca</b>"
+msgstr "<b>Prečaci tipkovnice</b>"
 
 #: ../src/preferences.c:1085
 msgid "History hotkey:"
-msgstr "Povijest tipke prečeca"
+msgstr "Tipka prečaca povijesti:"
 
 #: ../src/preferences.c:1094
 msgid "Actions hotkey:"
-msgstr "Radnje tipke prečeca:"
+msgstr "Tipka prečaca radnje:"
 
 #: ../src/preferences.c:1103
 msgid "Menu hotkey:"
-msgstr "Izbornik tipke prečeca:"
+msgstr "Tipka prečaca izbornika:"
 
 #: ../src/preferences.c:1112
 msgid "Manage hotkey:"
-msgstr "Upravljanje tipkama prečeca:"
+msgstr "Tipka prečaca povijesti međuspremnika:"
 
 #: ../src/preferences.c:1121
 msgid "Offline mode hotkey:"
-msgstr "Nepovezani način tipke prečeca:"
+msgstr "Tipka prečaca izvanmrežnog načina rada:"
 
 #: ../src/utils.c:40 ../src/utils.c:47
 #, c-format
@@ -337,7 +331,7 @@ msgstr "Nemoguće stvaranje direktorija: %s\n"
 
 #: ../src/utils.c:131
 msgid "Run as daemon"
-msgstr "Pokreni kao daemon"
+msgstr "Pokreni kao pozadinski program"
 
 #: ../src/utils.c:138
 msgid "Do not use status icon (Ctrl-Alt-P for menu)"
@@ -345,11 +339,11 @@ msgstr "Ne koristi nepromjenjivu ikonu (Ctrl-Alt-P za izbornik)"
 
 #: ../src/utils.c:145
 msgid "Print clipboard contents"
-msgstr "Ispiši sadržaj međuspremnika"
+msgstr "Prikaži sadržaj međuspremnika"
 
 #: ../src/utils.c:152
 msgid "Print primary contents"
-msgstr "Ispiši primarni sadržaj"
+msgstr "Prikaži glavni sadržaj"
 
 #: ../src/utils.c:164
 msgid ""
@@ -358,17 +352,10 @@ msgid ""
 "  echo \"copied to clipboard\" | clipit\n"
 "  clipit \"copied to clipboard\"\n"
 "  echo \"copied to clipboard\" | clipit -c"
-msgstr ""
-"Primjeri naredbi naredbenog redka:\n"
-"\n"
-"  echo \"kopirano u međuspremnik\" | clipit\n"
-"  clipit \"kopirano u međuspremnik\"\n"
-"  echo \"kopirano u međuspremnik\" | clipit -c"
+msgstr "Primjeri korištenja naredbenog redka:\n\n  echo \"kopirano u međuspremnik\" | clipit\n  clipit \"kopirano u međuspremnik\"\n  echo \"kopirano u međuspremnik\" | clipit -c"
 
 #: ../src/utils.c:170
 msgid ""
 "Written by Cristian Henzel.\n"
 "Report bugs to <oss@rspwn.com>."
-msgstr ""
-"Autor Cristian Henzel.\n"
-"Prijavite greške na <oss@rspwn.com>."
+msgstr "Autor Cristian Henzel.\nPrijavite greške na:\n  https://github.com/CristianHenzel/ClipIt/issues"
