@@ -254,7 +254,7 @@ msgstr "Radnje"
 #. Build the actions label
 #: ../src/preferences.c:938
 msgid "Control-click ClipIt's tray icon to use actions"
-msgstr "Control-klik na ClipItovu ikonu obavjesnog područja za korištenje radnje"
+msgstr "Control-klik na ClipItovu ikonu obavijesnog područja za korištenje radnje"
 
 #: ../src/preferences.c:958
 msgid "Action"
