@@ -338,7 +338,7 @@ gboolean show_search()
   if(gtk_grab_get_current()) {
     /* A window is already open, so we present it to the user */
     GtkWidget *toplevel = gtk_widget_get_toplevel(gtk_grab_get_current());
-    gtk_window_present((GtkWindow*)toplevel);
+    gtk_window_present_with_time((GtkWindow*)toplevel, gtk_get_current_event_time());
     return FALSE;
   }
   /* Declare some variables */
