@@ -35,12 +35,12 @@ msgstr "Gestionnaire de presse-papier léger (GTK+)."
 #. Actions using:
 #: ../src/main.c:465
 msgid "Actions using:"
-msgstr ""
+msgstr "Actions utilisant :"
 
 #. Create menu item for empty clipboard contents
 #: ../src/main.c:474 ../src/main.c:491
 msgid "None"
-msgstr ""
+msgstr "Aucun"
 
 #: ../src/main.c:494
 msgid "<b>None</b>"
@@ -56,7 +56,7 @@ msgstr "Vide"
 #. Append "Remove all" item
 #: ../src/main.c:552 ../src/main.c:885 ../src/manage.c:407
 msgid "Remove all"
-msgstr ""
+msgstr "Tout retirer"
 
 #. Edit actions
 #: ../src/main.c:557
@@ -66,12 +66,12 @@ msgstr "_Modifier les actions"
 #. Offline mode checkbox
 #: ../src/main.c:924
 msgid "_Offline mode"
-msgstr ""
+msgstr "_Mode hors-ligne"
 
 #. Manage history
 #: ../src/main.c:933
 msgid "_Manage history"
-msgstr ""
+msgstr "Gérer l'historique"
 
 #. Create the dialog
 #: ../src/manage.c:138
@@ -80,7 +80,7 @@ msgstr "Modification du presse-papier"
 
 #: ../src/manage.c:158
 msgid "_Static item"
-msgstr ""
+msgstr "_Elément statique"
 
 #: ../src/manage.c:240
 msgid "Clear the history?"
@@ -88,23 +88,23 @@ msgstr "Effacer l'historique ?"
 
 #: ../src/manage.c:241
 msgid "Clear history"
-msgstr ""
+msgstr "Effacer l'historique"
 
 #: ../src/manage.c:353
 msgid "Manage History"
-msgstr ""
+msgstr "Gérer l'historique"
 
 #: ../src/manage.c:356
 msgid " (Offline mode)"
-msgstr ""
+msgstr " (Mode hors-ligne)"
 
 #: ../src/manage.c:398
 msgid "Results"
-msgstr ""
+msgstr "Résultats"
 
 #: ../src/manage.c:403
 msgid "Edit"
-msgstr ""
+msgstr "Modifier"
 
 #: ../src/manage.c:405 ../src/preferences.c:984 ../src/preferences.c:1045
 msgid "Remove"
@@ -112,15 +112,15 @@ msgstr "Supprimer"
 
 #: ../src/manage.c:409
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 #: ../src/preferences.c:182
 msgid "Save history"
-msgstr ""
+msgstr "Sauvegarder l'historique"
 
 #: ../src/preferences.c:215
 msgid "Remove history file"
-msgstr ""
+msgstr "Supprimer l'historique"
 
 #. Create the dialog
 #: ../src/preferences.c:730
@@ -129,7 +129,7 @@ msgstr "Préférences"
 
 #: ../src/preferences.c:749
 msgid "Settings"
-msgstr ""
+msgstr "Réglages"
 
 #: ../src/preferences.c:757
 msgid "<b>Clipboards</b>"
@@ -149,7 +149,7 @@ msgstr "S_ynchroniser les presse-papiers"
 
 #: ../src/preferences.c:772
 msgid "_Automatically paste selected item"
-msgstr ""
+msgstr "_Coller automatiquement l'élément sélectionné"
 
 #: ../src/preferences.c:781
 msgid "<b>Miscellaneous</b>"
@@ -157,11 +157,11 @@ msgstr "<b>Divers</b>"
 
 #: ../src/preferences.c:788
 msgid "Show _indexes in history menu"
-msgstr ""
+msgstr "Afficher les index dans le menu historique"
 
 #: ../src/preferences.c:790
 msgid "S_ave URIs"
-msgstr ""
+msgstr "Enregistrer les URIs"
 
 #: ../src/preferences.c:792
 msgid "Capture _hyperlinks only"
@@ -173,11 +173,11 @@ msgstr "Demander _confirmation avant d'effacer l'historique"
 
 #: ../src/preferences.c:796
 msgid "_Use right-click menu"
-msgstr ""
+msgstr "_Utiliser le menu clic droit"
 
 #: ../src/preferences.c:805
 msgid "History"
-msgstr ""
+msgstr "Historique"
 
 #: ../src/preferences.c:813
 msgid "<b>History</b>"
@@ -185,7 +185,7 @@ msgstr "<b>Historique</b>"
 
 #: ../src/preferences.c:820
 msgid "Save _history"
-msgstr ""
+msgstr "Sauvegarder l'_historique"
 
 #: ../src/preferences.c:821
 msgid "Save and restore history between sessions"
@@ -197,23 +197,23 @@ msgstr "Nombre de lignes dans l'historique :"
 
 #: ../src/preferences.c:834
 msgid "Items in menu:"
-msgstr ""
+msgstr "Eléments dans le menu :"
 
 #: ../src/preferences.c:841
 msgid "Show _static items in menu"
-msgstr ""
+msgstr "Afficher les éléments _statiques dans le menu"
 
 #: ../src/preferences.c:846
 msgid "Static items in menu:"
-msgstr ""
+msgstr "Eléments statiques dans le menu :"
 
 #: ../src/preferences.c:854
 msgid "Purge history after _timeout"
-msgstr ""
+msgstr "Effacer l'historique après _délais d'attente"
 
 #: ../src/preferences.c:860
 msgid "Timeout seconds"
-msgstr ""
+msgstr "Délai d'attente en secondes"
 
 #: ../src/preferences.c:875
 msgid "<b>Items</b>"
@@ -221,7 +221,7 @@ msgstr "<b>Éléments du presse-papier</b>"
 
 #: ../src/preferences.c:882
 msgid "Show in a single _line"
-msgstr ""
+msgstr "Afficher dans une seule _ligne"
 
 #: ../src/preferences.c:884
 msgid "Show in _reverse order"
@@ -270,7 +270,7 @@ msgstr "Ajouter..."
 
 #: ../src/preferences.c:1001
 msgid "Exclude"
-msgstr ""
+msgstr "Exclure"
 
 #. Build the exclude label
 #: ../src/preferences.c:1006
@@ -278,15 +278,17 @@ msgid ""
 "Regex list of items that should not be inserted into the history "
 "(passwords/sites that you don't need in history, etc)."
 msgstr ""
+"Liste des expressions qui ne devraient pas être insérés dans l'historique "
+"(mots de passe/sites dont vous n'avez pas besoin dans l'historique, etc)."
 
 #: ../src/preferences.c:1026
 msgid "Regex"
-msgstr ""
+msgstr "Expressions"
 
 #. Build the exclude windows section
 #: ../src/preferences.c:1052
 msgid "Exclude clipboard content from windows:"
-msgstr ""
+msgstr "Exclure le contenu du presse-papiers en provenance des fenêtres :"
 
 #: ../src/preferences.c:1059
 msgid ""
@@ -295,6 +297,10 @@ msgid ""
 "Will cause all windows starting with either 'keepass' or 'lastpass' to be ignored.\n"
 "The match is case insensitive."
 msgstr ""
+"Expression régulière à faire correspondre au nom de la fenêtre. Par exemple,\n"
+"^(keepass)|(lastpass)\n"
+"Toutes les fenêtres commençant par 'keepass' ou 'lastpass' seront ignorées.\n"
+"La correspondance est sensible à la casse."
 
 #: ../src/preferences.c:1067
 msgid "Hotkeys"
@@ -306,23 +312,23 @@ msgstr "<b>Raccourcis claviers</b>"
 
 #: ../src/preferences.c:1085
 msgid "History hotkey:"
-msgstr ""
+msgstr "Historique des raccourcis clavier :"
 
 #: ../src/preferences.c:1094
 msgid "Actions hotkey:"
-msgstr ""
+msgstr "Actions des raccourcis clavier :"
 
 #: ../src/preferences.c:1103
 msgid "Menu hotkey:"
-msgstr ""
+msgstr "Menu des raccourcis clavier :"
 
 #: ../src/preferences.c:1112
 msgid "Manage hotkey:"
-msgstr ""
+msgstr "Gérer les raccourcis clavier :"
 
 #: ../src/preferences.c:1121
 msgid "Offline mode hotkey:"
-msgstr ""
+msgstr "Mode hors-ligne des raccourcis clavier :"
 
 #: ../src/utils.c:40 ../src/utils.c:47
 #, c-format
@@ -359,3 +365,5 @@ msgid ""
 "Written by Cristian Henzel.\n"
 "Report bugs to <oss@rspwn.com>."
 msgstr ""
+"Ecrit par Cristian Henzel.\n"
+"Signaler les problèmes à <oss@rspwn.com>."
