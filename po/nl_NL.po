@@ -4,13 +4,13 @@
 # 
 # Translators:
 msgid ""
-msgstr ""
+msgstr "Pjotr"
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: Cristian Henzel <oss@rspwn.com>\n"
 "POT-Creation-Date: 2019-02-02 04:12+0200\n"
-"PO-Revision-Date: 2019-02-02 02:14+0000\n"
-"Last-Translator: Cristian Henzel <oss@rspwn.com>\n"
-"Language-Team: Dutch (Netherlands) (http://www.transifex.com/shantzu/clipit/language/nl_NL/)\n"
+"PO-Revision-Date: 2019-11-11 15:03+0000\n"
+"Last-Translator: Pjotr <pjotrvertaalt@gmail.com>\n"
+"Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,256 +19,256 @@ msgstr ""
 
 #: ../data/clipit-startup.desktop.in.h:1 ../data/clipit.desktop.in.h:1
 msgid "ClipIt"
-msgstr ""
+msgstr "ClipIT"
 
 #: ../data/clipit-startup.desktop.in.h:2 ../data/clipit.desktop.in.h:2
 #: ../src/main.c:1077
 msgid "Clipboard Manager"
-msgstr ""
+msgstr "Klembordbeheerder"
 
 #: ../src/main.c:395
 msgid "Lightweight GTK+ clipboard manager."
-msgstr ""
+msgstr "Lichtgewicht-klembordbeheerder voor GTK+."
 
 #. Actions using:
 #: ../src/main.c:465
 msgid "Actions using:"
-msgstr ""
+msgstr "Acties met gebruikmaking van:"
 
 #. Create menu item for empty clipboard contents
 #: ../src/main.c:474 ../src/main.c:491
 msgid "None"
-msgstr ""
+msgstr "Geen"
 
 #: ../src/main.c:494
 msgid "<b>None</b>"
-msgstr ""
+msgstr "<b>Geen</b>"
 
 #. File contained no actions so adding empty
 #. File did not open so adding empty
 #. Nothing in history so adding empty
 #: ../src/main.c:516 ../src/main.c:545 ../src/main.c:832
 msgid "Empty"
-msgstr ""
+msgstr "Leeg"
 
 #. Append "Remove all" item
 #: ../src/main.c:552 ../src/main.c:885 ../src/manage.c:407
 msgid "Remove all"
-msgstr ""
+msgstr "Alles verwijderen"
 
 #. Edit actions
 #: ../src/main.c:557
 msgid "_Edit actions"
-msgstr ""
+msgstr "Acties _bewerken"
 
 #. Offline mode checkbox
 #: ../src/main.c:924
 msgid "_Offline mode"
-msgstr ""
+msgstr "_Internetloze modus"
 
 #. Manage history
 #: ../src/main.c:933
 msgid "_Manage history"
-msgstr ""
+msgstr "_Geschiedenis beheren"
 
 #. Create the dialog
 #: ../src/manage.c:138
 msgid "Editing Clipboard"
-msgstr ""
+msgstr "Klembord bewerken"
 
 #: ../src/manage.c:158
 msgid "_Static item"
-msgstr ""
+msgstr "_Statisch element"
 
 #: ../src/manage.c:240
 msgid "Clear the history?"
-msgstr ""
+msgstr "Geschiedenis verwijderen?"
 
 #: ../src/manage.c:241
 msgid "Clear history"
-msgstr ""
+msgstr "Geschiedenis verwijderen"
 
 #: ../src/manage.c:353
 msgid "Manage History"
-msgstr ""
+msgstr "Geschiedenis beheren"
 
 #: ../src/manage.c:356
 msgid " (Offline mode)"
-msgstr ""
+msgstr "(Internetloze modus)"
 
 #: ../src/manage.c:398
 msgid "Results"
-msgstr ""
+msgstr "Resultaten"
 
 #: ../src/manage.c:403
 msgid "Edit"
-msgstr ""
+msgstr "Bewerken"
 
 #: ../src/manage.c:405 ../src/preferences.c:984 ../src/preferences.c:1045
 msgid "Remove"
-msgstr ""
+msgstr "Verwijderen"
 
 #: ../src/manage.c:409
 msgid "Close"
-msgstr ""
+msgstr "Sluiten"
 
 #: ../src/preferences.c:182
 msgid "Save history"
-msgstr ""
+msgstr "Geschiedenis opslaan"
 
 #: ../src/preferences.c:215
 msgid "Remove history file"
-msgstr ""
+msgstr "Geschiedenisbestand verwijderen"
 
 #. Create the dialog
 #: ../src/preferences.c:730
 msgid "Preferences"
-msgstr ""
+msgstr "Voorkeuren"
 
 #: ../src/preferences.c:749
 msgid "Settings"
-msgstr ""
+msgstr "Instellingen"
 
 #: ../src/preferences.c:757
 msgid "<b>Clipboards</b>"
-msgstr ""
+msgstr "<b>Klemborden</b>"
 
 #: ../src/preferences.c:764
 msgid "Use _Copy (Ctrl-C)"
-msgstr ""
+msgstr "Gebruik _kopiëren ('Ctrl k')"
 
 #: ../src/preferences.c:767
 msgid "Use _Primary (Selection)"
-msgstr ""
+msgstr "Gebruik _primaire (selectie)"
 
 #: ../src/preferences.c:770
 msgid "S_ynchronize clipboards"
-msgstr ""
+msgstr "Klemborden s_ynchroniseren"
 
 #: ../src/preferences.c:772
 msgid "_Automatically paste selected item"
-msgstr ""
+msgstr "Gekozen element _automatisch plakken"
 
 #: ../src/preferences.c:781
 msgid "<b>Miscellaneous</b>"
-msgstr ""
+msgstr "<b>Divers</b>"
 
 #: ../src/preferences.c:788
 msgid "Show _indexes in history menu"
-msgstr ""
+msgstr "Toon _indices in geschiedenismenu"
 
 #: ../src/preferences.c:790
 msgid "S_ave URIs"
-msgstr ""
+msgstr "URI's opslaan"
 
 #: ../src/preferences.c:792
 msgid "Capture _hyperlinks only"
-msgstr ""
+msgstr "Alleen _webkoppelingen vastleggen"
 
 #: ../src/preferences.c:794
 msgid "C_onfirm before clearing history"
-msgstr ""
+msgstr "Bevestigen alvorens geschiedenis te wissen"
 
 #: ../src/preferences.c:796
 msgid "_Use right-click menu"
-msgstr ""
+msgstr "Rechtsklikmenu gebruiken"
 
 #: ../src/preferences.c:805
 msgid "History"
-msgstr ""
+msgstr "Geschiedenis"
 
 #: ../src/preferences.c:813
 msgid "<b>History</b>"
-msgstr ""
+msgstr "<b>Geschiedenis</b>"
 
 #: ../src/preferences.c:820
 msgid "Save _history"
-msgstr ""
+msgstr "Geschiedenis opslaan"
 
 #: ../src/preferences.c:821
 msgid "Save and restore history between sessions"
-msgstr ""
+msgstr "Geschiedenis opslaan en herstellen tussen sessies"
 
 #: ../src/preferences.c:825
 msgid "Items in history:"
-msgstr ""
+msgstr "Elementen in geschiedenis:"
 
 #: ../src/preferences.c:834
 msgid "Items in menu:"
-msgstr ""
+msgstr "Elementen in menu"
 
 #: ../src/preferences.c:841
 msgid "Show _static items in menu"
-msgstr ""
+msgstr "Toon statische elementen in menu"
 
 #: ../src/preferences.c:846
 msgid "Static items in menu:"
-msgstr ""
+msgstr "Statische elementen in menu:"
 
 #: ../src/preferences.c:854
 msgid "Purge history after _timeout"
-msgstr ""
+msgstr "Geschiedenis wissen na pauzering"
 
 #: ../src/preferences.c:860
 msgid "Timeout seconds"
-msgstr ""
+msgstr "Pauzering in seconden"
 
 #: ../src/preferences.c:875
 msgid "<b>Items</b>"
-msgstr ""
+msgstr "<b>Elementen</b>"
 
 #: ../src/preferences.c:882
 msgid "Show in a single _line"
-msgstr ""
+msgstr "Toon in één regel"
 
 #: ../src/preferences.c:884
 msgid "Show in _reverse order"
-msgstr ""
+msgstr "Toon in omgekeerde volgorde"
 
 #: ../src/preferences.c:888
 msgid "Character length of items:"
-msgstr ""
+msgstr "Tekenlengte van elementen:"
 
 #: ../src/preferences.c:897
 msgid "Omit items in the:"
-msgstr ""
+msgstr "Sla elementen over in het:"
 
 #: ../src/preferences.c:901
 msgid "Beginning"
-msgstr ""
+msgstr "Begin"
 
 #: ../src/preferences.c:902
 msgid "Middle"
-msgstr ""
+msgstr "Midden"
 
 #: ../src/preferences.c:903
 msgid "End"
-msgstr ""
+msgstr "Einde"
 
 #: ../src/preferences.c:933
 msgid "Actions"
-msgstr ""
+msgstr "Acties"
 
 #. Build the actions label
 #: ../src/preferences.c:938
 msgid "Control-click ClipIt's tray icon to use actions"
-msgstr ""
+msgstr "Doe 'Ctrl klik' op het systeemvakpictogram van ClipIT om acties te gebruiken"
 
 #: ../src/preferences.c:958
 msgid "Action"
-msgstr ""
+msgstr "Actie"
 
 #: ../src/preferences.c:965
 msgid "Command"
-msgstr ""
+msgstr "Opdracht"
 
 #: ../src/preferences.c:980 ../src/preferences.c:1041
 msgid "Add..."
-msgstr ""
+msgstr "Toevoegen..."
 
 #: ../src/preferences.c:1001
 msgid "Exclude"
-msgstr ""
+msgstr "Uitsluiten"
 
 #. Build the exclude label
 #: ../src/preferences.c:1006
@@ -276,15 +276,17 @@ msgid ""
 "Regex list of items that should not be inserted into the history "
 "(passwords/sites that you don't need in history, etc)."
 msgstr ""
+"Regex-lijst van elementen die niet zouden moeten worden "
+"toegevoegd aan de geschiedenis (wachtwoorden, websites, enz.)."
 
 #: ../src/preferences.c:1026
 msgid "Regex"
-msgstr ""
+msgstr "Regex"
 
 #. Build the exclude windows section
 #: ../src/preferences.c:1052
 msgid "Exclude clipboard content from windows:"
-msgstr ""
+msgstr "Sluit klembordinhoud uit van vensters:"
 
 #: ../src/preferences.c:1059
 msgid ""
@@ -293,55 +295,59 @@ msgid ""
 "Will cause all windows starting with either 'keepass' or 'lastpass' to be ignored.\n"
 "The match is case insensitive."
 msgstr ""
+"Reguliere uitdrukking om te vergelijken met vensternaam. Bijv.\n"
+"^(keepass)|(lastpass)\n"
+"zal alle vensters waarvan de naam begint met 'keepass' of 'lastpass' doen negeren.\n"
+"Dit is hoofdletteronafhankelijk."
 
 #: ../src/preferences.c:1067
 msgid "Hotkeys"
-msgstr ""
+msgstr "Sneltoetsen"
 
 #: ../src/preferences.c:1075
 msgid "<b>Hotkeys</b>"
-msgstr ""
+msgstr "<b>Sneltoetsen</b>"
 
 #: ../src/preferences.c:1085
 msgid "History hotkey:"
-msgstr ""
+msgstr "Sneltoets voor geschiedenis:"
 
 #: ../src/preferences.c:1094
 msgid "Actions hotkey:"
-msgstr ""
+msgstr "Sneltoets voor acties:"
 
 #: ../src/preferences.c:1103
 msgid "Menu hotkey:"
-msgstr ""
+msgstr "Sneltoets voor menu:"
 
 #: ../src/preferences.c:1112
 msgid "Manage hotkey:"
-msgstr ""
+msgstr "Sneltoets voor beheren:"
 
 #: ../src/preferences.c:1121
 msgid "Offline mode hotkey:"
-msgstr ""
+msgstr "Sneltoets voor internetloze modus:"
 
 #: ../src/utils.c:40 ../src/utils.c:47
 #, c-format
 msgid "Couldn't create directory: %s\n"
-msgstr ""
+msgstr "Kon map niet maken: %s\n"
 
 #: ../src/utils.c:131
 msgid "Run as daemon"
-msgstr ""
+msgstr "Draai als achtergronddienst"
 
 #: ../src/utils.c:138
 msgid "Do not use status icon (Ctrl-Alt-P for menu)"
-msgstr ""
+msgstr "Gebruik geen statuspictogram ('Ctrl Alt p' voor menu)"
 
 #: ../src/utils.c:145
 msgid "Print clipboard contents"
-msgstr ""
+msgstr "Druk inhoud van klembord af"
 
 #: ../src/utils.c:152
 msgid "Print primary contents"
-msgstr ""
+msgstr "Druk primaire inhoud af"
 
 #: ../src/utils.c:164
 msgid ""
@@ -351,9 +357,16 @@ msgid ""
 "  clipit \"copied to clipboard\"\n"
 "  echo \"copied to clipboard\" | clipit -c"
 msgstr ""
+"Clipboard-gebruiksvoorbeelden voor terminal:\n"
+"\n"
+"  echo \"gekopieerd naar klembord\" | clipit\n"
+"  clipit \"gekopieerd naar klembord\"\n"
+"  echo \"gekopieerd naar klembord\" | clipit -c"
 
 #: ../src/utils.c:170
 msgid ""
 "Written by Cristian Henzel.\n"
 "Report bugs to <oss@rspwn.com>."
 msgstr ""
+"Geschreven door Cristian Henzel.\n"
+"Meld fouten a.u.b. via <oss@rspwn.com>."
