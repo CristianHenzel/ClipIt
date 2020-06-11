@@ -1,6 +1,7 @@
 [Desktop Entry]
 _Name=ClipIt
 _Comment=Clipboard Manager
+_Comment[hr]=Upravitelj međuspremnika
 Icon=clipit-trayicon
 Exec=clipit
 Terminal=false
