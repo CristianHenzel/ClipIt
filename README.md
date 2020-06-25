@@ -28,13 +28,28 @@ How to compile and install clipit
 * xdotool - for automatic paste functionality
 
 #### Download the clipit source code, then:
-    $ tar zxvf clipit-x.y.z.tar.gz
-    $ cd clipit-x.y.z
-    $ ./autogen.sh
-    $ ./configure
-    $ make
-    $ sudo make install
+```
+tar zxvf clipit-x.y.z.tar.gz
+cd clipit-x.y.z
+./autogen.sh
+./configure
+make
+sudo make install
+```
+  
+#### Build using meson:  
+```
+meson build -Dwith-gtk3=true
+cd build
+ninja
+sudo ninja install  
+```  
 
+#### PPA builds  
+```
+sudo add-apt-repository ppa:afelinczak/ppa
+```  
+  
 Documentation
 ===============================================================================
 
