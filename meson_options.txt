@@ -1,0 +1,2 @@
+option('with-gtk3', type : 'boolean', value : true)
+option('enable-appindicator', type : 'boolean', value : false)
