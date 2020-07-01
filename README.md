@@ -26,6 +26,10 @@ How to compile and install clipit
 #### Requirements:
 * gtk+ >= 2.10.0 (>= 3.0 for gtk+3)
 * xdotool - for automatic paste functionality
+* intltool
+
+#### On Ubuntu:
+sudo apt-get install build-essential git automake xdotool autoconf intltool autopoint gtk+-3.0
 
 #### Download the clipit source code, then:
 ```
