@@ -36,7 +36,7 @@ sudo apt-get install build-essential git automake xdotool autoconf intltool auto
 tar zxvf clipit-x.y.z.tar.gz
 cd clipit-x.y.z
 ./autogen.sh
-./configure
+./configure --with-gtk3 
 make
 sudo make install
 ```
