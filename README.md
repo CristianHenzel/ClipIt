@@ -19,6 +19,8 @@ forked from parcellite, which is
 
 Copyright (C) 2007-2008 Gilberto "Xyhthyx" Miralla <xyhthyx@gmail.com>
 
+**ClipIt available in Debian and Ubuntu repositories (1.4.4) is broken. Use latest package from this repo.**
+
 
 How to compile and install clipit
 ===============================================================================
@@ -36,7 +38,7 @@ sudo apt-get install build-essential git automake xdotool autoconf intltool auto
 tar zxvf clipit-x.y.z.tar.gz
 cd clipit-x.y.z
 ./autogen.sh
-./configure
+./configure --with-gtk3 
 make
 sudo make install
 ```
