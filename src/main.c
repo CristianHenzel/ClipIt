@@ -713,12 +713,9 @@ gboolean selected_by_digit(const GtkWidget *history_menu, const GdkEventKey *eve
     case XK_KP_9:
 	  selection = 9;
       break;
-    case XK_0:
-    case XK_KP_0:
-	  selection = 0;
-      break;
   }
-  if (selection >= 0) {
+  if (selection > 0) {
+	--selection; // The item index is counted from 0, but listed on screen from 1
 	item_selected((GtkMenuItem*)history_menu, GINT_TO_POINTER(selection));
 	gtk_widget_destroy(history_menu);
 	return TRUE;
