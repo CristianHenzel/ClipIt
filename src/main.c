@@ -653,7 +653,7 @@ gboolean selected_by_input(const GtkWidget *history_menu, const GdkEventKey *eve
     gtk_menu_item_deselect(menu_item);
 
     match = strcasestr(menu_label, input_buffer);
-    if (match) {
+    if (match && *match!='\0') {
       if (!first_match)
         first_match = menu_item;
       match_count++;
