@@ -602,8 +602,6 @@ static gboolean menu_key_pressed(GtkWidget *history_menu, GdkEventKey *event, gp
  * match should be a pointer to the first character of the matched text.
  */
 void underline_match(char* match, GtkMenuItem* menu_item, const gchar* menu_label) {
-  if (!match)
-    return;
 
   int start = match - menu_label;
   int end = start + strlen(input_buffer);
