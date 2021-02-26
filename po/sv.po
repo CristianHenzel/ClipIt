@@ -1,26 +1,28 @@
 # ClipIt translation file.
-# Copyright (C) 2010-2019 Cristian Henzel <oss@rspwn.com>
+# Copyright (C) 2010-2016 Cristian Henzel <oss@rspwn.com>
 # This file is distributed under the same license as the ClipIt package.
-# 
+#
 # Translators:
-# Daniel Nylander <po@danielnylander.se>, 2009
+# Daniel Nylander <po@danielnylander.se>, 2009.
+# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2016, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: Cristian Henzel <oss@rspwn.com>\n"
 "POT-Creation-Date: 2019-02-02 04:12+0200\n"
-"PO-Revision-Date: 2019-02-02 02:14+0000\n"
-"Last-Translator: Cristian Henzel <oss@rspwn.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/shantzu/clipit/language/sv/)\n"
+"PO-Revision-Date: 2021-02-26 22:42+0100\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Language-Team: Svenska Språkfiler <https://svenskasprakfiler.se>\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
 
 #: ../data/clipit-startup.desktop.in.h:1 ../data/clipit.desktop.in.h:1
 msgid "ClipIt"
-msgstr ""
+msgstr "ClipIt"
 
 #: ../data/clipit-startup.desktop.in.h:2 ../data/clipit.desktop.in.h:2
 #: ../src/main.c:1077
@@ -29,21 +31,21 @@ msgstr "Urklippshanterare"
 
 #: ../src/main.c:395
 msgid "Lightweight GTK+ clipboard manager."
-msgstr "Resurssnål GTK+-urklippshanterare."
+msgstr "Resurssnål GTK+ urklippshanterare."
 
 #. Actions using:
 #: ../src/main.c:465
 msgid "Actions using:"
-msgstr ""
+msgstr "Åtgärder:"
 
 #. Create menu item for empty clipboard contents
 #: ../src/main.c:474 ../src/main.c:491
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 #: ../src/main.c:494
 msgid "<b>None</b>"
-msgstr "<b>Inget</b>"
+msgstr "<b>Ingen</b>"
 
 #. File contained no actions so adding empty
 #. File did not open so adding empty
@@ -55,7 +57,7 @@ msgstr "Tom"
 #. Append "Remove all" item
 #: ../src/main.c:552 ../src/main.c:885 ../src/manage.c:407
 msgid "Remove all"
-msgstr ""
+msgstr "Ta bort alla"
 
 #. Edit actions
 #: ../src/main.c:557
@@ -65,12 +67,12 @@ msgstr "R_edigera åtgärder"
 #. Offline mode checkbox
 #: ../src/main.c:924
 msgid "_Offline mode"
-msgstr ""
+msgstr "_Offline-läge"
 
 #. Manage history
 #: ../src/main.c:933
 msgid "_Manage history"
-msgstr ""
+msgstr "_Hantera historik"
 
 #. Create the dialog
 #: ../src/manage.c:138
@@ -79,31 +81,31 @@ msgstr "Redigerar urklipp"
 
 #: ../src/manage.c:158
 msgid "_Static item"
-msgstr ""
+msgstr "_Statiskt objekt"
 
 #: ../src/manage.c:240
 msgid "Clear the history?"
-msgstr "Töm historik?"
+msgstr "Vill du tömma historiken?"
 
 #: ../src/manage.c:241
 msgid "Clear history"
-msgstr ""
+msgstr "Töm historik"
 
 #: ../src/manage.c:353
 msgid "Manage History"
-msgstr ""
+msgstr "Hantera historik"
 
 #: ../src/manage.c:356
 msgid " (Offline mode)"
-msgstr ""
+msgstr " (Offline-läge)"
 
 #: ../src/manage.c:398
 msgid "Results"
-msgstr ""
+msgstr "Resultat"
 
 #: ../src/manage.c:403
 msgid "Edit"
-msgstr ""
+msgstr "Redigera"
 
 #: ../src/manage.c:405 ../src/preferences.c:984 ../src/preferences.c:1045
 msgid "Remove"
@@ -111,15 +113,15 @@ msgstr "Ta bort"
 
 #: ../src/manage.c:409
 msgid "Close"
-msgstr ""
+msgstr "Stäng"
 
 #: ../src/preferences.c:182
 msgid "Save history"
-msgstr ""
+msgstr "Spara historik"
 
 #: ../src/preferences.c:215
 msgid "Remove history file"
-msgstr ""
+msgstr "Ta bort historikfilen"
 
 #. Create the dialog
 #: ../src/preferences.c:730
@@ -128,7 +130,7 @@ msgstr "Inställningar"
 
 #: ../src/preferences.c:749
 msgid "Settings"
-msgstr ""
+msgstr "Inställningar"
 
 #: ../src/preferences.c:757
 msgid "<b>Clipboards</b>"
@@ -148,7 +150,7 @@ msgstr "S_ynkronisera urklipp"
 
 #: ../src/preferences.c:772
 msgid "_Automatically paste selected item"
-msgstr ""
+msgstr "Klistra _automatiskt in valt objekt"
 
 #: ../src/preferences.c:781
 msgid "<b>Miscellaneous</b>"
@@ -156,15 +158,15 @@ msgstr "<b>Diverse</b>"
 
 #: ../src/preferences.c:788
 msgid "Show _indexes in history menu"
-msgstr ""
+msgstr "Visa _index i historikmenyn"
 
 #: ../src/preferences.c:790
 msgid "S_ave URIs"
-msgstr ""
+msgstr "S_para URI:er"
 
 #: ../src/preferences.c:792
 msgid "Capture _hyperlinks only"
-msgstr "Fånga endast _hyperlänkar"
+msgstr "Hämta endast _hyperlänkar"
 
 #: ../src/preferences.c:794
 msgid "C_onfirm before clearing history"
@@ -172,11 +174,11 @@ msgstr "B_ekräfta innan historiken töms"
 
 #: ../src/preferences.c:796
 msgid "_Use right-click menu"
-msgstr ""
+msgstr "_Använd högerklicksmeny"
 
 #: ../src/preferences.c:805
 msgid "History"
-msgstr ""
+msgstr "Historik"
 
 #: ../src/preferences.c:813
 msgid "<b>History</b>"
@@ -184,7 +186,7 @@ msgstr "<b>Historik</b>"
 
 #: ../src/preferences.c:820
 msgid "Save _history"
-msgstr ""
+msgstr "Spara _historik"
 
 #: ../src/preferences.c:821
 msgid "Save and restore history between sessions"
@@ -196,23 +198,23 @@ msgstr "Objekt i historik:"
 
 #: ../src/preferences.c:834
 msgid "Items in menu:"
-msgstr ""
+msgstr "Objekt i menyn:"
 
 #: ../src/preferences.c:841
 msgid "Show _static items in menu"
-msgstr ""
+msgstr "Visa _statiska objekt i menyn"
 
 #: ../src/preferences.c:846
 msgid "Static items in menu:"
-msgstr ""
+msgstr "Statiska objekt i menyn:"
 
 #: ../src/preferences.c:854
 msgid "Purge history after _timeout"
-msgstr ""
+msgstr "Ta bort historik efter att _tiden gått ut"
 
 #: ../src/preferences.c:860
 msgid "Timeout seconds"
-msgstr ""
+msgstr "Tidsgräns i sekunder"
 
 #: ../src/preferences.c:875
 msgid "<b>Items</b>"
@@ -220,7 +222,7 @@ msgstr "<b>Objekt</b>"
 
 #: ../src/preferences.c:882
 msgid "Show in a single _line"
-msgstr ""
+msgstr "Visa på enkel_rad"
 
 #: ../src/preferences.c:884
 msgid "Show in _reverse order"
@@ -253,7 +255,7 @@ msgstr "Åtgärder"
 #. Build the actions label
 #: ../src/preferences.c:938
 msgid "Control-click ClipIt's tray icon to use actions"
-msgstr "Control-klicka på ClipIts aktivitetsikon för att använda åtgärder"
+msgstr "Ctrl+klick på ClipIts aktivitetsikon för att använda åtgärder"
 
 #: ../src/preferences.c:958
 msgid "Action"
@@ -269,31 +271,39 @@ msgstr "Lägg till..."
 
 #: ../src/preferences.c:1001
 msgid "Exclude"
-msgstr ""
+msgstr "Undanta"
 
 #. Build the exclude label
 #: ../src/preferences.c:1006
 msgid ""
-"Regex list of items that should not be inserted into the history "
-"(passwords/sites that you don't need in history, etc)."
+"Regex list of items that should not be inserted into the history (passwords/"
+"sites that you don't need in history, etc)."
 msgstr ""
+"Regex-lista över objekt som skall undantas från historiken (lösenord/sidor "
+"som du inte behöver i historiken etc.)"
 
 #: ../src/preferences.c:1026
 msgid "Regex"
-msgstr ""
+msgstr "Regex"
 
 #. Build the exclude windows section
 #: ../src/preferences.c:1052
 msgid "Exclude clipboard content from windows:"
-msgstr ""
+msgstr "Skriv ut urklippsinnehåll från fönster:"
 
 #: ../src/preferences.c:1059
 msgid ""
 "Regular expression to match against window name. For example\n"
 "^(keepass)|(lastpass)\n"
-"Will cause all windows starting with either 'keepass' or 'lastpass' to be ignored.\n"
+"Will cause all windows starting with either 'keepass' or 'lastpass' to be "
+"ignored.\n"
 "The match is case insensitive."
 msgstr ""
+"Regular expression att matcha mot fönsternamn. T.ex.\n"
+"^(keepass)|(lastpass)\n"
+"Innebär att alla fönster som startas med antingen \"keepass\" eller "
+"\"lastpass\" kommer att ignoreras.\n"
+"Matchningen är skiftlägeskänslig."
 
 #: ../src/preferences.c:1067
 msgid "Hotkeys"
@@ -305,32 +315,32 @@ msgstr "<b>Snabbtangenter</b>"
 
 #: ../src/preferences.c:1085
 msgid "History hotkey:"
-msgstr ""
+msgstr "Historikgenväg:"
 
 #: ../src/preferences.c:1094
 msgid "Actions hotkey:"
-msgstr ""
+msgstr "Åtgärdsgenväg:"
 
 #: ../src/preferences.c:1103
 msgid "Menu hotkey:"
-msgstr ""
+msgstr "Menygenväg:"
 
 #: ../src/preferences.c:1112
 msgid "Manage hotkey:"
-msgstr ""
+msgstr "Hantera historik:"
 
 #: ../src/preferences.c:1121
 msgid "Offline mode hotkey:"
-msgstr ""
+msgstr "Genväg för offline-läge:"
 
 #: ../src/utils.c:40 ../src/utils.c:47
 #, c-format
 msgid "Couldn't create directory: %s\n"
-msgstr "Kunde inte skapa katalog: %s\n"
+msgstr "Kunde inte skapa katalogen: %s\n"
 
 #: ../src/utils.c:131
 msgid "Run as daemon"
-msgstr "Kör som demon"
+msgstr "Kör som tjänst"
 
 #: ../src/utils.c:138
 msgid "Do not use status icon (Ctrl-Alt-P for menu)"
@@ -338,7 +348,7 @@ msgstr "Använd inte statusikon (Ctrl-Alt-P för meny)"
 
 #: ../src/utils.c:145
 msgid "Print clipboard contents"
-msgstr "Skriv ut urklippets innehåll"
+msgstr "Skriv ut urklippsinnehåll"
 
 #: ../src/utils.c:152
 msgid "Print primary contents"
@@ -351,10 +361,17 @@ msgid ""
 "  echo \"copied to clipboard\" | clipit\n"
 "  clipit \"copied to clipboard\"\n"
 "  echo \"copied to clipboard\" | clipit -c"
-msgstr "Användningexempel för kommandorad:\n\n  echo \"kopierad till urklipp\" | clipit\n  clipit \"kopierad till urklipp\"\n  echo \"kopierad till urklipp\" | clipit -c"
+msgstr ""
+"Användningexempel för kommandorad:\n"
+"\n"
+"  echo \"kopierad till urklipp\" | clipit\n"
+"  clipit \"kopierad till urklipp\"\n"
+"  echo \"kopierad till urklipp\" | clipit -c"
 
 #: ../src/utils.c:170
 msgid ""
 "Written by Cristian Henzel.\n"
 "Report bugs to <oss@rspwn.com>."
 msgstr ""
+"Skriven av Cristian Henzel.\n"
+"Rapportera fel till <oss@rspwn.com>."
