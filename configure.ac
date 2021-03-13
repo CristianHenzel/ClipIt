@@ -30,13 +30,10 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [gettext package])
 
 ALL_LINGUAS="ca cs da de es es_ES et fr hr hu it ja nb pl pl pt_BR ro ru sv tr zh_CN"
 AM_GLIB_GNU_GETTEXT()
-AC_PROG_INTLTOOL([0.23])
+IT_PROG_INTLTOOL([0.40.0], [no-xml])
 
 clipitlocaledir='${prefix}/${DATADIRNAME}/locale'
 AC_SUBST(clipitlocaledir)
-
-AM_GNU_GETTEXT([external])
-AM_GNU_GETTEXT_VERSION(0.19)
 
 # -------------------------------------------------------------------------------
 # Config options.
