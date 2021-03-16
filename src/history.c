@@ -242,6 +242,13 @@ void check_and_append(gchar *item)
 		if (duplicate_elem) {
 			history = g_list_remove_link(history, duplicate_elem);
 			history = g_list_concat(duplicate_elem, history);
+
+			/* Force refresh indicator menu even on duplicate element. Temporary solution
+			* until getting the visible status of the menu is supported by the API
+			*/
+#ifdef HAVE_APPINDICATOR
+			create_app_indicator(0);
+#endif
 		} else {
 			append_item(item);
 		}
