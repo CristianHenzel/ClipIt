@@ -825,7 +825,7 @@ void show_preferences(gint tab) {
   label = gtk_label_new(_("Items in history:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
   gtk_box_pack_start((GtkBox*)hbox, label, FALSE, FALSE, 0);
-  adjustment = gtk_adjustment_new(25, 5, 1000, 1, 10, 0);
+  adjustment = gtk_adjustment_new(25, 5, DEF_HISTORY_LIMIT, 1, 10, 0);
   history_spin = gtk_spin_button_new((GtkAdjustment*)adjustment, 0.0, 0);
   gtk_spin_button_set_update_policy((GtkSpinButton*)history_spin, GTK_UPDATE_IF_VALID);
   gtk_box_pack_start((GtkBox*)hbox, history_spin, FALSE, FALSE, 0);
