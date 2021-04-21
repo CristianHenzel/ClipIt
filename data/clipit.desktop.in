@@ -2,7 +2,7 @@
 _Name=ClipIt
 _Comment=Clipboard Manager
 Icon=clipit-trayicon-offline
-Exec=clipit
+Exec=clipit &
 Terminal=false
 Type=Application
 Categories=GTK;GNOME;Application;Utility;

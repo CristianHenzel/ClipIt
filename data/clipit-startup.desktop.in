@@ -2,7 +2,7 @@
 _Name=ClipIt
 _Comment=Clipboard Manager
 Icon=clipit-trayicon
-Exec=clipit
+Exec=clipit &
 Terminal=false
 Type=Application
 OnlyShowIn=GNOME;XFCE;LXDE;Unity;
