@@ -46,6 +46,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <string.h>
+#include <sys/stat.h>
 
 #define ICON "clipit-trayicon"
 #define ICON_OFFLINE "clipit-trayicon-offline"
