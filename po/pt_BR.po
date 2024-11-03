@@ -2,18 +2,21 @@
 # Copyright (C) 2010-2019 Cristian Henzel <oss@rspwn.com>
 # This file is distributed under the same license as the ClipIt package.
 # 
-# Translators:
-# Alexandro Casanova <shorterfire@gmail.com>, 2013
-# Phantom X <megaphantomx at bol.com.br>, 2008, 2009
-# Alexandro Casanova <shorterfire@gmail.com>, 2012
+# Volunteer translators of the Brazilian Portuguese language (pt_BR):
+# Tradudores voluntários do idioma Português do Brasil (pt_BR):
+# Phantom X <megaphantomx at bol.com.br>, 2008 e 2009
+# Alexandro Casanova <shorterfire@gmail.com>, 2012 e 2013
+# Cristian Henzel <oss@rspwn.com>, 2019
+# marcelocripe <marcelocripe@gmail.com>, 2024
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: ClipIt\n"
 "Report-Msgid-Bugs-To: Cristian Henzel <oss@rspwn.com>\n"
 "POT-Creation-Date: 2019-02-02 04:12+0200\n"
-"PO-Revision-Date: 2019-02-02 02:14+0000\n"
-"Last-Translator: Cristian Henzel <oss@rspwn.com>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/shantzu/clipit/language/pt_BR/)\n"
+"PO-Revision-Date: 2024-08-20 02:14+0000\n"
+"Last-Translator: marcelocripe <marcelocripe@gmail.com>\n"
+"Language-Team: Portuguese (Brazil)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,21 +25,28 @@ msgstr ""
 
 #: ../data/clipit-startup.desktop.in.h:1 ../data/clipit.desktop.in.h:1
 msgid "ClipIt"
-msgstr "ClipIt"
+msgstr "Gerenciador da Área de Transferência ClipIt"
 
 #: ../data/clipit-startup.desktop.in.h:2 ../data/clipit.desktop.in.h:2
 #: ../src/main.c:1077
 msgid "Clipboard Manager"
-msgstr "Gerenciador de Área de Transferência"
+msgstr "Gerenciador da Área de Transferência"
 
 #: ../src/main.c:395
 msgid "Lightweight GTK+ clipboard manager."
-msgstr "Gerenciador de Área de Transferência leve em GTK+."
+msgstr "O ‘ClipIt’ é um programa utilitário que permite armazenar vários "
+"textos simples na área de transferência, capturando as ações de copiar "
+"ou de recortar e possibilita o uso futuro dos textos que foram guardados "
+"de serem utilizados por meio da ação de colar, as ações podem ser feitas "
+"com as combinações de teclas Ctrl+C (para copiar a informação para a área "
+"de transferência), Ctrl+X (para cortar ou recortar a informação para a área "
+"de transferência), Ctrl+V (para colar a informação da área de transferência), "
+"além de que, as ações podem ser realizadas com o cursor ou a seta."
 
 #. Actions using:
 #: ../src/main.c:465
 msgid "Actions using:"
-msgstr "Ações usando:"
+msgstr "Utilizando as ações:"
 
 #. Create menu item for empty clipboard contents
 #: ../src/main.c:474 ../src/main.c:491
@@ -57,51 +67,51 @@ msgstr "Vazio"
 #. Append "Remove all" item
 #: ../src/main.c:552 ../src/main.c:885 ../src/manage.c:407
 msgid "Remove all"
-msgstr "Remover tudo"
+msgstr "Remover Tudo"
 
 #. Edit actions
 #: ../src/main.c:557
 msgid "_Edit actions"
-msgstr "_Editar ações"
+msgstr "_Editar as ações"
 
 #. Offline mode checkbox
 #: ../src/main.c:924
 msgid "_Offline mode"
-msgstr "_Modo offline"
+msgstr "_Desativar o ClipIt"
 
 #. Manage history
 #: ../src/main.c:933
 msgid "_Manage history"
-msgstr "_Gerenciar histórico"
+msgstr "_Gerenciar o Histórico"
 
 #. Create the dialog
 #: ../src/manage.c:138
 msgid "Editing Clipboard"
-msgstr "Editando a Área de Transferência"
+msgstr "Editar a Área de Transferência"
 
 #: ../src/manage.c:158
 msgid "_Static item"
-msgstr "_Item estático"
+msgstr "_Manter o item"
 
 #: ../src/manage.c:240
 msgid "Clear the history?"
-msgstr "Limpar o histórico?"
+msgstr "Você quer limpar o histórico?"
 
 #: ../src/manage.c:241
 msgid "Clear history"
-msgstr "Limpar histórico"
+msgstr "Limpar o histórico"
 
 #: ../src/manage.c:353
 msgid "Manage History"
-msgstr "Gerenciar Histórico"
+msgstr "Gerenciar o Histórico"
 
 #: ../src/manage.c:356
 msgid " (Offline mode)"
-msgstr "(Modo offline)"
+msgstr " (Desativado)"
 
 #: ../src/manage.c:398
 msgid "Results"
-msgstr "Resultados"
+msgstr "Itens do histórico"
 
 #: ../src/manage.c:403
 msgid "Edit"
@@ -117,11 +127,11 @@ msgstr "Fechar"
 
 #: ../src/preferences.c:182
 msgid "Save history"
-msgstr "Salvar histórico"
+msgstr "Salvar o Histórico"
 
 #: ../src/preferences.c:215
 msgid "Remove history file"
-msgstr "Remover arquivo de histórico"
+msgstr "Remover o arquivo do histórico"
 
 #. Create the dialog
 #: ../src/preferences.c:730
@@ -138,43 +148,43 @@ msgstr "<b>Áreas de Transferências</b>"
 
 #: ../src/preferences.c:764
 msgid "Use _Copy (Ctrl-C)"
-msgstr "Usar _Cópia (Ctrl-C)"
+msgstr "Utilizar as teclas ‘Ctrl+C’ para _copiar"
 
 #: ../src/preferences.c:767
 msgid "Use _Primary (Selection)"
-msgstr "Usar Seleção _Primária"
+msgstr "Utilizar a seleção _primária"
 
 #: ../src/preferences.c:770
 msgid "S_ynchronize clipboards"
-msgstr "S_incronizar áreas de transferência"
+msgstr "S_incronizar as áreas de transferência"
 
 #: ../src/preferences.c:772
 msgid "_Automatically paste selected item"
-msgstr "_Colar automaticamente item selecionado"
+msgstr "Colar _automaticamente o item que foi selecionado"
 
 #: ../src/preferences.c:781
 msgid "<b>Miscellaneous</b>"
-msgstr "<b>Vários</b>"
+msgstr "<b>Várias Opções</b>"
 
 #: ../src/preferences.c:788
 msgid "Show _indexes in history menu"
-msgstr "Mostrar _índices no menu histórico"
+msgstr "Exibir os _índices no menu do histórico"
 
 #: ../src/preferences.c:790
 msgid "S_ave URIs"
-msgstr "S_alvar URIs"
+msgstr "S_alvar os identificadores uniformes de recurso (URIs)"
 
 #: ../src/preferences.c:792
 msgid "Capture _hyperlinks only"
-msgstr "Capturar somente _hyperlinks"
+msgstr "Capturar somente as _hiperligações (hyperlinks)"
 
 #: ../src/preferences.c:794
 msgid "C_onfirm before clearing history"
-msgstr "C_onfirmar antes de limpar o histórico"
+msgstr "Perguntar antes de limpar o históric_o"
 
 #: ../src/preferences.c:796
 msgid "_Use right-click menu"
-msgstr "_Use o botão direito do mouse no menu"
+msgstr "_Utilizar o menu do clique do botão direito"
 
 #: ../src/preferences.c:805
 msgid "History"
@@ -186,35 +196,35 @@ msgstr "<b>Histórico</b>"
 
 #: ../src/preferences.c:820
 msgid "Save _history"
-msgstr "Salvar _histórico"
+msgstr "Salvar o _histórico"
 
 #: ../src/preferences.c:821
 msgid "Save and restore history between sessions"
-msgstr "Salvar e restaurar histórico entre as sessões"
+msgstr "Salvar e restaurar o histórico entre as sessões"
 
 #: ../src/preferences.c:825
 msgid "Items in history:"
-msgstr "Itens no histórico:"
+msgstr "Quantidade de itens no histórico:"
 
 #: ../src/preferences.c:834
 msgid "Items in menu:"
-msgstr "Itens do menu:"
+msgstr "Quantidade de itens no menu:"
 
 #: ../src/preferences.c:841
 msgid "Show _static items in menu"
-msgstr "Mostrar _itens estáticos no menu"
+msgstr "Exibir os _itens estáticos no menu"
 
 #: ../src/preferences.c:846
 msgid "Static items in menu:"
-msgstr "Itens estáticos em menu:"
+msgstr "Quantidade de itens estáticos no menu:"
 
 #: ../src/preferences.c:854
 msgid "Purge history after _timeout"
-msgstr ""
+msgstr "Limpar o histórico após o _tempo limite especificado"
 
 #: ../src/preferences.c:860
 msgid "Timeout seconds"
-msgstr ""
+msgstr "Tempo limite em segundos"
 
 #: ../src/preferences.c:875
 msgid "<b>Items</b>"
@@ -222,11 +232,11 @@ msgstr "<b>Itens</b>"
 
 #: ../src/preferences.c:882
 msgid "Show in a single _line"
-msgstr "Mostrar em uma unica _linha"
+msgstr "Exibir em uma única _linha"
 
 #: ../src/preferences.c:884
 msgid "Show in _reverse order"
-msgstr "Exibir em ordem _reversa"
+msgstr "Exibir em ordem inve_rsa"
 
 #: ../src/preferences.c:888
 msgid "Character length of items:"
@@ -234,7 +244,7 @@ msgstr "Quantidade de caracteres dos itens:"
 
 #: ../src/preferences.c:897
 msgid "Omit items in the:"
-msgstr "Omitir itens no:"
+msgstr "Omitir os itens no:"
 
 #: ../src/preferences.c:901
 msgid "Beginning"
@@ -255,8 +265,9 @@ msgstr "Ações"
 #. Build the actions label
 #: ../src/preferences.c:938
 msgid "Control-click ClipIt's tray icon to use actions"
-msgstr "Control-clique no ícone da bandeja do ClipIt para usar ações"
-
+msgstr "Mantenha a tecla ‘Control’ pressionada e clique no ícone do ClipIt "
+"que está na bandeja do\nsistema para utilizar as ações"
+       
 #: ../src/preferences.c:958
 msgid "Action"
 msgstr "Ação"
@@ -271,14 +282,17 @@ msgstr "Adicionar..."
 
 #: ../src/preferences.c:1001
 msgid "Exclude"
-msgstr "Excluir"
+msgstr "Lista de Exceções"
 
 #. Build the exclude label
 #: ../src/preferences.c:1006
 msgid ""
 "Regex list of items that should not be inserted into the history "
 "(passwords/sites that you don't need in history, etc)."
-msgstr "Lista de expressões regulares de itens que não devem ser inseridas no histórico (senhas/sites que não necessita no histórico, etc)."
+msgstr ""
+"Lista de expressões regulares (regex) dos itens que não devem ser "
+"inseridos no histórico,\ncomo por exemplo, as senhas dos serviços "
+"da internet que você não quer no histórico\ndo ClipIt, etc."
 
 #: ../src/preferences.c:1026
 msgid "Regex"
@@ -287,7 +301,7 @@ msgstr "Expressões regulares"
 #. Build the exclude windows section
 #: ../src/preferences.c:1052
 msgid "Exclude clipboard content from windows:"
-msgstr ""
+msgstr "Excluir o conteúdo da área de transferência das janelas:"
 
 #: ../src/preferences.c:1059
 msgid ""
@@ -296,55 +310,59 @@ msgid ""
 "Will cause all windows starting with either 'keepass' or 'lastpass' to be ignored.\n"
 "The match is case insensitive."
 msgstr ""
+"A expressão regular para coincidir ou corresponder com o nome da janela. Por\n"
+"exemplo, a expressão: ‘^(keepass)|(lastpass)’ (sem as aspas simples) fará com\n"
+"que todas as janelas que começam com ‘keepass’ ou ‘lastpass’ sejam ignoradas.\n"
+"A correspondência não diferencia entre as letras maiúsculas e minúsculas."
 
 #: ../src/preferences.c:1067
 msgid "Hotkeys"
-msgstr "Atalhos"
+msgstr "Teclas de Atalho"
 
 #: ../src/preferences.c:1075
 msgid "<b>Hotkeys</b>"
-msgstr "<b>Atalhos</b>"
+msgstr "<b>Teclas de Atalho</b>"
 
 #: ../src/preferences.c:1085
 msgid "History hotkey:"
-msgstr "Históricos de atalhos:"
+msgstr "Históricos das teclas de atalho:"
 
 #: ../src/preferences.c:1094
 msgid "Actions hotkey:"
-msgstr "Ações de atalho:"
+msgstr "Ações das teclas de atalho:"
 
 #: ../src/preferences.c:1103
 msgid "Menu hotkey:"
-msgstr "Menu de atalho:"
+msgstr "Menu das teclas de atalho:"
 
 #: ../src/preferences.c:1112
 msgid "Manage hotkey:"
-msgstr "Gerenciar atalhos:"
+msgstr "Gerenciar as teclas de atalho:"
 
 #: ../src/preferences.c:1121
 msgid "Offline mode hotkey:"
-msgstr "Atalhos do modo offline:"
+msgstr "Desativar as teclas de atalho:"
 
 #: ../src/utils.c:40 ../src/utils.c:47
 #, c-format
 msgid "Couldn't create directory: %s\n"
-msgstr "Não foi possível criar diretório: %s\n"
+msgstr "Não foi possível criar o diretório: %s\n"
 
 #: ../src/utils.c:131
 msgid "Run as daemon"
-msgstr "Executar como daemon"
+msgstr "Executar como um serviço"
 
 #: ../src/utils.c:138
 msgid "Do not use status icon (Ctrl-Alt-P for menu)"
-msgstr "Não usar ícone de status (Ctrl-Alt-P para o menu)"
+msgstr "Não utilizar o ícone do estado, pressione ‘Ctrl+Alt+P’ para exibir o menu"
 
 #: ../src/utils.c:145
 msgid "Print clipboard contents"
-msgstr "Imprimir conteúdo da área de transferência"
+msgstr "Imprimir o conteúdo da área de transferência"
 
 #: ../src/utils.c:152
 msgid "Print primary contents"
-msgstr "Imprimir conteúdo primário"
+msgstr "Imprimir o conteúdo primário"
 
 #: ../src/utils.c:164
 msgid ""
@@ -353,10 +371,18 @@ msgid ""
 "  echo \"copied to clipboard\" | clipit\n"
 "  clipit \"copied to clipboard\"\n"
 "  echo \"copied to clipboard\" | clipit -c"
-msgstr "Exemplo de uso da Área de Transferência no terminal:\n\n  echo \"copiado para a área de transferência\" | clipit\n  clipit \"copiado para a área de transferência\"\n  echo \"copiado para a área de transferência\" | clipit -c"
+msgstr ""
+"Exemplos de utilização da área de transferência no emulador de terminal:\n"
+"\n"
+" echo \"o texto foi copiado para a área de transferência\" | clipit\n"
+" clipit \"o texto foi copiado para a área de transferência\"\n"
+" echo \"o texto foi copiado para a área de transferência\" | clipit -c"
 
 #: ../src/utils.c:170
 msgid ""
 "Written by Cristian Henzel.\n"
 "Report bugs to <oss@rspwn.com>."
-msgstr "Escrito por Cristian Henzel.\nReportar bugs para <oss@rspwn.com>."
+msgstr ""
+"O programa foi escrito por Cristian Henzel.\n"
+"Por favor, reporte qualquer tipo de falha ou\n"
+"problema para o endereço <oss@rspwn.com>."
